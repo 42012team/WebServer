@@ -13,6 +13,7 @@ import java.util.List;
 
 
 public class ServiceStorageHibernate implements ServiceStorage {
+
     @Override
     public List<Service> getAllServices() {
         List<Service> results = null;

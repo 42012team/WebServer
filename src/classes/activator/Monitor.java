@@ -1,5 +1,5 @@
 package classes.activator;
 
-public class Monitor {
+public class  Monitor {
 
 }

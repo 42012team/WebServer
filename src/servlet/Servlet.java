@@ -106,7 +106,7 @@ public class Servlet extends HttpServlet {
         if(request.getParameter("changeProfileButton")!=null){
             request.getRequestDispatcher("changeProfilePage.jsp").forward(request, response);
         }
-        if(request.getParameter("saveChangesButton")!=null){
+      /*  if(request.getParameter("saveChangesButton")!=null){
             String name=request.getParameter("name");
             String surname=request.getParameter("surname");
             String email=request.getParameter("email");
@@ -132,7 +132,7 @@ public class Servlet extends HttpServlet {
                     userResponse.getPrivilege());
             setProfileAttribute(user,request,response);
             request.getRequestDispatcher("profilePage.jsp").forward(request, response);
-        }
+        }*/
     }
     private void setProfileAttribute(User user, HttpServletRequest request,HttpServletResponse response){
         request.setAttribute("name",user.getName());

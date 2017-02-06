@@ -16,7 +16,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public List<ActiveService> getActiveServicesByUserId(int userId) {
 
-        List result = null;
+         List result = null;
         EntityManager em = null;
         try {
             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();

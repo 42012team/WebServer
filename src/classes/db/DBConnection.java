@@ -10,19 +10,6 @@ public class DBConnection {
 
     public static OracleDataSource ds;
     private static volatile DBConnection instance = null;
-
-    /*  private Connection connection = null;
-    final String driverName = "oracle.jdbc.driver.OracleDriver";//XML CONFIGURATIONS
-    String url = "jdbc:oracle:thin:@Localhost:1521:orcldb1";
-    String name = "sys as sysdba";*/
-    /*
-    ds = new OracleDataSource(); 
-ds.setDriverType("thin"); 
-ds.setURL("jdbc:oracle:thin:@Localhost:1521:orcldb1"); 
-ds.setDatabaseName("orcl"); 
-ds.setUser("sys as sysdba"); 
-ds.setPassword("ada100986");
-*/
     private DBConnection() {
         try {
             ds = new OracleDataSource();

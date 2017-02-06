@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class DBUserStorage implements UserStorage {
 
-    private Connection connection = null;
+     private Connection connection = null;
 
     @Override
     public User getUser(String login, String password) {
