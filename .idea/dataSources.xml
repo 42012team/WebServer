@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3354355147">
+    <data-source source="LOCAL" name="Database Driver - jdbc:oracle:thin:@Localhost:1521:orcldb1" uuid="98ec2182-2996-4285-a2ed-0503ecbd1faa">
+      <driver-ref>java.sql.Driver</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>oracle.jdbc.driver.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@Localhost:1521:orcldb1</jdbc-url>
+    </data-source>
+  </component>
+</project>
