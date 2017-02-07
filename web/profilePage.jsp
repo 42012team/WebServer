@@ -21,6 +21,7 @@ Your Profile:
 <p>Password :${password}</p>
 <form action="Servlet" method="post">
 <p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
+ <input type="submit" name="link">Посмотреть подключенные услуги/>
 </form>
 </body>
 </html>

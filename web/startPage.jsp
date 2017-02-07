@@ -17,6 +17,5 @@
  <p> <input type="submit" name="loginButton" value="OK"/></p>
 </form>
 <a href="registration.jsp">Регистрация</a>
-<!-- Result: <%//=userManager.getUserById(31).getName()%>-->
 </body>
 </html>
