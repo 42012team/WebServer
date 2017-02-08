@@ -28,7 +28,6 @@ public class ShowActiveServicesPage extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if(request.getParameter("link")!=null) {
         User user = (User) request.getSession(true).getAttribute("user");
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
                 controller.indentifyObject(TransmittedActiveServiceParams.create().
@@ -40,7 +39,6 @@ public class ShowActiveServicesPage extends HttpServlet {
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
         request.getRequestDispatcher("showAllActiveService.jsp").forward(request, response);
-    }
     }
 
 }
