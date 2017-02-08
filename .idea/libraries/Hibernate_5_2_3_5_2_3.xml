@@ -17,6 +17,7 @@
       <root url="jar://$PROJECT_DIR$/hibernate/lib/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar!/" />
       <root url="jar://$PROJECT_DIR$/hibernate/lib/jsr250-api-1.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/hibernate/lib/hibernate-core-5.2.3.Final.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/ojdbc7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

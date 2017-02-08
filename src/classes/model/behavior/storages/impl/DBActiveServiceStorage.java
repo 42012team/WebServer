@@ -150,6 +150,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                         break;
                 }
                 String newStatus = rs.getString("NEW_STATUS");
+                if(newStatus==null)
+                    activeService.setNewStatus(null);
+                    else
                 switch (newStatus) {
                     case "ACTIVE":
                         activeService.setNewStatus(ActiveServiceStatus.ACTIVE);

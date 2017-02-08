@@ -1,4 +1,5 @@
-<%--
+<%@ page import="classes.request.impl.TransmittedUserParams" %>
+<%@ page import="classes.activator.Monitor" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 05.02.2017
@@ -11,9 +12,15 @@
   <title>$Title$</title>
 </head>
 <body>
+
 <form action="Servlet" method="post">
  <p>Login: <input type="text" name="login"/></p>
   <p>Password: <input type="text" name="pass"/></p>
+    <%
+        Monitor m=new Monitor();
+        session.setAttribute("tr",m);
+        // request.setAttribute("log1",transmittedUserParams);
+    %>
  <p> <input type="submit" name="loginButton" value="OK"/></p>
 </form>
 <a href="registration.jsp">Регистрация</a>
