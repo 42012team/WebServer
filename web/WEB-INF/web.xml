@@ -4,11 +4,36 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>Servlet</servlet-name>
-        <servlet-class>servlet.Servlet</servlet-class>
+        <servlet-name>LogInServlet</servlet-name>
+        <servlet-class>servlet.LogInServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Servlet</servlet-name>
-        <url-pattern>/Servlet</url-pattern>
+        <servlet-name>LogInServlet</servlet-name>
+        <url-pattern>/LogInServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>servlet.SignInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/SignInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeUserServlet</servlet-name>
+        <servlet-class>servlet.ChangeUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeUserServlet</servlet-name>
+        <url-pattern>/ChangeUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>servlet.DispatcherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/DispatcherServlet</url-pattern>
     </servlet-mapping>
 </web-app>

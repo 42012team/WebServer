@@ -11,7 +11,7 @@
   <title>$Title$</title>
 </head>
 <body>
-<form action="Servlet" method="post">
+<form action="LogInServlet" method="post">
  <p>Login: <input type="text" name="login"/></p>
   <p>Password: <input type="text" name="pass"/></p>
  <p> <input type="submit" name="loginButton" value="OK"/></p>

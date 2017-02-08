@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="Servlet" method="POST">
+<form action="ChangeUserServlet" method="POST">
     <p>Name: <input type="text" name="name"/></p>
     <p>Surname: <input type="text" name="surname"/></p>
     <p>Email: <input type="text" name="email"/></p>

@@ -19,9 +19,9 @@ Your Profile:
 <p>Address :${address}</p>
 <p>Login :${login}</p>
 <p>Password :${password}</p>
-<form action="Servlet" method="post">
+<form action="DispatcherServlet" method="post">
 <p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
- <input type="submit" name="link">Посмотреть подключенные услуги/>
+ <input type="submit" name="link" value="Посмотреть подключенные услуги"/>
 </form>
 </body>
 </html>

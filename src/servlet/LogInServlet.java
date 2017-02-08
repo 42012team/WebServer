@@ -5,6 +5,8 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.idgenerator.IdGenerator;
 import classes.idgenerator.IdGeneratorSingletonDB;
+import classes.model.ActiveService;
+import classes.model.Service;
 import classes.model.User;
 import classes.model.behavior.managers.ActiveServiceManager;
 import classes.model.behavior.managers.ServiceManager;
@@ -15,7 +17,9 @@ import classes.processors.ConfigurationXML;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.request.impl.TransmittedServiceParams;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.impl.ActiveServiceResponse;
 import classes.response.impl.ServiceResponse;
 import classes.response.impl.UserResponse;
 import jdk.nashorn.internal.ir.RuntimeNode;
@@ -26,12 +30,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by User on 05.02.2017.
  */
-public class Servlet extends HttpServlet {
+public class LogInServlet extends HttpServlet {
 //    User user=null;
  /*   IdGenerator idGenerator = null;
     UserManager userManager = null;
@@ -44,27 +49,11 @@ public class Servlet extends HttpServlet {
      @Override
     public void init() throws ServletException {
          controller= Initialization.getInstance().initialization();
- /*     super.init();
-       idGenerator = IdGeneratorSingletonDB.getInstance();
-         userManager = new UserManager(new DBUserStorage(), idGenerator);
-      serviceManager = new ServiceManager(new DBServiceStorage(), idGenerator);
-         activeServiceManager = new ActiveServiceManager(new DBActiveServiceStorage(),
-                idGenerator, serviceManager);
-        serviceManager.setActiveServiceManager(activeServiceManager);
-        initializer = new Initializer(userManager, activeServiceManager, serviceManager, "optimistic");
-        Configuration c = new ConfigurationXML();
-        Map<String, RequestProcessor> map = c.getMap(initializer);
-        controller = new WebController(map);
-         Activator activator = new Activator();
-        activeServiceManager.setActivator(activator);
-        activator.setActiveServiceManager(activeServiceManager);
-        activator.start();*/
-
      }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        if (request.getParameter("loginButton")!= null) {
+   //     if (request.getParameter("loginButton")!= null) {
             TransmittedUserParams transmittedUserParams=TransmittedUserParams.create()
                     .withLogin(request.getParameter("login"))
                     .withPassword(request.getParameter("pass"))
@@ -76,9 +65,9 @@ public class Servlet extends HttpServlet {
             request.getSession(true).setAttribute("user",user);
             setProfileAttribute(user,request,response);
             request.getRequestDispatcher("profilePage.jsp").forward(request, response);
-        }
+       // }
 
-        if(request.getParameter("signInButton")!=null){
+    /*    if(request.getParameter("signInButton")!=null){
             String name=request.getParameter("name");
             String surname=request.getParameter("surname");
             String email=request.getParameter("email");
@@ -145,11 +134,18 @@ public class Servlet extends HttpServlet {
             request.getRequestDispatcher("profilePage.jsp").forward(request, response);
 
         }
-      /*  if(request.getParameter("link")!=null){
-            User user=
-            ServiceResponse serviceResponse= (ServiceResponse) controller.indentifyObject(TransmittedActiveServiceParams.create().
+        if(request.getParameter("link")!=null){
+            User user= (User) request.getSession(true).getAttribute("user");
+            ActiveServiceResponse activeServiceResponse=(ActiveServiceResponse)
+                    controller.indentifyObject(TransmittedActiveServiceParams.create().
+                            withUserId(user.getId()).withRequestType("allActiveServices"));
+            List<ActiveService> activeServicesList=activeServiceResponse.getAllActiveServices();
+            System.out.println(activeServicesList.size()+"acsl");
+            ServiceResponse serviceResponse= (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
                     withUserId(user.getId()).withRequestType("activeServicesDescriptions"));
-            request.setAttribute("list",serviceResponse.getServices());
+            List<Service> serviceList=serviceResponse.getServices();
+            request.setAttribute("activeServiceDescription",serviceList);
+            request.setAttribute("activeServiceList",activeServicesList);
             request.getRequestDispatcher("showAllActiveService.jsp").forward(request, response);
         }*/
 
