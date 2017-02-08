@@ -1,5 +1,4 @@
-<%@ page import="classes.request.impl.TransmittedUserParams" %>
-<%@ page import="classes.response.impl.UserResponse" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: User
   Date: 05.02.2017
@@ -20,13 +19,9 @@ Your Profile:
 <p>Address :${address}</p>
 <p>Login :${login}</p>
 <p>Password :${password}</p>
-<%
-   // UserResponse userParams=(UserResponse)request.getAttribute("log");
-%>
-<%//=userParams.getName()%>
-<form action="Servlet" method="post">
+<form action="DispatcherServlet" method="post">
 <p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
-    <p><input type="submit" name="lalaButton" value="lala"/></p>
+ <input type="submit" name="link" value="Посмотреть подключенные услуги"/>
 </form>
 </body>
 </html>

@@ -1,0 +1,18 @@
+package servlet;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Created by User on 08.02.2017.
+ */
+public class DispatcherServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getParameter("changeProfileButton")!=null){
+            request.getRequestDispatcher("changeProfilePage.jsp").forward(request, response);
+        }
+    }
+}
