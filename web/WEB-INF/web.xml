@@ -36,4 +36,12 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/DispatcherServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowActiveServicesPage</servlet-name>
+        <servlet-class>servlet.ShowActiveServicesPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowActiveServicesPage</servlet-name>
+        <url-pattern>/ShowActiveServicesPage</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -21,7 +21,7 @@ Your Profile:
 <p>Password :${password}</p>
 <form action="DispatcherServlet" method="post">
 <p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
- <input type="submit" name="link" value="Посмотреть подключенные услуги"/>
+ <input type="submit" name="link" formaction="ShowActiveServicesPage" formmethod="post" value="Посмотреть подключенные услуги"/>
 </form>
 </body>
 </html>
