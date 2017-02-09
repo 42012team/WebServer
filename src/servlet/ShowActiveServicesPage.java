@@ -17,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by User on 08.02.2017.
- */
+
 public class ShowActiveServicesPage extends HttpServlet {
     WebController controller=null;
     @Override

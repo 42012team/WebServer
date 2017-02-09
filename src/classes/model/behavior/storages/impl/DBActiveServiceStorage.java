@@ -50,23 +50,26 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                         break;
                 }
                 String newStatus = rs.getString("NEW_STATUS");
-                switch (newStatus) {
-                    case "ACTIVE":
-                        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
-                        break;
-                    case "PLANNED":
-                        activeService.setNewStatus(ActiveServiceStatus.PLANNED);
-                        break;
-                    case "SUSPENDED":
-                        activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                        break;
-                    case "DISCONNECTED":
-                        activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
-                        break;
-                    case " ":
-                        activeService.setNewStatus(null);
-                        break;
-                }
+                if (newStatus == null)
+                    activeService.setNewStatus(null);
+                else
+                    switch (newStatus) {
+                        case "ACTIVE":
+                            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                            break;
+                        case "PLANNED":
+                            activeService.setNewStatus(ActiveServiceStatus.PLANNED);
+                            break;
+                        case "SUSPENDED":
+                            activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                            break;
+                        case "DISCONNECTED":
+                            activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
+                            break;
+                        case " ":
+                            activeService.setNewStatus(null);
+                            break;
+                    }
                 activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
                 activeServiceList.add(activeService);
             }
@@ -150,26 +153,26 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                         break;
                 }
                 String newStatus = rs.getString("NEW_STATUS");
-                if(newStatus==null)
+                if (newStatus == null)
                     activeService.setNewStatus(null);
-                    else
-                switch (newStatus) {
-                    case "ACTIVE":
-                        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
-                        break;
-                    case "PLANNED":
-                        activeService.setNewStatus(ActiveServiceStatus.PLANNED);
-                        break;
-                    case "SUSPENDED":
-                        activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                        break;
-                    case "DISCONNECTED":
-                        activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
-                        break;
-                    case " ":
-                        activeService.setNewStatus(null);
-                        break;
-                }
+                else
+                    switch (newStatus) {
+                        case "ACTIVE":
+                            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                            break;
+                        case "PLANNED":
+                            activeService.setNewStatus(ActiveServiceStatus.PLANNED);
+                            break;
+                        case "SUSPENDED":
+                            activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                            break;
+                        case "DISCONNECTED":
+                            activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
+                            break;
+                        case " ":
+                            activeService.setNewStatus(null);
+                            break;
+                    }
                 activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
                 activeServiceList.add(activeService);
             }
@@ -225,23 +228,26 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                         break;
                 }
                 String newStatus = rs.getString("NEW_STATUS");
-                switch (newStatus) {
-                    case "ACTIVE":
-                        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
-                        break;
-                    case "PLANNED":
-                        activeService.setNewStatus(ActiveServiceStatus.PLANNED);
-                        break;
-                    case "SUSPENDED":
-                        activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                        break;
-                    case "DISCONNECTED":
-                        activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
-                        break;
-                    case " ":
-                        activeService.setNewStatus(null);
-                        break;
-                }
+                if (newStatus == null)
+                    activeService.setNewStatus(null);
+                else
+                    switch (newStatus) {
+                        case "ACTIVE":
+                            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                            break;
+                        case "PLANNED":
+                            activeService.setNewStatus(ActiveServiceStatus.PLANNED);
+                            break;
+                        case "SUSPENDED":
+                            activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                            break;
+                        case "DISCONNECTED":
+                            activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
+                            break;
+                        case " ":
+                            activeService.setNewStatus(null);
+                            break;
+                    }
                 activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
             }
             ps.close();
