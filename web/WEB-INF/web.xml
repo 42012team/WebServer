@@ -60,5 +60,13 @@
         <servlet-name> ShowAllowedToConnectServiceServlet</servlet-name>
         <url-pattern>/ShowAllowedToConnectServiceServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AddActiveServiceServlet</servlet-name>
+        <servlet-class>servlet.AddActiveServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> AddActiveServiceServlet</servlet-name>
+        <url-pattern>/AddActiveServiceServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>
