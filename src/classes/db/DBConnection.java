@@ -14,10 +14,10 @@ public class DBConnection {
         try {
             ds = new OracleDataSource();
             ds.setDriverType("thin");
-            ds.setURL("jdbc:oracle:thin:@Localhost:1521:mydb");
+            ds.setURL("jdbc:oracle:thin:@Localhost:1521:orcldb1");
             ds.setDatabaseName("orcl");
-            ds.setUser("hr");
-            ds.setPassword("hr");
+            ds.setUser("sys as sysdba");
+            ds.setPassword("ada100986");
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

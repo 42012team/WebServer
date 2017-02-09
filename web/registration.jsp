@@ -20,7 +20,6 @@
 <p>Login: <input type="text" name="login"/></p>
 <p>Password: <input type="text" name="password"/></p>
 <p><input type="submit" name="signInButton" value="signIn"/></p>
-    <%response.sendRedirect("can.html");%>
 </form>
 </body>
 </html>

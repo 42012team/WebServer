@@ -65,7 +65,7 @@
         <servlet-class>servlet.AddActiveServiceServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> AddActiveServiceServlet</servlet-name>
+        <servlet-name>AddActiveServiceServlet</servlet-name>
         <url-pattern>/AddActiveServiceServlet</url-pattern>
     </servlet-mapping>
 

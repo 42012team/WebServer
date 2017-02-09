@@ -16,7 +16,7 @@
 <form action="AddActiveServiceServlet" method="post">
 <% List<Service> serviceList= (List<Service>) request.getAttribute("allowedToConnectServices");
     int j=1;
-    User user= (User) session.getAttribute("user");
+    User user= (User) request.getAttribute("user");
     for (Service s : serviceList) {%>
        <p>_______________________________________________________</p>
        <p>Услуга номер <%=j%></p>
