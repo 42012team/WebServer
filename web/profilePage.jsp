@@ -22,6 +22,7 @@ Your Profile:
 <form action="DispatcherServlet" method="post">
 <p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
  <input type="submit" name="link" formaction="ShowActiveServicesPage" formmethod="post" value="Посмотреть подключенные услуги"/>
+    <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post" value="Подключить услугу"/>
 </form>
 </body>
 </html>

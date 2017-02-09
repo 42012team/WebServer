@@ -7,9 +7,7 @@ import classes.idgenerator.IdGeneratorSingletonDB;
 import classes.model.behavior.managers.ActiveServiceManager;
 import classes.model.behavior.managers.ServiceManager;
 import classes.model.behavior.managers.UserManager;
-import classes.model.behavior.storages.impl.DBActiveServiceStorage;
-import classes.model.behavior.storages.impl.DBServiceStorage;
-import classes.model.behavior.storages.impl.DBUserStorage;
+import classes.model.behavior.storages.impl.*;
 import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Configuration;
 import classes.processors.ConfigurationXML;
@@ -26,7 +24,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         try {
             ////JDBC
-            IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
+           IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
             UserManager userManager = new UserManager(new DBUserStorage(), idGenerator);
             ServiceManager serviceManager = new ServiceManager(new DBServiceStorage(), idGenerator);
             ActiveServiceManager activeServiceManager = new ActiveServiceManager(new DBActiveServiceStorage(),
@@ -41,12 +39,12 @@ public class Server {
                    idGenerator, serviceManager);
         */
             ////HIBERNATE
-          /*  IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
+     /*       IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
             UserManager userManager = new UserManager(new UserStorageHibernate(), idGenerator);
             ServiceManager serviceManager = new ServiceManager(new ServiceStorageHibernate(), idGenerator);
             ActiveServiceManager activeServiceManager = new ActiveServiceManager(new ActiveServiceStorageHibernate(),
-                    idGenerator, serviceManager);
-*/
+                    idGenerator, serviceManager);*/
+
             serviceManager.setActiveServiceManager(activeServiceManager);
             Activator activator = new Activator();
             activeServiceManager.setActivator(activator);

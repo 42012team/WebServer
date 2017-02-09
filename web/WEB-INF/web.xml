@@ -44,4 +44,29 @@
         <servlet-name>ShowActiveServicesPage</servlet-name>
         <url-pattern>/ShowActiveServicesPage</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>DeleteActiveServiceServlet</servlet-name>
+    <servlet-class>servlet.DeleteActiveServiceServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>DeleteActiveServiceServlet</servlet-name>
+<url-pattern>/DeleteActiveServiceServlet</url-pattern>
+</servlet-mapping>
+    <servlet>
+        <servlet-name>ShowAllowedToConnectServiceServlet</servlet-name>
+        <servlet-class>servlet.ShowAllowedToConnectServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> ShowAllowedToConnectServiceServlet</servlet-name>
+        <url-pattern>/ShowAllowedToConnectServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddActiveServiceServlet</servlet-name>
+        <servlet-class>servlet.AddActiveServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> AddActiveServiceServlet</servlet-name>
+        <url-pattern>/AddActiveServiceServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>
