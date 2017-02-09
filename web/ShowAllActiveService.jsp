@@ -15,7 +15,7 @@
     <title>Title</title>
 </head>
 <body>
-<form  >
+<form>
     <%List<ActiveService> activeServiceList= (List<ActiveService>) request.getAttribute("activeServiceList");
         List<Service> serviceList= (List<Service>) request.getAttribute("activeServiceDescription");
         for (int k = 0; k < serviceList.size(); k++) {
@@ -36,15 +36,14 @@
     <%
         }
     %>
-    <input type="hidden" name="deleteActiveService" value="<%=activeServiceList.get(k).getId()%>"/>
-    <input type="submit" formaction="DeleteActiveServiceServlet" formmethod="post" name="deleteActiveServiceButton" value="Удалить"/>
-    //cсоздать что-то со старыми значениями и передать на сервер.
-    <input type="submit" formmethod="post" name="changeActiveService"/>
+    <input type="radio" name="chooseActiveService" value="<%=activeServiceList.get(k).getId()%>"/>
+
     <p>________________________________________________________</p>
     <%
         }
     %>
-
+<input type="submit" name="deleteActiveServiceButton" formaction="DeleteActiveServiceServlet" formmethod="post" value="Удалить услугу">
+    <input type="submit" name="changeActiveService" formaction="ChangeActiveServiceServlet" formmethod="post"  value="Изменить выбранную услугу"/>
 </form>
 </body>
 </html>
