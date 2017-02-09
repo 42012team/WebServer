@@ -24,13 +24,13 @@
         <p>Описание услуги:<%=s.getDescription()%></p>
         <p>Тип услуги:<%=s.getType()%>
        <p>_______________________________________________________</p>
-        <input type="hidden" name="serviceId" value="<%=s.getId()%>"/>
-       <input type="hidden" name="userId" value="<%=user.getId()%>">
-        <input type="text" name="activateDate"/>
-        <input type="submit" name="addActiveService" value="Добавить"/>
+       <input type="radio" name="serviceId" value="<%=s.getId()%>">Добавить </input>
+        <input type="text" name="<%=s.getId()%>"/>
+
       <%  j++;
     }
 %>
+<input type="submit" name="addActiveService" value="Добавить"/>
     </form>
 </body>
 </html>
