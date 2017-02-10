@@ -14,23 +14,27 @@
 </head>
 <body>
 <form action="AddActiveServiceServlet" method="post">
-<% List<Service> serviceList= (List<Service>) request.getAttribute("allowedToConnectServices");
-    int j=1;
-    User user= (User) request.getAttribute("user");
-    for (Service s : serviceList) {%>
-       <p>_______________________________________________________</p>
-       <p>Услуга номер <%=j%></p>
-        <p>Название услуги:<%=s.getName()%></p>
-        <p>Описание услуги:<%=s.getDescription()%></p>
-        <p>Тип услуги:<%=s.getType()%>
-       <p>_______________________________________________________</p>
-       <input type="radio" name="serviceId" value="<%=s.getId()%>">Добавить </input>
-        <input type="text" name="<%=s.getId()%>"/>
+    <% List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
+        int j = 1;
+        User user = (User) request.getAttribute("user");
+        for (Service s : serviceList) {%>
+    <p>_______________________________________________________</p>
+    <p><input type="radio" name="serviceId" value="<%=s.getId()%>"/> Услуга номер <%=j%>
+    </p>
+    <p>Название услуги:<%=s.getName()%>
+    </p>
+    <p>Описание услуги:<%=s.getDescription()%>
+    </p>
+    <p>Тип услуги:<%=s.getType()%>
+    <p>_______________________________________________________</p>
 
-      <%  j++;
+
+    <% j++;
     }
-%>
-<input type="submit" name="addActiveService" value="Добавить"/>
-    </form>
+    %>
+    <p>Введите дату подключения: <input type="text" name="activationDate"/></p>
+    <input type="submit" name="addActiveService" value="Добавить"/>
+    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post" value="Вернуться в профиль"/>
+</form>
 </body>
 </html>

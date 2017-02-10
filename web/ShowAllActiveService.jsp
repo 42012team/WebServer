@@ -20,7 +20,7 @@
         List<Service> serviceList= (List<Service>) request.getAttribute("activeServiceDescription");
         for (int k = 0; k < serviceList.size(); k++) {
             Service s = serviceList.get(k);%>
-    <p>Услуга номер : <%=k + 1%> </p>
+    <p>   <input type="radio" name="chooseActiveService" value="<%=activeServiceList.get(k).getId()%>"/> Услуга номер : <%=k + 1%> </p>
     <p>Название услуги: <%=s.getName()%></p>
     <p>Описание услуги: <%=s.getDescription()%></p>
     <p>Тип услуги:<%=s.getType()%></p>
@@ -36,14 +36,16 @@
     <%
         }
     %>
-    <input type="radio" name="chooseActiveService" value="<%=activeServiceList.get(k).getId()%>"/>
+
 
     <p>________________________________________________________</p>
     <%
         }
     %>
-<input type="submit" name="deleteActiveServiceButton" formaction="DeleteActiveServiceServlet" formmethod="post" value="Удалить услугу">
+<input type="submit" name="deleteActiveServiceButton" formaction="DeleteActiveServiceServlet" formmethod="post" value="Удалить услугу"/>
     <input type="submit" name="changeActiveService" formaction="ChangeActiveServiceServlet" formmethod="post"  value="Изменить выбранную услугу"/>
+    <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post" value="Подключить услугу"/>
+    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post" value="Вернуться в профиль"/>
 </form>
 </body>
 </html>

@@ -20,17 +20,18 @@ import java.util.Date;
  */
 public class AddActiveServiceServlet extends HttpServlet {
     WebController controller = null;
+
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       User user= (User) request.getSession(true).getAttribute("user");
-        int serviceId=Integer.parseInt(request.getParameter("serviceId"));
-       String dateToString=request.getParameter(Integer.toString(serviceId));
-        System.out.println(dateToString+"mrr");
-                SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        User user = (User) request.getSession(true).getAttribute("user");
+        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+        String dateToString = request.getParameter("activationDate");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date newDate = null;
         try {
             newDate = format.parse(dateToString);

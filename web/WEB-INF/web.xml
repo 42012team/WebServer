@@ -68,5 +68,14 @@
         <servlet-name>AddActiveServiceServlet</servlet-name>
         <url-pattern>/AddActiveServiceServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowProfilePageServlet</servlet-name>
+        <servlet-class>servlet.ShowProfilePageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowProfilePageServlet</servlet-name>
+        <url-pattern>/ShowProfilePageServlet</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

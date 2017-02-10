@@ -1,4 +1,4 @@
-<%--
+<%@ page import="classes.model.User" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 05.02.2017
@@ -12,17 +12,21 @@
 </head>
 <body>
 Your Profile:
-<p>Name :${name}</p>
-<p>Surname :${surname}</p>
-<p>Email: ${email}</p>
-<p>Phone :${phone}</p>
-<p>Address :${address}</p>
-<p>Login :${login}</p>
-<p>Password :${password}</p>
+<% User user= (User) request.getSession(true).getAttribute("user");%>
+<p>Name :<%=user.getName()%></p>
+<p>Surname :<%=user.getSurname()%></p>
+<p>Email:  <%=user.getEmail()%>}</p>
+<p>Phone : <%=user.getPhone()%></p>
+<p>Address :<%=user.getAddress()%></p>
+<p>Login :<%=user.getLogin()%></p>
+<p>Password :<%=user.getPassword()%></p>
 <form action="DispatcherServlet" method="post">
-<p><input type="submit" name="changeProfileButton" value="changeProfile"> </p>
- <input type="submit" name="link" formaction="ShowActiveServicesPage" formmethod="post" value="Посмотреть подключенные услуги"/>
-    <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post" value="Подключить услугу"/>
+    <p><input type="submit" name="changeProfileButton" value="Изменить данные профиля">
+        <input type="submit" name="link" formaction="ShowActiveServicesPage" formmethod="post"
+               value="Посмотреть подключенные услуги"/>
+        <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post"
+               value="Подключить услугу"/>
+    </p>
 </form>
 </body>
 </html>
