@@ -34,7 +34,8 @@
     %>
     <p>Введите дату подключения: <input type="text" name="activationDate"/></p>
     <input type="submit" name="addActiveService" value="Добавить"/>
-    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post" value="Вернуться в профиль"/>
+    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post"
+           value="Вернуться в профиль"/>
 </form>
 </body>
 </html>

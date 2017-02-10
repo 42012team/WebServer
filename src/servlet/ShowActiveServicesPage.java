@@ -20,11 +20,13 @@ import java.util.List;
 
 
 public class ShowActiveServicesPage extends HttpServlet {
-    WebController controller=null;
+    WebController controller = null;
+
     @Override
     public void init() throws ServletException {
-        controller= Initialization.getInstance().initialization();
+        controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession(true).getAttribute("user");

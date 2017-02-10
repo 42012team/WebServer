@@ -12,18 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by User on 10.02.2017.
- */
-public class ShowProfilePageServlet  extends HttpServlet {
+public class ShowProfilePageServlet extends HttpServlet {
     WebController controller = null;
+
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User currentUser= (User) request.getSession(true).getAttribute("user");
+        User currentUser = (User) request.getSession(true).getAttribute("user");
         TransmittedUserParams transmittedUserParams = TransmittedUserParams.create()
                 .withLogin(currentUser.getLogin())
                 .withPassword(currentUser.getPassword())

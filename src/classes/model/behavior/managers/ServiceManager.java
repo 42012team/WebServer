@@ -49,7 +49,6 @@ public class ServiceManager {
     }
 
     public List<Service> getAllServices() {
-        System.out.println("HERE MAN");
         return serviceStorage.getAllServices();
     }
 

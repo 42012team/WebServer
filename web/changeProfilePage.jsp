@@ -1,4 +1,4 @@
-<%--
+<%@ page import="classes.model.User" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 06.02.2017
@@ -12,12 +12,13 @@
 </head>
 <body>
 <form action="ChangeUserServlet" method="POST">
-    <p>Name: <input type="text" name="name"/></p>
-    <p>Surname: <input type="text" name="surname"/></p>
-    <p>Email: <input type="text" name="email"/></p>
-    <p>Phone: <input type="text" name="phone"/></p>
-    <p>Address: <input type="text" name="address"/></p>
-    <p>Password: <input type="text" name="password"/></p>
+    <%User user= (User) session.getAttribute("user");%>
+    <p>Name: <input type="text" name="name" value="<%=user.getName()%>"/></p>
+    <p>Surname: <input type="text" name="surname" value="<%=user.getSurname()%>"/></p>
+    <p>Email: <input type="text" name="email" value="<%=user.getEmail()%>"/></p>
+    <p>Phone: <input type="text" value="<%=user.getPhone()%>"/></p>
+    <p>Address: <input type="text" name="address" value="<%=user.getAddress()%>"/></p>
+    <p>Password: <input type="text" name="password" value="<%=user.getPassword()%>"/></p>
     <p><input type="submit" name="saveChangesButton" value="Save changes"/></p>
 </form>
 </body>

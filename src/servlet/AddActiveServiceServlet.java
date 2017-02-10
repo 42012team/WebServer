@@ -15,9 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by User on 09.02.2017.
- */
 public class AddActiveServiceServlet extends HttpServlet {
     WebController controller = null;
 
