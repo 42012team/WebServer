@@ -12,23 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-/**
- * Created by User on 08.02.2017.
- */
 public class DeleteActiveServiceServlet extends HttpServlet {
-    WebController controller=null;
+    WebController controller = null;
+
     @Override
     public void init() throws ServletException {
-        controller= Initialization.getInstance().initialization();
+        controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user= (User) request.getSession(true).getAttribute("user");
+        User user = (User) request.getSession(true).getAttribute("user");
         System.out.println(Integer.parseInt(request.getParameter("chooseActiveService")));
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(Integer.parseInt(request.getParameter("chooseActiveService")))
                 .withUserId(user.getId())
-                .withUnlockingTime((new Date()).getTime()-3000)
+                .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("deleteActiveService");
         controller.indentifyObject(activeServiceParams);
         request.getRequestDispatcher("/ShowActiveServicesPage").forward(request, response);

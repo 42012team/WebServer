@@ -16,36 +16,53 @@
 </head>
 <body>
 <form>
-    <%List<ActiveService> activeServiceList= (List<ActiveService>) request.getAttribute("activeServiceList");
-        List<Service> serviceList= (List<Service>) request.getAttribute("activeServiceDescription");
+    <%
+        List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServiceList");
+        List<Service> serviceList = (List<Service>) request.getAttribute("activeServiceDescription");
         for (int k = 0; k < serviceList.size(); k++) {
-            Service s = serviceList.get(k);%>
-    <p>   <input type="radio" name="chooseActiveService" value="<%=activeServiceList.get(k).getId()%>"/> Услуга номер : <%=k + 1%> </p>
-    <p>Название услуги: <%=s.getName()%></p>
-    <p>Описание услуги: <%=s.getDescription()%></p>
-    <p>Тип услуги:<%=s.getType()%></p>
-    <p>Статус услуги:<%=activeServiceList.get(k).getCurrentStatus().toString()%></p>
-    <%   if (s.getStatus().equals(ServiceStatus.DEPRECATED)) {%>
-    <p> Ваша услуга устарела!<p>
-        <% }
+            Service s = serviceList.get(k);
+    %>
+    <p><input type="radio" name="chooseActiveService" value="<%=activeServiceList.get(k).getId()%>"/> Услуга номер
+        : <%=k + 1%>
+    </p>
+
+    <p>Название услуги: <%=s.getName()%>
+    </p>
+    <p>Описание услуги: <%=s.getDescription()%>
+    </p>
+    <p>Тип услуги:<%=s.getType()%>
+    </p>
+    <p>Статус услуги:<%=activeServiceList.get(k).getCurrentStatus().toString()%>
+    </p>
+    <% if (s.getStatus().equals(ServiceStatus.DEPRECATED)) {%>
+    <p> Ваша услуга устарела!
+    <p>
+            <% }
         if (activeServiceList.get(k).getNewStatus() != null) {
+
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
     <p> Запланировано изменение статуса услуги на <%= activeServiceList.get(k).getNewStatus().toString()
-    %> c  <%=strDate%></p>
+    %> c  <%=strDate%>
+    </p>
     <%
         }
+      //  StringBuffer stringBuffer=new StringBuffer()
     %>
-
+    <input type="hidden" name="<%=activeServiceList.get(k).getId()%>" value=""/>
 
     <p>________________________________________________________</p>
     <%
         }
     %>
-<input type="submit" name="deleteActiveServiceButton" formaction="DeleteActiveServiceServlet" formmethod="post" value="Удалить услугу"/>
-    <input type="submit" name="changeActiveService" formaction="ChangeActiveServiceServlet" formmethod="post"  value="Изменить выбранную услугу"/>
-    <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post" value="Подключить услугу"/>
-    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post" value="Вернуться в профиль"/>
+    <input type="submit" name="deleteActiveServiceButton" formaction="DeleteActiveServiceServlet" formmethod="post"
+           value="Удалить услугу"/>
+    <input type="submit" name="changeActiveService" formaction="ChangeActiveServiceServlet" formmethod="post"
+           value="Изменить выбранную услугу"/>
+    <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post"
+           value="Подключить услугу"/>
+    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post"
+           value="Вернуться в профиль"/>
 </form>
 </body>
 </html>
