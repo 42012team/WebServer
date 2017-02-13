@@ -14,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.ActionMapUIResource;
 import java.io.IOException;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class ShowActiveServicesPage extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showAllActiveService.jsp").forward(request, response);
+        request.getRequestDispatcher("ShowAllActiveService.jsp").forward(request, response);
     }
 
 
