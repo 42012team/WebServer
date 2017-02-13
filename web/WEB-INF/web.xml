@@ -76,6 +76,52 @@
         <servlet-name>ShowProfilePageServlet</servlet-name>
         <url-pattern>/ShowProfilePageServlet</url-pattern>
     </servlet-mapping>
-
-
+    <servlet>
+        <servlet-name>AddAdminServlet</servlet-name>
+        <servlet-class>servlet.AddAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddAdminServlet</servlet-name>
+        <url-pattern>/AddAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddServiceServlet</servlet-name>
+        <servlet-class>servlet.AddServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServiceServlet</servlet-name>
+        <url-pattern>/AddServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AllServicesServlet</servlet-name>
+        <servlet-class>servlet.AllServicesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllServicesServlet</servlet-name>
+        <url-pattern>/AllServicesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeServiceServlet</servlet-name>
+        <servlet-class>servlet.ChangeServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeServiceServlet</servlet-name>
+        <url-pattern>/ChangeServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CnangeServiceRespServlet</servlet-name>
+        <servlet-class>servlet.CnangeServiceRespServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CnangeServiceRespServlet</servlet-name>
+        <url-pattern>/CnangeServiceRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteServiceServlet</servlet-name>
+        <servlet-class>servlet.DeleteServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServiceServlet</servlet-name>
+        <url-pattern>/DeleteServiceServlet</url-pattern>
+    </servlet-mapping>
 </web-app>
