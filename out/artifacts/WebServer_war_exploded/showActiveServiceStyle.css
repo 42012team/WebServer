@@ -1,0 +1,94 @@
+body{
+    background-image: url('fon3.jpg');
+    height:100vh;
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+form{
+    margin-top:5%;
+    width:100%;
+     height:100%;
+
+}
+
+.headerText{
+    margin-top:4%;
+    margin-left: 40%;
+    color:orangered;
+    background-color: lightgray;
+}
+ul{
+   /* width:100%;*/
+    list-style-type:none;
+    list-style-position:outside;
+    height: 85%;
+    margin:0px;
+    padding:0px;
+}
+
+.li,.li1{
+   /* width: 100%;*/
+    padding:12px;
+    border-bottom:1px solid #f4511e;
+    position:relative;
+    height:40%;
+}
+.li1{
+    border-top:1px solid #f4511e ;
+}
+#usersActiveServices{
+    width:30%;
+    margin-left:35%;
+    border-radius: 12px;
+    margin-top:5%;
+    margin-bottom: 5%;
+    background-color: lightgray ;
+    color:#f4511e;
+}
+#connectService{
+    position: relative;
+      top:8%;
+    text-align: center;
+
+}
+.description{
+    margin-top:10px;
+    margin-left:3% ;
+    width:100%;
+    color:#f4511e ;
+    font-weight: bold;
+    text-align:left;
+    border-radius: 5px;
+
+}
+.descriptionValue{
+
+}
+.value{
+    color:black;
+    font-family: "Comic Sans MS";
+    width: 100%;
+
+}
