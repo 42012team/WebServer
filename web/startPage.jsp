@@ -15,6 +15,7 @@
     <p>Login: <input type="text" name="login"/></p>
     <p>Password: <input type="text" name="pass"/></p>
     <p><input type="submit" name="loginButton" value="OK"/></p>
+    privet adelya!!
 </form>
 <a href="registration.jsp">Регистрация</a>
 </body>
