@@ -9,13 +9,36 @@
 <html>
 <head>
     <title>$Title$</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <link href="mystyle.css" rel="stylesheet">
 </head>
 <body>
-<form action="LogInServlet" method="post">
-    <p>Login: <input type="text" name="login"/></p>
-    <p>Password: <input type="text" name="pass"/></p>
-    <p><input type="submit" name="loginButton" value="OK"/></p>
-</form>
-<a href="registration.jsp">Регистрация</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">S-T</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about">О Нас</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="loginPage.jsp" color="blue" class="settings">Войти</a></li>
+                <li><a href="registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="jumbotron">
+    <h1>Samara-Telecom</h1>
+    <p>We specialize in blablabla</p>
+</div>
 </body>
 </html>

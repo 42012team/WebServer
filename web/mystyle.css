@@ -35,32 +35,10 @@ margin-top: 5%;
     color:blue;
 
 }
-.blockContainer{
-    width:100%;
-    max-height: 100px;
-
-
-}
-.block{
-    border-radius:15%;
-    width:20%;
-    margin-left:6.66%;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    background:lightgray;
-    height:300px;
-    float:left;
+.jumbotron{
+    margin-top:10%;
+    background-color: #f4511e;
+    color:white;
+    text-align: center;
 
 }
-.block1{
-   border-radius:15%;
-    width:20%;
-    margin-left:13.32%;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    background:lightgrey;
-    height:300px;
-    float:left;
-
-}
-
