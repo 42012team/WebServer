@@ -2,6 +2,9 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="@localhost" uuid="b7632670-3ab8-45c6-b40f-d05e25dd7c47" />
-    <data-source name="@Localhost" uuid="89b89bd4-6e9a-4b38-981d-5cf765eb6aa5" />
+    <data-source name="@Localhost" uuid="89b89bd4-6e9a-4b38-981d-5cf765eb6aa5">
+      <user-name>sys as sysdba</user-name>
+      <user-password>dfcbdfcedfcbdf9bdf9adf9adf93df92df9c</user-password>
+    </data-source>
   </component>
 </project>
