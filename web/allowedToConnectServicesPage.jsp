@@ -1,12 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="classes.model.Service" %>
-<%@ page import="classes.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 09.02.2017
-  Time: 19:06
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,24 +32,19 @@
         </div>
     </div>
 </nav>
+
 <form action="AddActiveServiceServlet" method="post">
-    <!--<div><span class="headerText">Подключенные услуги</span></div>
-<div class="showActiveService"></div>
-<div class="showActiveService"></div>
-<div class="showActiveService"></div>
-<div class="showActiveService"></div>
-<div class="showActiveService"></div>-->
+
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
     <ul>
         <%
-            List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
-             int j = 1;
-                User user = (User) request.getAttribute("user");
+           List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
+            System.out.println(serviceList.size()+"size");
                 for (Service s : serviceList) {
         %>
 
         <li class="li1" >
-            <input type="radio"  name="serviceId" onclick="click1(this)" id="<%=s.getId()%>" value="<%=s.getId() %>">
+            <input type="radio"  name="serviceId" onclick="click1(this)" id="<%=s.getId()%>" value="<%=s.getId()%>" >
             <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div><div class="descriptionValue"> </div>
@@ -75,7 +64,7 @@
     //    User user = (User) request.getAttribute("user");
     //    for (Service s : serviceList) {%>
     <p>_______________________________________________________</p>
-    <p><input type="radio" name="serviceId" value="<%//=s.getId()%>"/> Услуга номер <%=j%>
+    <p><input type="radio" name="serviceId" value="<%//=s.getId()%>"/> Услуга номер <%//=j%>
     </p>
     <p>Название услуги:<%//=s.getName()%>
     </p>

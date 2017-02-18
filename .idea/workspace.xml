@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1a858fcc-1afa-4e71-b248-7e49d6cc6d56" name="Default" comment="auto-commit">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/ShowActiveServicesPage.class" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/ShowActiveServicesPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WebServer/servlet/ShowActiveServicesPage.class" afterPath="$PROJECT_DIR$/out/production/WebServer/servlet/ShowActiveServicesPage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+    <list default="true" id="1a858fcc-1afa-4e71-b248-7e49d6cc6d56" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/myjs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/ShowAllowedToConnectServiceServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/ShowAllowedToConnectServiceServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WebServer/servlet/ShowAllowedToConnectServiceServlet.class" afterPath="$PROJECT_DIR$/out/production/WebServer/servlet/ShowAllowedToConnectServiceServlet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/ShowAllActiveService.jsp" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/ShowAllActiveService.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/showActiveServiceStyle.css" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/showActiveServiceStyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/allowedToConnectServicesPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/allowedToConnectServicesPage.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java" afterPath="$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/ShowAllActiveService.jsp" afterPath="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" afterPath="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" />
     </list>
@@ -60,7 +59,7 @@
       <file leaf-file-name="profilePage.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/profilePage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923">
+            <state vertical-scroll-proportion="0.0">
               <caret line="31" column="112" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="112" />
               <folding />
             </state>
@@ -70,21 +69,9 @@
       <file leaf-file-name="ShowAllActiveService.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/ShowAllActiveService.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.346154">
-              <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeleteActiveServiceServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/DeleteActiveServiceServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -92,28 +79,18 @@
       <file leaf-file-name="showActiveServiceStyle.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/showActiveServiceStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3076923">
+            <state vertical-scroll-proportion="-12.653846">
               <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myjs.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="myjs.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/myjs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addAdminPage.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/addAdminPage.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6503856">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -122,7 +99,7 @@
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7">
+            <state vertical-scroll-proportion="0.0">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
               <folding />
             </state>
@@ -139,23 +116,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="allowedToConnectServicesPage.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="allowedToConnectServicesPage.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56198347">
-              <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+            <state vertical-scroll-proportion="-5.8846154">
+              <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b7632670-3ab8-45c6-b40f-d05e25dd7c47/console.sql">
+      <file leaf-file-name="addActiveServiceJs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/addActiveServiceJs.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowAllowedToConnectServiceServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AddActiveServiceServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
               <folding>
-                <marker date="1487235985278" expanded="true" signature="0:18" placeholder="SELECT *from... user_" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -187,10 +184,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/servlet/ChangeUserServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/DispatcherServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/LogInServlet.java" />
-        <option value="$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/ShowProfilePageServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/SignInServlet.java" />
         <option value="$PROJECT_DIR$/src/classes/model/behavior/managers/ServiceManager.java" />
@@ -233,11 +228,13 @@
         <option value="$PROJECT_DIR$/web/mystyle.css" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/b7632670-3ab8-45c6-b40f-d05e25dd7c47/console.sql" />
         <option value="$PROJECT_DIR$/web/myjs.css" />
-        <option value="$PROJECT_DIR$/web/myjs.js" />
         <option value="$PROJECT_DIR$/web/showActiveServiceStyle.css" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql" />
-        <option value="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
         <option value="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" />
+        <option value="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
+        <option value="$PROJECT_DIR$/web/myjs.js" />
+        <option value="$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java" />
+        <option value="$PROJECT_DIR$/web/addActiveServiceJs.js" />
       </list>
     </option>
   </component>
@@ -283,9 +280,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -590,6 +584,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1298,7 +1295,8 @@
       <workItem from="1487169291266" duration="9805000" />
       <workItem from="1487234786415" duration="2296000" />
       <workItem from="1487273296047" duration="580000" />
-      <workItem from="1487337057239" duration="13475000" />
+      <workItem from="1487337057239" duration="14069000" />
+      <workItem from="1487393152233" duration="2081000" />
     </task>
     <task id="LOCAL-00001" summary="auto-commit">
       <created>1486366820331</created>
@@ -1402,11 +1400,17 @@
       <option name="project" value="LOCAL" />
       <updated>1487001784610</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="auto-commit">
+      <created>1487359557116</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1487359557116</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150940000" />
+    <option name="totallyTimeSpent" value="153615000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1433,12 +1437,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60336137" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27058825" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24675325" sideWeight="0.46226415" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25057295" sideWeight="0.46226415" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23300229" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.49121466" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980901" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1449,6 +1451,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27058825" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.49121466" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1477,20 +1481,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/servlet/ChangeUserServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/ShowProfilePageServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1558,13 +1548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="232" column="15" selection-start-line="232" selection-start-column="15" selection-end-line="232" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1727,7 +1710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1751,7 +1733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1767,9 +1748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding>
-            <marker date="1487235985278" expanded="true" signature="0:18" placeholder="SELECT *from... user_" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1789,28 +1767,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/myjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/servlet/DeleteActiveServiceServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="40" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/profilePage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="112" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/showActiveServiceStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.653846">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1823,34 +1817,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/profilePage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="31" column="112" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/ShowAllActiveService.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.346154">
-          <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/showActiveServiceStyle.css">
+    <entry file="file://$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3076923">
-          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56198347">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+        <state vertical-scroll-proportion="-5.8846154">
+          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/addActiveServiceJs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/myjs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6503856">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -36,7 +36,7 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#signin" color="blue" class="settings">Вернуться в профиль</a></li>
-                <li><a href="allowedToConnectServicesPage.jsp" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Посмотреть подключенные</a></li>
             </ul>
         </div>
     </div>
