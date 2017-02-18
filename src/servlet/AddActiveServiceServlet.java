@@ -27,7 +27,8 @@ public class AddActiveServiceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession(true).getAttribute("user");
         int serviceId = Integer.parseInt(request.getParameter("serviceId"));
-        String dateToString = request.getParameter("activationDate");
+        String dateToString = request.getParameter("activationDate"+serviceId);
+        System.out.println(dateToString);
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date newDate = null;
         try {
