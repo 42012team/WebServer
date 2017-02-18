@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="showActiveServiceStyle.css" rel="stylesheet">
-    <script src="myjs.js"></script>
+    <script src="addActiveServiceJs.js"></script>
 </head>
 <body onload="load()">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -51,7 +51,7 @@
             <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div><div class="descriptionValue"> </div>
 
             </span></div><div class="descriptionValue"> </div>
-            <input type="submit" style="display:none" value="Добавить"/></li>
+          <input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату подключения"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
         <%}%>
 
     </ul>

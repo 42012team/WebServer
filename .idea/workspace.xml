@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a858fcc-1afa-4e71-b248-7e49d6cc6d56" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/AddActiveServiceServlet.class" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/WEB-INF/classes/servlet/AddActiveServiceServlet.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WebServer/servlet/AddActiveServiceServlet.class" afterPath="$PROJECT_DIR$/out/production/WebServer/servlet/AddActiveServiceServlet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java" afterPath="$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/ShowAllActiveService.jsp" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/ShowAllActiveService.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/adminPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/adminPage.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/allowedToConnectServicesPage.jsp" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/allowedToConnectServicesPage.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/showActiveServiceStyle.css" afterPath="$PROJECT_DIR$/out/artifacts/WebServer_war_exploded/showActiveServiceStyle.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/ShowAllActiveService.jsp" afterPath="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/addActiveServiceJs.js" afterPath="$PROJECT_DIR$/web/addActiveServiceJs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/adminPage.jsp" afterPath="$PROJECT_DIR$/web/adminPage.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" afterPath="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/myjs.js" afterPath="$PROJECT_DIR$/web/myjs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/showActiveServiceStyle.css" afterPath="$PROJECT_DIR$/web/showActiveServiceStyle.css" />
     </list>
     <ignored path="WebServer.iws" />
@@ -68,8 +70,8 @@
       <file leaf-file-name="ShowAllActiveService.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/ShowAllActiveService.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="14.018182">
-              <caret line="73" column="45" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="52" />
+            <state vertical-scroll-proportion="-2.7818182">
+              <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -88,8 +90,8 @@
       <file leaf-file-name="showActiveServiceStyle.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/showActiveServiceStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.88429755">
-              <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.23809524">
+              <caret line="120" column="12" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -118,8 +120,8 @@
       <file leaf-file-name="allowedToConnectServicesPage.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.115385">
-              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state vertical-scroll-proportion="-34.653847">
+              <caret line="53" column="180" selection-start-line="53" selection-start-column="180" selection-end-line="53" selection-end-column="180" />
               <folding />
             </state>
           </provider>
@@ -228,11 +230,11 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql" />
         <option value="$PROJECT_DIR$/src/servlet/ShowAllowedToConnectServiceServlet.java" />
         <option value="$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java" />
-        <option value="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" />
         <option value="$PROJECT_DIR$/web/adminPage.jsp" />
-        <option value="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
         <option value="$PROJECT_DIR$/web/myjs.js" />
         <option value="$PROJECT_DIR$/web/addActiveServiceJs.js" />
+        <option value="$PROJECT_DIR$/web/ShowAllActiveService.jsp" />
+        <option value="$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp" />
         <option value="$PROJECT_DIR$/web/showActiveServiceStyle.css" />
       </list>
     </option>
@@ -1295,7 +1297,7 @@
       <workItem from="1487234786415" duration="2296000" />
       <workItem from="1487273296047" duration="580000" />
       <workItem from="1487337057239" duration="14069000" />
-      <workItem from="1487393152233" duration="4961000" />
+      <workItem from="1487393152233" duration="7276000" />
     </task>
     <task id="LOCAL-00001" summary="auto-commit">
       <created>1486366820331</created>
@@ -1411,11 +1413,17 @@
       <option name="project" value="LOCAL" />
       <updated>1487395294690</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="auto-commit">
+      <created>1487401173836</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1487401173836</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156495000" />
+    <option name="totallyTimeSpent" value="158810000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1438,12 +1446,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.78487396" sideWeight="0.12223071" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29915968" sideWeight="0.8777693" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3092437" sideWeight="0.8777693" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60336137" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25057295" sideWeight="0.4532374" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25057295" sideWeight="0.81995136" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23300229" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.49121466" order="7" side_tool="false" content_ui="tabs" />
@@ -1451,7 +1459,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25057295" sideWeight="0.5467626" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25057295" sideWeight="0.18004866" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1835,26 +1843,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp">
+    <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.115385">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/ShowAllActiveService.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.018182">
-          <caret line="73" column="45" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/myjs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.4827585">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1877,18 +1869,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceServlet.java">
+    <entry file="file://$PROJECT_DIR$/web/myjs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+        <state vertical-scroll-proportion="-9.4827585">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/ShowAllActiveService.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.7818182">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/allowedToConnectServicesPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-34.653847">
+          <caret line="53" column="180" selection-start-line="53" selection-start-column="180" selection-end-line="53" selection-end-column="180" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/showActiveServiceStyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88429755">
-          <caret line="108" column="16" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.23809524">
+          <caret line="120" column="12" selection-start-line="120" selection-start-column="12" selection-end-line="120" selection-end-column="12" />
           <folding />
         </state>
       </provider>

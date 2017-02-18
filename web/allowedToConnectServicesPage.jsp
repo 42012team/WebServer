@@ -51,7 +51,7 @@
             <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div><div class="descriptionValue"> </div>
 
             </span></div><div class="descriptionValue"> </div>
-          <input type="text" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату подключения"><input type="submit" style="display:none" value="Добавить"/></li>
+          <input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату подключения"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
         <%}%>
 
     </ul>

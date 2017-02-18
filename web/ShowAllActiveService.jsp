@@ -58,7 +58,7 @@
         %>
 
         <li class="li1" >
-            <input type="radio" name="chooseActiveService" onclick="click1(this)" id="<%=activeServiceList.get(k).getId()%>" value="<%=activeServiceList.get(k).getId() %>">
+            <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)" id="<%=activeServiceList.get(k).getId()%>" value="<%=activeServiceList.get(k).getId() %>">
             <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div><div class="descriptionValue"> </div>

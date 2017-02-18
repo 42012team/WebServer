@@ -4,7 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<body>
 <form>
     <input type="submit" formaction="AllServicesServlet" formmethod="post" value="Посмотреть все услуги компании"/>
     <input type="submit" formaction="addAdminPage.jsp" formmethod="post" value="Добавить администратора"/>

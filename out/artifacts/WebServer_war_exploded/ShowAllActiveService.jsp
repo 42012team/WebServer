@@ -35,8 +35,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Вернуться в профиль</a></li>
-                <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
+                <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a></li>
             </ul>
         </div>
     </div>
@@ -58,7 +58,7 @@
         %>
 
         <li class="li1" >
-            <input type="radio" name="chooseActiveService" onclick="click1(this)" id="<%=activeServiceList.get(k).getId()%>" value="<%=activeServiceList.get(k).getId() %>">
+            <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)" id="<%=activeServiceList.get(k).getId()%>" value="<%=activeServiceList.get(k).getId() %>">
             <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div><div class="descriptionValue"> </div>
@@ -71,7 +71,7 @@
     %> c  <%=strDate%>
                 <%}%>
             </span></div><div class="descriptionValue"> </div>
-            <input type="submit" style="display:none" value="Изменить" formaction="cgsfw" method="post"/><input type="submit" style="display:none" value="Удалить" formaction="DeleteActiveServiceServlet"
+            <input type="submit" class="changeButton" style="display:none" value="Изменить" formaction="cgsfw" method="post"/><input type="submit" class="deleteButton" style="display:none" value="Удалить" formaction="DeleteActiveServiceServlet"
                                                                                method="post"/></li>
         <%}%>
 
