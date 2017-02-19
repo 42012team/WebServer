@@ -124,4 +124,21 @@
         <servlet-name>DeleteServiceServlet</servlet-name>
         <url-pattern>/DeleteServiceServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeActiveServiceServlet</servlet-name>
+        <servlet-class>servlet.ChangeActiveServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeActiveServiceServlet</servlet-name>
+        <url-pattern>/ChangeActiveServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
+        <servlet-class>servlet.FormedChangeActiveServiceJSPServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
+        <url-pattern>/FormedChangeActiveServiceJSPServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

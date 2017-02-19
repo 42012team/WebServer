@@ -22,8 +22,9 @@ public class ChangeActiveServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
+       int id=Integer.parseInt(request.getParameter("chooseActiveService"));
+        String info=request.getParameter(Integer.toString(id));
+         request.setAttribute("activeService",info);
+        request.getRequestDispatcher("changeActiveServiceServlet.jsp").forward(request, response);
     }
 }

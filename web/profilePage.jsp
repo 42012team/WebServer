@@ -50,7 +50,7 @@
                 class="text"><%=user.getName()%></span></label>
         </li>
         <li class="profileContainer"><label id="surnameL"><span class="text">Фамилия:</span></label> <label
-                id="surnameV"><span class="text"><%=user.getSurname()%>%></span></label></li>
+                id="surnameV"><span class="text"><%=user.getSurname()%></span></label></li>
         <li class="profileContainer"><label id="emailL"><span class="text">Email:</span></label> <label
                 id="emailV"><span class="text"><%=user.getEmail()%></span></label></li>
         <li class="profileContainer"><label id="phoneL"><span class="text">Телефон:</span></label> <label

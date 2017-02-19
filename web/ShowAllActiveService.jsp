@@ -41,7 +41,7 @@
         </div>
     </div>
 </nav>
-<form >
+<form method="post">
     <!--<div><span class="headerText">Подключенные услуги</span></div>
 <div class="showActiveService"></div>
 <div class="showActiveService"></div>
@@ -62,7 +62,7 @@
             <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div><div class="descriptionValue"> </div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div><div class="descriptionValue"> </div>
-            <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div><div class="descriptionValue"> </div>
+            <div  class="description">Статус услуги: <span class="value"><%=activeServiceList.get(k).getCurrentStatus().toString()%></span></div><div class="descriptionValue"> </div>
                <%  if (activeServiceList.get(k).getNewStatus() != null) {
             SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
@@ -71,7 +71,8 @@
     %> c  <%=strDate%>
                 <%}%>
             </span></div><div class="descriptionValue"> </div>
-            <input type="submit" class="changeButton" style="display:none" value="Изменить" formaction="cgsfw" method="post"/><input type="submit" class="deleteButton" style="display:none" value="Удалить" formaction="DeleteActiveServiceServlet"
+            <input type="hidden" name="<%=activeServiceList.get(k).getId()%>" value="<%=activeServiceList.get(k).getId()%>;<%=s.getId()%>;<%=activeServiceList.get(k).getCurrentStatus()%>;<%=activeServiceList.get(k).getNewStatus()%>;<%=activeServiceList.get(k).getDate()%>;<%=activeServiceList.get(k).getVersion()%>"/>
+            <input type="submit" class="changeButton" style="display:none" value="Изменить" formaction="ChangeActiveServiceServlet" method="post"/><input type="submit" class="deleteButton" style="display:none" value="Удалить" formaction="DeleteActiveServiceServlet"
                                                                                method="post"/></li>
         <%}%>
 
