@@ -8,7 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="showActiveServiceStyle.css" rel="stylesheet">
+    <link href="showActiveServicesStyle.css" rel="stylesheet">
     <script src="addActiveServiceJs.js"></script>
 </head>
 <body onload="load()">
@@ -36,51 +36,34 @@
 <form action="AddActiveServiceServlet" method="post">
 
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
-    <ul>
+
+   <ul>
+       <div class="container">
+           <div class="row">
         <%
            List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
             System.out.println(serviceList.size()+"size");
                 for (Service s : serviceList) {
         %>
-
+            <div class="col-md-4 text-center">
+                <div class="box">
+                    <div class="box-content">
+                        <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
+                        <hr/>
         <li class="li1" >
-            <input type="radio"  name="serviceId" onclick="click1(this)" id="<%=s.getId()%>" value="<%=s.getId()%>" >
-            <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div><div class="descriptionValue"> </div>
-            <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div><div class="descriptionValue"> </div>
-            <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div><div class="descriptionValue"> </div>
-            <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div><div class="descriptionValue"> </div>
-
-            </span></div><div class="descriptionValue"> </div>
+            <input type="radio" class="radio"  name="serviceId" onclick="click1(this)" id="<%=s.getId()%>" value="<%=s.getId()%>" >
+            <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div>
+            <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
+            <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div>
           <input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату подключения"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
+                    <br/>
+                </div>
+            </div>
+           </div>
         <%}%>
-
+       </div>
+       </div>
     </ul>
 </form>
-<!--</head>
-<body>
-<form action="AddActiveServiceServlet" method="post">
-    <% //List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
-      //  int j = 1;
-    //    User user = (User) request.getAttribute("user");
-    //    for (Service s : serviceList) {%>
-    <p>_______________________________________________________</p>
-    <p><input type="radio" name="serviceId" value="<%//=s.getId()%>"/> Услуга номер <%//=j%>
-    </p>
-    <p>Название услуги:<%//=s.getName()%>
-    </p>
-    <p>Описание услуги:<%//=s.getDescription()%>
-    </p>
-    <p>Тип услуги:<%//=s.getType()%>
-    <p>_______________________________________________________</p>
-
-
-    <%// j++;
-   // }
-    %>
-    <p>Введите дату подключения: <input type="text" name="activationDate"/></p>
-    <input type="submit" name="addActiveService" value="Добавить"/>
-    <input type="submit" name="inProfile" formaction="ShowProfilePageServlet" formmethod="post"
-           value="Вернуться в профиль"/>
-</form>-->
 </body>
 </html>

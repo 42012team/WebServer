@@ -49,13 +49,12 @@
             <div class="col-md-4 text-center">
                 <div class="box">
                     <div class="box-content">
-                        <h1 class="tag-title">Heading</h1>
+                        <h2 class="tag-title"> <span class="value"><%=s.getName()%></span></h2>
                         <hr/>
                         <li>
                         <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
                                id="<%=activeServiceList.get(k).getId()%>"
                                value="<%=activeServiceList.get(k).getId()%>">
-                        <div class="description"> Название услуги: <span class="value"><%=s.getName()%></span></div>
                         <div class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span>
                         </div>
                         <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
@@ -69,6 +68,9 @@
     %> c  <%=strDate%>
 
             </span></div>
+                            <%} else{%>
+                            <br/>
+                            <br/>
                             <%}%>
                         <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                formaction="cgsfw"
