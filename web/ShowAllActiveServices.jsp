@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="showActiveServicesStyle.css" rel="stylesheet">
-    <script src="1.js"></script>
+    <script src="activeServiscesEffect.js"></script>
 </head>
 <body onload="load()">
 <nav class="navbar navbar-default navbar-fixed-top">

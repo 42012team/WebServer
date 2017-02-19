@@ -1,10 +1,4 @@
-<%@ page import="classes.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 05.02.2017
-  Time: 20:58
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -23,7 +17,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Samara-Telecom</a>
+            <a class="navbar-brand" href="startPage.jsp">Samara-Telecom</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -58,33 +52,8 @@
         <li class="profileContainer"><label id="addressL"><span class="text">Адрес:</span></label> <label id="addressV"><span
                 class="text"><%=user.getAddress()%></span></label></li>
     </ul>
-    <input type="submit" name="loginButton" id="loginButton" value="Изменить данные">
+    <input type="submit"  class="loginButton" id="loginButton" value="Изменить данные"/>
 
 </form>
-<!--Your Profile:
-
-
-<%// User user = (User) request.getSession(true).getAttribute("user");%>
-<p>Name :<%//=user.getName()%>
-</p>
-<p>Surname :<%//=user.getSurname()%>
-</p>
-<p>Email:  <%//=user.getEmail()%></p>
-<p>Phone : <%//=user.getPhone()%>
-</p>
-<p>Address :<%//=user.getAddress()%>
-</p>
-<p>Login :<%//=user.getLogin()%>
-</p>
-<p>Password :<%//=user.getPassword()%>
-</p>
-<form action="DispatcherServlet" method="post">
-    <p><input type="submit" name="changeProfileButton" value="Изменить данные профиля">
-        <input type="submit" name="link" formaction="ShowActiveServicesPage" formmethod="post"
-               value="Посмотреть подключенные услуги"/>
-        <input type="submit" name="addActiveService" formaction="ShowAllowedToConnectServiceServlet" formmethod="post"
-               value="Подключить услугу"/>
-    </p>
-</form>-->
 </body>
 </html>

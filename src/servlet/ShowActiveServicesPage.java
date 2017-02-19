@@ -37,7 +37,7 @@ public class ShowActiveServicesPage extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("ShowAllActiveService.jsp").forward(request, response);
+        request.getRequestDispatcher("ShowAllActiveServices.jsp").forward(request, response);
     }
 
 
@@ -53,7 +53,7 @@ public class ShowActiveServicesPage extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("ShowAllActiveService.jsp").forward(request, response);
+        request.getRequestDispatcher("ShowAllActiveServices.jsp").forward(request, response);
     }
 
 
