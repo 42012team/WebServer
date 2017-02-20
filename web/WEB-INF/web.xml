@@ -140,5 +140,20 @@
         <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
         <url-pattern>/FormedChangeActiveServiceJSPServlet</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>ChangeServiceRespServlet</servlet-name>
+        <servlet-class>servlet.ChangeServiceRespServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeServiceRespServlet</servlet-name>
+        <url-pattern>/ChangeServiceRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowAllServicesServlet</servlet-name>
+        <servlet-class>servlet.ShowAllServicesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllServicesServlet</servlet-name>
+        <url-pattern>/ShowAllServicesServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

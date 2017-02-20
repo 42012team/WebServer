@@ -23,7 +23,7 @@ public class DeleteServiceServlet extends HttpServlet {
         controller.indentifyObject(TransmittedServiceParams.create()
                 .withServiceId(Integer.parseInt(request.getParameter("serviceId")))
                 .withRequestType("deleteService"));
-        request.getRequestDispatcher("AllServicesServlet").forward(request, response);
+        response.sendRedirect("/adminPage.jsp");
     }
 }
 

@@ -28,7 +28,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="registration.jsp" color="blue" class="settings">Регистрация</a></li>
+                <li><a href="#signin" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +41,6 @@
     <input type="text" name="login" id="login" placeholder="Login">
     <input type="password" name="pass" id="password" placeholder="Password">
     <input type="submit" name="loginButton" id="loginButton" value="Войти">
-
 </form>
 </body>
 </html>

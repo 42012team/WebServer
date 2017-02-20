@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
+                <li><a href="ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="loginPage.jsp" color="blue" class="settings">Войти</a></li>
                 <li><a href="registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
             </ul>

@@ -27,12 +27,12 @@ public class LogInServlet extends HttpServlet {
                 .withPassword(request.getParameter("pass"))
                 .withRequestType("logIn");
         UserResponse userResponse = (UserResponse) controller.indentifyObject(transmittedUserParams);
+        User user = new User(userResponse.getUserId(), userResponse.getName(), userResponse.getSurname(), userResponse.getEmail(),
+                userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
+                userResponse.getPrivilege());
+        request.getSession(true).setAttribute("user", user);
         switch (userResponse.getPrivilege()) {
             case "user":
-                User user = new User(userResponse.getUserId(), userResponse.getName(), userResponse.getSurname(), userResponse.getEmail(),
-                        userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
-                        userResponse.getPrivilege());
-                request.getSession(true).setAttribute("user", user);
                 request.getRequestDispatcher("profilePage.jsp").forward(request, response);
                 break;
             case "admin":

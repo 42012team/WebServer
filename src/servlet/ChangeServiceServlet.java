@@ -26,8 +26,9 @@ public class ChangeServiceServlet extends HttpServlet {
         TransmittedServiceParams serviceParams = TransmittedServiceParams.create()
                 .withRequestType("allServices");
         List<Service> allServices = ((ServiceResponse)controller.indentifyObject(serviceParams)).getServices();
+        int serviceId=Integer.parseInt(request.getParameter("serviceId"));
         for (Service service : allServices) {
-            if (service.getId() == Integer.parseInt(request.getParameter("serviceId"))) {
+            if (service.getId() == serviceId) {
                 request.setAttribute("version", service.getVersion());
                 request.setAttribute("name", service.getName());
                 request.setAttribute("description", service.getDescription());

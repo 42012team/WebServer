@@ -27,7 +27,7 @@ public class AddServiceServlet extends HttpServlet {
                 .withType(request.getParameter("type"))
                 .withStatus(ServiceStatus.ALLOWED)
                 .withRequestType("createService"));
-        request.getRequestDispatcher("AllServicesServlet").forward(null,null);
+        response.sendRedirect("/adminPage.jsp");
     }
 
 }

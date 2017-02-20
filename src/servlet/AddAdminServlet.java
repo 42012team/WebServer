@@ -19,8 +19,8 @@ public class AddAdminServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String login=request.getParameter("login");
-        String password=request.getParameter("password");
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
         TransmittedUserParams userParams = TransmittedUserParams.create()
                 .withName(" ")
                 .withSurname(" ")
@@ -33,11 +33,6 @@ public class AddAdminServlet extends HttpServlet {
                 .withPrivilege("admin")
                 .withRequestType("signInUser");
         controller.indentifyObject(userParams);
-        userParams=TransmittedUserParams.create()
-                .withLogin(login)
-                .withPassword(password)
-                .withRequestType("logIn");
-         controller.indentifyObject(userParams);
-         request.getRequestDispatcher("adminPage.jsp").forward(request,response);
+        response.sendRedirect("/adminPage.jsp");
     }
 }
