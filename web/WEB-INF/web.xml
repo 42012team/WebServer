@@ -109,14 +109,6 @@
         <url-pattern>/ChangeServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>CnangeServiceRespServlet</servlet-name>
-        <servlet-class>servlet.CnangeServiceRespServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CnangeServiceRespServlet</servlet-name>
-        <url-pattern>/CnangeServiceRespServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>DeleteServiceServlet</servlet-name>
         <servlet-class>servlet.DeleteServiceServlet</servlet-class>
     </servlet>

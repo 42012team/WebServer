@@ -42,7 +42,6 @@
            <div class="row">
         <%
            List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
-            System.out.println(serviceList.size()+"size");
                 for (Service s : serviceList) {
         %>
             <div class="col-md-4 text-center">

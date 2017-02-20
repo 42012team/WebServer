@@ -32,7 +32,6 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String info = request.getParameter("activeServiceParams");
         String[] activeServiceElement = info.split(";");
-        System.out.println(info+"info");
         String date = (String) request.getParameter("date");
         User user = (User) request.getSession(true).getAttribute("user");
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -44,7 +43,6 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         }
         ActiveServiceStatus currentStatus = null;
         ActiveServiceStatus newStatus = null;
-        System.out.println(activeServiceElement[3]);
         switch (activeServiceElement[3]) {
             case "ACTIVE": {
                 newStatus = ActiveServiceStatus.ACTIVE;
