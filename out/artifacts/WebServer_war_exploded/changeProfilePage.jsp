@@ -29,7 +29,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/ShowActiveServicesPage" color="blue" class="settings">Управление услугами</a></li>
             </ul>
         </div>
     </div>

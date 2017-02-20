@@ -1,0 +1,93 @@
+body{
+    background-image: url('fon3.jpg');
+    height:100vh;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+.box {
+    background:#fff;
+    transition:all 0.2s ease;
+    border:2px dashed #dadada;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-clip: padding-box;
+    padding:0 20px 20px 20px;
+    min-height:380px;
+}
+
+.box:hover {
+    border:2px solid #525C7A;
+}
+
+.box span.box-title {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.box .box-content {
+    padding: 16px;
+    border-radius: 0 0 2px 2px;
+    background-clip: padding-box;
+    box-sizing: border-box;
+}
+.box .box-content p {
+    color:#515c66;
+    text-transform:none;
+}
+
+form{
+    margin-top:5%;
+    width:100%;
+    height:100%;
+
+}
+
+.headerText{
+    margin-top:4%;
+    margin-left: 40%;
+    color:orangered;
+    background-color: lightgray;
+}
+.date{
+    width:70%
+}
+
+.changeButton{
+    margin-left:2%;
+    margin-top:3%;
+    margin-right: 3%;
+    width:40%;
+    border-radius: 10px;
+    height:30px;
+    background-color:#f4511e;
+    color:white ;
+
+}
+
+

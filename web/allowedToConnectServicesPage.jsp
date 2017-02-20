@@ -26,8 +26,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Вернуться в профиль</a></li>
-                <li><a href="#signin" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
+                <li><a href="/ShowActiveServicesPage" color="blue" class="settings">Посмотреть подключенные</a></li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
             <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div>
-          <input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату подключения"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
+         <p style="display:none"><strong>ДД:ММ:ГГГГ ЧЧ:ММ</strong></p><input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату ДД:ММ:ГГГГ ЧЧ:ММ"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
                     <br/>
                 </div>
             </div>

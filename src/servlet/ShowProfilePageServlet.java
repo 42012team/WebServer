@@ -19,6 +19,21 @@ public class ShowProfilePageServlet extends HttpServlet {
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User currentUser = (User) request.getSession(true).getAttribute("user");
+        TransmittedUserParams transmittedUserParams = TransmittedUserParams.create()
+                .withLogin(currentUser.getLogin())
+                .withPassword(currentUser.getPassword())
+                .withRequestType("logIn");
+        UserResponse userResponse = (UserResponse) controller.indentifyObject(transmittedUserParams);
+        User user = new User(userResponse.getUserId(), userResponse.getName(), userResponse.getSurname(), userResponse.getEmail(),
+                userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
+                userResponse.getPrivilege());
+        request.getSession(true).setAttribute("user", user);
+        request.getRequestDispatcher("profilePage.jsp").forward(request, response);
+    }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

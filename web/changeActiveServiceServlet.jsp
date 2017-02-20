@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 18.02.2017
-  Time: 22:38
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>d
 <head>
@@ -12,7 +6,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="showActiveServicesStyle.css" rel="stylesheet">
+    <link href="changeActiveServiceStyle.css" rel="stylesheet">
     <script src="activeServiscesEffect.js"></script>
 </head>
 <body onload="load()">
@@ -55,18 +49,18 @@
                             if (!activeServiceElement[3].equals("null")) {
                                 if (activeServiceElement[3].equals("ACTIVE")) {
                         %>
-                        <p>Введите новую дату подключения:</p>
+                        <p>Введите новую дату подключения в формате:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
                         <%
                             }
                             if (activeServiceElement[3].equals("SUSPENDED")) {
                         %>
-                        <p>Введите новую дату блокировки:</p>
+                        <p>Введите новую дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
                         <%
                             }
                         } else {%>
-                        <p>Введите дату блокировки:</p>
+                        <p>Введите дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
                         <% activeServiceElement[3] = "SUSPENDED";}
                             for (int i = 0; i < activeServiceElement.length; i++) {
