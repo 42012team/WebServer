@@ -87,7 +87,11 @@ form{
     height:30px;
     background-color:#f4511e;
     color:white ;
+}
 
+.col-md-6{
+    margin-top: 10%;
+    margin-left: 25%;
 }
 
 

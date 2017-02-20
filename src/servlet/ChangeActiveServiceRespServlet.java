@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Created by User on 18.02.2017.
  */
-public class FormedChangeActiveServiceJSPServlet extends HttpServlet
+public class ChangeActiveServiceRespServlet extends HttpServlet
 
 {
     WebController controller = null;
@@ -82,7 +82,7 @@ public class FormedChangeActiveServiceJSPServlet extends HttpServlet
                 .withVersion(Integer.parseInt(activeServiceElement[5]))
                 .withRequestType("changeActiveService");
         controller.indentifyObject(activeServiceParams);
-        request.getRequestDispatcher("/ShowActiveServicesPage").forward(request, response);
+        request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
     }
 
 }

@@ -6,7 +6,7 @@
 <head>
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="servicePage.css" rel="stylesheet">
+    <link href="servicePageStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -22,8 +22,6 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -49,7 +47,7 @@
     %>>DEPRECATED</p></p>
                 <input type="hidden" name="serviceId" value="<%=request.getAttribute("serviceId")%>"/>
                 <input type="hidden" name="version" value="<%=request.getAttribute("version")%>"/>
-                <input type="submit" formaction="ChangeServiceRespServlet" formmethod="post" value="Изменить услугу"/>
+                <input type="submit" formaction="/ChangeServiceRespServlet" formmethod="post" value="Изменить услугу"/>
             </div>
         </div>
     </div>

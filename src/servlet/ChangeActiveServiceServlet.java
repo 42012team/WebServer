@@ -25,6 +25,6 @@ public class ChangeActiveServiceServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("chooseActiveService"));
         String info = request.getParameter(Integer.toString(id));
         request.setAttribute("activeService", info);
-        request.getRequestDispatcher("changeActiveServiceServlet.jsp").forward(request, response);
+        request.getRequestDispatcher("changeActiveService.jsp").forward(request, response);
     }
 }

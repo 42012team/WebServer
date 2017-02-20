@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class ShowActiveServicesPage extends HttpServlet {
+public class ShowActiveServicesServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
@@ -37,7 +37,7 @@ public class ShowActiveServicesPage extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("ShowAllActiveServices.jsp").forward(request, response);
+        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
     }
 
 
@@ -53,7 +53,7 @@ public class ShowActiveServicesPage extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("ShowAllActiveServices.jsp").forward(request, response);
+        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
     }
 
 

@@ -3,7 +3,7 @@
 <head>
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="servicePage.css" rel="stylesheet">
+    <link href="servicePageStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -19,8 +19,6 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -33,7 +31,7 @@
                 <p>Название услуги:<input type="text" name="name" value=""></p>
                 <p>Описание услуги:<input type="text" name="description" value=""></p>
                 <p>Тип услуги:<input type="text" name="type" value=""></p>
-                <input type="submit" formaction="AddServiceServlet" formmethod="post" value="Добавить услугу"/>
+                <input type="submit" formaction="/AddServiceServlet" formmethod="post" value="Добавить услугу"/>
             </div>
         </div>
     </div>

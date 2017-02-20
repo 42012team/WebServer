@@ -28,14 +28,14 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="/ShowActiveServicesPage" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="changeForm" action="ChangeUserServlet" method="POST">
+<form class="changeForm" action="/ChangeUserServlet" method="POST">
     <div class="regHeader">
         <h2 class="headerText">Редактирование</h2>
     </div>

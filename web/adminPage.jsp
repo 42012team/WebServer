@@ -21,8 +21,6 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -35,8 +33,8 @@
                 <% User user = (User) request.getSession(true).getAttribute("user");%>
                 <div class="adminLogin"> <p id="login">Логин:<%=user.getLogin()%></p></div>
                 <p id="password">Пароль:<%=user.getPassword()%></p>
-                <input type="submit" formaction="AllServicesServlet" formmethod="post" value="Посмотреть все услуги компании"/>
-                <input type="submit" formaction="addAdminPage.jsp" formmethod="post" value="Добавить администратора"/>
+                <input type="submit" formaction="/AllServicesServlet" formmethod="post" value="Посмотреть все услуги компании"/>
+                <input type="submit" formaction="/addAdminPage.jsp" formmethod="post" value="Добавить администратора"/>
             </div>
         </div>
     </div>

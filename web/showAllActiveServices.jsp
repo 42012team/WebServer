@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
@@ -77,10 +77,10 @@
                                 <input type="hidden" name="<%=activeServiceList.get(k).getId()%>"
                                        value="<%=activeServiceList.get(k).getId()%>;<%=s.getId()%>;<%=activeServiceList.get(k).getCurrentStatus()%>;<%=activeServiceList.get(k).getNewStatus()%>;<%=activeServiceList.get(k).getDate()%>;<%=activeServiceList.get(k).getVersion()%>"/>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="ChangeActiveServiceServlet"
+                                       formaction="/ChangeActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
-                                                             formaction="DeleteActiveServiceServlet"
+                                                             formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
 
                             <br/>

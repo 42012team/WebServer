@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="test.css" rel="stylesheet">
+    <link href="servicesStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -26,8 +26,6 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -102,9 +100,9 @@
         %>
     </div>
     <div><h4 class="text-center">
-        <input type="submit" formaction="DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"/>
-        <input type="submit" formaction="ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу"/>
-        <input type="submit" formaction="addServicePage.jsp" formmethod="post" value="Добавить новую услугу"/>
+        <input type="submit" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"/>
+        <input type="submit" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу"/>
+        <input type="submit" formaction="/addServicePage.jsp" formmethod="post" value="Добавить новую услугу"/>
     </h4>
     </div>
 </form>

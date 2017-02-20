@@ -30,7 +30,7 @@ public class DeleteActiveServiceServlet extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("deleteActiveService");
         controller.indentifyObject(activeServiceParams);
-        request.getRequestDispatcher("/ShowActiveServicesPage").forward(request, response);
+        request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
 
     }
 }

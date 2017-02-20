@@ -13,7 +13,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="mystyle.css" rel="stylesheet">
+    <link href="myStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -29,9 +29,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="loginPage.jsp" color="blue" class="settings">Войти</a></li>
-                <li><a href="registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="/loginPage.jsp" color="blue" class="settings">Войти</a></li>
+                <li><a href="/registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
             </ul>
         </div>
     </div>

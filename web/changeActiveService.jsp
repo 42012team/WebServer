@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
@@ -31,10 +31,10 @@
         </div>
     </div>
 </nav>
-<form method="post" action="FormedChangeActiveServiceJSPServlet">
+<form method="post" action="ChangeActiveServiceRespServlet">
     <div class="container">
         <div class="row">
-            <div class="col-md-5 text-center">
+            <div class="col-md-6 text-center">
                 <div class="box">
                     <div class="box-content">
                         <h2 class="tag-title"> Изменение даты:</h2>

@@ -37,12 +37,12 @@
         <url-pattern>/DispatcherServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ShowActiveServicesPage</servlet-name>
-        <servlet-class>servlet.ShowActiveServicesPage</servlet-class>
+        <servlet-name>ShowActiveServicesServlet</servlet-name>
+        <servlet-class>servlet.ShowActiveServicesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShowActiveServicesPage</servlet-name>
-        <url-pattern>/ShowActiveServicesPage</url-pattern>
+        <servlet-name>ShowActiveServicesServlet</servlet-name>
+        <url-pattern>/ShowActiveServicesServlet</url-pattern>
     </servlet-mapping>
     <servlet>
     <servlet-name>DeleteActiveServiceServlet</servlet-name>
@@ -133,12 +133,12 @@
         <url-pattern>/ChangeActiveServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
-        <servlet-class>servlet.FormedChangeActiveServiceJSPServlet</servlet-class>
+        <servlet-name>ChangeActiveServiceRespServlet</servlet-name>
+        <servlet-class>servlet.ChangeActiveServiceRespServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
-        <url-pattern>/FormedChangeActiveServiceJSPServlet</url-pattern>
+        <servlet-name>ChangeActiveServiceRespServlet</servlet-name>
+        <url-pattern>/ChangeActiveServiceRespServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ChangeServiceRespServlet</servlet-name>

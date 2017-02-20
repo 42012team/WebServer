@@ -17,18 +17,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="startPage.jsp">Samara-Telecom</a>
+            <a class="navbar-brand" href="/startPage.jsp">Samara-Telecom</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="/ShowActiveServicesPage" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="profileForm" action="changeProfilePage.jsp" method="post">
+<form class="profileForm" action="/changeProfilePage.jsp" method="post">
     <div class="regHeader">
         <h2 class="headerText">Личные данные</h2>
     </div>

@@ -46,6 +46,6 @@ public class AddActiveServiceServlet extends HttpServlet {
                 .withNewStatus(ActiveServiceStatus.ACTIVE)
                 .withRequestType("createActiveService");
         controller.indentifyObject(activeServiceParams);
-        request.getRequestDispatcher("/ShowActiveServicesPage").forward(request, response);
+        request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
     }
 }
