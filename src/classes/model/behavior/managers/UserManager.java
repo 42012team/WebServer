@@ -5,6 +5,8 @@ import classes.model.User;
 import classes.model.UserParams;
 import classes.model.behavior.storages.UserStorage;
 
+import java.util.List;
+
 public class UserManager {
 
     UserStorage userStorage;
@@ -55,7 +57,9 @@ public class UserManager {
     public User getUser(String login, String password) {
         return userStorage.getUser(login, password);
     }
-
+    public List<User> getAllUsers(){
+        return userStorage.getAllUsers();
+    }
     private void storeUser(User user) {
         userStorage.storeUser(user);
     }

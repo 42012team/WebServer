@@ -30,11 +30,14 @@
         <div class="box">
             <div class="box-content">
                 <h2>Администратор</h2>
-                <% User user = (User) request.getSession(true).getAttribute("user");%>
+                <% User user = (User) request.getSession(true).getAttribute("user");
+
+                %>
                 <div class="adminLogin"> <p id="login">Логин:<%=user.getLogin()%></p></div>
                 <p id="password">Пароль:<%=user.getPassword()%></p>
                 <input type="submit" formaction="/AllServicesServlet" formmethod="post" value="Посмотреть все услуги компании"/>
                 <input type="submit" formaction="/addAdminPage.jsp" formmethod="post" value="Добавить администратора"/>
+                <input type="submit" formaction="/GetAllUsersServlet" formmethod="post" value="AllUsers"/>
             </div>
         </div>
     </div>

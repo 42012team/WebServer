@@ -1,4 +1,6 @@
-
+<%@ page import="java.util.List" %>
+<%@ page import="classes.model.ActiveService" %>
+<%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>d
 <head>
@@ -27,6 +29,8 @@
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
+                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -39,21 +43,16 @@
                     <div class="box-content">
                         <h2 class="tag-title"> Изменение даты:</h2>
                         <hr/>
-                        <%
-                            String info = (String) request.getAttribute("activeService");
-                            StringBuffer newInfo = new StringBuffer();
-                        %>
+                        <% ActiveService activeService= (ActiveService) request.getAttribute("activeService");
+                            if (activeService.getNewStatus()!=null) {
+                                if (activeService.getNewStatus()== ActiveServiceStatus.ACTIVE){
 
-                        <%
-                            String[] activeServiceElement = info.split(";");
-                            if (!activeServiceElement[3].equals("null")) {
-                                if (activeServiceElement[3].equals("ACTIVE")) {
                         %>
                         <p>Введите новую дату подключения в формате:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
                         <%
                             }
-                            if (activeServiceElement[3].equals("SUSPENDED")) {
+                            if (activeService.getNewStatus()== ActiveServiceStatus.SUSPENDED) {
                         %>
                         <p>Введите новую дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
@@ -62,16 +61,13 @@
                         } else {%>
                         <p>Введите дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
-                        <% activeServiceElement[3] = "SUSPENDED";}
-                            for (int i = 0; i < activeServiceElement.length; i++) {
-                                newInfo.append(activeServiceElement[i]);
-                                newInfo.append(";");
-                            }
-
+                        <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                        }
+                        session.setAttribute("changedActiveService",activeService);
+                          //  request.setAttribute("changedActiveService",activeService);
 
                         %>
 
-                        <input type="hidden" name="activeServiceParams" value="<%=newInfo.toString()%>"/>
                         <input type="text" name="date" class="date" placeholder="Введите новую дату"/>
                         <input type="submit" class="changeButton" value="Применить"/>
                     </div>

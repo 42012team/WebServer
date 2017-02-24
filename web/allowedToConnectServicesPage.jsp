@@ -28,6 +28,8 @@
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>

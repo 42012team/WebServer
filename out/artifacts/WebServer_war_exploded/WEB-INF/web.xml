@@ -37,12 +37,12 @@
         <url-pattern>/DispatcherServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ShowActiveServicesPage</servlet-name>
-        <servlet-class>servlet.ShowActiveServicesPage</servlet-class>
+        <servlet-name>ShowActiveServicesServlet</servlet-name>
+        <servlet-class>servlet.ShowActiveServicesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ShowActiveServicesPage</servlet-name>
-        <url-pattern>/ShowActiveServicesPage</url-pattern>
+        <servlet-name>ShowActiveServicesServlet</servlet-name>
+        <url-pattern>/ShowActiveServicesServlet</url-pattern>
     </servlet-mapping>
     <servlet>
     <servlet-name>DeleteActiveServiceServlet</servlet-name>
@@ -109,14 +109,6 @@
         <url-pattern>/ChangeServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>CnangeServiceRespServlet</servlet-name>
-        <servlet-class>servlet.CnangeServiceRespServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CnangeServiceRespServlet</servlet-name>
-        <url-pattern>/CnangeServiceRespServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>DeleteServiceServlet</servlet-name>
         <servlet-class>servlet.DeleteServiceServlet</servlet-class>
     </servlet>
@@ -133,12 +125,44 @@
         <url-pattern>/ChangeActiveServiceServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
-        <servlet-class>servlet.FormedChangeActiveServiceJSPServlet</servlet-class>
+        <servlet-name>ChangeActiveServiceRespServlet</servlet-name>
+        <servlet-class>servlet.ChangeActiveServiceRespServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> FormedChangeActiveServiceJSPServlet</servlet-name>
-        <url-pattern>/FormedChangeActiveServiceJSPServlet</url-pattern>
+        <servlet-name>ChangeActiveServiceRespServlet</servlet-name>
+        <url-pattern>/ChangeActiveServiceRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeServiceRespServlet</servlet-name>
+        <servlet-class>servlet.ChangeServiceRespServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeServiceRespServlet</servlet-name>
+        <url-pattern>/ChangeServiceRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowAllServicesServlet</servlet-name>
+        <servlet-class>servlet.ShowAllServicesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllServicesServlet</servlet-name>
+        <url-pattern>/ShowAllServicesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>BackServlet</servlet-name>
+        <servlet-class>servlet.BackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackServlet</servlet-name>
+        <url-pattern>/BackServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetAllUsersServlet</servlet-name>
+        <servlet-class>servlet.GetAllUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllUsersServlet</servlet-name>
+        <url-pattern>/GetAllUsersServlet</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -28,16 +28,16 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#signin" color="blue" class="settings">Войти</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="/loginPage.jsp" color="blue" class="settings">Войти</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="registrationForm" action="SignInServlet" method="POST">
+<form class="registrationForm" action="/SignInServlet" method="POST">
     <div class="regHeader">
-        <h2 class="headerText">Регистрация</h2>
+        <h2 class="headerText">Зарегистрироваться</h2>
     </div>
     <ul>
         <li class="regLiContainer">
@@ -63,17 +63,5 @@
     <input type="submit" name="loginButton" id="loginButton" value="Зарегистрироваться">
 
 </form>
-<!--
-<form action="SignInServlet" method="POST">
-    <p>Name: <input type="text" name="name"/></p>
-    <p>Surname: <input type="text" name="surname"/></p>
-    <p>Email: <input type="text" name="email"/></p>
-    <p>Phone: <input type="text" name="phone"/></p>
-    <p>Address: <input type="text" name="address"/></p>
-    <p>Login: <input type="text" name="login"/></p>
-    <p>Password: <input type="text" name="password"/></p>
-    <p><input type="submit" name="signInButton" value="signIn"/></p>
-</form>-->
-
 </body>
 </html>

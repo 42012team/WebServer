@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBUserStorage implements UserStorage {
 
@@ -158,6 +160,50 @@ public class DBUserStorage implements UserStorage {
             }
         }
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> usersList =null;
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            usersList=new ArrayList<User>();
+            String sql = "SELECT *FROM USER_ ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("USER_ID"));
+                user.setName(rs.getString("USER_NAME"));
+                user.setSurname(rs.getString("USER_SURNAME"));
+                user.setEmail(rs.getString("EMAIL"));
+                user.setPhone(rs.getString("PHONE"));
+                user.setAddress(rs.getString("ADDRESS"));
+                user.setLogin(rs.getString("LOGIN"));
+                user.setPassword(rs.getString("PASSWORD"));
+                user.setVersion(rs.getInt("VERSION"));
+                user.setPrivilege(rs.getString("PRIVILEGE"));
+                usersList.add(user);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Exception occured!");
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                System.out.println(stackTraceElements[i].toString());
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception occured!");
+                StackTraceElement[] stackTraceElements = ex.getStackTrace();
+                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                    System.out.println(stackTraceElements[i].toString());
+                }
+            }
+        }
+        return usersList;
     }
 
     private User getUserByConditions(PreparedStatement ps) {

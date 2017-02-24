@@ -148,4 +148,21 @@
         <servlet-name>ShowAllServicesServlet</servlet-name>
         <url-pattern>/ShowAllServicesServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BackServlet</servlet-name>
+        <servlet-class>servlet.BackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BackServlet</servlet-name>
+        <url-pattern>/BackServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetAllUsersServlet</servlet-name>
+        <servlet-class>servlet.GetAllUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetAllUsersServlet</servlet-name>
+        <url-pattern>/GetAllUsersServlet</url-pattern>
+    </servlet-mapping>
+
 </web-app>

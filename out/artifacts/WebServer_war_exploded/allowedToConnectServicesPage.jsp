@@ -25,15 +25,17 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="#services">Услуги</a></li>
+                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
-                <li><a href="/ShowActiveServicesPage" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Посмотреть подключенные</a></li>
+                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form action="AddActiveServiceServlet" method="post">
+<form action="/AddActiveServiceServlet" method="post">
 
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
 
@@ -42,7 +44,6 @@
            <div class="row">
         <%
            List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
-            System.out.println(serviceList.size()+"size");
                 for (Service s : serviceList) {
         %>
             <div class="col-md-4 text-center">

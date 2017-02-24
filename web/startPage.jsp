@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -29,6 +31,9 @@
         </div>
     </div>
 </nav>
+<%   session.removeAttribute("back");
+
+    session.removeAttribute("user");%>
 <div class="jumbotron">
     <h1>Samara-Telecom</h1>
     <p>We specialize in blablabla</p>

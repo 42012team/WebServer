@@ -31,6 +31,8 @@
                 <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
+                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -40,7 +42,12 @@
     <ul>
         <div class="container">
             <div class="row">
+
                 <%
+                    List<String> links = (List<String>) session.getAttribute("back");
+                    links.add("/ShowActiveServicesServlet");
+                    session.setAttribute("back", links);
+
                     List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServiceList");
                     List<Service> serviceList = (List<Service>) request.getAttribute("activeServiceDescription");
                     for (int k = 0; k < serviceList.size(); k++) {
@@ -74,8 +81,7 @@
                                 <br/>
                                 <br/>
                                 <%}%>
-                                <input type="hidden" name="<%=activeServiceList.get(k).getId()%>"
-                                       value="<%=activeServiceList.get(k).getId()%>;<%=s.getId()%>;<%=activeServiceList.get(k).getCurrentStatus()%>;<%=activeServiceList.get(k).getNewStatus()%>;<%=activeServiceList.get(k).getDate()%>;<%=activeServiceList.get(k).getVersion()%>"/>
+
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="/ChangeActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"

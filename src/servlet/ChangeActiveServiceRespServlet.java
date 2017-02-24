@@ -2,6 +2,7 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -30,8 +31,7 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String info = request.getParameter("activeServiceParams");
-        String[] activeServiceElement = info.split(";");
+        ActiveService activeService= (ActiveService) request.getSession(true).getAttribute("changedActiveService");
         String date = (String) request.getParameter("date");
         User user = (User) request.getSession(true).getAttribute("user");
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -41,46 +41,46 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ActiveServiceStatus currentStatus = null;
-        ActiveServiceStatus newStatus = null;
-        switch (activeServiceElement[3]) {
-            case "ACTIVE": {
-                newStatus = ActiveServiceStatus.ACTIVE;
+
+        if(activeService.getNewStatus()!=null)
+        switch (activeService.getNewStatus()) {
+            case ACTIVE: {
+        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
                 break;
             }
-            case "SUSPENDED": {
-                newStatus = ActiveServiceStatus.SUSPENDED;
+            case SUSPENDED: {
+                activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                 break;
             }
 
 
         }
-        switch (activeServiceElement[2]) {
-            case "ACTIVE": {
-                currentStatus = ActiveServiceStatus.ACTIVE;
+        switch (activeService.getCurrentStatus()) {
+            case ACTIVE: {
+               activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
                 break;
             }
-            case "SUSPENDED": {
-                currentStatus = ActiveServiceStatus.SUSPENDED;
+            case SUSPENDED: {
+                activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
                 break;
             }
-            case "PLANNED": {
-                currentStatus = ActiveServiceStatus.PLANNED;
+            case PLANNED: {
+                activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
                 break;
 
             }
         }
 
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                .withActiveServiceId(Integer.parseInt(activeServiceElement[0]))
+                .withActiveServiceId(activeService.getId())
                 .withUserId(user.getId())
                 .withDate(newDate)
-                .withCurrentStatus(currentStatus)
-                .withNewStatus(newStatus)
-                .withVersion(Integer.parseInt(activeServiceElement[5]))
+                .withCurrentStatus(activeService.getCurrentStatus())
+                .withNewStatus(activeService.getNewStatus())
+                .withVersion(activeService.getVersion())
                 .withRequestType("changeActiveService");
         controller.indentifyObject(activeServiceParams);
-        request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
+        response.sendRedirect("/ShowActiveServicesServlet");
     }
 
 }

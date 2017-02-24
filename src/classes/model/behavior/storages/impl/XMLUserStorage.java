@@ -18,6 +18,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XMLUserStorage implements UserStorage {
 
@@ -181,6 +183,27 @@ public class XMLUserStorage implements UserStorage {
 
         }
         return user;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<User> usersList = new ArrayList<User>();
+        ;
+        NodeList userNodes = doc.getElementsByTagName("user");
+        for (int temp = 0; temp < userNodes.getLength(); temp++) {
+            Element userElement = (Element) userNodes.item(temp);
+            User user = new User(Integer.parseInt(userElement.getAttribute("id")),
+                    userElement.getAttribute("name"), userElement.getAttribute("surname"),
+                    userElement.getAttribute("email"), userElement.getAttribute("phone"),
+                    userElement.getAttribute("address"), userElement.getAttribute("login"),
+                    userElement.getAttribute("password"),
+                    Integer.parseInt(userElement.getAttribute("version")),
+                    userElement.getAttribute("privilege"));
+            usersList.add(user);
+
+
+        }
+        return usersList;
     }
 
 }

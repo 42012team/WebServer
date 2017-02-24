@@ -31,23 +31,14 @@ public class LogInServlet extends HttpServlet {
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());
         request.getSession(true).setAttribute("user", user);
-        switch (userResponse.getPrivilege()) {
+        switch (userResponse.getPrivilege()){
             case "user":
-                request.getRequestDispatcher("profilePage.jsp").forward(request, response);
+                response.sendRedirect("profilePage.jsp");
                 break;
             case "admin":
-                request.getRequestDispatcher("adminPage.jsp").forward(request, response);
+                response.sendRedirect("adminPage.jsp");
                 break;
         }
     }
 
-    private void setProfileAttribute(User user, HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("name", user.getName());
-        request.setAttribute("surname", user.getSurname());
-        request.setAttribute("email", user.getEmail());
-        request.setAttribute("phone", user.getPhone());
-        request.setAttribute("address", user.getAddress());
-        request.setAttribute("login", user.getLogin());
-        request.setAttribute("password", user.getPassword());
-    }
 }

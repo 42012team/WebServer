@@ -1,4 +1,6 @@
 <%@ page import="classes.model.User" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -24,6 +26,7 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -52,6 +55,9 @@
         <li class="profileContainer"><label id="addressL"><span class="text">Адрес:</span></label> <label id="addressV"><span
                 class="text"><%=user.getAddress()%></span></label></li>
     </ul>
+    <% List<String> linksList=new ArrayList<String>();
+        linksList.add("/ShowProfilePageServlet");
+        session.setAttribute("back",linksList);%>
     <input type="submit"  class="loginButton" id="loginButton" value="Изменить данные"/>
 
 </form>

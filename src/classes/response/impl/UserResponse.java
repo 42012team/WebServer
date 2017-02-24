@@ -1,8 +1,10 @@
 package classes.response.impl;
 
+import classes.model.User;
 import classes.response.ResponseDTO;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class UserResponse implements ResponseDTO, Serializable {
 
@@ -17,6 +19,7 @@ public class UserResponse implements ResponseDTO, Serializable {
     private Integer userId;
     private int version;
     private String privilege;
+    private List<User> usersList;
 
     private UserResponse() {
     }
@@ -79,6 +82,10 @@ public class UserResponse implements ResponseDTO, Serializable {
         this.privilege = privilege;
         return this;
     }
+    public UserResponse withAllUsers(List<User> usersList){
+             this.usersList=usersList;
+        return this;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -124,5 +131,5 @@ public class UserResponse implements ResponseDTO, Serializable {
     public String getPrivilege() {
         return privilege;
     }
-
+    public List<User> getAllUsers (){return usersList;}
 }

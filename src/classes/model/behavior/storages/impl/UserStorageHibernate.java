@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 
 public class UserStorageHibernate implements UserStorage {
@@ -74,6 +75,11 @@ public class UserStorageHibernate implements UserStorage {
             em.close();
         }
         return result;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return null;
     }
 
     public User getUser(String login, String password) {
