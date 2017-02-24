@@ -56,7 +56,7 @@
             <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div>
             <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
             <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div>
-         <p style="display:none"><strong>ДД:ММ:ГГГГ ЧЧ:ММ</strong></p><input type="text" class="dateField" style="display:none" name="activationDate<%=s.getId()%>" placeholder="Введите дату ДД:ММ:ГГГГ ЧЧ:ММ"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
+        <input type="datetime-local" class="dateField" style="display:none" name="activationDate<%=s.getId()%>"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
                     <br/>
                 </div>
             </div>

@@ -28,7 +28,8 @@ public class AddActiveServiceServlet extends HttpServlet {
         User user = (User) request.getSession(true).getAttribute("user");
         int serviceId = Integer.parseInt(request.getParameter("serviceId"));
         String dateToString = request.getParameter("activationDate" + serviceId);
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        dateToString = dateToString.replace('T', ' ');
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date newDate = null;
         try {
             newDate = format.parse(dateToString);

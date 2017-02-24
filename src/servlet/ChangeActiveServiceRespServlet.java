@@ -31,33 +31,33 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActiveService activeService= (ActiveService) request.getSession(true).getAttribute("changedActiveService");
+        ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
         String date = (String) request.getParameter("date");
+        date = date.replace('T', ' ');
         User user = (User) request.getSession(true).getAttribute("user");
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date newDate = null;
         try {
             newDate = format.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        if (activeService.getNewStatus() != null)
+            switch (activeService.getNewStatus()) {
+                case ACTIVE: {
+                    activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                    break;
+                }
+                case SUSPENDED: {
+                    activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                    break;
+                }
 
-        if(activeService.getNewStatus()!=null)
-        switch (activeService.getNewStatus()) {
-            case ACTIVE: {
-        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
-                break;
+
             }
-            case SUSPENDED: {
-                activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                break;
-            }
-
-
-        }
         switch (activeService.getCurrentStatus()) {
             case ACTIVE: {
-               activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
+                activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
                 break;
             }
             case SUSPENDED: {

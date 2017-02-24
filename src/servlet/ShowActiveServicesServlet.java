@@ -39,7 +39,20 @@ public class ShowActiveServicesServlet extends HttpServlet {
         request.setAttribute("activeServiceList", activeServicesList);
         request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
     }
-
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = (User) request.getSession(true).getAttribute("user");
+        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
+                controller.indentifyObject(TransmittedActiveServiceParams.create().
+                        withUserId(user.getId()).withRequestType("allActiveServices"));
+        List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
+        ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
+                withUserId(user.getId()).withRequestType("activeServicesDescriptions"));
+        List<Service> serviceList = serviceResponse.getServices();
+        request.setAttribute("activeServiceDescription", serviceList);
+        request.setAttribute("activeServiceList", activeServicesList);
+        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
+    }
 
 
 }

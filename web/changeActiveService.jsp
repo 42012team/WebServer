@@ -67,8 +67,8 @@
                           //  request.setAttribute("changedActiveService",activeService);
 
                         %>
-
-                        <input type="text" name="date" class="date" placeholder="Введите новую дату"/>
+                        <input type="datetime-local" name="date" class="calendar"/>
+                      <!--  <input type="text" name="date" class="date" placeholder="Введите новую дату"/>-->
                         <input type="submit" class="changeButton" value="Применить"/>
                     </div>
                 </div>
