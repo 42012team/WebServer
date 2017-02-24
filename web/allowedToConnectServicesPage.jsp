@@ -25,10 +25,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Посмотреть подключенные</a></li>
-                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue" class="settings"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Подключенные услуги</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -66,5 +65,10 @@
        </div>
     </ul>
 </form>
+<div class="backButton">
+    <a href="/BackServlet" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-menu-left"></span>Назад
+    </a>
+</div>
 </body>
 </html>

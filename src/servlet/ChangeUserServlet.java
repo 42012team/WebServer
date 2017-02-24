@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 public class ChangeUserServlet extends HttpServlet {
     WebController controller = null;
@@ -23,7 +24,6 @@ public class ChangeUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         User user = (User) request.getSession(true).getAttribute("user");
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
@@ -51,7 +51,6 @@ public class ChangeUserServlet extends HttpServlet {
         request.getSession(true).removeAttribute("user");
         request.getSession(true).setAttribute("user", user);
         response.sendRedirect("profilePage.jsp");
-      //  request.getRequestDispatcher("profilePage.jsp").forward(request, response);
     }
 
 

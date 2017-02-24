@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="classes.model.ActiveService" %>
 <%@ page import="classes.model.ActiveServiceStatus" %>
+<%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>d
 <head>
@@ -26,10 +27,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue" class="settings">Вернуться в профиль</a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue" class="settings"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
-                <li><a href="/BackServlet">Назад</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -43,7 +44,8 @@
                     <div class="box-content">
                         <h2 class="tag-title"> Изменение даты:</h2>
                         <hr/>
-                        <% ActiveService activeService= (ActiveService) request.getAttribute("activeService");
+                        <%
+                            ActiveService activeService= (ActiveService) request.getAttribute("activeService");
                             if (activeService.getNewStatus()!=null) {
                                 if (activeService.getNewStatus()== ActiveServiceStatus.ACTIVE){
 
@@ -77,5 +79,10 @@
     </div>
 
 </form>
+<div class="backButton">
+    <a href="/BackServlet" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-menu-left"></span>Назад
+    </a>
+</div>
 </body>
 </html>

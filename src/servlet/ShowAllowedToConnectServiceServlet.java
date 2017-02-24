@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class ShowAllowedToConnectServiceServlet extends HttpServlet {
     WebController controller = null;
@@ -29,13 +30,4 @@ public class ShowAllowedToConnectServiceServlet extends HttpServlet {
         request.getRequestDispatcher("allowedToConnectServicesPage.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession(true).getAttribute("user");
-        ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
-                withUserId(user.getId()).withRequestType("allowedToConnect"));
-        System.out.println(serviceResponse.getServices().size());
-        request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
-        request.getRequestDispatcher("allowedToConnectServicesPage.jsp").forward(request, response);
-    }
 }

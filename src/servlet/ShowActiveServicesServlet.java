@@ -54,5 +54,4 @@ public class ShowActiveServicesServlet extends HttpServlet {
         request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
     }
 
-
 }

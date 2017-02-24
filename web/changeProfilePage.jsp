@@ -1,4 +1,5 @@
-<%@ page import="classes.model.User" %><%--
+<%@ page import="classes.model.User" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 06.02.2017
@@ -30,6 +31,9 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/ShowProfilePageServlet"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -40,7 +44,8 @@
         <h2 class="headerText">Редактирование</h2>
     </div>
     <ul>
-       <% User user= (User) session.getAttribute("user");%>
+       <%
+           User user= (User) session.getAttribute("user");%>
         <li class="changeContainer"><label id="passwordL" for="password"><span class="text">Пароль</span></label><input
                 type="password" name="password" id="password" value="<%=user.getPassword()%>"></li>
         <li class="changeContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input type="text"

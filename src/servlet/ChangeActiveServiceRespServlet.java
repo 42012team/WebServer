@@ -15,10 +15,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
-/**
- * Created by User on 18.02.2017.
- */
 public class ChangeActiveServiceRespServlet extends HttpServlet
 
 {

@@ -16,16 +16,14 @@ import java.util.List;
 public class BackServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-     List<String> linkedList= (List<String>) request.getSession(true).getAttribute("back");
-        System.out.println(linkedList.size()+"lalala");
-        String list=linkedList.get(linkedList.size()-1);
-        System.out.println(list+"list");
-        System.out.println(linkedList.get(0));
-        linkedList.remove(linkedList.size()-1);
-        System.out.println(linkedList.size());
+        request.getSession(true).removeAttribute("previousPage");
+        List<String> linkedList = (List<String>) request.getSession(true).getAttribute("back");
+        String link = linkedList.get(linkedList.size() - 1);
+        System.out.println(link + "list");
+        linkedList.remove(linkedList.size() - 1);
         request.getSession(true).removeAttribute("back");
-        request.getSession(true).setAttribute("back",linkedList);
-        request.getRequestDispatcher(list).forward(request, response);
-
+        request.getSession(true).setAttribute("back", linkedList);
+      //  request.getRequestDispatcher(link).forward(request, response);
+        response.sendRedirect(link);
     }
 }

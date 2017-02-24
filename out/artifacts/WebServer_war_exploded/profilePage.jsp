@@ -8,7 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="profileStyle.css" rel="stylesheet">
+    <link href="ProfileStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -26,6 +26,7 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
                 <li><a href="startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
@@ -55,11 +56,20 @@
         <li class="profileContainer"><label id="addressL"><span class="text">Адрес:</span></label> <label id="addressV"><span
                 class="text"><%=user.getAddress()%></span></label></li>
     </ul>
-    <% List<String> linksList=new ArrayList<String>();
-        linksList.add("/ShowProfilePageServlet");
-        session.setAttribute("back",linksList);%>
-    <input type="submit"  class="loginButton" id="loginButton" value="Изменить данные"/>
 
+    <input type="submit"  class="loginButton" id="loginButton" value="Изменить данные"/>
 </form>
+<%
+
+    if(((List<String>)(session.getAttribute("back"))).size()!=0){
+%>
+<div class="backButton">
+    <a href="/BackServlet" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-menu-left"></span>Назад
+    </a>
+</div>
+<%}
+
+%>
 </body>
 </html>
