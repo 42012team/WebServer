@@ -60,6 +60,10 @@ public class UserManager {
     public List<User> getAllUsers(){
         return userStorage.getAllUsers();
     }
+    public void deleteUser(int id){
+        userStorage.deleteUser(id);
+
+    }
     private void storeUser(User user) {
         userStorage.storeUser(user);
     }

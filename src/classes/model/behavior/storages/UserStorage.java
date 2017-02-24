@@ -14,4 +14,5 @@ public interface UserStorage {
 
     public User getUserByLogin(String login);
     public List<User> getAllUsers();
+    public void deleteUser(int id);
 }

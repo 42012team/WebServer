@@ -206,6 +206,34 @@ public class DBUserStorage implements UserStorage {
         return usersList;
     }
 
+    @Override
+    public void deleteUser(int id) {
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "DELETE FROM USER_ WHERE USER_ID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeQuery();
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Exception occured!");
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                System.out.println(stackTraceElements[i].toString());
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception occured!");
+                StackTraceElement[] stackTraceElements = ex.getStackTrace();
+                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                    System.out.println(stackTraceElements[i].toString());
+                }
+            }
+        }
+    }
+
     private User getUserByConditions(PreparedStatement ps) {
         User user = null;
         try {

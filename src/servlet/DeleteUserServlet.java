@@ -12,26 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by User on 23.02.2017.
+ * Created by User on 24.02.2017.
  */
-public class GetAllUsersServlet extends HttpServlet {
+public class DeleteUserServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create().withRequestType("allUsers"));
-        System.out.println(userResponse.getAllUsers().size());
-        response.sendRedirect("startPage.jsp");
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create().withRequestType("allUsers"));
-       System.out.println(userResponse.getAllUsers().size());
-        response.sendRedirect("startPage.jsp");
+       int id=18;//а вообще этот Id надо тебе будет с твой стр всех users получить,Данил))
+        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+                .withRequestType("deleteUser")
+                 .withId(id));
+        response.sendRedirect("/GetAllUsersServlet");
+
     }
 }

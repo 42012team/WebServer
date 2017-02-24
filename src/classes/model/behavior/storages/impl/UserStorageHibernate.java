@@ -82,6 +82,11 @@ public class UserStorageHibernate implements UserStorage {
         return null;
     }
 
+    @Override
+    public void deleteUser(int id) {
+
+    }
+
     public User getUser(String login, String password) {
         User result = null;
         EntityManager em = null;
