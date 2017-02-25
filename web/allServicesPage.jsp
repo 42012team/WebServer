@@ -9,8 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="servicesStyle.css" rel="stylesheet">
+    <script src="allServices.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -49,7 +51,7 @@
                 <div class="box">
                     <div class="box-content">
                         <h1 class="tag-title"><input type="radio" name="serviceId"
-                                                     value="<%=allServices.get(0).getId()%>"/>
+                                                     value="<%=allServices.get(0).getId()%>" onclick="clickRadio(this)"/>
                             <%= allServices.get(0).getName()%>
                         </h1>
                         <hr/>
@@ -58,7 +60,10 @@
                         <p> Тип услуги: <%= allServices.get(0).getType()%>
                         </p>
                         <p>Статус услуги: <%= allServices.get(0).getStatus()%>
-                        </p>
+                        </p><p>
+                        <input type="submit" id="<%=allServices.get(0).getId()%>del" name="buttons" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу" style="display:none"/>
+                        <input type="submit" id="<%=allServices.get(0).getId()%>ch" name="buttons" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу" style="display:none"/>
+                    </p>
                     </div>
                 </div>
             </div>
@@ -77,7 +82,7 @@
                 <div class="box">
                     <div class="box-content">
                         <h1 class="tag-title"><input type="radio" name="serviceId"
-                                                     value="<%=allServices.get(i).getId()%>"/>
+                                                     value="<%=allServices.get(i).getId()%>" onclick="clickRadio(this)"/>
                             <%= allServices.get(i).getName()%>
                         </h1>
                         <hr/>
@@ -86,6 +91,10 @@
                         <p> Тип услуги: <%= allServices.get(i).getType()%>
                         </p>
                         <p>Статус услуги: <%= allServices.get(i).getStatus()%>
+                        </p>
+                        <p>
+                        <input type="submit" id="<%=allServices.get(i).getId()%>del" name="buttons" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу" style="display:none"/>
+                        <input type="submit" id="<%=allServices.get(i).getId()%>ch" name="buttons" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу" style="display:none"/>
                         </p>
                     </div>
                 </div>
@@ -100,8 +109,6 @@
         %>
     </div>
     <div><h4 class="text-center">
-        <input type="submit" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"/>
-        <input type="submit" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу"/>
         <input type="submit" formaction="/addServicePage.jsp" formmethod="post" value="Добавить новую услугу"/>
     </h4>
     </div>

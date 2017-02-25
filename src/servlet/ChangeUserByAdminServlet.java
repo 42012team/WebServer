@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class DeleteUserServlet extends HttpServlet {
+public class ChangeUserByAdminServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
@@ -21,9 +21,12 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
-                .withId(Integer.parseInt(request.getParameter("userId")))
-                .withRequestType("deleteUser"));
-        response.sendRedirect("/GetAllUsersServlet");
+        UserResponse userResp=(UserResponse)controller.indentifyObject(TransmittedUserParams.create()
+                .withId(Integer.parseInt(request.getParameter("chooseUser")))
+                .withRequestType("userById"));
+        System.out.println(userResp.getUserId()+" "+userResp.getName());
+        request.setAttribute("user",userResp);
+        request.getRequestDispatcher("/changeUserByAdminPage.jsp").forward(request,response);
     }
+
 }

@@ -41,7 +41,8 @@ public class GetUserByIdProcessor implements RequestProcessor, Serializable {
                         .withPassword(user.getPassword())
                         .withId(user.getId())
                         .withResponseType("user")
-                        .withVersion(user.getVersion());
+                        .withVersion(user.getVersion())
+                        .withPrivilege(user.getPrivilege());
                 return userr;
             }
         } catch (Exception ex) {

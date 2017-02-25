@@ -28,7 +28,7 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
     }
 
     private User changeUser(int id, String name, String surname, String email, String phone, String address,
-                            String login, String password, int version) {
+                            String login, String password, int version, String privilege) {
         UserManager userManager = initializer.getUserManager();
         UserParams userParams = UserParams.create()
                 .withName(name)
@@ -38,7 +38,8 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
                 .withAdress(address)
                 .withLogin(login)
                 .withPassword(password)
-                .withVersion(version + 1);
+                .withVersion(version + 1)
+                .withPrivilege(privilege);
         User user = userManager.getUserById(id);
         userManager.changeUser(user, userParams);
         return user;
@@ -46,7 +47,7 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
 
     public UserResponse getResponse(TransmittedUserParams userRequestParams) {
         User user = changeUser(userRequestParams.getUserId(), userRequestParams.getName(), userRequestParams.getSurname(), userRequestParams.getEmail(), userRequestParams.getPhone(),
-                userRequestParams.getAddress(), userRequestParams.getLogin(), userRequestParams.getPassword(), userRequestParams.getVersion());
+                userRequestParams.getAddress(), userRequestParams.getLogin(), userRequestParams.getPassword(), userRequestParams.getVersion(), userRequestParams.getPrivilege());
         System.out.println("Изменение пользователя с Id " + user.getId());
         return UserResponse.create()
                 .withName(user.getName())

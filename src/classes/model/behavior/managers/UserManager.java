@@ -42,6 +42,7 @@ public class UserManager {
         user.setLogin(userParams.getLogin());
         user.setPassword(userParams.getPassword());
         user.setVersion(userParams.getVersion());
+        user.setPrivilege(userParams.getPrivilege());
         storeUser(user);
     }
 

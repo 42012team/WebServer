@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by User on 23.02.2017.
- */
 public class GetAllUsersServlet extends HttpServlet {
     WebController controller = null;
 
@@ -23,15 +20,17 @@ public class GetAllUsersServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create().withRequestType("allUsers"));
-        System.out.println(userResponse.getAllUsers().size());
-        response.sendRedirect("startPage.jsp");
+        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+                .withRequestType("allUsers"));
+        request.setAttribute("allUsers",userResponse.getAllUsers());
+        request.getRequestDispatcher("/allUsers.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create().withRequestType("allUsers"));
-       System.out.println(userResponse.getAllUsers().size());
-        response.sendRedirect("startPage.jsp");
+        UserResponse userResponse = (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+                .withRequestType("allUsers"));
+        request.setAttribute("allUsers",userResponse.getAllUsers());
+        request.getRequestDispatcher("/allUsers.jsp").forward(request,response);
     }
 }
