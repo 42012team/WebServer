@@ -43,7 +43,7 @@
             <div class="col-md-6 text-center">
                 <div class="box">
                     <div class="box-content">
-                        <h2 class="tag-title"> Изменение даты:</h2>
+                        <h2 class="tag-title"> Изменение услуги:</h2>
                         <hr/>
                         <%
                             ActiveService activeService= (ActiveService) request.getAttribute("activeService");
@@ -83,11 +83,8 @@
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                         }
                         session.setAttribute("changedActiveService",activeService);
-                          //  request.setAttribute("changedActiveService",activeService);
 
                         %>
-
-                      <!--  <input type="text" name="date" class="date" placeholder="Введите новую дату"/>-->
 
                     </div>
                 </div>
