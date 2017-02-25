@@ -315,28 +315,34 @@ table.dataTable thead th.dt-head-nowrap, table.dataTable thead td.dt-head-nowrap
 }
 
 table.dataTable tbody th.dt-body-left, table.dataTable tbody td.dt-body-left {
-    text-align: left
+    text-align: left;
+    background-color: FloralWhite
 }
 
 table.dataTable tbody th.dt-body-center, table.dataTable tbody td.dt-body-center {
-    text-align: center
+    text-align: center;
+    background-color: FloralWhite
 }
 
 table.dataTable tbody th.dt-body-right, table.dataTable tbody td.dt-body-right {
-    text-align: right
+    text-align: right;
+    background-color: FloralWhite
 }
 
 table.dataTable tbody th.dt-body-justify, table.dataTable tbody td.dt-body-justify {
-    text-align: justify
+    text-align: justify;
+    background-color: FloralWhite
 }
 
 table.dataTable tbody th.dt-body-nowrap, table.dataTable tbody td.dt-body-nowrap {
-    white-space: nowrap
+    white-space: nowrap;
+    background-color: FloralWhite
 }
 
 table.dataTable, table.dataTable th, table.dataTable td {
     -webkit-box-sizing: content-box;
-    box-sizing: content-box
+    box-sizing: content-box;
+    background-color: FloralWhite
 }
 
 .dataTables_wrapper {

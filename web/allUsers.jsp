@@ -31,7 +31,7 @@
 </nav>
 <br/><br/><br/>
 <form method="post">
-<table id="example" class="display" cellspacing="0" width="100%">
+    <table id="example" class="display" cellspacing="0" width="100%" font-family="Comic Sans MS">
     <thead>
     <tr>
         <th>Выбрать</th>
