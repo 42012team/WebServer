@@ -10,7 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="changeActiveServiceStyle.css" rel="stylesheet">
-    <script src="activeServiscesEffect.js"></script>
+    <link href="newStyleForChangeActiveServicePage.css" rel="stylesheet">
+    <script src="1.js"></script>
 </head>
 <body onload="load()">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -51,17 +52,33 @@
 
                         %>
                         <p>Введите новую дату подключения в формате:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-
+                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="submit" class="changeButton" value="Применить"/>
                         <%
                             }
                             if (activeService.getNewStatus()== ActiveServiceStatus.SUSPENDED) {
                         %>
-                        <p>Введите новую дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
 
+                        <input type="submit" name="cancelLock" class="cancelButton" id="cancel" value="Отменить блокировку"/>
+                        <input type="button" class="changeDateButton" onclick="showCalendar()" id="change"  name="changeDate" id="changeDate" value="Изменить дату"/>
+                        <div style="display:none" name="hiddenText" id="hiddenText"><p>Введите новую дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        </div><input type="datetime-local"  style="display:none" id="date" name="date" class="calendar"/>
+                        <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                        } else {%>
+                        }else
+                        if(activeService.getCurrentStatus()==ActiveServiceStatus.SUSPENDED){%>
+                            <p>Введите дату разблокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                            <input type="datetime-local"   name="date" class="calendar"/>
+                            <input type="submit" class="changeButton" value="Применить"/>
+
+                        <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+
+                        }
+                            else if(activeService.getCurrentStatus()==ActiveServiceStatus.ACTIVE) {%>
                         <p>Введите дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        <input type="datetime-local"   name="date" class="calendar"/>
+                        <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                         }
@@ -69,9 +86,9 @@
                           //  request.setAttribute("changedActiveService",activeService);
 
                         %>
-                        <input type="datetime-local" name="date" class="calendar"/>
+
                       <!--  <input type="text" name="date" class="date" placeholder="Введите новую дату"/>-->
-                        <input type="submit" class="changeButton" value="Применить"/>
+
                     </div>
                 </div>
             </div>
@@ -79,10 +96,5 @@
     </div>
 
 </form>
-<div class="backButton">
-    <a href="/BackServlet" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-menu-left"></span>Назад
-    </a>
-</div>
 </body>
 </html>

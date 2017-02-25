@@ -23,4 +23,11 @@ function click1(radio) {
         currentChangeButton.style.display = 'inline';
         localStorage.setItem('id', radio.value);
     }
+   function showCalendar(){
+        var hiddenText=document.getElementById('hiddenText');
+        var date=document.getElementById('date');
+        hiddenText.style.display = 'inline';
+        date.style.display = 'inline';
+
+    }
 }

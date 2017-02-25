@@ -93,10 +93,13 @@ form{
     margin-top: 10%;
     margin-left: 25%;
 }
-.backButton{
-    margin-top:5px;
-    margin-left:5%;
-    width: 10%;
-    height: 10%;
+
+.cancelButton,.changeDateButton{
+    margin-top: 10%;
+    width:30%;
+    border-radius: 10px;
+    height:30px;
+    background-color:#f4511e;
+    color:white ;
 
 }

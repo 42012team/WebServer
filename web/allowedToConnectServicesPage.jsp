@@ -65,10 +65,6 @@
        </div>
     </ul>
 </form>
-<div class="backButton">
-    <a href="/BackServlet" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-menu-left"></span>Назад
-    </a>
-</div>
+
 </body>
 </html>

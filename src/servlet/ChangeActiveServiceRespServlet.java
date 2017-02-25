@@ -29,46 +29,51 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
-        String date = (String) request.getParameter("date");
-        date = date.replace('T', ' ');
-        User user = (User) request.getSession(true).getAttribute("user");
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date newDate = null;
-        try {
-            newDate = format.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
+        User user = (User) request.getSession(true).getAttribute("user");
+        if(request.getParameter("cancelLock")!=null){
+            activeService.setNewStatus(null);
+
         }
-        if (activeService.getNewStatus() != null)
-            switch (activeService.getNewStatus()) {
+        else {
+            String date = (String) request.getParameter("date");
+            date = date.replace('T', ' ');
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            try {
+                newDate = format.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            if (activeService.getNewStatus() != null)
+                switch (activeService.getNewStatus()) {
+                    case ACTIVE: {
+                        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                        break;
+                    }
+                    case SUSPENDED: {
+                        activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                        break;
+                    }
+
+
+                }
+            switch (activeService.getCurrentStatus()) {
                 case ACTIVE: {
-                    activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                    activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
                     break;
                 }
                 case SUSPENDED: {
-                    activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                    activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
                     break;
                 }
+                case PLANNED: {
+                    activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
+                    break;
 
-
-            }
-        switch (activeService.getCurrentStatus()) {
-            case ACTIVE: {
-                activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
-                break;
-            }
-            case SUSPENDED: {
-                activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
-                break;
-            }
-            case PLANNED: {
-                activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
-                break;
-
+                }
             }
         }
-
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(user.getId())

@@ -70,7 +70,11 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                             activeService.setNewStatus(null);
                             break;
                     }
-                activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                if (rs.getTimestamp("TDATE") != null) {
+                    activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                } else {
+                    activeService.setDate(null);
+                }
                 activeServiceList.add(activeService);
             }
             ps.close();
@@ -173,7 +177,12 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                             activeService.setNewStatus(null);
                             break;
                     }
+                if(rs.getTimestamp("TDATE")!=null){
                 activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                }
+                else{
+                    activeService.setDate(null);
+                }
                 activeServiceList.add(activeService);
             }
             ps.close();
@@ -248,7 +257,12 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                             activeService.setNewStatus(null);
                             break;
                     }
-                activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                if(rs.getTimestamp("TDATE")!=null) {
+                    activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                }
+                else{
+                    activeService.setDate(null);
+                }
             }
             ps.close();
         } catch (SQLException ex) {
@@ -292,7 +306,10 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 } else {
                     ps.setString(5, " ");
                 }
-                Timestamp timestamp = new Timestamp(activeServicesList.get(i).getDate().getTime());
+                Timestamp timestamp = null;
+                if (activeServicesList.get(i).getDate() != null) {
+                    timestamp = new Timestamp(activeServicesList.get(i).getDate().getTime());
+                }
                 ps.setTimestamp(6, timestamp);
                 ps.setInt(7, activeServicesList.get(i).getVersion());
                 ps.setInt(8, activeServicesList.get(i).getId());

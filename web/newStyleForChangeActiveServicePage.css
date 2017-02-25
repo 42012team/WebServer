@@ -1,0 +1,14 @@
+.cancelButton,.changeDateButton{
+    margin-top: 10%;
+    border-radius: 10px;
+    height:30px;
+    background-color:#f4511e;
+    color:white ;
+
+}
+.cancelButton{
+    width: 40%
+}
+.changeDateButton{
+    width:30%;
+}
