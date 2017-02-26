@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
             </ul>

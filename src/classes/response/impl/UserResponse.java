@@ -136,4 +136,5 @@ public class UserResponse implements ResponseDTO, Serializable {
     public List<User> getAllUsers() {
         return usersList;
     }
+
 }

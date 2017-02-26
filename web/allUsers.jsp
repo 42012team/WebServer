@@ -24,8 +24,13 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">О Нас</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="/addUserPage.jsp" color="blue" class="settings">Добавить пользователя</a></li>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>

@@ -26,16 +26,30 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/ShowAllowedToConnectServicesServlet" color="blue" class="settings">Подключить услугу</a>
+                </li>
+                <%
+                    switch (((User) session.getAttribute("user")).getPrivilege()) {
+                        case "user":
+                %>
                 <li><a href="/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
-                </li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
-                </li>
-                <li><a href="startPage.jsp">Выйти</a></li>
+                <%
+                        break;
+                    case "admin":
+                %>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <%
+                            break;
+                    }
+                %>
+                <li><a href="/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -87,7 +101,6 @@
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
-
                             <br/>
                         </div>
                     </div>
@@ -97,10 +110,5 @@
         </div>
     </ul>
 </form>
-<div class="backButton">
-    <a href="javascript:history.back()" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-menu-left"></span>Назад
-    </a>
-</div>
 </body>
 </html>

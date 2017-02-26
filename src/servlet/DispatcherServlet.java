@@ -9,7 +9,7 @@ import java.io.IOException;
 public class DispatcherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("changeProfileButton") != null) {
-            request.getRequestDispatcher("changeProfilePage.jsp").forward(request, response);
+            request.getRequestDispatcher("/changeProfilePage.jsp").forward(request, response);
         }
     }
 }

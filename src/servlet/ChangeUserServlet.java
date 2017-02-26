@@ -54,7 +54,7 @@ public class ChangeUserServlet extends HttpServlet {
                 userResponse.getPrivilege());
         request.getSession(true).removeAttribute("user");
         request.getSession(true).setAttribute("user", user);
-        response.sendRedirect("profilePage.jsp");
+        response.sendRedirect("/profilePage.jsp");
     }
 
 

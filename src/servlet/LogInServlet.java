@@ -42,10 +42,10 @@ public class LogInServlet extends HttpServlet {
         request.getSession(true).setAttribute("back", linksList);
         switch (userResponse.getPrivilege()) {
             case "user":
-                response.sendRedirect("profilePage.jsp");
+                response.sendRedirect("/profilePage.jsp");
                 break;
             case "admin":
-                response.sendRedirect("adminPage.jsp");
+                response.sendRedirect("/adminPage.jsp");
                 break;
         }
     }

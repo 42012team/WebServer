@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ShowProfilePageServlet extends HttpServlet {
+public class ShowAdminPageServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
@@ -25,6 +25,9 @@ public class ShowProfilePageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User currentUser = (User) request.getSession(true).getAttribute("user");
+        if ((currentUser == null) || (!currentUser.getPrivilege().equals("admin"))) {
+            throw new ServletException("ОШИБКА ДОСТУПА!");
+        }
         TransmittedUserParams transmittedUserParams = TransmittedUserParams.create()
                 .withLogin(currentUser.getLogin())
                 .withPassword(currentUser.getPassword())
@@ -37,6 +40,7 @@ public class ShowProfilePageServlet extends HttpServlet {
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());
         request.getSession(true).setAttribute("user", user);
-        request.getRequestDispatcher("/profilePage.jsp").forward(request, response);
+        request.getRequestDispatcher("/adminPage.jsp").forward(request, response);
     }
+
 }

@@ -25,7 +25,7 @@ public class ErrorHandler extends HttpServlet {
             requestUri = "Unknown";
         }
         request.setAttribute("requestUri", requestUri);
-        request.setAttribute("message", throwable.getMessage());
+        request.setAttribute("message", (throwable.getMessage() == null) ? "ОШИБКА 404!" : throwable.getMessage());
         request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
     }
 }

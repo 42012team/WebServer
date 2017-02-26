@@ -65,7 +65,6 @@ public class UserManager {
 
     public void deleteUser(int id) {
         userStorage.deleteUser(id);
-
     }
 
     private void storeUser(User user) {

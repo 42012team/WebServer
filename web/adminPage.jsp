@@ -18,16 +18,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/startPage.jsp">Samara-Telecom</a>
+            <a class="navbar-brand" href="#">Samara-Telecom</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Подключенные услуги</a></li>
-                <li><a href="/AllServicesServlet" color="blue" class="settings">Управление услугами</a></li>
-                <li><a href="/GetAllUsersServlet" color="blue" class="settings">Управление пользователями</a></li>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
+                <li><a href="/AllServicesServlet" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/GetAllUsersServlet" color="blue" class="settings">Управление пользователями</a></li>
+                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>

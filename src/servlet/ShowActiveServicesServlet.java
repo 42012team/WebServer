@@ -45,7 +45,7 @@ public class ShowActiveServicesServlet extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
+        request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ShowActiveServicesServlet extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
+        request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
     }
 
 }

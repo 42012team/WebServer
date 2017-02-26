@@ -22,19 +22,19 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
                 <li><a href="/ShowProfilePageServlet"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="startPage.jsp">Выйти</a></li>
+                <li><a href="/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="changeForm" action="/ChangeUserServlet" method="POST">
+<form class="changeForm" action="/ChangeUserServlet" method="post">
     <div class="regHeader">
         <h2 class="headerText">Редактирование</h2>
     </div>

@@ -237,9 +237,25 @@
         <url-pattern>/ShowAllowedToConnectServicesByAdminServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ShowAdminPageServlet</servlet-name>
+        <servlet-class>servlet.ShowAdminPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAdminPageServlet</servlet-name>
+        <url-pattern>/ShowAdminPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>servlet.ErrorHandler</servlet-class>
     </servlet>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>

@@ -31,7 +31,7 @@ public class ShowAllowedToConnectServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
-        request.getRequestDispatcher("allowedToConnectServicesPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/allowedToConnectServicesPage.jsp").forward(request, response);
     }
 
 }

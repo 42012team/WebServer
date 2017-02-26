@@ -46,7 +46,7 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showActiveServicesByAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("/showActiveServicesByAdminPage.jsp").forward(request, response);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
         request.getSession(true).setAttribute("userForChange", Integer.parseInt(request.getParameter("chooseUser")));
-        request.getRequestDispatcher("showActiveServicesByAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("/showActiveServicesByAdminPage.jsp").forward(request, response);
     }
 
 }

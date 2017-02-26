@@ -27,7 +27,7 @@ public class DeleteServiceServlet extends HttpServlet {
                 .withRequestType("deleteService"));
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/adminPage.jsp");
+        response.sendRedirect("/AllServicesServlet");
     }
 }
 

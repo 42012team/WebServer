@@ -19,21 +19,23 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/registration.jsp" color="blue" class="settings">Регистрация</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="loginForm" action="LogInServlet" method="post">
+<form class="loginForm" action="/LogInServlet" method="post">
     <div class="loginHeader">
         <h2 class="headerText">Авторизация</h2>
     </div>
 
     <input type="text" name="login" id="login" placeholder="Login">
     <input type="password" name="pass" id="password" placeholder="Password">
-    <input type="submit" name="loginButton" id="loginButton" value="Войти">
+    <input type="submit" name="loginButton" id="loginButton" value="Вход">
 </form>
 </body>
 </html>

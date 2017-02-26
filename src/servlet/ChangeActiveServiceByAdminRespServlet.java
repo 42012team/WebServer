@@ -17,9 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ChangeActiveServiceByAdminRespServlet extends HttpServlet
-
-{
+public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
     WebController controller = null;
 
     @Override

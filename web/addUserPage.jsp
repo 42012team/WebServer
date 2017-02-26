@@ -1,3 +1,4 @@
+<%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,12 +19,17 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">О Нас</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form action="/AddUserServlet" method="POST">
+<form action="/AddUserServlet" method="post">
     <div class="col-md-6 text-center">
         <div class="box">
             <div class="box-content">

@@ -25,21 +25,17 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue"
-                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
-                </a></li>
-                <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
-                </li>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="startPage.jsp">Выйти</a></li>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="post" action="ChangeActiveServiceRespServlet">
+<form method="post" action="/ChangeActiveServiceByAdminRespServlet">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">

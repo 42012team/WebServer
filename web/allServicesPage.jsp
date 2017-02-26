@@ -1,11 +1,11 @@
 <%@ page import="classes.model.Service" %>
+<%@ page import="classes.model.User" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="servicesStyle.css" rel="stylesheet">
     <script src="allServices.js"></script>
@@ -23,7 +23,12 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about">О Нас</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>

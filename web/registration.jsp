@@ -5,7 +5,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link href="regStyle.css" rel="stylesheet">
+    <link href="registrationStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -20,17 +20,19 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/loginPage.jsp" color="blue" class="settings">Войти</a></li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/loginPage.jsp" color="blue" class="settings">Вход</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="registrationForm" action="/SignInServlet" method="POST">
+<form class="registrationForm" action="/SignInServlet" method="post">
     <div class="regHeader">
-        <h2 class="headerText">Зарегистрироваться</h2>
+        <h2 class="headerText">Регистрация</h2>
     </div>
     <ul>
         <li class="regLiContainer">
@@ -53,7 +55,7 @@
         <li class="regLiContainer"><label id="addressL" for="address"><span class="text">Адрес</span></label><input
                 type="text" name="address" id="address" placeholder="Адрес"/></li>
     </ul>
-    <input type="submit" name="loginButton" id="loginButton" value="Зарегистрироваться">
+    <input type="submit" name="loginButton" id="loginButton" value="Регистрация">
 
 </form>
 </body>

@@ -34,7 +34,7 @@ public class ChangeActiveServiceByAdminServlet extends HttpServlet {
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
         ActiveService activeService = activeServiceResponse.getAllActiveServices().get(0);
         request.setAttribute("activeService", activeService);
-        request.getRequestDispatcher("changeActiveServiceByAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("/changeActiveServiceByAdminPage.jsp").forward(request, response);
     }
 
 
