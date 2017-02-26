@@ -20,12 +20,15 @@ public class ErrorHandler extends HttpServlet {
     private void processError(HttpServletRequest request,
                               HttpServletResponse response) throws IOException, ServletException {
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
-        String requestUri = (String) request.getAttribute("javax.servlet.error.request_uri");
-        if (requestUri == null) {
-            requestUri = "Unknown";
-        }
-        request.setAttribute("requestUri", requestUri);
-        request.setAttribute("message", (throwable.getMessage() == null) ? "ОШИБКА 404!" : throwable.getMessage());
+        if (throwable != null) {
+            String requestUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+            if (requestUri == null) {
+                requestUri = "Unknown";
+            }
+            request.setAttribute("requestUri", requestUri);
+            request.setAttribute("message", (throwable.getMessage() == null) ? "ОШИБКА 404!" : throwable.getMessage());
+        } else
+            request.setAttribute("message", "ОШИБКА 404!");
         request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
     }
 }
