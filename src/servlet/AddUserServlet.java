@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddAdminServlet extends HttpServlet {
+public class AddUserServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
@@ -19,20 +19,33 @@ public class AddAdminServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         TransmittedUserParams userParams = TransmittedUserParams.create()
-                .withName(" ")
-                .withSurname(" ")
-                .withEmail(" ")
-                .withPhone(" ")
-                .withAdress(" ")
+                .withName(name)
+                .withSurname(surname)
+                .withEmail(email)
+                .withPhone(phone)
+                .withAdress(address)
                 .withLogin(login)
                 .withPassword(password)
-                .withVersion(0)
-                .withPrivilege("admin")
-                .withRequestType("signInUser");
-        controller.indentifyObject(userParams);
+                .withRequestType("signInUser")
+                .withVersion(0);
+        switch (request.getParameter("privilege")){
+            case "admin":
+                userParams.withPrivilege("admin");
+                controller.indentifyObject(userParams);
+                break;
+            case "user":
+                userParams.withPrivilege("user");
+                controller.indentifyObject(userParams);
+                break;
+        }
         response.sendRedirect("/adminPage.jsp");
     }
 }

@@ -121,4 +121,9 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         }
     }
 
+    @Override
+    public void deleteActiveServicesByUserId(int userId){
+
+    }
+
 }

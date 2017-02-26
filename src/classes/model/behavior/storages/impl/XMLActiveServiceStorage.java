@@ -313,6 +313,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
 
     }
 
+    @Override
+    public void deleteActiveServicesByUserId(int userId){
+
+    }
+
     private void write(Document doc) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -329,4 +334,5 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
             }
         }
     }
+
 }

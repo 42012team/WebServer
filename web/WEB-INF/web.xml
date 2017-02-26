@@ -53,12 +53,12 @@
 <url-pattern>/DeleteActiveServiceServlet</url-pattern>
 </servlet-mapping>
     <servlet>
-        <servlet-name>ShowAllowedToConnectServiceServlet</servlet-name>
-        <servlet-class>servlet.ShowAllowedToConnectServiceServlet</servlet-class>
+        <servlet-name>ShowAllowedToConnectServicesServlet</servlet-name>
+        <servlet-class>servlet.ShowAllowedToConnectServicesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> ShowAllowedToConnectServiceServlet</servlet-name>
-        <url-pattern>/ShowAllowedToConnectServiceServlet</url-pattern>
+        <servlet-name> ShowAllowedToConnectServicesServlet</servlet-name>
+        <url-pattern>/ShowAllowedToConnectServicesServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AddActiveServiceServlet</servlet-name>
@@ -77,12 +77,12 @@
         <url-pattern>/ShowProfilePageServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AddAdminServlet</servlet-name>
-        <servlet-class>servlet.AddAdminServlet</servlet-class>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>servlet.AddUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>AddAdminServlet</servlet-name>
-        <url-pattern>/AddAdminServlet</url-pattern>
+        <servlet-name>AddUserServlet</servlet-name>
+        <url-pattern>/AddUserServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>AddServiceServlet</servlet-name>
@@ -187,5 +187,53 @@
     <servlet-mapping>
         <servlet-name>ChangeUserByAdminRespServlet</servlet-name>
         <url-pattern>/ChangeUserByAdminRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeActiveServiceByAdminServlet</servlet-name>
+        <servlet-class>servlet.ChangeActiveServiceByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeActiveServiceByAdminServlet</servlet-name>
+        <url-pattern>/ChangeActiveServiceByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeActiveServiceByAdminRespServlet</servlet-name>
+        <servlet-class>servlet.ChangeActiveServiceByAdminRespServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeActiveServiceByAdminRespServlet</servlet-name>
+        <url-pattern>/ChangeActiveServiceByAdminRespServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteActiveServiceByAdminServlet</servlet-name>
+        <servlet-class>servlet.DeleteActiveServiceByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteActiveServiceByAdminServlet</servlet-name>
+        <url-pattern>/DeleteActiveServiceByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowActiveServicesByAdminServlet</servlet-name>
+        <servlet-class>servlet.ShowActiveServicesByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowActiveServicesByAdminServlet</servlet-name>
+        <url-pattern>/ShowActiveServicesByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddActiveServiceByAdminServlet</servlet-name>
+        <servlet-class>servlet.AddActiveServiceByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddActiveServiceByAdminServlet</servlet-name>
+        <url-pattern>/AddActiveServiceByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowAllowedToConnectServicesByAdminServlet</servlet-name>
+        <servlet-class>servlet.ShowAllowedToConnectServicesByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowAllowedToConnectServicesByAdminServlet</servlet-name>
+        <url-pattern>/ShowAllowedToConnectServicesByAdminServlet</url-pattern>
     </servlet-mapping>
 </web-app>

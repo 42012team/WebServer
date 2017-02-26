@@ -33,9 +33,9 @@ public class LogInServlet extends HttpServlet {
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());
         request.getSession(true).setAttribute("user", user);
-        List<String> linksList=new ArrayList<String>();
-       request.getSession(true).setAttribute("back",linksList);
-        switch (userResponse.getPrivilege()){
+        List<String> linksList = new ArrayList<String>();
+        request.getSession(true).setAttribute("back", linksList);
+        switch (userResponse.getPrivilege()) {
             case "user":
                 response.sendRedirect("profilePage.jsp");
                 break;

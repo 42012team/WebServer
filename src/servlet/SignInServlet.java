@@ -21,7 +21,6 @@ public class SignInServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         String email = request.getParameter("email");
@@ -29,7 +28,6 @@ public class SignInServlet extends HttpServlet {
         String address = request.getParameter("address");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        System.out.println(name + " " + login);
         TransmittedUserParams userParams = TransmittedUserParams.create()
                 .withName(name)
                 .withSurname(surname)

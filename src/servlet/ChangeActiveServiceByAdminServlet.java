@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ChangeActiveServiceServlet extends HttpServlet {
+public class ChangeActiveServiceByAdminServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("chooseActiveService"));
@@ -28,7 +29,7 @@ public class ChangeActiveServiceServlet extends HttpServlet {
         ActiveServiceResponse activeServiceResponse= (ActiveServiceResponse) controller.indentifyObject(transmittedActiveServiceParams);
         ActiveService activeService=activeServiceResponse.getAllActiveServices().get(0);
         request.setAttribute("activeService", activeService);
-        request.getRequestDispatcher("changeActiveService.jsp").forward(request, response);
+        request.getRequestDispatcher("changeActiveServiceByAdmin.jsp").forward(request, response);
     }
 
 

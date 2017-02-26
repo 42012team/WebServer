@@ -16,4 +16,6 @@ public interface ActiveServiceStorage {
 
     public void storeActiveServices(List<ActiveService> activeServicesList);
 
+    public void deleteActiveServicesByUserId(int userId);
+
 }

@@ -23,13 +23,19 @@
         </div>
     </div>
 </nav>
-<form action="/AddAdminServlet" method="POST">
+<form action="/AddUserServlet" method="POST">
     <div class="col-md-6 text-center">
         <div class="box">
             <div class="box-content">
-                <h2>Добавление администратора</h2>
+                <h2>Добавление пользователя</h2>
                 <p>Login: <input type="text" name="login"/></p>
                 <p>Password: <input type="text" name="password"/></p>
+                <p>Имя: <input type="text" name="name"/></p>
+                <p>Фамилия: <input type="text" name="surname"/></p>
+                <p>Email: <input type="text" name="email"/></p>
+                <p>Телефон: <input type="text" name="phone"/></p>
+                <p>Адрес: <input type="text" name="address"/></p>
+                <p>Привилегированность: <input type="radio" name="privilege" value="admin">ADMIN <input type="radio" name="privilege" value="user">USER</p>
                 <p><input type="submit" value="Добавить"/></p>
             </div>
         </div>

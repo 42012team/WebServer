@@ -25,13 +25,14 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
+                <li><a href="/addUserPage.jsp" color="blue" class="settings">Добавить пользователя</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <br/><br/><br/>
 <form method="post">
-    <table id="example" class="display" cellspacing="0" width="100%" font-family="Comic Sans MS">
+    <table id="example" class="display" cellspacing="0" width="100%">
     <thead>
     <tr>
         <th>Выбрать</th>
@@ -90,7 +91,8 @@
         <td><%=user.getPhone()%>
         </td>
         <td>
-            <input type="submit" class="buttons" value="Услуги" id="<%=user.getId()%>services" disabled/>
+            <input type="submit" class="buttons" value="Услуги" id="<%=user.getId()%>services" disabled
+                   formaction="/ShowActiveServicesByAdminServlet" formmethod="post"/>
             <input type="submit" class="buttons" value="Профиль" id="<%=user.getId()%>profile" disabled
                    formaction="/ChangeUserByAdminServlet" formmethod="post"/>
         </td>

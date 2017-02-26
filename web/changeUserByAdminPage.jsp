@@ -44,7 +44,7 @@
                 <p><input type="submit" name="saveButton" id="deleteButton" value="Удалить" formaction="/DeleteUserServlet" formmethod="post"></p>
                 <%
                     UserResponse user = (UserResponse) request.getAttribute("user");%>
-                <p>Пароль: <input type="password" name="password" id="password" value="<%=user.getPassword()%>"></p>
+                <p>Пароль: <input type="text" name="password" id="password" value="<%=user.getPassword()%>"></p>
                 <p>Имя: <input type="text" name="name" id="name" value="<%=user.getName()%>"/></p>
                 <p>Фамилия: <input type="text" name="surname" id="surname" value="<%=user.getSurname()%>"/></p>
                 <p>Email: <input type="text" name="email" id="email" value="<%=user.getEmail()%>"/></p>

@@ -45,11 +45,9 @@ public class ChangeUserByAdminRespServlet extends HttpServlet {
                 break;
             case "user":
                 userParams.withPrivilege("user");
-                System.out.println("user11111");
                 controller.indentifyObject(userParams);
                 break;
         }
-        controller.indentifyObject(userParams);
         response.sendRedirect("/GetAllUsersServlet");
     }
 }

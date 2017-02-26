@@ -4,7 +4,6 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.model.ActiveService;
 import classes.model.Service;
-import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.request.impl.TransmittedServiceParams;
 import classes.response.impl.ActiveServiceResponse;
@@ -18,41 +17,46 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class ShowActiveServicesServlet extends HttpServlet {
+public class ShowActiveServicesByAdminServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession(true).getAttribute("user");
+        int userId = (int) request.getSession(true).getAttribute("userForChange");
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
                 controller.indentifyObject(TransmittedActiveServiceParams.create().
-                        withUserId(user.getId()).withRequestType("allActiveServices"));
+                        withUserId(userId)
+                        .withRequestType("allActiveServices"));
         List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
         ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
-                withUserId(user.getId()).withRequestType("activeServicesDescriptions"));
+                withUserId(userId)
+                .withRequestType("activeServicesDescriptions"));
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
+        request.getRequestDispatcher("showActiveServicesByAdmin.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession(true).getAttribute("user");
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
                 controller.indentifyObject(TransmittedActiveServiceParams.create().
-                        withUserId(user.getId()).withRequestType("allActiveServices"));
+                        withUserId(Integer.parseInt(request.getParameter("chooseUser")))
+                        .withRequestType("allActiveServices"));
         List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
         ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
-                withUserId(user.getId()).withRequestType("activeServicesDescriptions"));
+                withUserId(Integer.parseInt(request.getParameter("chooseUser")))
+                .withRequestType("activeServicesDescriptions"));
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getRequestDispatcher("showAllActiveServices.jsp").forward(request, response);
+        request.getSession(true).setAttribute("userForChange",Integer.parseInt(request.getParameter("chooseUser")));
+        request.getRequestDispatcher("showActiveServicesByAdmin.jsp").forward(request, response);
     }
 
 }

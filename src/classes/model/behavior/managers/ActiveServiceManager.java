@@ -19,7 +19,7 @@ public class ActiveServiceManager {
     ActivatorInterface activator;
 
     public ActiveServiceManager(ActiveServiceStorage activeServiceStorage, IdGenerator idGenerator,
-            ServiceManager serviceManager) {
+                                ServiceManager serviceManager) {
         this.activeServiceStorage = activeServiceStorage;
         this.idGenerator = idGenerator;
         this.serviceManager = serviceManager;
@@ -55,7 +55,7 @@ public class ActiveServiceManager {
     }
 
     public void changeActiveServiceStatus(ActiveService activeService, ActiveServiceStatus currentStatus,
-            ActiveServiceStatus newStatus) {
+                                          ActiveServiceStatus newStatus) {
         activeService.setCurrentStatus(currentStatus);
         activeService.setNewStatus(newStatus);
 
@@ -103,6 +103,17 @@ public class ActiveServiceManager {
 
     public List<ActiveService> getAllActiveServices() {
         return activeServiceStorage.getAllActiveServices();
+    }
+
+    public void deleteActiveServicesByUserId(int userId) {
+        List<ActiveService> activeServices = activeServiceStorage.getActiveServicesByUserId(userId);
+        activeServiceStorage.deleteActiveServicesByUserId(userId);
+        for (ActiveService activeService:activeServices) {
+            if (activeService.getNewStatus() != null) {
+                activator.unschedule(activeService);
+                break;
+            }
+        }
     }
 
 }

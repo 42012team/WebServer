@@ -32,7 +32,7 @@ public class DBUserStorage implements UserStorage {
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
                 System.out.println(stackTraceElements[i].toString());
             }
-        } /*finally {
+        } finally {
             try {
                 connection.close();
             } catch (SQLException ex) {
@@ -42,7 +42,7 @@ public class DBUserStorage implements UserStorage {
                     System.out.println(stackTraceElements[i].toString());
                 }
             }
-        }*/
+        }
         return user;
     }
 

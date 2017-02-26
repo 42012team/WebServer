@@ -2,7 +2,6 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
-import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-public class DeleteActiveServiceServlet extends HttpServlet {
+public class DeleteActiveServiceByAdminServlet extends HttpServlet {
     WebController controller = null;
 
     @Override
@@ -22,14 +21,14 @@ public class DeleteActiveServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession(true).getAttribute("user");
-        System.out.println(Integer.parseInt(request.getParameter("chooseActiveService")));
+        int userId = (int) request.getSession(true).getAttribute("userForChange");
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(Integer.parseInt(request.getParameter("chooseActiveService")))
-                .withUserId(user.getId())
+                .withUserId(userId)
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("deleteActiveService");
         controller.indentifyObject(activeServiceParams);
-        response.sendRedirect("/ShowActiveServicesServlet");
+        response.sendRedirect("/ShowActiveServicesByAdminServlet");
     }
+
 }

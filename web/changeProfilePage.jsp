@@ -1,11 +1,5 @@
 <%@ page import="classes.model.User" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 06.02.2017
-  Time: 11:07
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,8 +25,10 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Управление услугами</a></li>
-                <li><a href="/ShowProfilePageServlet"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="/ShowProfilePageServlet"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -44,23 +40,20 @@
         <h2 class="headerText">Редактирование</h2>
     </div>
     <ul>
-       <%
-           User user= (User) session.getAttribute("user");%>
+        <%
+            User user = (User) session.getAttribute("user");%>
         <li class="changeContainer"><label id="passwordL" for="password"><span class="text">Пароль</span></label><input
-                type="password" name="password" id="password" value="<%=user.getPassword()%>"></li>
-        <li class="changeContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input type="text"
-                                                                                                            name="name"
-                                                                                                            id="name"
-                                                                                                            value="<%=user.getName()%>"/>
-        </li>
+                type="text" name="password" id="password" value="<%=user.getPassword()%>"></li>
+        <li class="changeContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input
+                type="text" name="name" id="name" value="<%=user.getName()%>"/></li>
         <li class="changeContainer"><label id="surnameL" for="surname"><span class="text">Фамилия</span></label><input
-                type="text" name="surname" id="surname"  value="<%=user.getSurname()%>"/></li>
+                type="text" name="surname" id="surname" value="<%=user.getSurname()%>"/></li>
         <li class="changeContainer"><label id="emailL" for="email"><span class="text">Email</span></label><input
-                type="text" name="email" id="email"  value="<%=user.getSurname()%>"/></li>
+                type="text" name="email" id="email" value="<%=user.getEmail()%>"/></li>
         <li class="changeContainer"><label id="phoneL" for="phone"><span class="text">Телефон</span></label><input
                 type="text" name="phone" id="phone" value="<%=user.getPhone()%>"/></li>
         <li class="changeContainer"><label id="addressL" for="address"><span class="text">Адрес</span></label><input
-                type="text" name="address" id="address"  value="<%=user.getAddress()%>"/></li>
+                type="text" name="address" id="address" value="<%=user.getAddress()%>"/></li>
     </ul>
 
     <input type="submit" name="saveButton" id="saveButton" value="Сохранить">
