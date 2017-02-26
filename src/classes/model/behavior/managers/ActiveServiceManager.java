@@ -108,7 +108,7 @@ public class ActiveServiceManager {
     public void deleteActiveServicesByUserId(int userId) {
         List<ActiveService> activeServices = activeServiceStorage.getActiveServicesByUserId(userId);
         activeServiceStorage.deleteActiveServicesByUserId(userId);
-        for (ActiveService activeService:activeServices) {
+        for (ActiveService activeService : activeServices) {
             if (activeService.getNewStatus() != null) {
                 activator.unschedule(activeService);
                 break;

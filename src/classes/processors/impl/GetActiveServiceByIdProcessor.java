@@ -2,22 +2,16 @@ package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
-import classes.model.Service;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
-import classes.response.impl.ServiceResponse;
 
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.List;
 
-/**
- * Created by User on 23.02.2017.
- */
 public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -33,9 +27,9 @@ public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializ
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {
-            TransmittedActiveServiceParams activeServiceParams=(TransmittedActiveServiceParams)request;
+            TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             ActiveService activeService = initializer.getActiveServiceManager().getActiveServiceById(activeServiceParams.getId());
-            System.out.println("Возврат ионформации о подключенной услуги с id: "+activeServiceParams.getId());
+            System.out.println("Возврат ионформации о подключенной услуги с id: " + activeServiceParams.getId());
             return ActiveServiceResponse.create()
                     .withActiveServices(Collections.singletonList(activeService))
                     .withResponseType("activeServiceById");

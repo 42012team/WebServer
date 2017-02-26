@@ -64,7 +64,7 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
                 }
             } else {
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    ActiveServiceResponse result=getResponse(activeServiceParams);
+                    ActiveServiceResponse result = getResponse(activeServiceParams);
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return result;
                 } else {

@@ -19,7 +19,7 @@ public class ProviderController {
         processor = new MainProcessor(processorByType);
     }
 
-    public void indentifyObject(Socket clientSocket) {
+    public void identifyObject(Socket clientSocket) {
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
             outputStream.flush();

@@ -1,6 +1,5 @@
 <%@ page import="classes.model.User" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,7 +25,8 @@
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Подключенные услуги</a></li>
                 <li><a href="/AllServicesServlet" color="blue" class="settings">Управление услугами</a></li>
                 <li><a href="/GetAllUsersServlet" color="blue" class="settings">Управление пользователями</a></li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>

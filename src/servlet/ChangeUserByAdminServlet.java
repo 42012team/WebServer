@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
 
 import javax.servlet.ServletException;
@@ -21,12 +23,14 @@ public class ChangeUserByAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResp=(UserResponse)controller.indentifyObject(TransmittedUserParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
                 .withId(Integer.parseInt(request.getParameter("chooseUser")))
                 .withRequestType("userById"));
-        System.out.println(userResp.getUserId()+" "+userResp.getName());
-        request.setAttribute("user",userResp);
-        request.getRequestDispatcher("/changeUserByAdminPage.jsp").forward(request,response);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        UserResponse userResp = (UserResponse) resp;
+        request.setAttribute("user", userResp);
+        request.getRequestDispatcher("/changeUserByAdminPage.jsp").forward(request, response);
     }
 
 }

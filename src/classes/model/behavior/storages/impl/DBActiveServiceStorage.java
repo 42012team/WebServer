@@ -177,10 +177,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                             activeService.setNewStatus(null);
                             break;
                     }
-                if(rs.getTimestamp("TDATE")!=null){
-                activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
-                }
-                else{
+                if (rs.getTimestamp("TDATE") != null) {
+                    activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                } else {
                     activeService.setDate(null);
                 }
                 activeServiceList.add(activeService);
@@ -257,10 +256,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                             activeService.setNewStatus(null);
                             break;
                     }
-                if(rs.getTimestamp("TDATE")!=null) {
+                if (rs.getTimestamp("TDATE") != null) {
                     activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
-                }
-                else{
+                } else {
                     activeService.setDate(null);
                 }
             }
@@ -345,7 +343,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     }
 
     @Override
-    public void deleteActiveServicesByUserId(int userId){
+    public void deleteActiveServicesByUserId(int userId) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = "DELETE FROM ACTIVESERVICE WHERE USER_ID=?";

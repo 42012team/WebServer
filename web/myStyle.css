@@ -1,7 +1,8 @@
-body{
+body {
     background-color: #f4511e;
-    height:100vh;
+    height: 100vh;
 }
+
 .navbar {
     margin-bottom: 0;
     background-color: #f4511e;
@@ -26,19 +27,21 @@ body{
     border-color: transparent;
     color: #fff !important;
 }
-.input-group{
-margin-left: 30%;
-margin-top: 5%;
+
+.input-group {
+    margin-left: 30%;
+    margin-top: 5%;
 }
 
-.settings{
-    color:blue;
+.settings {
+    color: blue;
 
 }
-.jumbotron{
-    margin-top:10%;
+
+.jumbotron {
+    margin-top: 10%;
     background-color: #f4511e;
-    color:white;
+    color: white;
     text-align: center;
 
 }

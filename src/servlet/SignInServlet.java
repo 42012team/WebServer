@@ -2,8 +2,10 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.User;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
 
 import javax.servlet.ServletException;
@@ -39,12 +41,17 @@ public class SignInServlet extends HttpServlet {
                 .withRequestType("signInUser")
                 .withVersion(0)
                 .withPrivilege("user");
-        controller.indentifyObject(userParams);
+        ResponseDTO resp = controller.identifyObject(userParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         TransmittedUserParams transmittedUserParams1 = TransmittedUserParams.create()
                 .withLogin(login)
                 .withPassword(password)
                 .withRequestType("logIn");
-        UserResponse userResponse = (UserResponse) controller.indentifyObject(transmittedUserParams1);
+        resp = controller.identifyObject(transmittedUserParams1);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        UserResponse userResponse = (UserResponse) resp;
         User user = new User(userResponse.getUserId(), userResponse.getName(), userResponse.getSurname(), userResponse.getEmail(),
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());

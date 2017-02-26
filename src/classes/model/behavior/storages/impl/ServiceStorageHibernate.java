@@ -6,10 +6,11 @@ import classes.model.behavior.storages.ServiceStorage;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
-//import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+
+//import javax.persistence.criteria.CriteriaDelete;
 
 
 public class ServiceStorageHibernate implements ServiceStorage {

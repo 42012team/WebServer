@@ -1,8 +1,8 @@
 <%@ page import="classes.model.ActiveService" %>
-<%@ page import="java.util.List" %>
 <%@ page import="classes.model.Service" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="classes.model.User" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -28,10 +28,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue" class="settings"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -95,7 +98,7 @@
     </ul>
 </form>
 <div class="backButton">
-   <a href="javascript:history.back()" class="btn btn-info btn-lg">
+    <a href="javascript:history.back()" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-menu-left"></span>Назад
     </a>
 </div>

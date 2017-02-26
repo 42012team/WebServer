@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedServiceParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
 
 import javax.servlet.ServletException;
@@ -22,9 +24,11 @@ public class ShowAllowedToConnectServicesByAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = (int) request.getSession(true).getAttribute("userForChange");
-        ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
+        ResponseDTO resp = controller.identifyObject(TransmittedServiceParams.create().
                 withUserId(userId).withRequestType("allowedToConnect"));
-        System.out.println(serviceResponse.getServices().size());
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
         request.getRequestDispatcher("allowedToConnectServicesByAdminPage.jsp").forward(request, response);
     }

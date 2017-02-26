@@ -58,13 +58,16 @@ public class UserManager {
     public User getUser(String login, String password) {
         return userStorage.getUser(login, password);
     }
-    public List<User> getAllUsers(){
+
+    public List<User> getAllUsers() {
         return userStorage.getAllUsers();
     }
-    public void deleteUser(int id){
+
+    public void deleteUser(int id) {
         userStorage.deleteUser(id);
 
     }
+
     private void storeUser(User user) {
         userStorage.storeUser(user);
     }

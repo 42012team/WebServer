@@ -63,8 +63,7 @@ public class ChangeServiceProcessor implements RequestProcessor, Serializable {
                     ServiceResponse result = getResponse(serviceParams);
                     PessimisticLockingThread.unschedule(serviceParams.getServiceId());
                     return result;
-                }
-                else {
+                } else {
                     return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
                 }
             }

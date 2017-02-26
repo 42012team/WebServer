@@ -1,21 +1,16 @@
 package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
-import classes.model.Service;
 import classes.model.User;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
 import classes.response.ResponseDTO;
-import classes.response.impl.ServiceResponse;
 import classes.response.impl.UserResponse;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by User on 23.02.2017.
- */
 public class GetAllUsersProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;

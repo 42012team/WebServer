@@ -26,7 +26,7 @@ public class CreateUserProcessor implements RequestProcessor, Serializable {
     }
 
     private User signIn(String name, String surname, String email, String phone, String address, String login,
-            String password, int version, String privilege) {
+                        String password, int version, String privilege) {
         UserManager userManager = initializer.getUserManager();
         UserParams userParams = UserParams.create()
                 .withName(name)

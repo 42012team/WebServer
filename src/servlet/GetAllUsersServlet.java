@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
 
 import javax.servlet.ServletException;
@@ -18,19 +20,26 @@ public class GetAllUsersServlet extends HttpServlet {
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
                 .withRequestType("allUsers"));
-        request.setAttribute("allUsers",userResponse.getAllUsers());
-        request.getRequestDispatcher("/allUsers.jsp").forward(request,response);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        UserResponse userResponse = (UserResponse) resp;
+        request.setAttribute("allUsers", userResponse.getAllUsers());
+        request.getRequestDispatcher("/allUsers.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse = (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
                 .withRequestType("allUsers"));
-        request.setAttribute("allUsers",userResponse.getAllUsers());
-        request.getRequestDispatcher("/allUsers.jsp").forward(request,response);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        UserResponse userResponse = (UserResponse) resp;
+        request.setAttribute("allUsers", userResponse.getAllUsers());
+        request.getRequestDispatcher("/allUsers.jsp").forward(request, response);
     }
 }

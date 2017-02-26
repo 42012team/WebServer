@@ -24,7 +24,7 @@ public class LogInUserProcessor implements RequestProcessor, Serializable {
         this.initializer = initializer;
     }
 
-   private User logIn(String login, String password) {
+    private User logIn(String login, String password) {
         UserManager userManager = initializer.getUserManager();
         User user = userManager.getUser(login, password);
         return user;

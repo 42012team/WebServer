@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,16 +38,17 @@ public class AddUserServlet extends HttpServlet {
                 .withPassword(password)
                 .withRequestType("signInUser")
                 .withVersion(0);
-        switch (request.getParameter("privilege")){
+        switch (request.getParameter("privilege")) {
             case "admin":
                 userParams.withPrivilege("admin");
-                controller.indentifyObject(userParams);
                 break;
             case "user":
                 userParams.withPrivilege("user");
-                controller.indentifyObject(userParams);
                 break;
         }
+        ResponseDTO resp = controller.identifyObject(userParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/adminPage.jsp");
     }
 }

@@ -1,35 +1,35 @@
 package classes.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
 
 @Entity
-@Table(name="ACTIVESERVICE")
+@Table(name = "ACTIVESERVICE")
 public class ActiveService implements Comparable<ActiveService>, Serializable {
     @Id
-    @Column(name="activeservice_id")
+    @Column(name = "activeservice_id")
     private int id;
 
-    @Column(name="service_id")
+    @Column(name = "service_id")
     private int serviceId;
 
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private int userId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="current_status")
+    @Column(name = "current_status")
     private ActiveServiceStatus currentStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="new_status")
+    @Column(name = "new_status")
     private ActiveServiceStatus newStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="tdate")
+    @Column(name = "tdate")
     private Date date;
 
-    @Column(name="version")
+    @Column(name = "version")
     private int version;
 
     public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {

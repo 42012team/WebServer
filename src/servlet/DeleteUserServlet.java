@@ -2,8 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedUserParams;
-import classes.response.impl.UserResponse;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,9 +22,11 @@ public class DeleteUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserResponse userResponse= (UserResponse) controller.indentifyObject(TransmittedUserParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
                 .withId(Integer.parseInt(request.getParameter("userId")))
                 .withRequestType("deleteUser"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/GetAllUsersServlet");
     }
 }

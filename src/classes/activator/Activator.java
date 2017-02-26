@@ -79,8 +79,8 @@ public class Activator extends Thread implements ActivatorInterface {
             synchronized (monitor) {
                 monitor.notify();
             }
-        } else if(activeServicePool.get(0).getDate().compareTo(activeService.getDate()) > 0) {
-                activeServicePool.add(activeService);
+        } else if (activeServicePool.get(0).getDate().compareTo(activeService.getDate()) > 0) {
+            activeServicePool.add(activeService);
             Collections.sort(activeServicePool);
             synchronized (monitor) {
                 monitor.notify();
@@ -116,12 +116,11 @@ public class Activator extends Thread implements ActivatorInterface {
                 break;
             }
         }
-        if(activeService.getNewStatus()==null){
+        if (activeService.getNewStatus() == null) {
             synchronized (monitor) {
                 monitor.notify();
             }
-        }
-        else {
+        } else {
             schedule(activeService);
         }
     }

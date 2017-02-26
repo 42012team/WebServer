@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedServiceParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
 
 import javax.servlet.ServletException;
@@ -18,11 +20,15 @@ public class AllServicesServlet extends HttpServlet {
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServiceResponse serviceResponse= (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedServiceParams.create()
                 .withRequestType("allServices"));
-        request.setAttribute("allServices",serviceResponse.getServices());
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ServiceResponse serviceResponse = (ServiceResponse) resp;
+        request.setAttribute("allServices", serviceResponse.getServices());
         request.getRequestDispatcher("allServicesPage.jsp").forward(request, response);
     }
 

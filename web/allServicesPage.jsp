@@ -1,8 +1,4 @@
-<%@ page import="classes.configuration.Initialization" %>
-<%@ page import="classes.controllers.WebController" %>
 <%@ page import="classes.model.Service" %>
-<%@ page import="classes.request.impl.TransmittedServiceParams" %>
-<%@ page import="classes.response.impl.ServiceResponse" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -51,7 +47,8 @@
                 <div class="box">
                     <div class="box-content">
                         <h1 class="tag-title"><input type="radio" name="serviceId"
-                                                     value="<%=allServices.get(0).getId()%>" onclick="clickRadio(this)"/>
+                                                     value="<%=allServices.get(0).getId()%>"
+                                                     onclick="clickRadio(this)"/>
                             <%= allServices.get(0).getName()%>
                         </h1>
                         <hr/>
@@ -60,10 +57,15 @@
                         <p> Тип услуги: <%= allServices.get(0).getType()%>
                         </p>
                         <p>Статус услуги: <%= allServices.get(0).getStatus()%>
-                        </p><p>
-                        <input type="submit" id="<%=allServices.get(0).getId()%>del" name="buttons" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу" style="display:none"/>
-                        <input type="submit" id="<%=allServices.get(0).getId()%>ch" name="buttons" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу" style="display:none"/>
-                    </p>
+                        </p>
+                        <p>
+                            <input type="submit" id="<%=allServices.get(0).getId()%>del" name="buttons"
+                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"
+                                   style="display:none"/>
+                            <input type="submit" id="<%=allServices.get(0).getId()%>ch" name="buttons"
+                                   formaction="/ChangeServiceServlet" formmethod="post"
+                                   value="Изменить выбранную услугу" style="display:none"/>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -82,7 +84,8 @@
                 <div class="box">
                     <div class="box-content">
                         <h1 class="tag-title"><input type="radio" name="serviceId"
-                                                     value="<%=allServices.get(i).getId()%>" onclick="clickRadio(this)"/>
+                                                     value="<%=allServices.get(i).getId()%>"
+                                                     onclick="clickRadio(this)"/>
                             <%= allServices.get(i).getName()%>
                         </h1>
                         <hr/>
@@ -93,8 +96,12 @@
                         <p>Статус услуги: <%= allServices.get(i).getStatus()%>
                         </p>
                         <p>
-                        <input type="submit" id="<%=allServices.get(i).getId()%>del" name="buttons" formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу" style="display:none"/>
-                        <input type="submit" id="<%=allServices.get(i).getId()%>ch" name="buttons" formaction="/ChangeServiceServlet" formmethod="post" value="Изменить выбранную услугу" style="display:none"/>
+                            <input type="submit" id="<%=allServices.get(i).getId()%>del" name="buttons"
+                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"
+                                   style="display:none"/>
+                            <input type="submit" id="<%=allServices.get(i).getId()%>ch" name="buttons"
+                                   formaction="/ChangeServiceServlet" formmethod="post"
+                                   value="Изменить выбранную услугу" style="display:none"/>
                         </p>
                     </div>
                 </div>

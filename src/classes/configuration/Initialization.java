@@ -17,18 +17,16 @@ import classes.processors.RequestProcessor;
 
 import java.util.Map;
 
-/**
- * Created by User on 06.02.2017.
- */
 public class Initialization {
 
     private static volatile Initialization instance = null;
-    WebController controller=null;
+    WebController controller = null;
+
     private Initialization() {
         IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
         UserManager userManager = new UserManager(new DBUserStorage(), idGenerator);
-        ServiceManager  serviceManager = new ServiceManager(new DBServiceStorage(), idGenerator);
-        ActiveServiceManager   activeServiceManager = new ActiveServiceManager(new DBActiveServiceStorage(),
+        ServiceManager serviceManager = new ServiceManager(new DBServiceStorage(), idGenerator);
+        ActiveServiceManager activeServiceManager = new ActiveServiceManager(new DBActiveServiceStorage(),
                 idGenerator, serviceManager);
         serviceManager.setActiveServiceManager(activeServiceManager);
         Initializer initializer = new Initializer(userManager, activeServiceManager, serviceManager, "optimistic");

@@ -2,9 +2,12 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.response.ResponseDTO;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,27 +28,27 @@ public class AddActiveServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession(true).getAttribute("user");
-        int serviceId = Integer.parseInt(request.getParameter("serviceId"));
-        String dateToString = request.getParameter("activationDate" + serviceId);
-        dateToString = dateToString.replace('T', ' ');
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        Date newDate = null;
         try {
+            User user = (User) request.getSession(true).getAttribute("user");
+            int serviceId = Integer.parseInt(request.getParameter("serviceId"));
+            String dateToString = request.getParameter("activationDate" + serviceId);
+            dateToString = dateToString.replace('T', ' ');
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date newDate = null;
             newDate = format.parse(dateToString);
+            TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
+                    .withServiceId(serviceId)
+                    .withUserId(user.getId())
+                    .withDate(newDate)
+                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
+                    .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withRequestType("createActiveService");
+            ResponseDTO resp = controller.identifyObject(activeServiceParams);
+            if (resp.getResponseType().equals("exception"))
+                throw new ServletException(((TransmittedException) resp).getMessage());
+            request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
         } catch (ParseException e) {
-            e.printStackTrace();
+            throw new ServletException("НЕКОРРЕКТНАЯ ДАТА!");
         }
-
-
-        TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                .withServiceId(serviceId)
-                .withUserId(user.getId())
-                .withDate(newDate)
-                .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                .withNewStatus(ActiveServiceStatus.ACTIVE)
-                .withRequestType("createActiveService");
-        controller.indentifyObject(activeServiceParams);
-        request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
     }
 }

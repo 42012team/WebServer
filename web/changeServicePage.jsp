@@ -1,6 +1,4 @@
-<%@ page import="classes.configuration.Initialization" %>
 <%@ page import="classes.model.ServiceStatus" %>
-<%@ page import="classes.model.Service" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

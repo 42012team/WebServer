@@ -2,9 +2,11 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,11 +31,10 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Date newDate = null;
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
-        if(request.getParameter("cancelLock")!=null){
+        if (request.getParameter("cancelLock") != null) {
             activeService.setNewStatus(null);
 
-        }
-        else {
+        } else {
             String date = (String) request.getParameter("date");
             date = date.replace('T', ' ');
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -79,7 +80,9 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet
                 .withNewStatus(activeService.getNewStatus())
                 .withVersion(activeService.getVersion())
                 .withRequestType("changeActiveService");
-        controller.indentifyObject(activeServiceParams);
+        ResponseDTO resp = controller.identifyObject(activeServiceParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/ShowActiveServicesByAdminServlet");
     }
 

@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,9 @@ public class DeleteActiveServiceByAdminServlet extends HttpServlet {
                 .withUserId(userId)
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("deleteActiveService");
-        controller.indentifyObject(activeServiceParams);
+        ResponseDTO resp = controller.identifyObject(activeServiceParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/ShowActiveServicesByAdminServlet");
     }
 

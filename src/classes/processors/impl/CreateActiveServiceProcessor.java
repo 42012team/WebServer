@@ -54,11 +54,11 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
         } catch (Exception ex) {
             System.out.println("Exception occured: " + ex.getStackTrace());
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for(int i=stackTraceElements.length-1; i>=0; i--){
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
                 System.out.println(stackTraceElements[i].toString());
             }
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
-}
+        }
         return TransmittedException.create("УСЛУГА ДАННОГО ТИПА УЖЕ ДОБАВЛЕНА!").withExceptionType("exception");
     }
 

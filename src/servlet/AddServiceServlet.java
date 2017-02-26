@@ -2,9 +2,10 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ServiceStatus;
 import classes.request.impl.TransmittedServiceParams;
-import classes.response.impl.ServiceResponse;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,15 +20,18 @@ public class AddServiceServlet extends HttpServlet {
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServiceResponse serviceResponse= (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedServiceParams.create()
                 .withName(request.getParameter("name"))
                 .withDescription(request.getParameter("description"))
                 .withType(request.getParameter("type"))
                 .withStatus(ServiceStatus.ALLOWED)
                 .withRequestType("createService"));
-        response.sendRedirect("/adminPage.jsp");
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        response.sendRedirect("/AllServicesServlet");
     }
 
 }

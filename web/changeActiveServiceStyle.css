@@ -1,6 +1,6 @@
-body{
+body {
     background-image: url('fon3.jpg');
-    height:100vh;
+    height: 100vh;
 }
 
 .navbar {
@@ -27,20 +27,21 @@ body{
     border-color: transparent;
     color: #fff !important;
 }
+
 .box {
-    background:#fff;
-    transition:all 0.2s ease;
-    border:2px dashed #dadada;
+    background: #fff;
+    transition: all 0.2s ease;
+    border: 2px dashed #dadada;
     margin-top: 10px;
     box-sizing: border-box;
     border-radius: 5px;
     background-clip: padding-box;
-    padding:0 20px 20px 20px;
-    min-height:380px;
+    padding: 0 20px 20px 20px;
+    min-height: 380px;
 }
 
 .box:hover {
-    border:2px solid #525C7A;
+    border: 2px solid #525C7A;
 }
 
 .box span.box-title {
@@ -56,50 +57,52 @@ body{
     background-clip: padding-box;
     box-sizing: border-box;
 }
+
 .box .box-content p {
-    color:#515c66;
-    text-transform:none;
+    color: #515c66;
+    text-transform: none;
 }
 
-form{
-    margin-top:5%;
-    width:100%;
-    height:100%;
+form {
+    margin-top: 5%;
+    width: 100%;
+    height: 100%;
 
 }
 
-.headerText{
-    margin-top:4%;
+.headerText {
+    margin-top: 4%;
     margin-left: 40%;
-    color:orangered;
+    color: orangered;
     background-color: lightgray;
 }
-.date{
-    width:70%
+
+.date {
+    width: 70%
 }
 
-.changeButton{
-    margin-left:2%;
-    margin-top:3%;
+.changeButton {
+    margin-left: 2%;
+    margin-top: 3%;
     margin-right: 3%;
-    width:40%;
+    width: 40%;
     border-radius: 10px;
-    height:30px;
-    background-color:#f4511e;
-    color:white ;
+    height: 30px;
+    background-color: #f4511e;
+    color: white;
 }
 
-.col-md-6{
+.col-md-6 {
     margin-top: 10%;
     margin-left: 25%;
 }
 
-.cancelButton,.changeDateButton{
+.cancelButton, .changeDateButton {
     margin-top: 10%;
-    width:30%;
+    width: 30%;
     border-radius: 10px;
-    height:30px;
-    background-color:#f4511e;
-    color:white ;
+    height: 30px;
+    background-color: #f4511e;
+    color: white;
 
 }

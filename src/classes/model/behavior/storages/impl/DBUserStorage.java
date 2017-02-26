@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DBUserStorage implements UserStorage {
 
-     private Connection connection = null;
+    private Connection connection = null;
 
     @Override
     public User getUser(String login, String password) {
@@ -164,10 +164,10 @@ public class DBUserStorage implements UserStorage {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> usersList =null;
+        List<User> usersList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            usersList=new ArrayList<User>();
+            usersList = new ArrayList<User>();
             String sql = "SELECT *FROM USER_ ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

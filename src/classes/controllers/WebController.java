@@ -14,8 +14,8 @@ public class WebController {
         processor = new MainProcessor(processorByType);
     }
 
-    public ResponseDTO indentifyObject(RequestDTO transportObject) {
+    public ResponseDTO identifyObject(RequestDTO transportObject) {
         ResponseDTO response = processor.processRequest(transportObject);
-              return response;
+        return response;
     }
 }

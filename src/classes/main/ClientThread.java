@@ -16,7 +16,7 @@ public class ClientThread implements Runnable {
 
     @Override
     public void run() {
-        controller.indentifyObject(clientSocket);
+        controller.identifyObject(clientSocket);
     }
 
 }

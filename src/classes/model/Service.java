@@ -1,24 +1,25 @@
 package classes.model;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="service")
+@Table(name = "service")
 public class Service implements Serializable {
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
     @Id
-    @Column(name="service_id")
+    @Column(name = "service_id")
     private int id;
-    @Column(name="service_name")
+    @Column(name = "service_name")
     private String name;
-    @Column(name="service_type")
+    @Column(name = "service_type")
     private String type;
     @Enumerated(EnumType.STRING)
-    @Column(name="service_status")
+    @Column(name = "service_status")
     private ServiceStatus status;
-    @Column(name="version")
+    @Column(name = "version")
     private int version;
 
     public Service(int id, String name, String description, String type, int version) {
@@ -33,7 +34,8 @@ public class Service implements Serializable {
     public Service() {
         id = 0;
     }
-    @Column(name="service_status")
+
+    @Column(name = "service_status")
     @Enumerated(EnumType.STRING)
     public ServiceStatus getStatus() {
         return status;

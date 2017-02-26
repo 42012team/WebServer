@@ -44,8 +44,7 @@ public class DeleteActiveServiceProcessor implements RequestProcessor, Serializa
                     activeServiceManager.deleteActiveService(activeServiceParams.getId());
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
-                }
-                else {
+                } else {
                     return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
                 }
             }

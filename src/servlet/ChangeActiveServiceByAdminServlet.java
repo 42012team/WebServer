@@ -2,8 +2,10 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
 
 import javax.servlet.ServletException;
@@ -23,11 +25,14 @@ public class ChangeActiveServiceByAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("chooseActiveService"));
-        TransmittedActiveServiceParams transmittedActiveServiceParams=TransmittedActiveServiceParams.create()
+        TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)
                 .withRequestType("getActiveServiceById");
-        ActiveServiceResponse activeServiceResponse= (ActiveServiceResponse) controller.indentifyObject(transmittedActiveServiceParams);
-        ActiveService activeService=activeServiceResponse.getAllActiveServices().get(0);
+        ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
+        ActiveService activeService = activeServiceResponse.getAllActiveServices().get(0);
         request.setAttribute("activeService", activeService);
         request.getRequestDispatcher("changeActiveServiceByAdmin.jsp").forward(request, response);
     }

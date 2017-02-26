@@ -1,6 +1,5 @@
-<%@ page import="java.util.List" %>
 <%@ page import="classes.model.Service" %>
-<%@ page import="classes.model.User" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,7 +24,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -48,12 +48,18 @@
                         <div class="box-content">
                             <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
                             <hr/>
-                            <li class="li1" >
-                                <input type="radio" class="radio"  name="serviceId" onclick="click1(this)" id="<%=s.getId()%>" value="<%=s.getId()%>" >
-                                <div  class="description">Описание услуги:<span class="value"><%=s.getDescription()%></span></div>
-                                <div  class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
-                                <div  class="description">Статус услуги: <span class="value"><%=s.getStatus().toString()%></span></div>
-                                <input type="datetime-local" class="dateField" style="display:none" name="activationDate<%=s.getId()%>"><input type="submit" class="addButton" style="display:none" value="Добавить"/></li>
+                            <li class="li1">
+                                <input type="radio" class="radio" name="serviceId" onclick="click1(this)"
+                                       id="<%=s.getId()%>" value="<%=s.getId()%>">
+                                <div class="description">Описание услуги:<span
+                                        class="value"><%=s.getDescription()%></span></div>
+                                <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
+                                <div class="description">Статус услуги: <span
+                                        class="value"><%=s.getStatus().toString()%></span></div>
+                                <input type="datetime-local" class="dateField" style="display:none"
+                                       name="activationDate<%=s.getId()%>"><input type="submit" class="addButton"
+                                                                                  style="display:none"
+                                                                                  value="Добавить"/></li>
                             <br/>
                         </div>
                     </div>

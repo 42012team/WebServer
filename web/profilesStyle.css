@@ -1,7 +1,8 @@
-body{
+body {
     background-image: url('fon3.jpg');
-    height:100vh;
+    height: 100vh;
 }
+
 .navbar {
     margin-bottom: 0;
     background-color: #f4511e;
@@ -27,73 +28,76 @@ body{
     color: #fff !important;
 }
 
-.profileForm{
-    margin-top:10%;
+.profileForm {
+    margin-top: 10%;
     margin-left: 25%;
     height: 70%;
     width: 50%;
     background-color: lightgrey;
-    border-top-right-radius:12px ;
-    border-top-left-radius:12px ;
-    border-top-right-radius:12px ;
-    border-top-left-radius:12px ;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 
 }
 
-.regHeader{
+.regHeader {
     margin-top: 0;
     width: 100%;
     height: 60px;
     background-color: #f4511e;
-    color:whitesmoke;
+    color: whitesmoke;
     font-size: larger;
-    text-align:center;
-    border-top-right-radius:12px ;
-    border-top-left-radius:12px ;
+    text-align: center;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
 }
 
-ul{
-    list-style-type:none;
-    list-style-position:outside;
+ul {
+    list-style-type: none;
+    list-style-position: outside;
     height: 70%;
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
 }
 
-.profileContainer{
-    padding:12px;
-    border-bottom:1px solid #eee;
-    position:relative;
-    height:14.2%;
+.profileContainer {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    height: 14.2%;
 }
+
 label {
-    width:150px;
-    margin-top:3px;
-    display:inline-block;
-    float:left;
-    padding:3px;
+    width: 150px;
+    margin-top: 3px;
+    display: inline-block;
+    float: left;
+    padding: 3px;
 }
-#loginButton{
-    margin-left:30%;
-    margin-top:5px;
+
+#loginButton {
+    margin-left: 30%;
+    margin-top: 5px;
     width: 40%;
-    height:35px;
+    height: 35px;
     border-radius: 8px;
-    background-color:#f4511e ;
-    color:white;
+    background-color: #f4511e;
+    color: white;
     text-align: center;
 }
-.text{
-    padding:30px;
+
+.text {
+    padding: 30px;
     text-align: left;
 
 }
 
-.backButton{
-    margin-top:5px;
-    margin-left:5%;
+.backButton {
+    margin-top: 5px;
+    margin-left: 5%;
     width: 10%;
     height: 10%;
 

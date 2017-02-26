@@ -76,14 +76,12 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 if (userRequestParams.getUnlockingTime() > new Date().getTime()) {
                     UserResponse result = getResponse(userRequestParams);
                     PessimisticLockingThread.unschedule(userRequestParams.getUserId());
                     return result;
-                }
-                else {
+                } else {
                     return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
                 }
             }

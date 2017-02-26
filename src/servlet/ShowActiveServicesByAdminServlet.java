@@ -2,10 +2,12 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.model.Service;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.request.impl.TransmittedServiceParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
 import classes.response.impl.ServiceResponse;
 
@@ -28,14 +30,19 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = (int) request.getSession(true).getAttribute("userForChange");
-        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
-                controller.indentifyObject(TransmittedActiveServiceParams.create().
-                        withUserId(userId)
-                        .withRequestType("allActiveServices"));
+        ResponseDTO resp = controller.identifyObject(TransmittedActiveServiceParams.create().
+                withUserId(userId)
+                .withRequestType("allActiveServices"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
         List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
-        ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
+        resp = controller.identifyObject(TransmittedServiceParams.create().
                 withUserId(userId)
                 .withRequestType("activeServicesDescriptions"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
@@ -44,18 +51,23 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse)
-                controller.indentifyObject(TransmittedActiveServiceParams.create().
-                        withUserId(Integer.parseInt(request.getParameter("chooseUser")))
-                        .withRequestType("allActiveServices"));
+        ResponseDTO resp = controller.identifyObject(TransmittedActiveServiceParams.create().
+                withUserId(Integer.parseInt(request.getParameter("chooseUser")))
+                .withRequestType("allActiveServices"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
         List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
-        ServiceResponse serviceResponse = (ServiceResponse) controller.indentifyObject(TransmittedServiceParams.create().
+        resp = controller.identifyObject(TransmittedServiceParams.create().
                 withUserId(Integer.parseInt(request.getParameter("chooseUser")))
                 .withRequestType("activeServicesDescriptions"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
         request.setAttribute("activeServiceDescription", serviceList);
         request.setAttribute("activeServiceList", activeServicesList);
-        request.getSession(true).setAttribute("userForChange",Integer.parseInt(request.getParameter("chooseUser")));
+        request.getSession(true).setAttribute("userForChange", Integer.parseInt(request.getParameter("chooseUser")));
         request.getRequestDispatcher("showActiveServicesByAdmin.jsp").forward(request, response);
     }
 

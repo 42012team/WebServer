@@ -3092,11 +3092,11 @@
                     try {
                         var elements = document.getElementsByClassName("buttons");
                         for (i = 0; i < elements.length; i++) {
-                            elements[i].disabled=true;
+                            elements[i].disabled = true;
                         }
                         elements = document.getElementsByName("chooseUser");
                         for (i = 0; i < elements.length; i++) {
-                            elements[i].checked=false;
+                            elements[i].checked = false;
                         }
                         t = h(b).find(H.activeElement).data("dt-idx")
                     } catch (u) {

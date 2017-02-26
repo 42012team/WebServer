@@ -2,10 +2,12 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +17,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class ChangeActiveServiceRespServlet extends HttpServlet
 
@@ -32,11 +33,10 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         Date newDate = null;
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
         User user = (User) request.getSession(true).getAttribute("user");
-        if(request.getParameter("cancelLock")!=null){
+        if (request.getParameter("cancelLock") != null) {
             activeService.setNewStatus(null);
 
-        }
-        else {
+        } else {
             String date = (String) request.getParameter("date");
             date = date.replace('T', ' ');
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -82,7 +82,9 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
                 .withNewStatus(activeService.getNewStatus())
                 .withVersion(activeService.getVersion())
                 .withRequestType("changeActiveService");
-        controller.indentifyObject(activeServiceParams);
+        ResponseDTO resp = controller.identifyObject(activeServiceParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/ShowActiveServicesServlet");
     }
 

@@ -24,7 +24,7 @@ public class ConfigurationXML implements Configuration {
 
     private final String PATH = "D:\\nc\\config.xml";
     private Document doc;
-    Map<String, RequestProcessor> processorsByTypes = new HashMap< String, RequestProcessor>();
+    Map<String, RequestProcessor> processorsByTypes = new HashMap<String, RequestProcessor>();
 
     public ConfigurationXML() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

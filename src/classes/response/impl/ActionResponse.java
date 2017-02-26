@@ -29,7 +29,7 @@ public class ActionResponse implements ResponseDTO, Serializable {
         return this;
     }
 
-    public ActionResponse withUnlockingTime(long unlockingTime){
+    public ActionResponse withUnlockingTime(long unlockingTime) {
         this.unlockingTIme = unlockingTime;
         return this;
     }

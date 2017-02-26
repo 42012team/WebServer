@@ -2,7 +2,9 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.request.impl.TransmittedServiceParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +22,11 @@ public class DeleteServiceServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        controller.indentifyObject(TransmittedServiceParams.create()
+        ResponseDTO resp = controller.identifyObject(TransmittedServiceParams.create()
                 .withServiceId(Integer.parseInt(request.getParameter("serviceId")))
                 .withRequestType("deleteService"));
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/adminPage.jsp");
     }
 }

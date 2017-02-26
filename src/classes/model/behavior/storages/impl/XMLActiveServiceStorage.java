@@ -314,7 +314,7 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
     }
 
     @Override
-    public void deleteActiveServicesByUserId(int userId){
+    public void deleteActiveServicesByUserId(int userId) {
 
     }
 

@@ -2,8 +2,10 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.User;
 import classes.request.impl.TransmittedUserParams;
+import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
 
 import javax.servlet.ServletException;
@@ -12,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 public class ChangeUserServlet extends HttpServlet {
     WebController controller = null;
@@ -44,7 +45,10 @@ public class ChangeUserServlet extends HttpServlet {
                 .withVersion(user.getVersion())
                 .withPrivilege(user.getPrivilege())
                 .withUnlockingTime(new Date().getTime() - 3000);
-        UserResponse userResponse = (UserResponse) controller.indentifyObject(userParams);
+        ResponseDTO resp = controller.identifyObject(userParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
+        UserResponse userResponse = (UserResponse) resp;
         user = new User(userResponse.getUserId(), userResponse.getName(), userResponse.getSurname(), userResponse.getEmail(),
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());

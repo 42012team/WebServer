@@ -55,7 +55,7 @@ public class PessimisticLockingThread extends Thread {
 
     public static long schedule(int id) {
         Long currentTime = new Date().getTime();
-        long timeToDelete=currentTime+BLOCKING_TIME;
+        long timeToDelete = currentTime + BLOCKING_TIME;
         prohibitedActionMap.put(timeToDelete, id);
         synchronized (monitor) {
             monitor.notify();

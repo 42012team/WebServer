@@ -10,7 +10,7 @@ import classes.response.impl.ActiveServiceResponse;
 
 import java.io.Serializable;
 
-public class  GetAllActiveServicesProcessor implements RequestProcessor, Serializable {
+public class GetAllActiveServicesProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 

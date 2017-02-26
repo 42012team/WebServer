@@ -75,8 +75,7 @@ public class IdGeneratorSingleton implements IdGenerator {
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(PATH));
             transformer.transform(source, result);
-        }
-        catch (TransformerException ex) {
+        } catch (TransformerException ex) {
             System.out.println("Exception occured!");
             System.out.println("Ошибка при записи в документ!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -84,6 +83,6 @@ public class IdGeneratorSingleton implements IdGenerator {
                 System.out.println(stackTraceElements[i].toString());
             }
         }
-        
+
     }
 }

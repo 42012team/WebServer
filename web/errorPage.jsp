@@ -22,18 +22,16 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/loginPage.jsp" color="blue" class="settings">Войти</a></li>
-                <li><a href="/registration.jsp" color="blue" class="settings">Зарегистрироваться</a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-<% session.removeAttribute("back");
-
-    session.removeAttribute("user");%>
 <div class="jumbotron">
-    <h1>Samara-Telecom</h1>
-    <p>We specialize in blablabla</p>
+    <h3>Oooops! <%=request.getAttribute("message")%>
+    </h3>
 </div>
 </body>
 </html>
+

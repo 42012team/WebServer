@@ -82,8 +82,9 @@ public class UserResponse implements ResponseDTO, Serializable {
         this.privilege = privilege;
         return this;
     }
-    public UserResponse withAllUsers(List<User> usersList){
-             this.usersList=usersList;
+
+    public UserResponse withAllUsers(List<User> usersList) {
+        this.usersList = usersList;
         return this;
     }
 
@@ -131,5 +132,8 @@ public class UserResponse implements ResponseDTO, Serializable {
     public String getPrivilege() {
         return privilege;
     }
-    public List<User> getAllUsers (){return usersList;}
+
+    public List<User> getAllUsers() {
+        return usersList;
+    }
 }

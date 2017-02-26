@@ -133,6 +133,10 @@ public class TransmittedUserParams implements RequestDTO, Serializable {
         return privilege;
     }
 
-    public long getUnlockingTime(){ return unlockingTime; };
+    public long getUnlockingTime() {
+        return unlockingTime;
+    }
+
+    ;
 
 }

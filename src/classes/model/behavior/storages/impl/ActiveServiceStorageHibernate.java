@@ -6,17 +6,18 @@ import classes.model.behavior.storages.ActiveServiceStorage;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
-//import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+
+//import javax.persistence.criteria.CriteriaDelete;
 
 
 public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public List<ActiveService> getActiveServicesByUserId(int userId) {
 
-         List result = null;
+        List result = null;
         EntityManager em = null;
         try {
             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
@@ -122,7 +123,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     }
 
     @Override
-    public void deleteActiveServicesByUserId(int userId){
+    public void deleteActiveServicesByUserId(int userId) {
 
     }
 

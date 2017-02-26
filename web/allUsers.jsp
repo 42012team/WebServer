@@ -33,76 +33,77 @@
 <br/><br/><br/>
 <form method="post">
     <table id="example" class="display" cellspacing="0" width="100%">
-    <thead>
-    <tr>
-        <th>Выбрать</th>
-        <th>ID</th>
-        <th>Privilege</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Login</th>
-        <th>Password</th>
-        <th>Address</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Действие</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <th>Выбрать</th>
-        <th>ID</th>
-        <th>Privilege</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Login</th>
-        <th>Password</th>
-        <th>Address</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Действие</th>
-    </tr>
-    </tfoot>
-    <tbody>
-    <%
-        List<User> allUsers = (List<User>) request.getAttribute("allUsers");
-        int j = 1;
-        for (User user : allUsers) {
-    %>
-    <tr>
-        <td><input type="radio" name="chooseUser" value="<%=user.getId()%>" id="<%=user.getId()%>" onclick="myFunc(this)"/>
-        </td>
-        <td><%=user.getId()%>
-        </td>
-        <td><%=user.getPrivilege()%>
-        </td>
-        <td><%=user.getName()%>
-        </td>
-        <td><%=user.getSurname()%>
-        </td>
-        <td><%=user.getLogin()%>
-        </td>
-        <td><%=user.getPassword()%>
-        </td>
-        <td><%=user.getAddress()%>
-        </td>
-        <td><%=user.getEmail()%>
-        </td>
-        <td><%=user.getPhone()%>
-        </td>
-        <td>
-            <input type="submit" class="buttons" value="Услуги" id="<%=user.getId()%>services" disabled
-                   formaction="/ShowActiveServicesByAdminServlet" formmethod="post"/>
-            <input type="submit" class="buttons" value="Профиль" id="<%=user.getId()%>profile" disabled
-                   formaction="/ChangeUserByAdminServlet" formmethod="post"/>
-        </td>
-    </tr>
+        <thead>
+        <tr>
+            <th>Выбрать</th>
+            <th>ID</th>
+            <th>Privilege</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Действие</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Выбрать</th>
+            <th>ID</th>
+            <th>Privilege</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Действие</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <%
+            List<User> allUsers = (List<User>) request.getAttribute("allUsers");
+            int j = 1;
+            for (User user : allUsers) {
+        %>
+        <tr>
+            <td><input type="radio" name="chooseUser" value="<%=user.getId()%>" id="<%=user.getId()%>"
+                       onclick="myFunc(this)"/>
+            </td>
+            <td><%=user.getId()%>
+            </td>
+            <td><%=user.getPrivilege()%>
+            </td>
+            <td><%=user.getName()%>
+            </td>
+            <td><%=user.getSurname()%>
+            </td>
+            <td><%=user.getLogin()%>
+            </td>
+            <td><%=user.getPassword()%>
+            </td>
+            <td><%=user.getAddress()%>
+            </td>
+            <td><%=user.getEmail()%>
+            </td>
+            <td><%=user.getPhone()%>
+            </td>
+            <td>
+                <input type="submit" class="buttons" value="Услуги" id="<%=user.getId()%>services" disabled
+                       formaction="/ShowActiveServicesByAdminServlet" formmethod="post"/>
+                <input type="submit" class="buttons" value="Профиль" id="<%=user.getId()%>profile" disabled
+                       formaction="/ChangeUserByAdminServlet" formmethod="post"/>
+            </td>
+        </tr>
 
-    <%
-        }
-    %>
-    </tbody>
-</table>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
 </form>
 </body>
 </html>

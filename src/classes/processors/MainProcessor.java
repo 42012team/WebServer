@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class MainProcessor {
 
-    private Map<String, RequestProcessor> processorsByTypesMap = new HashMap< String, RequestProcessor>();
+    private Map<String, RequestProcessor> processorsByTypesMap = new HashMap<String, RequestProcessor>();
 
     public MainProcessor(Map<String, RequestProcessor> processorsByTypesMap) {
         this.processorsByTypesMap = processorsByTypesMap;

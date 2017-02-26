@@ -1,4 +1,3 @@
-<%@ page import="java.util.List" %>
 <%@ page import="classes.model.ActiveService" %>
 <%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page import="classes.model.User" %>
@@ -28,10 +27,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue" class="settings"><%=((User)session.getAttribute("user")).getLogin()%></a></li>
+                <li><a href="/ShowProfilePageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
                 <li><a href="/ShowAllowedToConnectServiceServlet" color="blue" class="settings">Подключить услугу</a>
                 </li>
-                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a></li>
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
                 <li><a href="startPage.jsp">Выйти</a></li>
             </ul>
         </div>
@@ -46,43 +48,49 @@
                         <h2 class="tag-title"> Изменение услуги:</h2>
                         <hr/>
                         <%
-                            ActiveService activeService= (ActiveService) request.getAttribute("activeService");
-                            if (activeService.getNewStatus()!=null) {
-                                if (activeService.getNewStatus()== ActiveServiceStatus.ACTIVE){
+                            ActiveService activeService = (ActiveService) request.getAttribute("activeService");
+                            if (activeService.getNewStatus() != null) {
+                                if (activeService.getNewStatus() == ActiveServiceStatus.ACTIVE) {
 
                         %>
-                        <p>Введите новую дату подключения в формате:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        <p>Введите новую дату подключения в формате:</p>
+                        <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar"/>
                         <input type="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                            if (activeService.getNewStatus()== ActiveServiceStatus.SUSPENDED) {
+                            if (activeService.getNewStatus() == ActiveServiceStatus.SUSPENDED) {
                         %>
 
-                        <input type="submit" name="cancelLock" class="cancelButton" id="cancel" value="Отменить блокировку"/>
-                        <input type="button" class="changeDateButton" onclick="showCalendar()" id="change"  name="changeDate" id="changeDate" value="Изменить дату"/>
-                        <div style="display:none" name="hiddenText" id="hiddenText"><p>Введите новую дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        </div><input type="datetime-local"  style="display:none" id="date" name="date" class="calendar"/>
+                        <input type="submit" name="cancelLock" class="cancelButton" id="cancel"
+                               value="Отменить блокировку"/>
+                        <input type="button" class="changeDateButton" onclick="showCalendar()" id="change"
+                               name="changeDate" id="changeDate" value="Изменить дату"/>
+                        <div style="display:none" name="hiddenText" id="hiddenText"><p>Введите новую дату
+                            блокировки:</p>
+                            <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        </div>
+                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar"/>
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                        }else
-                        if(activeService.getCurrentStatus()==ActiveServiceStatus.SUSPENDED){%>
-                            <p>Введите дату разблокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                            <input type="datetime-local"   name="date" class="calendar"/>
-                            <input type="submit" class="changeButton" value="Применить"/>
+                        } else if (activeService.getCurrentStatus() == ActiveServiceStatus.SUSPENDED) {%>
+                        <p>Введите дату разблокировки:</p>
+                        <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
 
-                        }
-                            else if(activeService.getCurrentStatus()==ActiveServiceStatus.ACTIVE) {%>
-                        <p>Введите дату блокировки:</p><p ><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local"   name="date" class="calendar"/>
+                        } else if (activeService.getCurrentStatus() == ActiveServiceStatus.ACTIVE) {%>
+                        <p>Введите дату блокировки:</p>
+                        <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        <input type="datetime-local" name="date" class="calendar"/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                         }
-                        session.setAttribute("changedActiveService",activeService);
+                            session.setAttribute("changedActiveService", activeService);
 
                         %>
 

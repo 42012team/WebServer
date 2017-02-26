@@ -45,19 +45,19 @@
         <url-pattern>/ShowActiveServicesServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-    <servlet-name>DeleteActiveServiceServlet</servlet-name>
-    <servlet-class>servlet.DeleteActiveServiceServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-<servlet-name>DeleteActiveServiceServlet</servlet-name>
-<url-pattern>/DeleteActiveServiceServlet</url-pattern>
-</servlet-mapping>
+        <servlet-name>DeleteActiveServiceServlet</servlet-name>
+        <servlet-class>servlet.DeleteActiveServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteActiveServiceServlet</servlet-name>
+        <url-pattern>/DeleteActiveServiceServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ShowAllowedToConnectServicesServlet</servlet-name>
         <servlet-class>servlet.ShowAllowedToConnectServicesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name> ShowAllowedToConnectServicesServlet</servlet-name>
+        <servlet-name>ShowAllowedToConnectServicesServlet</servlet-name>
         <url-pattern>/ShowAllowedToConnectServicesServlet</url-pattern>
     </servlet-mapping>
     <servlet>
@@ -236,4 +236,16 @@
         <servlet-name>ShowAllowedToConnectServicesByAdminServlet</servlet-name>
         <url-pattern>/ShowAllowedToConnectServicesByAdminServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ErrorHandler</servlet-name>
+        <servlet-class>servlet.ErrorHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErrorHandler</servlet-name>
+        <url-pattern>/ErrorHandler</url-pattern>
+    </servlet-mapping>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
 </web-app>

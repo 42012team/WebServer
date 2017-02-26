@@ -1,5 +1,4 @@
 <%@ page import="classes.model.User" %>
-<%@ page import="java.util.List" %>
 <%@ page import="classes.response.impl.UserResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -41,7 +40,8 @@
         <div class="box">
             <div class="box-content">
                 <h2>Редактирование</h2>
-                <p><input type="submit" name="saveButton" id="deleteButton" value="Удалить" formaction="/DeleteUserServlet" formmethod="post"></p>
+                <p><input type="submit" name="saveButton" id="deleteButton" value="Удалить"
+                          formaction="/DeleteUserServlet" formmethod="post"></p>
                 <%
                     UserResponse user = (UserResponse) request.getAttribute("user");%>
                 <p>Пароль: <input type="text" name="password" id="password" value="<%=user.getPassword()%>"></p>
@@ -60,7 +60,8 @@
                 <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
                 <input type="hidden" value="<%=user.getVersion()%>" name="version"/>
                 <input type="hidden" value="<%=user.getLogin()%>" name="login"/>
-                <p><input type="submit" name="saveButton" id="saveButton" value="Сохранить" formaction="/ChangeUserByAdminRespServlet" formmethod="post"></p>
+                <p><input type="submit" name="saveButton" id="saveButton" value="Сохранить"
+                          formaction="/ChangeUserByAdminRespServlet" formmethod="post"></p>
             </div>
         </div>
     </div>

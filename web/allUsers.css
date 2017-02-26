@@ -1,6 +1,6 @@
-body{
+body {
     background-image: url('fon3.jpg');
-    height:100vh;
+    height: 100vh;
     align-content: center;
 }
 
@@ -28,23 +28,25 @@ body{
     border-color: transparent;
     color: #fff !important;
 }
-.form{
+
+.form {
     margin-top: 100px;
 }
+
 .box {
-    background:#fff;
-    transition:all 0.2s ease;
-    border:2px dashed #dadada;
+    background: #fff;
+    transition: all 0.2s ease;
+    border: 2px dashed #dadada;
     margin-top: 10px;
     box-sizing: border-box;
     border-radius: 5px;
     background-clip: padding-box;
-    padding:0 20px 20px 20px;
-    min-height:240px;
+    padding: 0 20px 20px 20px;
+    min-height: 240px;
 }
 
 .box:hover {
-    border:2px solid #525C7A;
+    border: 2px solid #525C7A;
 }
 
 .box span.box-title {
@@ -60,15 +62,17 @@ body{
     background-clip: padding-box;
     box-sizing: border-box;
 }
+
 .box .box-content p {
-    color:#515c66;
-    text-transform:none;
+    color: #515c66;
+    text-transform: none;
 }
 
-.col-md-6{
+.col-md-6 {
     margin-top: 15%;
     margin-left: 25%;
 }
+
 table.dataTable {
     width: 100%;
     margin: 0 auto;
@@ -522,6 +526,6 @@ table.dataTable, table.dataTable th, table.dataTable td {
     }
 }
 
-.modal{
+.modal {
     z-index: 100000;
 }

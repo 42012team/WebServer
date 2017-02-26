@@ -1,44 +1,47 @@
-body{
+body {
     margin: 0;
 
 }
 
-.main{
+.main {
     margin-top: 0px;
     margin-left: 15%;
     margin-right: 15%;
     border-radius: 5px;
-    height:100vh;
+    height: 100vh;
 
 }
-.header{
+
+.header {
 
     background-color: #18FFFF;
     max-height: 30%;
-    height:30% ;
+    height: 30%;
 }
 
-.pageBody{
-    height :70%;
+.pageBody {
+    height: 70%;
     background-color: #84FFFF;
 
 }
-.beauty1{
+
+.beauty1 {
 
     margin-top: 13%;
     background-color: ghostwhite;
     height: 40px;
     width: 25%;
-  /*  margin-left:1.75%;*/
+    /*  margin-left:1.75%;*/
     font-family: "Comic Sans MS";
 
 }
-.beauty{
 
-    margin-top:13%;
-   background-color: ghostwhite;
+.beauty {
+
+    margin-top: 13%;
+    background-color: ghostwhite;
     height: 40px;
     width: 25%;
- /*  margin-left:5%;*/
+    /*  margin-left:5%;*/
     font-family: "Comic Sans MS";
 }

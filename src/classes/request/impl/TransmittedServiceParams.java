@@ -102,6 +102,10 @@ public class TransmittedServiceParams implements RequestDTO, Serializable {
         return version;
     }
 
-    public long getUnlockingTime(){ return unlockingTime; };
+    public long getUnlockingTime() {
+        return unlockingTime;
+    }
+
+    ;
 
 }

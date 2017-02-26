@@ -35,7 +35,10 @@
                 <p>Email: <input type="text" name="email"/></p>
                 <p>Телефон: <input type="text" name="phone"/></p>
                 <p>Адрес: <input type="text" name="address"/></p>
-                <p>Привилегированность: <input type="radio" name="privilege" value="admin">ADMIN <input type="radio" name="privilege" value="user">USER</p>
+                <p>Привилегированность: <input type="radio" name="privilege" value="admin">ADMIN <input type="radio"
+                                                                                                        name="privilege"
+                                                                                                        value="user">USER
+                </p>
                 <p><input type="submit" value="Добавить"/></p>
             </div>
         </div>

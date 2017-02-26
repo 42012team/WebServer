@@ -2,8 +2,10 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.exceptions.TransmittedException;
 import classes.model.ServiceStatus;
 import classes.request.impl.TransmittedServiceParams;
+import classes.response.ResponseDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,22 +22,23 @@ public class ChangeServiceRespServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        TransmittedServiceParams serviceParams=TransmittedServiceParams.create()
+        TransmittedServiceParams serviceParams = TransmittedServiceParams.create()
                 .withServiceId(Integer.parseInt(request.getParameter("serviceId")))
                 .withName(request.getParameter("name"))
                 .withDescription(request.getParameter("description"))
                 .withVersion(Integer.parseInt(request.getParameter("version")))
                 .withRequestType("changeService");
-        switch (request.getParameter("status")){
+        switch (request.getParameter("status")) {
             case "ALLOWED":
                 serviceParams.withStatus(ServiceStatus.ALLOWED);
-                controller.indentifyObject(serviceParams);
                 break;
             case "DEPRECATED":
                 serviceParams.withStatus(ServiceStatus.DEPRECATED);
-                controller.indentifyObject(serviceParams);
                 break;
         }
+        ResponseDTO resp = controller.identifyObject(serviceParams);
+        if (resp.getResponseType().equals("exception"))
+            throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/adminPage.jsp");
     }
 }

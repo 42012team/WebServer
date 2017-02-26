@@ -7,36 +7,36 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="user_")
+@Table(name = "user_")
 public class User implements Serializable {
-   @Id
-   @Column(name="user_id")
+    @Id
+    @Column(name = "user_id")
     private int id;
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String name;
 
-    @Column(name="user_surname")
+    @Column(name = "user_surname")
     private String surname;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name="address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name="login")
+    @Column(name = "login")
     private String login;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="version")
+    @Column(name = "version")
     private int version;
 
-    @Column(name="privilege")
+    @Column(name = "privilege")
     private String privilege;
 
     public User() {
@@ -44,7 +44,7 @@ public class User implements Serializable {
     }
 
     public User(int id, String name, String surname, String email, String phone, String address, String login,
-            String password, int version, String privilege) {
+                String password, int version, String privilege) {
         this.name = name;
         this.surname = surname;
         this.email = email;

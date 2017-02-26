@@ -1,6 +1,6 @@
-body{
+body {
     background-image: url('fon3.jpg');
-    height:100vh;
+    height: 100vh;
 }
 
 .navbar {
@@ -27,23 +27,25 @@ body{
     border-color: transparent;
     color: #fff !important;
 }
-.form{
+
+.form {
     margin-top: 100px;
 }
+
 .box {
-    background:#fff;
-    transition:all 0.2s ease;
-    border:2px dashed #dadada;
+    background: #fff;
+    transition: all 0.2s ease;
+    border: 2px dashed #dadada;
     margin-top: 10px;
     box-sizing: border-box;
     border-radius: 5px;
     background-clip: padding-box;
-    padding:0 20px 20px 20px;
-    min-height:340px;
+    padding: 0 20px 20px 20px;
+    min-height: 340px;
 }
 
 .box:hover {
-    border:2px solid #525C7A;
+    border: 2px solid #525C7A;
 }
 
 .box span.box-title {
@@ -59,7 +61,8 @@ body{
     background-clip: padding-box;
     box-sizing: border-box;
 }
+
 .box .box-content p {
-    color:#515c66;
-    text-transform:none;
+    color: #515c66;
+    text-transform: none;
 }

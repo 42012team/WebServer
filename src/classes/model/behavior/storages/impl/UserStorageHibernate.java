@@ -40,12 +40,12 @@ public class UserStorageHibernate implements UserStorage {
         try {
             entityManager = HibernateUtil.getEntityManager();
             result = (User) entityManager.find(User.class, id);
-            System.out.println(entityManager==null);
+            System.out.println(entityManager == null);
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString()+"lllll");
+                System.out.println(stackTraceElements[i].toString() + "lllll");
             }
         } finally {
             entityManager.close();
