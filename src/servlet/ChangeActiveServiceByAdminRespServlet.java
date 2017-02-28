@@ -81,7 +81,7 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ShowActiveServicesByAdminServlet");
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+activeService.getUserId());
     }
 
 }

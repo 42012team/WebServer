@@ -23,16 +23,18 @@ public class DeleteActiveServiceByAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int userId = (int) request.getSession(true).getAttribute("userForChange");
+     //   int userId = (int) request.getSession(true).getAttribute("userForChange");
+        int userId=Integer.parseInt(request.getParameter("userId"));
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(Integer.parseInt(request.getParameter("chooseActiveService")))
                 .withUserId(userId)
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("deleteActiveService");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
+        request.setAttribute("user_id",userId);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ShowActiveServicesByAdminServlet");
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+userId);
     }
 
 }

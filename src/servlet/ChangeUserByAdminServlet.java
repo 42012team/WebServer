@@ -24,7 +24,7 @@ public class ChangeUserByAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
-                .withId(Integer.parseInt(request.getParameter("chooseUser")))
+                .withId(Integer.parseInt(request.getParameter("userId")))
                 .withRequestType("userById"));
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
