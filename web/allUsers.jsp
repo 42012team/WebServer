@@ -71,6 +71,7 @@
         %>
         </tbody>
     </table>
+    <input type="submit" name="exportButton" value="Export" formaction="ExportServlet" formmethod="post"/>
 </form>
 </body>
 </html>

@@ -253,6 +253,14 @@
         <url-pattern>/ChangeUserInfoByAdminServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ExportServlet</servlet-name>
+        <servlet-class>servlet.ExportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ExportServlet</servlet-name>
+        <url-pattern>/ExportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>servlet.ErrorHandler</servlet-class>
     </servlet>

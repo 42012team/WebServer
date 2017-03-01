@@ -13,7 +13,12 @@ public class Account {
         this.user = user;
         activeServices = new ArrayList<ActiveService>();
     }
-
+    public User getUser(){
+        return user;
+    }
+   public void setUser(User user){
+       this.user=user;
+   }
     public List<ActiveService> getActiveServices() {
         return activeServices;
     }
