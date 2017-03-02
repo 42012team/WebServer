@@ -268,5 +268,13 @@
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
     </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/ErrorHandler</location>
+    </error-page>
 
 </web-app>
