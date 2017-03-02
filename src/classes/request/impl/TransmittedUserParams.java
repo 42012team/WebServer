@@ -1,5 +1,6 @@
 package classes.request.impl;
 
+import classes.model.User;
 import classes.request.RequestDTO;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class TransmittedUserParams implements RequestDTO, Serializable {
     private int version;
     private String privilege;
     private long unlockingTime;
+    private User user;
 
 
     private TransmittedUserParams() {
@@ -87,6 +89,10 @@ public class TransmittedUserParams implements RequestDTO, Serializable {
         this.unlockingTime = unlockingTime;
         return this;
     }
+    public TransmittedUserParams withUser(User user) {
+        this.user = user;
+        return this;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -136,7 +142,9 @@ public class TransmittedUserParams implements RequestDTO, Serializable {
     public long getUnlockingTime() {
         return unlockingTime;
     }
+    public User getUser(){
+        return user;
+    }
 
-    ;
 
 }

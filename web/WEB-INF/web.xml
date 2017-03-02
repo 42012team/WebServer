@@ -261,6 +261,14 @@
         <url-pattern>/ExportServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>ImportServlet</servlet-name>
+        <servlet-class>servlet.ImportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImportServlet</servlet-name>
+        <url-pattern>/ImportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>servlet.ErrorHandler</servlet-class>
     </servlet>
