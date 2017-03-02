@@ -535,10 +535,19 @@ table.dataTable, table.dataTable th, table.dataTable td {
 .modal {
     z-index: 100000;
 }
-
-/*.table{
-    background: gainsboro;
-    width:40%;
-    margin-left: 30%;
-
-}*/
+#exportButton{
+    background-color: orangered;
+    width:15%;
+    height: 5%;
+    border-radius: 5px;
+    margin-left:33%;
+    color:white;
+}
+#importButton{
+    background-color: orangered;
+    width:15%;
+    height: 5%;
+    border-radius: 5px;
+    margin-left:5%;
+    color:white;
+}

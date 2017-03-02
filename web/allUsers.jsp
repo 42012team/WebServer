@@ -71,8 +71,8 @@
         %>
         </tbody>
     </table>
-    <input type="submit" name="exportButton" value="Export" formaction="ExportServlet" formmethod="post"/>
-    <input type="submit" name="exportButton" formaction="import.jsp"  formmethod="post" value="Import"/>
+    <input type="submit" name="exportButton" id="exportButton" value="Export" formaction="ExportServlet" formmethod="post"/>
+    <input type="submit" name="importButton" id="importButton" formaction="import.jsp"  formmethod="post" value="Import"/>
 </form>
 </body>
 </html>
