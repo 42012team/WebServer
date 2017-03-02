@@ -9,6 +9,7 @@ import java.util.List;
 public class ActiveServiceResponse implements ResponseDTO, Serializable {
 
     private String requestType;
+
     List<ActiveService> activeServices;
 
     private ActiveServiceResponse() {
