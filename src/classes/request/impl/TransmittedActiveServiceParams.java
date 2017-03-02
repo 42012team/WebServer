@@ -1,10 +1,12 @@
 package classes.request.impl;
 
+import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
 import classes.request.RequestDTO;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class TransmittedActiveServiceParams implements RequestDTO, Serializable {
 
@@ -17,7 +19,7 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     private String requestType;
     private int version;
     private long unlockingTime;
-
+    private List<ActiveService> activeServicesList;
     private TransmittedActiveServiceParams() {
     }
 
@@ -70,6 +72,10 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         return this;
     }
 
+    public TransmittedActiveServiceParams withActiveServiceList(List<ActiveService> activeServiceList) {
+        this.activeServicesList = activeServiceList;
+        return this;
+    }
     public ActiveServiceStatus getCurrentStatus() {
         return currentStatus;
     }
@@ -97,7 +103,7 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     public Date getDate() {
         return date;
     }
-
+    public List<ActiveService> getActiveServicesList(){return activeServicesList;}
     @Override
     public String getRequestType() {
         return requestType;

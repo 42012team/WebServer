@@ -1,8 +1,6 @@
 body {
     margin: 0;
-
 }
-
 .main {
     margin-top: 0px;
     margin-left: 15%;
@@ -11,20 +9,16 @@ body {
     height: 100vh;
 
 }
-
 .header {
-
     background-color: #18FFFF;
     max-height: 30%;
     height: 30%;
 }
-
 .pageBody {
     height: 70%;
     background-color: #84FFFF;
 
 }
-
 .beauty1 {
 
     margin-top: 13%;
@@ -35,9 +29,7 @@ body {
     font-family: "Comic Sans MS";
 
 }
-
 .beauty {
-
     margin-top: 13%;
     background-color: ghostwhite;
     height: 40px;

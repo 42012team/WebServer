@@ -5,7 +5,7 @@
 <head>
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="allUsers.css" rel="stylesheet">
+    <link href="AllUserss.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="allUsers.js"></script>
@@ -37,16 +37,16 @@
 </nav>
 <br/><br/><br/>
 <form method="post">
-    <table id="example" class="display" cellspacing="0" width="100%">
+    <table id="example" class="display" cellspacing="0">
         <thead>
         <tr>
             <th>Выбрать</th>
-            <th>Name</th>
+            <th>Пользователь</th>
         </tr>
         </thead>
         <tfoot>
         <tr>
-            <th>Выбрать</th>
+            <th width="3%">Выбрать</th>
             <th>Name</th>
         </tr>
         </tfoot>
@@ -57,7 +57,7 @@
             for (User user : allUsers) {
         %>
         <tr>
-            <td><input type="checkbox" name="chooseUser" value="<%=user.getId()%>" id="<%=user.getId()%>"
+            <td width="3%"><input type="checkbox" name="chooseUser" value="<%=user.getId()%>" id="<%=user.getId()%>"
                        onclick="myFunc(this)"/>
             </td>
             <td>
@@ -72,6 +72,7 @@
         </tbody>
     </table>
     <input type="submit" name="exportButton" value="Export" formaction="ExportServlet" formmethod="post"/>
+    <input type="submit" name="exportButton" formaction="import.jsp"  formmethod="post" value="Import"/>
 </form>
 </body>
 </html>

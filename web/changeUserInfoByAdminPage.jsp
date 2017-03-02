@@ -10,7 +10,7 @@
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link href="changeUserByAdminStyle.css" rel="stylesheet">
+    <link href="changeUserInfoByAdmin.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <link href="servicePageStyle.css" rel="stylesheet">
     <link href="showActiveServicesStyle.css" rel="stylesheet">
@@ -43,41 +43,38 @@
 </nav>
 
 <form method="post">
+        <div class="container" id="containerProfile">
+            <div class="row">
 
-    <div class="containerBox">
-        <h2>Профиль</h2>
-        <%
-            UserResponse user = (UserResponse) request.getAttribute("user");%>
-        <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
-        <ul>
-            <li class="profileContainer"><label id="nameL"><span class="text">Имя:</span></label> <label
-                    id="nameV"><span
-                    class="text"><%=user.getName()%></span></label>
-            </li>
-            <li class="profileContainer"><label id="surnameL"><span class="text">Фамилия:</span></label> <label
-                    id="surnameV"><span class="text"><%=user.getSurname()%></span></label></li>
-            <li class="profileContainer"><label id="emailL"><span class="text">Email:</span></label> <label
-                    id="emailV"><span class="text"><%=user.getEmail()%></span></label></li>
-            <li class="profileContainer"><label id="phoneL"><span class="text">Телефон:</span></label> <label
-                    id="phoneV"><span class="text"><%=user.getPhone()%></span></label></li>
-            <li class="profileContainer"><label id="addressL"><span class="text">Адрес:</span></label> <label
-                    id="addressV"><span
-                    class="text"><%=user.getAddress()%></span></label></li>
-            <li class="profileContainer"><label id="passwordL"><span class="text">Пароль:</span></label> <label
-                    id="passwordV"><span class="text"><%=user.getPassword()%></span></label></li>
-            <li class="profileContainer"><label id="privilegeL"><span class="text">Привелегия:</span></label> <label
-                    id=privilegeV">
-                <span class="text"><%=user.getPrivilege()%></span></label></li>
+                <%
+                    UserResponse user = (UserResponse) request.getAttribute("user");%>
+                <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
+                    <%
 
-        </ul>
-        <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet" formmethod="post"
-               value="Изменить"/>
-        <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
-               value="Удалить"/>
-    </div>
-    </div>
-    </div>
-    </div>
+                    %>
+                <div class="col-md-4 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h2 class="tag-title"><span class="value">Профиль</span></h2>
+                            <hr/>
+                            <p>Имя:<%=user.getName()%></p>
+                            <p>Фамилия:<%=user.getSurname()%></p>
+                            <p>Email:<%=user.getEmail()%></p>
+                            <p>Телефон:<%=user.getPhone()%></p>
+                            <p>Адрес:<%=user.getAddress()%></p>
+                            <p >Пароль:<%=user.getPassword()%></p>
+                            <p >Привелегия:<%=user.getPrivilege()%></p>
+                            <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet" formmethod="post"
+                                   value="Изменить"/>
+                            <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
+                                   value="Удалить"/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     <ul>
         <div class="container">
             <div class="row">
