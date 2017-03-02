@@ -546,6 +546,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
 #importButton{
     background-color: orangered;
     width:15%;
+    color:white;
     height: 5%;
     border-radius: 5px;
     margin-left:5%;
