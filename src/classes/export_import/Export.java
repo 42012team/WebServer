@@ -25,7 +25,7 @@ import java.util.List;
  * Created by User on 28.02.2017.
  */
 public class Export {
-    private final String PATH = "D:\\nc\\1.xml";
+    private final String PATH = "D:\\nc\\12.xml";
     Document doc;
 
     public Export() {
@@ -47,10 +47,15 @@ public class Export {
 
     public void storeAccount(List<Account> accountList) {
         System.out.println("start store" + accountList.size());
+        System.out.println(doc.getElementsByTagName("users").getLength());
+        Element rootElement = (Element) doc.getElementsByTagName("users").item(0);
+        if(doc.getElementsByTagName("users").getLength()==0){
+            System.out.println("la");
+           rootElement= doc.createElement("users");
+            doc.appendChild(rootElement);
+        }
         for (int i = 0; i < accountList.size(); i++) {
             User user = accountList.get(i).getUser();
-            System.out.println(user.getId());
-            Element rootElement = (Element) doc.getElementsByTagName("users").item(0);
             Element elementUser = doc.createElement("user");
             Attr attr = doc.createAttribute("name");
             attr.setValue(user.getName());

@@ -2,6 +2,7 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
+import classes.dateP.DateValidator;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
@@ -45,6 +46,14 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            DateValidator dateValidator=new DateValidator();
+            System.out.println(dateValidator.validate(date));
+            System.out.println(newDate.toString());
+          /*  if(!dateValidator.validate(format.toString())){
+                System.out.println("here");
+                request.setAttribute("errorText","Введите верную дату");
+                request.getRequestDispatcher("/changeActiveServicePage.jsp").forward(request,response);
+            }*/
             if (activeService.getNewStatus() != null)
                 switch (activeService.getNewStatus()) {
                     case ACTIVE: {

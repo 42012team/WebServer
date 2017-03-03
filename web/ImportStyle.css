@@ -1,0 +1,29 @@
+.importForm{
+    margin-top:10%;
+    width:50%;
+    height:30%;
+    background-color: orangered;
+    margin-left: 25%;
+    color:white;
+}
+.pathContainer{
+    margin-top:10%;
+    margin-left:10%
+}
+.path{
+    width:50%;
+    height: 30px;
+    margin-left:2%;
+    color:black;
+
+}
+.pathButton{
+    margin-left:40%;
+    width:20%;
+    color:orangered;
+
+}
+#pathContainer{
+    margin-top:10%;
+
+}

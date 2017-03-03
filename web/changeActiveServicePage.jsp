@@ -52,6 +52,7 @@
 
                         %>
                         <p>Введите новую дату подключения в формате:</p>
+                        <p>${errorText}</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar"/>
                         <input type="submit" class="changeButton" value="Применить"/>

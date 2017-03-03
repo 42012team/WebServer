@@ -30,30 +30,20 @@ public class ImportServlet  extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Import import_=new Import();
+        Import import_=new Import(request.getParameter("path"));
         List<Account> accountList=import_.getAccountList();
         for(int i=0;i<accountList.size();i++) {
-            System.out.println(i);
             User user=accountList.get(i).getUser();
-            System.out.println(user.getEmail());
             TransmittedUserParams userParams = TransmittedUserParams.create()
-                    .withRequestType("changeUser")
-                    .withName(user.getName())
-                    .withSurname(user.getSurname())
-                    .withEmail(user.getEmail())
-                    .withPhone(user.getPhone())
-                    .withAdress(user.getAddress())
-                    .withPassword(user.getPassword())
-                    .withId(user.getId())
-                    .withVersion(user.getVersion())
-                    .withLogin(user.getLogin())
-                    .withPrivilege(user.getPrivilege())
+                    .withRequestType("mergeUser")
+                    .withUser(user)
                     .withUnlockingTime(new Date().getTime() - 3000);
             ResponseDTO resp = controller.identifyObject(userParams);
-            if(accountList.get(i).getActiveServices()!=null){
+            if(accountList.get(i).getActiveServices().size()!=0){
             TransmittedActiveServiceParams transmittedActiveServiceParams=TransmittedActiveServiceParams.create()
                     .withActiveServiceList(accountList.get(i).getActiveServices()).withRequestType("storeAllActiveServices");
-            controller.identifyObject(transmittedActiveServiceParams);}
+            controller.identifyObject(transmittedActiveServiceParams);
+            }
         }
         response.sendRedirect("/GetAllUsersServlet");
 

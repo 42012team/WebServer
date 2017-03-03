@@ -12,11 +12,11 @@ import java.io.Serializable;
 /**
  * Created by User on 02.03.2017.
  */
-public class StoreUserProcessor implements RequestProcessor, Serializable {
+public class MergeUserProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 
-    public StoreUserProcessor() {
+    public MergeUserProcessor() {
 
     }
 
@@ -27,7 +27,7 @@ public class StoreUserProcessor implements RequestProcessor, Serializable {
     @Override
     public ResponseDTO process(RequestDTO request) {
         TransmittedUserParams transmittedUserParams=(TransmittedUserParams)request;
-      //  initializer.getUserManager().
+        initializer.getUserManager().mergeUser(transmittedUserParams.getUser());
         return UserResponse.create();
     }
 }

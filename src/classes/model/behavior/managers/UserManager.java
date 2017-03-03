@@ -62,6 +62,7 @@ public class UserManager {
     public List<User> getAllUsers() {
         return userStorage.getAllUsers();
     }
+    public void mergeUser(User user){ userStorage.storeUser(user);}
 
     public void deleteUser(int id) {
         userStorage.deleteUser(id);

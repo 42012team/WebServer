@@ -1,8 +1,8 @@
 package classes.model.behavior.storages;
 
-import classes.model.User;
+        import classes.model.User;
 
-import java.util.List;
+        import java.util.List;
 
 public interface UserStorage {
 

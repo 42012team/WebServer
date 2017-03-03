@@ -206,6 +206,8 @@ public class DBUserStorage implements UserStorage {
         return usersList;
     }
 
+
+
     @Override
     public void deleteUser(int id) {
         try {

@@ -24,15 +24,15 @@ import java.util.List;
  * Created by User on 28.02.2017.
  */
 public class Import {
-    private final String PATH = "D:\\nc\\1.xml";
+    //private final String PATH = "D:\\nc\\1.xml";
     Document doc;
 
-    public Import() {
+    public Import(String path) {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;
         try {
             dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(new File(PATH));
+            doc = dBuilder.parse(new File(path));
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             System.out.println("Exception occured!");
             System.out.println("Ошибка при создании документа для записи!");
@@ -48,6 +48,7 @@ public class Import {
         List<Account> accountList = new ArrayList<Account>();
 
         NodeList userNodes = doc.getElementsByTagName("user");
+
         for (int i = 0; i < userNodes.getLength(); i++) {
 
             Element userElement = (Element) userNodes.item(i);

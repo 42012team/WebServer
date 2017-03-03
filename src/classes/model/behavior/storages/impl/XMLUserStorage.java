@@ -206,6 +206,7 @@ public class XMLUserStorage implements UserStorage {
         return usersList;
     }
 
+
     @Override
     public void deleteUser(int id) {
 

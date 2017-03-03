@@ -82,6 +82,8 @@ public class UserStorageHibernate implements UserStorage {
         return null;
     }
 
+
+
     @Override
     public void deleteUser(int id) {
 
