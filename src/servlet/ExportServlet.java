@@ -21,9 +21,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by User on 28.02.2017.
- */
 public class ExportServlet extends HttpServlet {
     WebController controller = null;
 

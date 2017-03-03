@@ -281,7 +281,11 @@
         <location>/ErrorHandler</location>
     </error-page>
     <error-page>
-        <exception-type>java.lang.Exception</exception-type>
+        <error-code>403</error-code>
+        <location>/ErrorHandler</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
     </error-page>
 

@@ -2,7 +2,8 @@
 <%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>d
+<%@ page errorPage="/errorPage.jsp" %>
+<html>
 <head>
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">

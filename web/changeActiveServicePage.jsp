@@ -2,6 +2,7 @@
 <%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="/errorPage.jsp" %>
 <html>d
 <head>
     <title>Title</title>

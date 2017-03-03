@@ -1,6 +1,7 @@
 <%@ page import="classes.model.User" %>
 <%@ page import="classes.response.impl.UserResponse" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="/errorPage.jsp" %>
 <html>
 <head>
     <title>Title</title>

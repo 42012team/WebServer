@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isErrorPage="true" %>
 <html>
 <head>
     <title>$Title$</title>
@@ -29,7 +30,15 @@
     </div>
 </nav>
 <div class="jumbotron">
-    <h3>Oooops! <%=request.getAttribute("message")%>
+    <h3>Oooops! <%
+        try {
+            if (request.getAttribute("byServlet").equals(true)) {%>
+        <%=request.getAttribute("message")%><%
+            }
+        } catch (Exception e) {
+        %>ОШИБКА 404!<%
+            }
+        %>
     </h3>
 </div>
 </body>
