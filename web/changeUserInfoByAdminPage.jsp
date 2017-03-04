@@ -11,7 +11,7 @@
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link href="changeUserInfoByAdmin.css" rel="stylesheet">
+    <link href="changeUserInfoByAdminStyle.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <link href="servicePageStyle.css" rel="stylesheet">
     <link href="showActiveServicesStyle.css" rel="stylesheet">
@@ -67,15 +67,19 @@
                             <p >Привелегия:<%=user.getPrivilege()%></p>
                             <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet" formmethod="post"
                                    value="Изменить"/>
+                            <%if ((user.getUserId()!=((User)session.getAttribute("user")).getId())
+                                    &&(!user.getLogin().equals("admin"))){ %>
                             <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
                                    value="Удалить"/>
+                             <%  } %>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-
+    <%session.setAttribute("userForChange",user.getUserId());%>
+    <input type="submit" name="" class="addActiveServiceButton" value="Подключить услугу" formaction="/ShowAllowedToConnectServicesByAdminServlet" formmethod="post">
     <ul>
         <div class="container">
             <div class="row">
@@ -129,6 +133,7 @@
             </div>
         </div>
     </ul>
+
 </form>
 
 

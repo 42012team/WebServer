@@ -38,8 +38,8 @@
 </nav>
 <
 <form  action="ImportServlet" method="post" class="importForm">
-    <br/>
  <div class="pathContainer" id="pathContainer"> <p>Введите путь файла<input type="text" name="path" class="path"/></p></div>
+    <input type="submit" name="" class="pathButton" value="Выбрать файл" formaction="OpenProvodnikServlet" formmethod="post"/>
     <input type="submit" name="" class="pathButton" value="OK"/>
 </form>
 </body>

@@ -269,6 +269,14 @@
         <url-pattern>/ImportServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>OpenProvodnikServlet</servlet-name>
+        <servlet-class>servlet.OpenProvodnikServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OpenProvodnikServlet</servlet-name>
+        <url-pattern>/OpenProvodnikServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>servlet.ErrorHandler</servlet-class>
     </servlet>

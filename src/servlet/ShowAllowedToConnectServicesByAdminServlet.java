@@ -22,7 +22,7 @@ public class ShowAllowedToConnectServicesByAdminServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = (int) request.getSession(true).getAttribute("userForChange");
         ResponseDTO resp = controller.identifyObject(TransmittedServiceParams.create().
                 withUserId(userId).withRequestType("allowedToConnect"));
