@@ -55,6 +55,14 @@ public class UserManager {
 
     }
 
+    public List<User> searchUsersByParams(UserParams userParams) {
+        return userStorage.searchUsersByParams(userParams);
+    }
+
+    public List<User> searchUsersBySubparams(UserParams userParams) {
+        return userStorage.searchUsersBySubparams(userParams);
+    }
+
     public User getUser(String login, String password) {
         return userStorage.getUser(login, password);
     }
@@ -62,7 +70,10 @@ public class UserManager {
     public List<User> getAllUsers() {
         return userStorage.getAllUsers();
     }
-    public void mergeUser(User user){ userStorage.storeUser(user);}
+
+    public void mergeUser(User user) {
+        userStorage.storeUser(user);
+    }
 
     public void deleteUser(int id) {
         userStorage.deleteUser(id);

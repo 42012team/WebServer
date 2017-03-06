@@ -25,8 +25,24 @@
                 <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
                 <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
-                <li><a href="/ShowProfilePageServlet"><%=((User) session.getAttribute("user")).getLogin()%>
+                <%
+                    switch (((User) session.getAttribute("user")).getPrivilege()) {
+                        case "user":
+                %>
+                <li><a href="/ShowProfilePageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
+                <%
+                        break;
+                    case "admin":
+                %>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <%
+                            break;
+                    }
+                %>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
                 <li><a href="/startPage.jsp">Выйти</a></li>

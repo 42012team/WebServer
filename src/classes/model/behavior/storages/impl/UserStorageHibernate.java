@@ -2,6 +2,7 @@ package classes.model.behavior.storages.impl;
 
 import classes.hibernateUtil.HibernateUtil;
 import classes.model.User;
+import classes.model.UserParams;
 import classes.model.behavior.storages.UserStorage;
 
 import javax.persistence.EntityManager;
@@ -89,6 +90,11 @@ public class UserStorageHibernate implements UserStorage {
 
     }
 
+    @Override
+    public List<User> searchUsersByParams(UserParams userParams) {
+        return null;
+    }
+
     public User getUser(String login, String password) {
         User result = null;
         EntityManager em = null;
@@ -118,4 +124,8 @@ public class UserStorageHibernate implements UserStorage {
         return result;
     }
 
+    @Override
+    public List<User> searchUsersBySubparams(UserParams userParams) {
+        return null;
+    }
 }

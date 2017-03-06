@@ -282,7 +282,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     @Override
     public void storeActiveServices(List<ActiveService> activeServicesList) {
         try {
-            System.out.println(activeServicesList.size()+"lalal");
             PreparedStatement ps = null;
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             for (int i = 0; i < activeServicesList.size(); i++) {

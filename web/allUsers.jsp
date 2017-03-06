@@ -29,6 +29,7 @@
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
                 <li><a href="/addUserPage.jsp" color="blue" class="settings">Добавить пользователя</a></li>
+                <li><a href="/searchUserPage.jsp" color="blue" class="settings">Найти пользователя</a></li>
                 <li><a href="/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>

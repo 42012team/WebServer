@@ -46,14 +46,10 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            if(newDate.before(new Date())&&(!((User)request.getSession(true).getAttribute("user")).getPrivilege().equals("admin"))){
+                throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
+            }
             DateValidator dateValidator=new DateValidator();
-            System.out.println(dateValidator.validate(date));
-            System.out.println(newDate.toString());
-          /*  if(!dateValidator.validate(format.toString())){
-                System.out.println("here");
-                request.setAttribute("errorText","Введите верную дату");
-                request.getRequestDispatcher("/changeActiveServicePage.jsp").forward(request,response);
-            }*/
             if (activeService.getNewStatus() != null)
                 switch (activeService.getNewStatus()) {
                     case ACTIVE: {

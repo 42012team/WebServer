@@ -305,5 +305,12 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
     </error-page>
-
+    <servlet>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <servlet-class>servlet.SearchUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchUserServlet</servlet-name>
+        <url-pattern>/SearchUserServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

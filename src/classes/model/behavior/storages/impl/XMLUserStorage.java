@@ -1,6 +1,7 @@
 package classes.model.behavior.storages.impl;
 
 import classes.model.User;
+import classes.model.UserParams;
 import classes.model.behavior.storages.UserStorage;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XMLUserStorage implements UserStorage {
+public class XMLUserStorage implements  UserStorage {
 
     private final String PATH = "D:\\nc\\users.xml";
     Document doc;
@@ -210,6 +211,16 @@ public class XMLUserStorage implements UserStorage {
     @Override
     public void deleteUser(int id) {
 
+    }
+
+    @Override
+    public List<User> searchUsersByParams(UserParams userParams) {
+        return null;
+    }
+
+    @Override
+    public List<User> searchUsersBySubparams(UserParams userParams) {
+        return null;
     }
 
 }

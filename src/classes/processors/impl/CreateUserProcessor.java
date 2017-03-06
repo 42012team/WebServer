@@ -46,10 +46,11 @@ public class CreateUserProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedUserParams userRequestParams = (TransmittedUserParams) request;
-            System.out.println("Создание пользователя с параметрами " + userRequestParams.getName() + " "
-                    + userRequestParams.getSurname() + " " + userRequestParams.getEmail()
-                    + " " + userRequestParams.getPhone() + " " + userRequestParams.getAddress() + " "
-                    + userRequestParams.getLogin() + " " + userRequestParams.getPassword() + userRequestParams.getPrivilege());
+            System.out.println("Создание пользователя с параметрами " + "name:" + userRequestParams.getName()
+                    + " surname:" + userRequestParams.getSurname() + " email:" + userRequestParams.getEmail()
+                    + " phone:" + userRequestParams.getPhone() + " address:" + userRequestParams.getAddress()
+                    + " login:" + userRequestParams.getLogin() + " password:" + userRequestParams.getPassword()
+                    +"privilege:"+ userRequestParams.getPrivilege());
             if (initializer.getUserManager().getUserByLogin(userRequestParams.getLogin()) == null) {
                 User user = signIn(userRequestParams.getName(), userRequestParams.getSurname(), userRequestParams.getEmail(), userRequestParams.getPhone(), userRequestParams.getAddress(),
                         userRequestParams.getLogin(), userRequestParams.getPassword(), userRequestParams.getVersion(), userRequestParams.getPrivilege());
