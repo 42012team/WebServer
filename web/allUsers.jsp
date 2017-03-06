@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="allUsers.js"></script>
+    <script src="forImportExport.js"></script>
     <script src="userDetails.js"></script>
 </head>
 <body>
@@ -72,8 +73,8 @@
         %>
         </tbody>
     </table>
-    <input type="submit" name="exportButton" id="exportButton" value="Export" formaction="ExportServlet" formmethod="post"/>
-    <input type="submit" name="importButton" id="importButton" formaction="import.jsp"  formmethod="post" value="Import"/>
-</form>
+    <input type="submit"  name="exportButton" id="exportButton" value="Export" formaction="/ExportServlet" formmethod="post"/>
+    <input type="submit"  name="importButton" id="importButton" formaction="import.jsp"  formmethod="post" value="Import"/>
+    </form>
 </body>
 </html>

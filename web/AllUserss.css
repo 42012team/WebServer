@@ -535,7 +535,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
 .modal {
     z-index: 100000;
 }
-#exportButton{
+#exportButton,#exportButton1{
     background-color: orangered;
     width:15%;
     height: 5%;
@@ -543,7 +543,7 @@ table.dataTable, table.dataTable th, table.dataTable td {
     margin-left:33%;
     color:white;
 }
-#importButton{
+#importButton,#importButton1{
     background-color: orangered;
     width:15%;
     color:white;

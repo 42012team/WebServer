@@ -1,23 +1,54 @@
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    z-index: 1040;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
 .importForm{
-    margin-top:10%;
+    margin-top: 10%;
     width:50%;
-    height:30%;
-    background-color: orangered;
+    height:40%;
     margin-left: 25%;
+    border-radius:10px;
+    background-color:  #f4511e;
     color:white;
 }
+form{
+    margin-top: 20%;
+}
 .pathContainer{
-    margin-top:10%;
+    margin-top:5%;
     margin-left:10%
 }
-.path{
+.file{
+    margin-top:10%;
     width:50%;
     height: 30px;
-    margin-left:2%;
+    margin-left:25%;
     color:black;
 
 }
 .pathButton{
+    margin-top:10px;
     margin-left:40%;
     width:20%;
     color:orangered;

@@ -25,17 +25,19 @@ import java.util.List;
  * Created by User on 28.02.2017.
  */
 public class Export {
-    private final String PATH = "D:\\nc\\12.xml";
-    Document doc;
-
-    public Export() {
+//    private final String PATH = "D:\\nc\\12.xml";
+ private   Document doc;
+private String path;
+    public Export(String path) {
         try {
+            this.path=path;
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            dbFactory.setNamespaceAware(true);
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(new File(PATH));
-            doc.getDocumentElement().normalize();
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
+
+             doc = dbFactory.newDocumentBuilder().newDocument();
+        } catch (ParserConfigurationException ex) {
             System.out.println("Exception occured!");
             System.out.println("Ошибка при создании документа для записи!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -47,10 +49,8 @@ public class Export {
 
     public void storeAccount(List<Account> accountList) {
         System.out.println("start store" + accountList.size());
-        System.out.println(doc.getElementsByTagName("users").getLength());
         Element rootElement = (Element) doc.getElementsByTagName("users").item(0);
         if(doc.getElementsByTagName("users").getLength()==0){
-            System.out.println("la");
            rootElement= doc.createElement("users");
             doc.appendChild(rootElement);
         }
@@ -137,7 +137,7 @@ public class Export {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(PATH));
+            StreamResult result = new StreamResult(new File(path));
             transformer.transform(source, result);
         } catch (TransformerException ex) {
             System.out.println("Exception occured!");

@@ -5,12 +5,11 @@
 <head>
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="AllUserss.css" rel="stylesheet">
-    <link href="ImportStyle.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="allUsers.js"></script>
     <script src="userDetails.js"></script>
+    <link href="ImportStyle.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,11 +35,18 @@
         </div>
     </div>
 </nav>
-<
-<form  action="ImportServlet" method="post" class="importForm">
- <div class="pathContainer" id="pathContainer"> <p>Введите путь файла<input type="text" name="path" class="path"/></p></div>
-    <input type="submit" name="" class="pathButton" value="Выбрать файл" formaction="OpenProvodnikServlet" formmethod="post"/>
+<br><br>
+<!--<form method="post" action="UploadServlet"
+      enctype="multipart/form-data">
+    <input type="file" class="fille" name="file" size="60" /><br />
+    <br /> <input type="submit" value="Upload" />
+    </form>-->
+<form method="post" action="ImportServlet"
+      enctype="multipart/form-data" class="importForm">
+    <br />
+    <div class= "pathContainer"> <input type="file" class="file" name="file"  />
     <input type="submit" name="" class="pathButton" value="OK"/>
+     </div>
 </form>
 </body>
 </html>
