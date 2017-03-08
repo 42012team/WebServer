@@ -35,9 +35,9 @@
         <div class="box">
             <div class="box-content">
                 <h2>Добавление услуги</h2>
-                <p>Название услуги:<input type="text" name="name" value=""></p>
-                <p>Описание услуги:<input type="text" name="description" value=""></p>
-                <p>Тип услуги:<input type="text" name="type" value=""></p>
+                <p>Название услуги:<input type="text" name="name" value="" required></p>
+                <p>Описание услуги:<input type="text" name="description" value="" required></p>
+                <p>Тип услуги:<input type="text" name="type" value="" required></p>
                 <input type="submit" formaction="/AddServiceServlet" formmethod="post" value="Добавить услугу"/>
             </div>
         </div>

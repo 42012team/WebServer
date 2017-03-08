@@ -35,14 +35,14 @@
         <div class="box">
             <div class="box-content">
                 <h2>Добавление пользователя</h2>
-                <p>Login: <input type="text" name="login"/></p>
-                <p>Password: <input type="text" name="password"/></p>
-                <p>Имя: <input type="text" name="name"/></p>
-                <p>Фамилия: <input type="text" name="surname"/></p>
+                <p>Login: <input type="text" name="login" required/></p>
+                <p>Password: <input type="text" name="password" required/></p>
+                <p>Имя: <input type="text" name="name" required/></p>
+                <p>Фамилия: <input type="text" name="surname" required/></p>
                 <p>Email: <input type="text" name="email"/></p>
                 <p>Телефон: <input type="text" name="phone"/></p>
                 <p>Адрес: <input type="text" name="address"/></p>
-                <p>Привилегированность: <input type="radio" name="privilege" value="admin">ADMIN <input type="radio"
+                <p>Привилегированность: <input type="radio" name="privilege" value="admin" required>ADMIN <input type="radio"
                                                                                                         name="privilege"
                                                                                                         value="user">USER
                 </p>

@@ -38,23 +38,23 @@
     <ul>
         <li class="regLiContainer">
             <label id="loginL" for="login"><span class="text">Логин</span></label><input type="text" name="login"
-                                                                                         id="login" placeholder="Login">
+                                                                                         id="login" placeholder="Login" required>
         </li>
         <li class="regLiContainer"><label id="passwordL" for="password"><span class="text">Пароль</span></label><input
-                type="password" name="password" id="password" placeholder="Password"></li>
+                type="password" name="password" id="password" placeholder="Password" required></li>
         <li class="regLiContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input type="text"
                                                                                                             name="name"
                                                                                                             id="name"
-                                                                                                            placeholder="Имя"/>
+                                                                                                            placeholder="Имя" required/>
         </li>
         <li class="regLiContainer"><label id="surnameL" for="surname"><span class="text">Фамилия</span></label><input
-                type="text" name="surname" id="surname" placeholder="Фамилия"/></li>
+                type="text" name="surname" id="surname" placeholder="Фамилия" required/></li>
         <li class="regLiContainer"><label id="emailL" for="email"><span class="text">Email</span></label><input
                 type="text" name="email" id="email" placeholder="Email"/></li>
         <li class="regLiContainer"><label id="phoneL" for="phone"><span class="text">Телефон</span></label><input
                 type="text" name="phone" id="phone" placeholder="Телефон"/></li>
         <li class="regLiContainer"><label id="addressL" for="address"><span class="text">Адрес</span></label><input
-                type="text" name="address" id="address" placeholder="Адрес"/></li>
+                type="text" name="address" id="address" placeholder="Адрес" required/></li>
     </ul>
     <input type="submit" name="loginButton" id="loginButton" value="Регистрация">
 

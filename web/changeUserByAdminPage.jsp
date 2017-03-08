@@ -44,12 +44,12 @@
                           formaction="/DeleteUserServlet" formmethod="post"></p>
                 <%
                     UserResponse user = (UserResponse) request.getAttribute("user");%>
-                <p>Пароль: <input type="text" name="password" id="password" value="<%=user.getPassword()%>"></p>
-                <p>Имя: <input type="text" name="name" id="name" value="<%=user.getName()%>"/></p>
-                <p>Фамилия: <input type="text" name="surname" id="surname" value="<%=user.getSurname()%>"/></p>
+                <p>Пароль: <input type="text" name="password" id="password" value="<%=user.getPassword()%>" required></p>
+                <p>Имя: <input type="text" name="name" id="name" value="<%=user.getName()%>" required/></p>
+                <p>Фамилия: <input type="text" name="surname" id="surname" value="<%=user.getSurname()%>" required/></p>
                 <p>Email: <input type="text" name="email" id="email" value="<%=user.getEmail()%>"/></p>
                 <p>Телефон<input type="text" name="phone" id="phone" value="<%=user.getPhone()%>"/></p>
-                <p>Адрес: <input type="text" name="address" id="address" value="<%=user.getAddress()%>"/></p>
+                <p>Адрес: <input type="text" name="address" id="address" value="<%=user.getAddress()%>" required/></p>
                 <p>Привилегированность: <input type="radio" name="privilege" value="admin"<%
     if(user.getPrivilege().equals("admin")){
         %> checked<%}%>>ADMIN <input type="radio" name="privilege" value="user"<%

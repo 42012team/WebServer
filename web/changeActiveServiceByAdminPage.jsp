@@ -36,7 +36,11 @@
         </div>
     </div>
 </nav>
-<form method="post" action="/ChangeActiveServiceByAdminRespServlet">
+<form method="post" action="/ChangeActiveServiceByAdminRespServlet" onsubmit="javascript:
+var d=new Date();
+if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date-input').val())){
+    return confirm('Введена прошедшая дата! Изменения сразу вступят в силу. Вы уверены?');
+}">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">
@@ -52,7 +56,7 @@
                         %>
                         <p>Введите новую дату подключения в формате:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" id="date-input" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
                         <%
                             }
@@ -67,14 +71,14 @@
                             блокировки:</p>
                             <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         </div>
-                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar"/>
+                        <input type="datetime-local" style="display:none" name="date" class="calendar" id="date-input"  required/>
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
                         } else if (activeService.getCurrentStatus() == ActiveServiceStatus.SUSPENDED) {%>
                         <p>Введите дату разблокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" id="date-input"  required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
@@ -82,7 +86,7 @@
                         } else if (activeService.getCurrentStatus() == ActiveServiceStatus.ACTIVE) {%>
                         <p>Введите дату блокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" id="date-input"  required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);

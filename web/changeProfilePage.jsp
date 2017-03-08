@@ -59,17 +59,17 @@
         <%
             User user = (User) session.getAttribute("user");%>
         <li class="changeContainer"><label id="passwordL" for="password"><span class="text">Пароль</span></label><input
-                type="text" name="password" id="password" value="<%=user.getPassword()%>"></li>
+                type="text" name="password" id="password" value="<%=user.getPassword()%>" required></li>
         <li class="changeContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input
-                type="text" name="name" id="name" value="<%=user.getName()%>"/></li>
+                type="text" name="name" id="name" value="<%=user.getName()%>" required/></li>
         <li class="changeContainer"><label id="surnameL" for="surname"><span class="text">Фамилия</span></label><input
-                type="text" name="surname" id="surname" value="<%=user.getSurname()%>"/></li>
+                type="text" name="surname" id="surname" value="<%=user.getSurname()%>" required/></li>
         <li class="changeContainer"><label id="emailL" for="email"><span class="text">Email</span></label><input
                 type="text" name="email" id="email" value="<%=user.getEmail()%>"/></li>
         <li class="changeContainer"><label id="phoneL" for="phone"><span class="text">Телефон</span></label><input
                 type="text" name="phone" id="phone" value="<%=user.getPhone()%>"/></li>
         <li class="changeContainer"><label id="addressL" for="address"><span class="text">Адрес</span></label><input
-                type="text" name="address" id="address" value="<%=user.getAddress()%>"/></li>
+                type="text" name="address" id="address" value="<%=user.getAddress()%>" required/></li>
     </ul>
 
     <input type="submit" name="saveButton" id="saveButton" value="Сохранить">

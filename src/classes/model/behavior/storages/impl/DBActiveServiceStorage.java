@@ -293,7 +293,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                         + "NEW_STATUS=?, TDATE=?,VERSION=? WHERE ACTIVESERVICE_ID = ? "
                         + " WHEN NOT MATCHED THEN "
                         + "INSERT VALUES(?,?,?,?,?,?,?)";
-
                 ps = connection.prepareStatement(mergeSql);
                 ps.setInt(1, activeServicesList.get(i).getId());
                 ps.setInt(2, activeServicesList.get(i).getUserId());

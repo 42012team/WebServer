@@ -36,11 +36,11 @@
         <div class="box">
             <div class="box-content">
                 <h2>Изменение услуги</h2>
-                <p>Название услуги:<input type="text" name="name" value="<%=request.getAttribute("name")%>"></p>
+                <p>Название услуги:<input type="text" name="name" value="<%=request.getAttribute("name")%>" required></p>
                 <p>Описание услуги:<input type="text" name="description"
-                                          value="<%=request.getAttribute("description")%>"></p>
+                                          value="<%=request.getAttribute("description")%>" required></p>
                 <p>Статус услуги:
-                <p><input type="radio" name="status" value="ALLOWED"<%
+                <p><input type="radio" required name="status" value="ALLOWED"<%
     if(request.getAttribute("status").equals(ServiceStatus.ALLOWED)){
         %> checked<%
     }

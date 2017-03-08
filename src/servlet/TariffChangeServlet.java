@@ -75,7 +75,7 @@ public class TariffChangeServlet extends HttpServlet {
             resp = controller.identifyObject(addActiveServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-            request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
+            response.sendRedirect("/ShowActiveServicesServlet");
         } catch (ParseException e) {
             e.printStackTrace();
         }

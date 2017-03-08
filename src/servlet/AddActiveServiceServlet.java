@@ -36,6 +36,9 @@ public class AddActiveServiceServlet extends HttpServlet {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date newDate = null;
             newDate = format.parse(dateToString);
+            if(newDate.before(new Date())&&(!((User)request.getSession(true).getAttribute("user")).getPrivilege().equals("admin"))){
+                throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
+            }
             TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                     .withServiceId(serviceId)
                     .withUserId(user.getId())

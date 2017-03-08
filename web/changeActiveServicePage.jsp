@@ -54,7 +54,7 @@
                         <p>Введите новую дату подключения в формате:</p>
                         <p>${errorText}</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
                         <%
                             }
@@ -69,14 +69,14 @@
                             блокировки:</p>
                             <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         </div>
-                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar"/>
+                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar" required/>
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
                         } else if (activeService.getCurrentStatus() == ActiveServiceStatus.SUSPENDED) {%>
                         <p>Введите дату разблокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
@@ -84,7 +84,7 @@
                         } else if (activeService.getCurrentStatus() == ActiveServiceStatus.ACTIVE) {%>
                         <p>Введите дату блокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
-                        <input type="datetime-local" name="date" class="calendar"/>
+                        <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);

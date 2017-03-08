@@ -34,8 +34,8 @@
         <h2 class="headerText">Авторизация</h2>
     </div>
 
-    <input type="text" name="login" id="login" placeholder="Login">
-    <input type="password" name="pass" id="password" placeholder="Password">
+    <input type="text" name="login" id="login" placeholder="Login" required>
+    <input type="password" name="pass" id="password" placeholder="Password" required>
     <input type="submit" name="loginButton" id="loginButton" value="Вход">
 </form>
 </body>
