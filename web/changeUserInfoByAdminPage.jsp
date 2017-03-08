@@ -120,7 +120,7 @@
                                 <%}%>
 
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="/ChangeActiveServiceByAdminServlet"
+                                       formaction="actionWithActiveServiceByAdmin.jsp"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceByAdminServlet"

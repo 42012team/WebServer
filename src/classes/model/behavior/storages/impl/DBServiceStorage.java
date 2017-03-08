@@ -173,7 +173,55 @@ public class DBServiceStorage implements ServiceStorage {
 
     }
 
-    private Service getServiceByConditions(PreparedStatement ps) {
+    @Override
+    public List<Service> getServicesBySameType(int activeServiceId) {
+        List<Service> servicesList = null;
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            servicesList = new ArrayList<Service>();
+            String sql = "SELECT *FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=" +
+                    "(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))" +
+                    "AND(SERVICE_ID<>(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, activeServiceId);
+            ps.setInt(2, activeServiceId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Service service = new Service();
+                service.setId(rs.getInt("SERVICE_ID"));
+                service.setName(rs.getString("SERVICE_NAME"));
+                service.setDescription(rs.getString("DESCRIPTION"));
+                service.setVersion(rs.getInt("VERSION"));
+                service.setType(rs.getString("SERVICE_TYPE"));
+                String status = rs.getString("SERVICE_STATUS");
+                switch (status) {
+                    case "ALLOWED":
+                        service.setStatus(ServiceStatus.ALLOWED);
+                        break;
+                    case "DEPRECATED":
+                        service.setStatus(ServiceStatus.DEPRECATED);
+                        break;
+                }
+                servicesList.add(service);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception occured!");
+                StackTraceElement[] stackTraceElements = ex.getStackTrace();
+                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                    System.out.println(stackTraceElements[i].toString());
+                }
+            }
+        }
+        return servicesList;
+    }
+    private Service getServiceByConditions(PreparedStatement ps){
         Service service = null;
         try {
             ResultSet rs = ps.executeQuery();

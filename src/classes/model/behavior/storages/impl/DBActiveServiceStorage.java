@@ -370,4 +370,22 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         }
     }
 
-}
+    @Override
+    public List<String> getHistoryById(int activeServiceId) {
+       List<String> messageList = null;
+        try {
+            messageList=new ArrayList<String>();
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "SELECT MESSAGE FROM History WHERE (ACTIVESERVICE_ID=?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, activeServiceId);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                messageList.add(rs.getString("message"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+   return messageList;
+    }
+    }

@@ -127,4 +127,9 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
 
     }
 
+    @Override
+    public List<String> getHistoryById(int activeServiceId) {
+        return null;
+    }
+
 }

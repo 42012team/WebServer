@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public enum ActiveServiceStatus implements Serializable {
 
-    PLANNED, ACTIVE, SUSPENDED, DISCONNECTED
+    PLANNED, ACTIVE, SUSPENDED, DISCONNECTED,DELETING
 
 }

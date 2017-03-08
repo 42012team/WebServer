@@ -119,5 +119,7 @@ public class ServiceManager {
         }
         return descriptions;
     }
-
+    public List<Service> getServicesBySameType(int serviceId){
+     return  serviceStorage.getServicesBySameType(serviceId);
+    }
 }

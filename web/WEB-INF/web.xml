@@ -285,6 +285,43 @@
         <url-pattern>/UploadServlet</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>GetTheSameTypeByCurrentServiceServlet</servlet-name>
+        <servlet-class>servlet.GetTheSameTypeByCurrentServiceServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetTheSameTypeByCurrentServiceServlet</servlet-name>
+        <url-pattern>/GetTheSameTypeByCurrentServiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>TariffChangeServlet</servlet-name>
+        <servlet-class>servlet.TariffChangeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TariffChangeServlet</servlet-name>
+        <url-pattern>/TariffChangeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>TariffChangeByAdminServlet</servlet-name>
+        <servlet-class>servlet.TariffChangeByAdminServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TariffChangeByAdminServlet</servlet-name>
+        <url-pattern>/TariffChangeByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
+        <servlet-class>servlet.GetTheSameTypeByCurrentServiceByAdminServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
+        <url-pattern>/GetTheSameTypeByCurrentServiceByAdminServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>servlet.DownloadServlet</servlet-class>
     </servlet>

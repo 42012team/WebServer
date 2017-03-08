@@ -99,4 +99,9 @@ public class ServiceStorageHibernate implements ServiceStorage {
             entityManager.close();
         }
     }
+
+    @Override
+    public List<Service>  getServicesBySameType(int activeServiceId) {
+       return null;
+    }
 }

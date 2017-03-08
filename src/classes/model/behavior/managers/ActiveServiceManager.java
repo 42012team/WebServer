@@ -53,6 +53,22 @@ public class ActiveServiceManager {
         }
         return null;
     }
+    public ActiveService changeTariff(ActiveServiceParams activeServiceParams) {
+
+            ActiveService activeService = new ActiveService();
+            activeService.setId(idGenerator.generateId());
+            activeService.setUserId(activeServiceParams.getUserId());
+            activeService.setServiceId(activeServiceParams.getServiceId());
+            activeService.setDate(activeServiceParams.getDate());
+            activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
+            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+            activeService.setVersion(0);
+            storeActiveServices(Collections.singletonList(activeService));
+            activator.schedule(activeService);
+            return activeService;
+
+    }
+
 
     public void changeActiveServiceStatus(ActiveService activeService, ActiveServiceStatus currentStatus,
                                           ActiveServiceStatus newStatus) {
@@ -70,10 +86,14 @@ public class ActiveServiceManager {
         changeActiveServiceStatus(activeService, activeServiceParams.getCurrentStatus(),
                 activeServiceParams.getNewStatus());
         activeService.setVersion(activeServiceParams.getVersion() + 1);
+        String message="Изменение статуса услуги с "+activeServiceParams.getCurrentStatus()+" на "+  activeServiceParams.getNewStatus()+
+                " ";
         storeActiveServices(Collections.singletonList(activeService));
         activator.reschedule(activeService);
     }
-
+    public List<String> getHistory(int activeServiceId){
+        return activeServiceStorage.getHistoryById(activeServiceId);
+    }
     public void storeActiveServices(List<ActiveService> activeServicesList) {
         activeServiceStorage.storeActiveServices(activeServicesList);
     }

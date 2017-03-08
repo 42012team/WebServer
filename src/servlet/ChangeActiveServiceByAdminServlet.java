@@ -24,7 +24,7 @@ public class ChangeActiveServiceByAdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+        int id = (Integer)request.getSession(true).getAttribute("changedActiveServiceId");
         TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)
                 .withRequestType("getActiveServiceById");

@@ -134,6 +134,11 @@ public class XMLServiceStorage implements ServiceStorage {
         write();
     }
 
+    @Override
+    public List<Service>  getServicesBySameType(int activeServiceId) {
+        return null;
+    }
+
     private void write() {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
