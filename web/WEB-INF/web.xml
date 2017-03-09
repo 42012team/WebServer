@@ -363,7 +363,7 @@
         <servlet-name>CancelChangeTariffServlet</servlet-name>
         <url-pattern>/CancelChangeTariffServlet</url-pattern>
     </servlet-mapping>
-  <error-page>
+<!--  <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>
     </error-page>
@@ -374,7 +374,7 @@
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
-    </error-page>
+    </error-page>-->
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>servlet.SearchUserServlet</servlet-class>

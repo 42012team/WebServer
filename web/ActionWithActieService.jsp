@@ -1,4 +1,6 @@
-<%@ page import="classes.model.User" %><%--
+<%@ page import="classes.model.User" %>
+<%@ page import="classes.model.ActiveService" %>
+<%@ page import="classes.model.ActiveServiceStatus" %><%--
   Created by IntelliJ IDEA.
   User: User
   Date: 07.03.2017
@@ -13,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="showActiveServicesStyle.css" rel="stylesheet">
+    <link href="ChooseChangeActiveServiceStyle.css" rel="stylesheet">
     <script src="addActiveServiceJs.js"></script>
 </head>
 <body onload="load()">
@@ -55,12 +58,15 @@
     </div>
 </nav>
 <br />
-<form method="post">
+<form method="post" class="changeForm">
     <%  int id = Integer.parseInt(request.getParameter("chooseActiveService"));
-    session.setAttribute("changedActiveServiceId",id);
-    %>
-    <input type="submit" formaction="/GetTheSameTypeByCurrentServiceServlet" formmethod="post" value="Изменить тариф"/>
-    <input type="submit"  formaction="/ChangeActiveServiceServlet" formmethod="post" value="Изменить услугу"/>
+        ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
+    session.setAttribute("changedActiveServiceId",id);%>
+
+
+    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceServlet" formmethod="post" value="Изменить тариф"/>
+    <input type="submit" class="changeDateButton"  formaction="/ChangeActiveServiceServlet" formmethod="post" value="Изменить услугу"/>
+
 </form>
 </body>
 </html>
