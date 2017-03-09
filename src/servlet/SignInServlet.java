@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignInServlet extends HttpServlet {
     WebController controller = null;
@@ -56,6 +58,8 @@ public class SignInServlet extends HttpServlet {
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());
         request.getSession(true).setAttribute("user", user);
-        request.getRequestDispatcher("/profilePage.jsp").forward(request, response);
+        List<String> linksList = new ArrayList<String>();
+        request.getSession(true).setAttribute("back", linksList);
+        response.sendRedirect("/profilePage.jsp");
     }
 }
