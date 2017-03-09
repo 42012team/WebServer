@@ -29,6 +29,7 @@ public class ShowAllowedToConnectServicesByAdminServlet extends HttpServlet {
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
+        request.removeAttribute("allowedToConnectServices");
         request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
         request.getRequestDispatcher("/allowedToConnectServicesByAdminPage.jsp").forward(request, response);
     }

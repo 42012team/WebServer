@@ -52,16 +52,26 @@
     </div>
 </nav>
 
-<form action="/TariffChangeServlet" method="post"><!--сменить сервлет!-->
-
+<form action="/TariffChangeServlet"
+      method="post" <%if (((User) session.getAttribute("user")).getPrivilege().equals("admin")) {%>
+      onsubmit="javascript:
+var d=new Date();
+var i=0;
+while((isNaN(Date.parse($('#date-input'+i.toString()).val())))||(Date.parse($('#date-input'+i.toString()).val())=='')){
+    i++;
+}
+if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date-input'+i.toString()).val())){
+    return confirm('Введена прошедшая дата! Услуга сразу станет подключенной. Вы уверены?');
+}"
+        <%}%>>
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
-
     <ul>
         <div class="container">
             <div class="row">
                 <%
                     List<Service> serviceList = (List<Service>) request.getAttribute("theSameTypeWithCurrentActiveService");
-                    for (Service s : serviceList) {
+                    for (int i = 0; i < serviceList.size(); i++) {
+                        Service s = serviceList.get(i);
                 %>
                 <div class="col-md-4 text-center">
                     <div class="box">
@@ -77,9 +87,11 @@
                                 <div class="description">Статус услуги: <span
                                         class="value"><%=s.getStatus().toString()%></span></div>
                                 <input type="datetime-local" class="dateField" style="display:none"
-                                       name="activationDate<%=s.getId()%>"><input type="submit" class="addButton"
-                                                                                  style="display:none"
-                                                                                  value="Выбрать"/></li>
+                                       name="activationDate<%=s.getId()%>" id="date-input<%=i%>"><input type="submit"
+                                                                                                        class="addButton"
+                                                                                                        style="display:none"
+                                                                                                        value="Выбрать"/>
+                            </li>
                             <br/>
                         </div>
                     </div>

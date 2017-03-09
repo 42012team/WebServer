@@ -102,7 +102,16 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     public void deleteActiveService(int activeServiceId) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "DELETE FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?";
+            String sql = "INSERT INTO ACTIVESERVICE_HISTORY VALUES (primaryKeyForHistory.nextval, (SELECT USER_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID = ?),(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID = ?)," +
+                    "(SELECT SERVICE_NAME FROM SERVICE WHERE SERVICE_ID=(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID = ?)),?)";
+            PreparedStatement psHistory=connection.prepareStatement(sql);
+            psHistory.setInt(1,activeServiceId);
+            psHistory.setInt(2,activeServiceId);
+            psHistory.setInt(3,activeServiceId);
+            psHistory.setTimestamp(4, new Timestamp(new Date().getTime()));
+            psHistory.executeQuery();
+            psHistory.close();
+            sql = "DELETE FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, activeServiceId);
             ps.executeQuery();
@@ -410,20 +419,20 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
 
     @Override
     public List<String> getHistoryById(int activeServiceId) {
-       List<String> messageList = null;
+        List<String> messageList = null;
         try {
-            messageList=new ArrayList<String>();
+            messageList = new ArrayList<String>();
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = "SELECT MESSAGE FROM History WHERE (ACTIVESERVICE_ID=?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, activeServiceId);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 messageList.add(rs.getString("message"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-   return messageList;
+        return messageList;
     }
-    }
+}

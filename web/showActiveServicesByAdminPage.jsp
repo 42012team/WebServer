@@ -89,7 +89,6 @@
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceByAdminServlet"
                                                              method="post"/></li>
-
                             <br/>
                         </div>
                     </div>

@@ -44,8 +44,7 @@ while((isNaN(Date.parse($('#date-input'+i.toString()).val())))||(Date.parse($('#
 }
 if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date-input'+i.toString()).val())){
     return confirm('Введена прошедшая дата! Услуга сразу станет подключенной. Вы уверены?');
-}"
-      }>
+}">
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
     <ul>
         <div class="container">
