@@ -7,6 +7,7 @@ import classes.model.ActiveServiceParams;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.storages.ActiveServiceStorage;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -120,7 +121,22 @@ public class ActiveServiceManager {
             activeServiceStorage.deleteActiveService(activeServiceId);
         }
     }
+    public void deleteActiveServicesWithTheSameType(int activeServiceId){
 
+       List<Integer> list= activeServiceStorage.getActiveServicesWithTheSameType(activeServiceId);
+        for(int i=0;i<list.size();i++){
+            deleteActiveService(list.get(i));
+        }
+    }
+    public void deleteActiveServicesWhichPlannedToChangeTariff(int activeServiceId){
+
+        List<Integer> list= activeServiceStorage.getActiveServicesWithTheSameType(activeServiceId);
+        for(int i=0;i<list.size();i++){
+            if(list.get(i)!=activeServiceId) {
+                deleteActiveService(list.get(i));
+            }
+        }
+    }
     public List<ActiveService> getAllActiveServices() {
         return activeServiceStorage.getAllActiveServices();
     }

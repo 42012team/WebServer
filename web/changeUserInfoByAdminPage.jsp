@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="classes.model.Service" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
 <html>
@@ -117,14 +118,23 @@
                                 <%} else {%>
                                 <br/>
                                 <br/>
-                                <%}%>
-
+                                <%}
+                                if((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){
+                                %>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="actionWithActiveServiceByAdmin.jsp"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceByAdminServlet"
                                                              method="post"/></li>
+                            <%} else{%>
+                            <input type="submit" class="changeButton" style="display:none" value="Изменить"
+                                   formaction="actionWithActiveServiceByAdmin.jsp"
+                                   method="post"/><input type="submit" class="deleteButton" style="display:none"
+                                                         value="Удалить"
+                                                         formaction="/DeleteActiveServiceWithSameTypeByAdminServlet"
+                                                         method="post"/></li>
+                            <%}%>
                             <br/>
                         </div>
                     </div>

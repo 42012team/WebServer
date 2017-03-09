@@ -18,4 +18,5 @@ public interface ActiveServiceStorage {
 
     public void deleteActiveServicesByUserId(int userId);
     public List<String> getHistoryById(int activeServiceId);
+    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId);
 }

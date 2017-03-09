@@ -125,7 +125,46 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             }
         }
     }
+    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId){
+        List<Integer> list=null;
+        try {
+            list=new ArrayList<Integer>();
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "Select ACTIVESERVICE_ID FROM activeservice WHERE ACTIVESERVICE_ID IN (SELECT ACTIVESERVICE_ID " +
+                    "FROM ACTIVESERVICE WHERE service_id IN (SELECT SERVICE_ID " +
+                    "FROM service " +
+                    "WHERE SERVICE_TYPE = (SELECT SERVICE_TYPE FROM service WHERE service_id =" +
+                    "(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))) AND USER_ID =" +
+                    " (SELECT USER_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, activeServiceId);
+            ps.setInt(2, activeServiceId);
+           ResultSet rs= ps.executeQuery();
+            while (rs.next()){
+                list.add(rs.getInt(1));
+            }
+            ps.close();
 
+        } catch (SQLException ex) {
+            System.out.println("Exception occured!");
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                System.out.println(stackTraceElements[i].toString());
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception occured!");
+                StackTraceElement[] stackTraceElements = ex.getStackTrace();
+                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                    System.out.println(stackTraceElements[i].toString());
+                }
+            }
+        }
+        return list;
+
+    }
     @Override
     public List<ActiveService> getAllActiveServices() {
         List<ActiveService> activeServiceList = null;

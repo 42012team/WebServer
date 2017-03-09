@@ -330,7 +330,40 @@
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/DownloadServlet</url-pattern>
     </servlet-mapping>
-    <error-page>
+    <servlet>
+        <servlet-name>DeleteActiveServiceByTheSameTypeServlet</servlet-name>
+        <servlet-class>servlet.DeleteActiveServiceByTheSameTypeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteActiveServiceByTheSameTypeServlet</servlet-name>
+        <url-pattern>/DeleteActiveServiceByTheSameTypeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
+        <servlet-class>servlet.DeleteActiveServiceWithSameTypeByAdminServlet</servlet-class>
+    </servlet>
+ <servlet-mapping>
+        <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
+        <url-pattern>/DeleteActiveServiceWithSameTypeByAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CancelChangeTariffServletByAdmin</servlet-name>
+        <servlet-class>servlet.CancelChangeTariffServletByAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelChangeTariffServletByAdmin</servlet-name>
+        <url-pattern>/CancelChangeTariffServletByAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>CancelChangeTariffServlet</servlet-name>
+        <servlet-class>servlet.CancelChangeTariffServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CancelChangeTariffServlet</servlet-name>
+        <url-pattern>/CancelChangeTariffServlet</url-pattern>
+    </servlet-mapping>
+  <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>
     </error-page>

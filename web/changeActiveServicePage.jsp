@@ -73,6 +73,13 @@
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
+                          if (activeService.getNewStatus() == ActiveServiceStatus.DISCONNECTED) {%>
+                        <p>Отменить смену тарифа:</p>
+                        <input type="submit" formaction="/CancelChangeTariffServlet" formmethod="post" class="changeButton"
+                               value="Отменить"/>
+
+                        <% activeService.setNewStatus(null);
+                        }
                         } else if (activeService.getCurrentStatus() == ActiveServiceStatus.SUSPENDED) {%>
                         <p>Введите дату разблокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
@@ -89,6 +96,7 @@
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                         }
+
                             session.setAttribute("changedActiveService", activeService);
 
                         %>

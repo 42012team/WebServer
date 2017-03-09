@@ -3,6 +3,7 @@
 <%@ page import="classes.model.User" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
+<%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
 <html>
@@ -96,12 +97,24 @@
                                 <br/>
                                 <%}%>
 
+
+                                <%if ((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                    formaction="/ActionWithActieService.jsp"
+                                       formaction="/ActionWithActieService.jsp"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
+                                <%}
+                                else{%>
+                            <input type="submit" class="changeButton" style="display:none" value="Изменить"
+                                   formaction="/ActionWithActieService.jsp"
+                                   method="post"/><input type="submit" class="deleteButton" style="display:none"
+                                       value="Удалить"
+                                       formaction="/DeleteActiveServiceByTheSameTypeServlet"
+                                       method="post"/></li><%
+                                }
+                                %>
                             <br/>
                         </div>
                     </div>

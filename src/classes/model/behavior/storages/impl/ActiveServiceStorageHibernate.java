@@ -132,4 +132,9 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         return null;
     }
 
+    @Override
+    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId) {
+        return null;
+    }
+
 }

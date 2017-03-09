@@ -323,6 +323,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
         return null;
     }
 
+    @Override
+    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId) {
+        return null;
+    }
+
     private void write(Document doc) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
