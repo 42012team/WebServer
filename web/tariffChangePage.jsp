@@ -90,8 +90,7 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                                        name="activationDate<%=s.getId()%>" id="date-input<%=i%>"><input type="submit"
                                                                                                         class="addButton"
                                                                                                         style="display:none"
-                                                                                                        value="Выбрать"/>
-                            </li>
+                                                                                                        value="Выбрать"/></li>
                             <br/>
                         </div>
                     </div>

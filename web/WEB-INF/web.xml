@@ -363,6 +363,14 @@
         <servlet-name>CancelChangeTariffServlet</servlet-name>
         <url-pattern>/CancelChangeTariffServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ActionWithActiveServiceServlet</servlet-name>
+        <servlet-class>servlet.ActionWithActiveServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionWithActiveServiceServlet</servlet-name>
+        <url-pattern>/ActionWithActiveServiceServlet</url-pattern>
+    </servlet-mapping>
 <!--  <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>

@@ -100,7 +100,7 @@
 
                                 <%if ((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="/ActionWithActieService.jsp"
+                                       formaction="/ActionWithActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
@@ -108,7 +108,7 @@
                                 <%}
                                 else{%>
                             <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                   formaction="/ActionWithActieService.jsp"
+                                   formaction="/ActionWithActiveServiceServlet"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
                                        value="Удалить"
                                        formaction="/DeleteActiveServiceByTheSameTypeServlet"
