@@ -27,7 +27,8 @@ public class DeleteActiveServiceWithSameTypeProcessor implements RequestProcesso
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }
-//deleteTheSameType
+
+    //deleteTheSameType
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {
@@ -42,7 +43,7 @@ public class DeleteActiveServiceWithSameTypeProcessor implements RequestProcesso
             } else {
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    activeServiceManager.deleteActiveService(activeServiceParams.getId());
+                    activeServiceManager.deleteActiveServicesWithTheSameType(activeServiceParams.getId());
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 } else {

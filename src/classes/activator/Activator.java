@@ -40,27 +40,33 @@ public class Activator extends Thread implements ActivatorInterface {
         init();
         while (true) {
             List<ActiveService> listForChange = new ArrayList<ActiveService>();
-            List<Integer> listForDeleting = new ArrayList<Integer>();
+            List<ActiveService> listForDeleting = new ArrayList<ActiveService>();
             Date currentDate = new Date();
             long sleepingTime = currentDate.getTime();
             for (ActiveService activeService : activeServicePool) {
                 if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getNewStatus() != null)) {
                     if (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
-                        listForDeleting.add(activeService.getId());
+                        activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
+                        activeServiceManager.changeActiveServiceDate(activeService, currentDate);
+                        activeServiceManager.createActiveServiceWithNewStatus(activeService);
+                        listForChange.add(activeService);
+                        listForDeleting.add(activeService);
                     } else {
                         activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
                         activeServiceManager.changeActiveServiceDate(activeService, currentDate);
+                        activeServiceManager.createActiveServiceWithNewStatus(activeService);
                         listForChange.add(activeService);
                     }
                 } else {
                     break;
                 }
             }
-            for (int i = 0; i < listForDeleting.size(); i++) {
-                activeServiceManager.deleteActiveService(listForDeleting.get(i));
-            }
+           /* if(listForDeleting.size()>0){
+                activeServiceManager.storeActiveServices(listForDeleting);
+            }*/
+
             if (listForChange.size() > 0) {
-                activeServiceManager.storeActiveServices(listForChange);
+                //    activeServiceManager.storeActiveServices(listForChange);
                 activeServicePool.removeAll(listForChange);
             }
             if (!activeServicePool.isEmpty()) {

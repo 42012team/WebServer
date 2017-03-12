@@ -99,6 +99,14 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
                         }
+                        else if(activeService.getCurrentStatus().equals(ActiveServiceStatus.PLANNED)){%>
+                        <p>Введите дату активации:</p>
+                        <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
+                        <input type="datetime-local" name="date" class="calendar" required/>
+                        <input type="submit" class="changeButton" value="Применить"/>
+
+                        <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                        }
 
                             session.setAttribute("changedActiveService", activeService);
 

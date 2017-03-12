@@ -17,7 +17,7 @@ import java.util.Date;
 /**
  * Created by User on 08.03.2017.
  */
-public class ChangeTariffProcessor  implements RequestProcessor, Serializable {
+public class ChangeTariffProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 
@@ -29,14 +29,16 @@ public class ChangeTariffProcessor  implements RequestProcessor, Serializable {
         this.initializer = initializer;
     }
 
-    private boolean createActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {
+    private boolean createActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withCurrentStatus(ActiveServiceStatus.PLANNED)
                 .withNewStatus(ActiveServiceStatus.ACTIVE)
                 .withServiceId(serviceId)
                 .withUserId(userId)
-                .withDate(date);
+                .withDate(date)
+                .withOldActiveServiceId(oldActiveServiceId);
+
         return (activeServiceManager.changeTariff(activeServiceParams) != null);
 
     }
@@ -47,7 +49,7 @@ public class ChangeTariffProcessor  implements RequestProcessor, Serializable {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
-            if (createActiveService(activeServiceParams.getId(), activeServiceParams.getServiceId(),
+            if (createActiveService(activeServiceParams.getOldActiveServiceId(), activeServiceParams.getServiceId(),
                     activeServiceParams.getUserId(), activeServiceParams.getCurrentStatus(),
                     activeServiceParams.getNewStatus(), activeServiceParams.getDate())) {
                 return ActiveServiceResponse.create().withResponseType("activeServices")

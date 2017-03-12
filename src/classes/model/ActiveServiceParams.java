@@ -10,6 +10,7 @@ public class ActiveServiceParams {
     private ActiveServiceStatus newStatus;
     private Date date;
     private int version;
+    private int oldActiveServiceId;
 
     private ActiveServiceParams() {
 
@@ -26,6 +27,11 @@ public class ActiveServiceParams {
 
     public ActiveServiceParams withUserId(int userId) {
         this.userId = userId;
+        return this;
+    }
+
+    public ActiveServiceParams withOldActiveServiceId(int oldActiveServiceId) {
+        this.oldActiveServiceId = oldActiveServiceId;
         return this;
     }
 
@@ -71,6 +77,10 @@ public class ActiveServiceParams {
 
     public int getVersion() {
         return version;
+    }
+
+    public int getOldActiveServiceId() {
+        return oldActiveServiceId;
     }
 
 }

@@ -323,9 +323,18 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
         return null;
     }
 
+    public void deleteActiveServicesWithTheSameType(int activeServiceId){
+
+    }
+
     @Override
-    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId) {
-        return null;
+    public void cancelChangingTariff(int activeServiceId) {
+
+    }
+
+    @Override
+    public void setNextId(int currentId, int newId) {
+
     }
 
     private void write(Document doc) {

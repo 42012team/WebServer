@@ -34,7 +34,7 @@ public class TariffChangeByAdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceId");
-            int user_id = (Integer)request.getSession(true).getAttribute("userForChange");
+            int user_id = (Integer) request.getSession(true).getAttribute("userForChange");
             int serviceId = Integer.parseInt(request.getParameter("serviceId"));
             String dateToString = request.getParameter("activationDate" + serviceId);
             dateToString = dateToString.replace('T', ' ');
@@ -66,6 +66,7 @@ public class TariffChangeByAdminServlet extends HttpServlet {
 
 
             TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
+                    .withOldActiveServiceId(activeService.getId())
                     .withServiceId(serviceId)
                     .withUserId(user_id)
                     .withDate(newDate)
@@ -75,7 +76,7 @@ public class TariffChangeByAdminServlet extends HttpServlet {
             resp = controller.identifyObject(addActiveServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-           response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+user_id);
+            response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + user_id);
         } catch (ParseException e) {
             e.printStackTrace();
         }

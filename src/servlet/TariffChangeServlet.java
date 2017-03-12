@@ -60,12 +60,12 @@ public class TariffChangeServlet extends HttpServlet {
                     .withNewStatus(ActiveServiceStatus.DISCONNECTED)
                     .withVersion(activeService.getVersion())
                     .withRequestType("changeActiveService");
-                    resp = controller.identifyObject(activeServiceParams);
+            resp = controller.identifyObject(activeServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
 
-
             TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
+                    .withOldActiveServiceId(activeService.getId())
                     .withServiceId(serviceId)
                     .withUserId(user.getId())
                     .withDate(newDate)

@@ -50,35 +50,8 @@ public class ChangeUserInfoByAdminServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
-        List <String> disconnectedTypeList=new ArrayList<String>();
-        for(int i=0;i<activeServicesList.size();i++){
-            if(activeServicesList.get(i).getNewStatus()!=null) {
-                if (activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
-                    System.out.println("here");
-                    disconnectedTypeList.add(serviceList.get(i).getType());
-                }
-            }
-        }
-        System.out.println(disconnectedTypeList.size());
-        List<ActiveService> newActiveServiceList=new ArrayList<ActiveService>();
-        List<Service> newServiceList=new ArrayList<Service>();
-        for(int i=0;i<activeServicesList.size();i++){
-            boolean isExist=false;
-            for(int j=0;j<disconnectedTypeList.size();j++){
-                if(activeServicesList.get(i).getNewStatus()!=null) {
-                    if (!(activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))
-                            && (serviceList.get(i).getType().equals(disconnectedTypeList.get(j)))) {
-                        isExist = true;
-                    }
-                }
-            }
-            if(!isExist){
-                newActiveServiceList.add(activeServicesList.get(i));
-                newServiceList.add(serviceList.get(i));
-            }
-        }
-        request.setAttribute("activeServiceDescription", newServiceList);
-        request.setAttribute("activeServiceList", newActiveServiceList);
+        request.setAttribute("activeServiceDescription", serviceList);
+        request.setAttribute("activeServiceList", activeServicesList);
         request.setAttribute("user", userResp);
         request.getRequestDispatcher("/changeUserInfoByAdminPage.jsp").forward(request, response);
     }

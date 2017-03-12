@@ -18,5 +18,7 @@ public interface ActiveServiceStorage {
 
     public void deleteActiveServicesByUserId(int userId);
     public List<String> getHistoryById(int activeServiceId);
-    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId);
+    public void deleteActiveServicesWithTheSameType(int activeServiceId);
+    public void cancelChangingTariff(int activeServiceId);
+    public void setNextId(int currentId,int newId);
 }

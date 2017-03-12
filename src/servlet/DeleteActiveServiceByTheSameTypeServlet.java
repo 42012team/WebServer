@@ -28,7 +28,6 @@ public class DeleteActiveServiceByTheSameTypeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession(true).getAttribute("user");
-        System.out.println(Integer.parseInt(request.getParameter("chooseActiveService")));
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(Integer.parseInt(request.getParameter("chooseActiveService")))
                 .withUserId(user.getId())

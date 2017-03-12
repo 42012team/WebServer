@@ -31,6 +31,7 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
 
     @Column(name = "version")
     private int version;
+    private int nextActiveServiceId;
 
     public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {
         this.id = id;
@@ -70,6 +71,10 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
         this.date = date;
     }
 
+    public void setNextActiveServiceId(int id) {
+        nextActiveServiceId = id;
+    }
+
     public int getVersion() {
         return version;
     }
@@ -80,6 +85,10 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public int getNextActiveServiceId() {
+        return nextActiveServiceId;
     }
 
     public void setId(int id) {

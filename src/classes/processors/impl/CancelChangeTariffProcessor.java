@@ -27,6 +27,7 @@ public class CancelChangeTariffProcessor implements RequestProcessor, Serializab
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }
+
     //deleteTheSameType
     @Override
     public ResponseDTO process(RequestDTO request) {
@@ -36,13 +37,13 @@ public class CancelChangeTariffProcessor implements RequestProcessor, Serializab
                 if (initializer.getActiveServiceManager()
                         .getActiveServiceById(activeServiceParams.getId()) != null) {
                     ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
-                    activeServiceManager.deleteActiveServicesWhichPlannedToChangeTariff(activeServiceParams.getId());
+                    activeServiceManager.cancelChangingTariff(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 }
             } else {
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    activeServiceManager.deleteActiveServicesWhichPlannedToChangeTariff(activeServiceParams.getId());
+                    activeServiceManager.cancelChangingTariff(activeServiceParams.getId());
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 } else {

@@ -133,8 +133,16 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     }
 
     @Override
-    public List<Integer> getActiveServicesWithTheSameType(int activeServiceId) {
-        return null;
+    public void deleteActiveServicesWithTheSameType(int activeServiceId){}
+
+    @Override
+    public void cancelChangingTariff(int activeServiceId) {
+
+    }
+
+    @Override
+    public void setNextId(int currentId, int newId) {
+
     }
 
 }

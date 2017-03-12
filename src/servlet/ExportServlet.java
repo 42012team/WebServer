@@ -38,7 +38,6 @@ public class ExportServlet extends HttpServlet {
             account.setActiveServices(getActiveServicesById(id));
             accountsList.add(account);
         }
-        System.out.println("go in export");
         Export export=new Export("D:\\nc\\export"+i+".xml");
         export.storeAccount(accountsList);
         String filePath = "D:\\nc";
