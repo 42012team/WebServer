@@ -28,7 +28,6 @@ public class DeleteActiveServiceWithSameTypeProcessor implements RequestProcesso
         this.initializer = initializer;
     }
 
-    //deleteTheSameType
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {

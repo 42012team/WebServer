@@ -1,5 +1,6 @@
 package servlet;
 
+
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
@@ -13,10 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
-
-/**
- * Created by User on 09.03.2017.
- */
 public class DeleteActiveServiceByTheSameTypeServlet extends HttpServlet {
     WebController controller = null;
 

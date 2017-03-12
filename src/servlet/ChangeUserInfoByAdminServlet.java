@@ -25,6 +25,7 @@ import java.util.List;
 public class ChangeUserInfoByAdminServlet extends HttpServlet {
     WebController controller = null;
 
+
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();

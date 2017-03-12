@@ -66,18 +66,18 @@
 
                 <%
                     List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServiceList");
-                    List<Integer> sameIdList=new ArrayList<Integer>();
-                    for(int i=0;i<activeServiceList.size();i++){
-                        if(activeServiceList.get(i).getNextActiveServiceId()!=0){
+                    List<Integer> sameIdList = new ArrayList<Integer>();
+                    for (int i = 0; i < activeServiceList.size(); i++) {
+                        if (activeServiceList.get(i).getNextActiveServiceId() != 0) {
                             sameIdList.add(activeServiceList.get(i).getNextActiveServiceId());
                         }
                     }
                     List<Service> serviceList = (List<Service>) request.getAttribute("activeServiceDescription");
                     for (int k = 0; k < serviceList.size(); k++) {
-                        boolean isExist=false;
-                        for(int j=0;j<sameIdList.size();j++){
-                            if(activeServiceList.get(k).getId()==sameIdList.get(j)){
-                                isExist=true;
+                        boolean isExist = false;
+                        for (int j = 0; j < sameIdList.size(); j++) {
+                            if (activeServiceList.get(k).getId() == sameIdList.get(j)) {
+                                isExist = true;
                                 break;
                             }
 
@@ -90,7 +90,7 @@
                             <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
                             <hr/>
                             <li>
-                                <%if(!isExist){%>
+                                <%if (!isExist) {%>
                                 <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
                                        id="<%=activeServiceList.get(k).getId()%>"
                                        value="<%=activeServiceList.get(k).getId()%>"><%}%>
@@ -115,28 +115,25 @@
                                 <%}%>
 
 
-                                <%  if(isExist){
+                                <% if (isExist) {
 
-                                }
-                                    else
-                                    if ((activeServiceList.get(k).getNewStatus()==null)||((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)))||
-                                        ((activeServiceList.get(k).getNewStatus()!=null)&&(activeServiceList.get(k).getDate().compareTo(new Date())<=0))&&(activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
+                                } else if ((activeServiceList.get(k).getNewStatus() == null) || ((activeServiceList.get(k).getNewStatus() != null) && (!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
+                                        ((activeServiceList.get(k).getNewStatus() != null) && (activeServiceList.get(k).getDate().compareTo(new Date()) <= 0)) && (activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="/ActionWithActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
-                                <%}
-                                else{%>
+                            <%} else {%>
                             <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                    formaction="/ActionWithActiveServiceServlet"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
-                                       value="Удалить"
-                                       formaction="/DeleteActiveServiceByTheSameTypeServlet"
-                                       method="post"/></li><%
-                                }
-                                %>
+                                                         value="Удалить"
+                                                         formaction="/DeleteActiveServiceByTheSameTypeServlet"
+                                                         method="post"/></li><%
+                            }
+                        %>
                             <br/>
                         </div>
                     </div>

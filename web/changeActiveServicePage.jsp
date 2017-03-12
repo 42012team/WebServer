@@ -69,13 +69,15 @@
                             блокировки:</p>
                             <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         </div>
-                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar" required/>
+                        <input type="datetime-local" style="display:none" id="date" name="date" class="calendar"
+                               required/>
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                          if (activeService.getNewStatus() == ActiveServiceStatus.DISCONNECTED) {%>
+                            if (activeService.getNewStatus() == ActiveServiceStatus.DISCONNECTED) {%>
                         <p>Отменить смену тарифа:</p>
-                        <input type="submit" formaction="/CancelChangeTariffServlet" formmethod="post" class="changeButton"
+                        <input type="submit" formaction="/CancelChangeTariffServlet" formmethod="post"
+                               class="changeButton"
                                value="Отменить"/>
 
                         <% activeService.setNewStatus(null);
@@ -95,18 +97,17 @@
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                        }
-                        else if(activeService.getCurrentStatus().equals(ActiveServiceStatus.PLANNED)){%>
-                         <p>Введите дату активации:</p>
+                        } else if (activeService.getCurrentStatus().equals(ActiveServiceStatus.PLANNED)) {%>
+                        <p>Введите дату активации:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
                         <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
-                            }
+                        }
 
 
-                        session.setAttribute("changedActiveService", activeService);
+                            session.setAttribute("changedActiveService", activeService);
 
                         %>
 

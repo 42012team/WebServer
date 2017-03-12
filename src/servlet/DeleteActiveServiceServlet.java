@@ -34,5 +34,6 @@ public class DeleteActiveServiceServlet extends HttpServlet {
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
         response.sendRedirect("/ShowActiveServicesServlet");
+
     }
 }

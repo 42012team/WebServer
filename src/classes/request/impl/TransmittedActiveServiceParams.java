@@ -129,6 +129,5 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         return unlockingTime;
     }
 
-    ;
 
 }

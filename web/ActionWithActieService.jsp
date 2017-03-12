@@ -52,22 +52,23 @@
         </div>
     </div>
 </nav>
-<br />
+<br/>
 <form method="post" class="changeForm">
-    <%  //int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+    <% //int id = Integer.parseInt(request.getParameter("chooseActiveService"));
         ActiveService activeService = (ActiveService) request.getAttribute("activeServiceForChanging");
-    session.setAttribute("changedActiveServiceId",activeService.getId());
-  if((activeService.getNewStatus()!=null)&&(activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){
-      %>
-    <input type="submit" class="changeDateButton1"  formaction="/ChangeActiveServiceServlet" formmethod="post" value="Изменить услугу"/>
+        session.setAttribute("changedActiveServiceId", activeService.getId());
+        if ((activeService.getNewStatus() != null) && (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+    %>
+    <input type="submit" class="changeDateButton1" formaction="/ChangeActiveServiceServlet" formmethod="post"
+           value="Изменить услугу"/>
 
-    <%
-        }
-        else{
-     %>
-    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceServlet" formmethod="post" value="Изменить тариф"/>
-    <input type="submit" class="changeDateButton"  formaction="/ChangeActiveServiceServlet" formmethod="post" value="Изменить услугу"/>
-<%}%>
+    <% } else {
+    %>
+    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceServlet"
+           formmethod="post" value="Изменить тариф"/>
+    <input type="submit" class="changeDateButton" formaction="/ChangeActiveServiceServlet" formmethod="post"
+           value="Изменить услугу"/>
+    <%}%>
 </form>
 </body>
 </html>

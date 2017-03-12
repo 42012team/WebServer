@@ -54,6 +54,7 @@ public class ActiveServiceManager {
 
     public void setNextActiveService(int currentId, int newId) {
         activeServiceStorage.setNextId(currentId, newId);
+
     }
 
     public ActiveService createActiveService(ActiveServiceParams activeServiceParams) {

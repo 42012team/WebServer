@@ -76,7 +76,7 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     }
 
     public int getVersion() {
-        return version;
+         return version;
     }
 
     public Date getDate() {
@@ -92,7 +92,6 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     }
 
     public void setId(int id) {
-
         this.id = id;
     }
 

@@ -41,6 +41,7 @@ public class CancelChangeTariffProcessor implements RequestProcessor, Serializab
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 }
             } else {
+
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
                     activeServiceManager.cancelChangingTariff(activeServiceParams.getId());

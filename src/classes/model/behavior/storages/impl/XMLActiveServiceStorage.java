@@ -334,7 +334,6 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
 
     @Override
     public void setNextId(int currentId, int newId) {
-
     }
 
     private void write(Document doc) {

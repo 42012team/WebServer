@@ -29,6 +29,7 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         controller = Initialization.getInstance().initialization();
     }
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userId = (int) request.getSession(true).getAttribute("userForChange");

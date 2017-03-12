@@ -66,7 +66,6 @@ public class Activator extends Thread implements ActivatorInterface {
             }*/
 
             if (listForChange.size() > 0) {
-                //    activeServiceManager.storeActiveServices(listForChange);
                 activeServicePool.removeAll(listForChange);
             }
             if (!activeServicePool.isEmpty()) {

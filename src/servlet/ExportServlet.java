@@ -21,7 +21,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.*;
 
 public class ExportServlet extends HttpServlet {
-    private long i=2;
+    private int i=2;
     WebController controller = null;
 
     @Override

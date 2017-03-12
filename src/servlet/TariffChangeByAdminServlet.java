@@ -42,7 +42,6 @@ public class TariffChangeByAdminServlet extends HttpServlet {
             Date newDate = null;
             newDate = format.parse(dateToString);
 
-            //получили
             TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");

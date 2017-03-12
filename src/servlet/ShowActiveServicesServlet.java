@@ -51,7 +51,6 @@ public class ShowActiveServicesServlet extends HttpServlet {
         request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession(true).getAttribute("user");

@@ -22,6 +22,7 @@ public class DeleteActiveServiceWithSameTypeByAdminServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
+
     }
 
     @Override

@@ -79,8 +79,6 @@ public class ActiveServiceParams {
         return version;
     }
 
-    public int getOldActiveServiceId() {
-        return oldActiveServiceId;
-    }
+    public int getOldActiveServiceId() {return oldActiveServiceId;}
 
 }
