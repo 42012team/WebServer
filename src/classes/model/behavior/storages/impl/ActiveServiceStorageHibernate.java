@@ -43,7 +43,9 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     public void deleteActiveService(int activeServiceId) {
         EntityManager entityManager = null;
         try {
-          /*  entityManager = HibernateUtil.getEntityManager();
+            int i=0;
+          /*
+           entityManager = HibernateUtil.getEntityManager();
             CriteriaBuilder builder = entityManager.getCriteriaBuilder();
             CriteriaDelete<ActiveService> criteria = builder.createCriteriaDelete(ActiveService.class);
             Root<ActiveService> root = criteria.from(ActiveService.class);
