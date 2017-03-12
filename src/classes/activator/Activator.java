@@ -1,7 +1,6 @@
 package classes.activator;
 
 import classes.model.ActiveService;
-import classes.model.ActiveServiceStatus;
 import classes.model.behavior.managers.ActiveServiceManager;
 
 import java.util.ArrayList;
@@ -39,39 +38,33 @@ public class Activator extends Thread implements ActivatorInterface {
     public void run() {
         init();
         while (true) {
+            synchronized (monitor) {
             List<ActiveService> listForChange = new ArrayList<ActiveService>();
             List<ActiveService> listForDeleting = new ArrayList<ActiveService>();
             Date currentDate = new Date();
             long sleepingTime = currentDate.getTime();
             for (ActiveService activeService : activeServicePool) {
                 if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getNewStatus() != null)) {
-                    if (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
-                        activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
-                        activeServiceManager.changeActiveServiceDate(activeService, currentDate);
+                    activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
+                    activeServiceManager.changeActiveServiceDate(activeService, activeService.getDate());
+                    try {
                         activeServiceManager.createActiveServiceWithNewStatus(activeService);
-                        listForChange.add(activeService);
-                        listForDeleting.add(activeService);
-                    } else {
-                        activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
-                        activeServiceManager.changeActiveServiceDate(activeService, currentDate);
-                        activeServiceManager.createActiveServiceWithNewStatus(activeService);
-                        listForChange.add(activeService);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+                    listForChange.add(activeService);
+
                 } else {
                     break;
                 }
             }
-           /* if(listForDeleting.size()>0){
-                activeServiceManager.storeActiveServices(listForDeleting);
-            }*/
-
             if (listForChange.size() > 0) {
                 activeServicePool.removeAll(listForChange);
             }
             if (!activeServicePool.isEmpty()) {
                 sleepingTime = activeServicePool.get(0).getDate().getTime() - currentDate.getTime();
             }
-            synchronized (monitor) {
+
                 try {
                     System.out.println("Поток активации уснул на " + sleepingTime / 1000 + " секунд");
                     monitor.wait(sleepingTime);
@@ -88,35 +81,35 @@ public class Activator extends Thread implements ActivatorInterface {
 
     @Override
     public void schedule(ActiveService activeService) {
-        if (activeServicePool.size() == 0) {
-            activeServicePool.add(activeService);
-            synchronized (monitor) {
+        synchronized (monitor) {
+            if (activeServicePool.size() == 0) {
+                activeServicePool.add(activeService);
                 monitor.notify();
+            } else if (activeServicePool.get(0).getDate().compareTo(activeService.getDate()) > 0) {
+                activeServicePool.add(activeService);
+                Collections.sort(activeServicePool);
+                synchronized (monitor) {
+                    monitor.notify();
+                }
+            } else {
+                activeServicePool.add(activeService);
+                Collections.sort(activeServicePool);
             }
-        } else if (activeServicePool.get(0).getDate().compareTo(activeService.getDate()) > 0) {
-            activeServicePool.add(activeService);
-            Collections.sort(activeServicePool);
-            synchronized (monitor) {
-                monitor.notify();
-            }
-        } else {
-            activeServicePool.add(activeService);
-            Collections.sort(activeServicePool);
         }
     }
 
     @Override
     public void unschedule(ActiveService activeService) {
-        if (activeServicePool.get(0).getId() == activeService.getId()) {
-            activeServicePool.remove(activeServicePool.get(0));
-            synchronized (monitor) {
+        synchronized (monitor) {
+            if (activeServicePool.get(0).getId() == activeService.getId()) {
+                activeServicePool.remove(activeServicePool.get(0));
                 monitor.notify();
-            }
-        } else {
-            for (ActiveService active : activeServicePool) {
-                if (active.getId() == activeService.getId()) {
-                    activeServicePool.remove(active);
-                    break;
+            } else {
+                for (ActiveService active : activeServicePool) {
+                    if (active.getId() == activeService.getId()) {
+                        activeServicePool.remove(active);
+                        break;
+                    }
                 }
             }
         }
@@ -124,10 +117,12 @@ public class Activator extends Thread implements ActivatorInterface {
 
     @Override
     public void reschedule(ActiveService activeService) {
-        for (ActiveService active : activeServicePool) {
-            if (active.getId() == activeService.getId()) {
-                activeServicePool.remove(active);
-                break;
+        synchronized (monitor) {
+            for (ActiveService active : activeServicePool) {
+                if (active.getId() == activeService.getId()) {
+                    activeServicePool.remove(active);
+                    break;
+                }
             }
         }
         if (activeService.getNewStatus() == null) {

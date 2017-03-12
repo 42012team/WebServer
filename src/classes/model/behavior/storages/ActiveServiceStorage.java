@@ -14,11 +14,15 @@ public interface ActiveServiceStorage {
 
     public ActiveService getActiveServiceById(int activeServiceId);
 
-    public void storeActiveServices(List<ActiveService> activeServicesList);
+    public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception;
 
     public void deleteActiveServicesByUserId(int userId);
+
     public List<String> getHistoryById(int activeServiceId);
+
     public void deleteActiveServicesWithTheSameType(int activeServiceId);
+
     public void cancelChangingTariff(int activeServiceId);
-    public void setNextId(int currentId,int newId);
+
+    public void setNextId(int currentId, int newId);
 }

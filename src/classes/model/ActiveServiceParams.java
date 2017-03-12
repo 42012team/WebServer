@@ -3,7 +3,7 @@ package classes.model;
 import java.util.Date;
 
 public class ActiveServiceParams {
-
+    private int activeServiceId;
     private int serviceId;
     private int userId;
     private ActiveServiceStatus currentStatus;
@@ -27,6 +27,10 @@ public class ActiveServiceParams {
 
     public ActiveServiceParams withUserId(int userId) {
         this.userId = userId;
+        return this;
+    }
+    public ActiveServiceParams withActiveServiceId(int activeServiceId) {
+        this.activeServiceId = activeServiceId;
         return this;
     }
 

@@ -27,7 +27,7 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
         this.initializer = initializer;
     }
 
-    private void changeActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, int version) {
+    private void changeActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, int version) throws Exception {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withCurrentStatus(currentStatus)
@@ -40,15 +40,19 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
 
     }
 
-    private ActiveServiceResponse getResponse(TransmittedActiveServiceParams activeServiceParam) {
-        changeActiveService(activeServiceParam.getId(), activeServiceParam.getServiceId(),
-                activeServiceParam.getUserId(), activeServiceParam.getCurrentStatus(),
-                activeServiceParam.getNewStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
-                        .getActiveServiceById(activeServiceParam.getId()).getVersion());
-        System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
-        return ActiveServiceResponse.create().withResponseType("activeServices").
-                withActiveServices(initializer.getActiveServiceManager()
-                        .getActiveServicesByUserId(activeServiceParam.getUserId()));
+    private ResponseDTO getResponse(TransmittedActiveServiceParams activeServiceParam) {
+        try {
+            changeActiveService(activeServiceParam.getId(), activeServiceParam.getServiceId(),
+                    activeServiceParam.getUserId(), activeServiceParam.getCurrentStatus(),
+                    activeServiceParam.getNewStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
+                            .getActiveServiceById(activeServiceParam.getId()).getVersion());
+            System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
+            return ActiveServiceResponse.create().withResponseType("activeServices").
+                    withActiveServices(initializer.getActiveServiceManager()
+                            .getActiveServicesByUserId(activeServiceParam.getUserId()));
+        } catch (Exception ex) {
+            return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
+        }
     }
 
     @Override
@@ -64,7 +68,7 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
                 }
             } else {
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    ActiveServiceResponse result = getResponse(activeServiceParams);
+                    ResponseDTO result = getResponse(activeServiceParams);
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return result;
                 } else {

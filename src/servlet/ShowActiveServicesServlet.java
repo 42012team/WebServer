@@ -4,7 +4,6 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
-import classes.model.ActiveServiceStatus;
 import classes.model.Service;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -46,8 +44,8 @@ public class ShowActiveServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
-        request.setAttribute("activeServiceDescription", serviceList);
-        request.setAttribute("activeServiceList", activeServicesList);
+        request.setAttribute("activeServicesDescriptions", serviceList);
+        request.setAttribute("activeServicesList", activeServicesList);
         request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
     }
 

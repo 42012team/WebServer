@@ -1,5 +1,6 @@
 package classes.processors.impl;
 
+import classes.exceptions.TransmittedException;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -9,9 +10,7 @@ import classes.response.impl.ActiveServiceResponse;
 
 import java.io.Serializable;
 
-/**
- * Created by User on 02.03.2017.
- */
+
 public class ChangeActiveServicesProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -27,7 +26,11 @@ public class ChangeActiveServicesProcessor implements RequestProcessor, Serializ
     @Override
     public ResponseDTO process(RequestDTO request) {
         TransmittedActiveServiceParams transmittedActiveServiceParams=(TransmittedActiveServiceParams)request;
-        initializer.getActiveServiceManager().storeActiveServices(transmittedActiveServiceParams.getActiveServicesList());
+        try {
+            initializer.getActiveServiceManager().storeActiveServices(transmittedActiveServiceParams.getActiveServicesList());
+        } catch(Exception ex){
+            return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
+        }
         return ActiveServiceResponse.create().withResponseType("answer");
     }
 }

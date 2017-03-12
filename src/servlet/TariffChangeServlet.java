@@ -41,7 +41,6 @@ public class TariffChangeServlet extends HttpServlet {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date newDate = null;
             newDate = format.parse(dateToString);
-
             TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");
@@ -50,7 +49,17 @@ public class TariffChangeServlet extends HttpServlet {
                 throw new ServletException(((TransmittedException) resp).getMessage());
             ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
             ActiveService activeService = activeServiceResponse.getAllActiveServices().get(0);
-            //поменяли
+            TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
+                    .withOldActiveServiceId(activeService.getId())
+                    .withServiceId(serviceId)
+                    .withUserId(user.getId())
+                    .withDate(newDate)
+                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
+                    .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withRequestType("changeTariffActiveService");
+            resp = controller.identifyObject(addActiveServiceParams);
+            if (resp.getResponseType().equals("exception"))
+                throw new ServletException(((TransmittedException) resp).getMessage());
             TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                     .withActiveServiceId(id)
                     .withUserId(user.getId())
@@ -63,21 +72,13 @@ public class TariffChangeServlet extends HttpServlet {
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
 
-            TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
-                    .withOldActiveServiceId(activeService.getId())
-                    .withServiceId(serviceId)
-                    .withUserId(user.getId())
-                    .withDate(newDate)
-                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                    .withNewStatus(ActiveServiceStatus.ACTIVE)
-                    .withRequestType("changeTariffActiveService");
-            resp = controller.identifyObject(addActiveServiceParams);
-            if (resp.getResponseType().equals("exception"))
-                throw new ServletException(((TransmittedException) resp).getMessage());
             response.sendRedirect("/ShowActiveServicesServlet");
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (ParseException ex) {
+            System.out.println("Exception occured!");
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                System.out.println(stackTraceElements[i].toString());
+            }
         }
-
     }
 }

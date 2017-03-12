@@ -6,16 +6,12 @@ import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
 import classes.request.impl.TransmittedActiveServiceParams;
-import classes.request.impl.TransmittedServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
 
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by User on 06.03.2017.
- */
 public class GetServicesWithTheSameTypeProcessor  implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -35,7 +31,6 @@ public class GetServicesWithTheSameTypeProcessor  implements RequestProcessor, S
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             List<Service> servicesList = initializer.getServiceManager().getServicesBySameType(
                     activeServiceParams.getId());
-            System.out.println(servicesList.size());
             return ServiceResponse.create()
                     .withServices(servicesList)
                     .withResponseType("services");

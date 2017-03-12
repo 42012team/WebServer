@@ -54,7 +54,7 @@
 </nav>
 <br/>
 <form method="post" class="changeForm">
-    <% //int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+    <%
         ActiveService activeService = (ActiveService) request.getAttribute("activeServiceForChanging");
         session.setAttribute("changedActiveServiceId", activeService.getId());
         if ((activeService.getNewStatus() != null) && (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {

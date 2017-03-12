@@ -7,7 +7,6 @@ import classes.model.ActiveServiceParams;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.storages.ActiveServiceStorage;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +37,7 @@ public class ActiveServiceManager {
         return activeServiceStorage.getActiveServiceById(activeServiceId);
     }
 
-    public void createActiveServiceWithNewStatus(ActiveService activeService) {
+    public void createActiveServiceWithNewStatus(ActiveService activeService) throws Exception {
         int currentId = activeService.getId();
         int newId = idGenerator.generateId();
         activeService.setId(newId);
@@ -49,25 +48,28 @@ public class ActiveServiceManager {
             setNextActiveService(newId, activeService1.getNextActiveServiceId());
         }
         setNextActiveService(currentId, newId);
-
     }
 
     public void setNextActiveService(int currentId, int newId) {
         activeServiceStorage.setNextId(currentId, newId);
-
     }
 
     public ActiveService createActiveService(ActiveServiceParams activeServiceParams) {
         if (!isExisting(activeServiceParams)) {
             ActiveService activeService = new ActiveService();
-            activeService.setId(idGenerator.generateId());
+            int newId=idGenerator.generateId();
+            activeService.setId(newId);
             activeService.setUserId(activeServiceParams.getUserId());
             activeService.setServiceId(activeServiceParams.getServiceId());
             activeService.setDate(activeServiceParams.getDate());
             activeService.setCurrentStatus(activeServiceParams.getCurrentStatus());
             activeService.setNewStatus(activeServiceParams.getNewStatus());
             activeService.setVersion(0);
-            storeActiveServices(Collections.singletonList(activeService));
+            try {
+                storeActiveServices(Collections.singletonList(activeService));
+            } catch (Exception ex) {
+                return null;
+            }
             activator.schedule(activeService);
             return activeService;
         }
@@ -84,11 +86,14 @@ public class ActiveServiceManager {
         activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
         activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
         activeService.setVersion(0);
-        storeActiveServices(Collections.singletonList(activeService));
+        try {
+            storeActiveServices(Collections.singletonList(activeService));
+        } catch (Exception ex) {
+            return null;
+        }
         setNextActiveService(activeServiceParams.getOldActiveServiceId(), newId);
         activator.schedule(activeService);
         return activeService;
-
     }
 
 
@@ -96,14 +101,13 @@ public class ActiveServiceManager {
                                           ActiveServiceStatus newStatus) {
         activeService.setCurrentStatus(currentStatus);
         activeService.setNewStatus(newStatus);
-
     }
 
     public void changeActiveServiceDate(ActiveService activeService, Date date) {
         activeService.setDate(date);
     }
 
-    public void changeActiveService(ActiveService activeService, ActiveServiceParams activeServiceParams) {
+    public void changeActiveService(ActiveService activeService, ActiveServiceParams activeServiceParams) throws Exception {
         changeActiveServiceDate(activeService, activeServiceParams.getDate());
         changeActiveServiceStatus(activeService, activeServiceParams.getCurrentStatus(),
                 activeServiceParams.getNewStatus());
@@ -118,7 +122,7 @@ public class ActiveServiceManager {
         return activeServiceStorage.getHistoryById(activeServiceId);
     }
 
-    public void storeActiveServices(List<ActiveService> activeServicesList) {
+    public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception {
         activeServiceStorage.storeActiveServices(activeServicesList);
     }
 
@@ -145,13 +149,12 @@ public class ActiveServiceManager {
         }
     }
 
-    public void deleteActiveServicesWithTheSameType(int activeServiceId) {
+    public void deleteActiveServicesWithTheSameType(int activeServiceId) throws Exception {
         ActiveService activeService = getActiveServiceById(activeServiceId);
         changeActiveServiceStatus(activeService, ActiveServiceStatus.DISCONNECTED, null);
         changeActiveServiceDate(activeService, new Date());
         createActiveServiceWithNewStatus(activeService);
         activeServiceStorage.deleteActiveServicesWithTheSameType(activeServiceId);
-
     }
 
     public void cancelChangingTariff(int activeServiceId) {

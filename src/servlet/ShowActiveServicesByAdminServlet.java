@@ -119,8 +119,8 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
                 newServiceList.add(serviceList.get(i));
             }
         }
-        request.setAttribute("activeServiceDescription", newServiceList);
-        request.setAttribute("activeServiceList", newActiveServiceList);
+        request.setAttribute("activeServicesDescriptions", newServiceList);
+        request.setAttribute("activeServicesList", newActiveServiceList);
         request.getRequestDispatcher("/showActiveServicesByAdminPage.jsp").forward(request, response);
     }
 }

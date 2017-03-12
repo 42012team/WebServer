@@ -277,14 +277,6 @@
         <url-pattern>/ErrorHandler</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>UploadServlet</servlet-name>
-        <servlet-class>servlet.UploadServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadServlet</servlet-name>
-        <url-pattern>/UploadServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>GetTheSameTypeByCurrentServiceServlet</servlet-name>
         <servlet-class>servlet.GetTheSameTypeByCurrentServiceServlet</servlet-class>
     </servlet>
@@ -321,15 +313,6 @@
         <url-pattern>/GetTheSameTypeByCurrentServiceByAdminServlet</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>DownloadServlet</servlet-name>
-        <servlet-class>servlet.DownloadServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>DownloadServlet</servlet-name>
-        <url-pattern>/DownloadServlet</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>DeleteActiveServiceByTheSameTypeServlet</servlet-name>
         <servlet-class>servlet.DeleteActiveServiceByTheSameTypeServlet</servlet-class>
@@ -371,7 +354,7 @@
         <servlet-name>ActionWithActiveServiceServlet</servlet-name>
         <url-pattern>/ActionWithActiveServiceServlet</url-pattern>
     </servlet-mapping>
-<!--  <error-page>
+    <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>
     </error-page>
@@ -382,7 +365,7 @@
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
-    </error-page>-->
+    </error-page>
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>servlet.SearchUserServlet</servlet-class>
@@ -390,5 +373,13 @@
     <servlet-mapping>
         <servlet-name>SearchUserServlet</servlet-name>
         <url-pattern>/SearchUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ActionWithActiveServiceByAdminServlet</servlet-name>
+        <servlet-class>servlet.ActionWithActiveServiceByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActionWithActiveServiceByAdminServlet</servlet-name>
+        <url-pattern>/ActionWithActiveServiceByAdminServlet</url-pattern>
     </servlet-mapping>
 </web-app>

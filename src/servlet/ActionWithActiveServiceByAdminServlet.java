@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ActionWithActiveServiceServlet  extends HttpServlet{
+public class ActionWithActiveServiceByAdminServlet  extends HttpServlet{
     WebController controller = null;
 
     @Override
@@ -35,7 +35,7 @@ public class ActionWithActiveServiceServlet  extends HttpServlet{
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
         ActiveService activeService = activeServiceResponse.getAllActiveServices().get(0);
         request.setAttribute("activeServiceForChanging", activeService);
-        request.getRequestDispatcher("/ActionWithActiveService.jsp").forward(request, response);
+        request.getRequestDispatcher("/actionWithActiveServiceByAdmin.jsp").forward(request, response);
     }
 
 }

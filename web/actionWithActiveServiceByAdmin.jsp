@@ -1,3 +1,5 @@
+<%@ page import="classes.model.ActiveService" %>
+<%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
@@ -6,12 +8,10 @@
     <title>Title</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link href="changeUserInfoByAdminStyle.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-    <link href="servicePageStyle.css" rel="stylesheet">
     <link href="showActiveServicesStyle.css" rel="stylesheet">
-    <script src="activeServiscesEffect.js"></script>
-
+    <link href="ChooseChangeActiveServiceStyle.css" rel="stylesheet">
+    <script src="addActiveServiceJs.js"></script>
 </head>
 <body onload="load()">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -37,12 +37,22 @@
         </div>
     </div>
 </nav>
-<form method="post">
-    <%  int id = Integer.parseInt(request.getParameter("chooseActiveService"));
-        session.setAttribute("changedActiveServiceId",id);
+<form method="post" class="changeForm">
+    <%
+        ActiveService activeService = (ActiveService) request.getAttribute("activeServiceForChanging");
+        session.setAttribute("changedActiveServiceId", activeService.getId());
+        if ((activeService.getNewStatus() != null) && (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
     %>
-    <input type="submit" formaction="/GetTheSameTypeByCurrentServiceByAdminServlet" formmethod="post" value="Изменить тариф"/>
-    <input type="submit"  formaction="/ChangeActiveServiceByAdminServlet" formmethod="post" value="Изменить услугу"/>
+    <input type="submit" class="changeDateButton1" formaction="/ChangeActiveServiceByAdminServlet" formmethod="post"
+           value="Изменить услугу"/>
+
+    <% } else {
+    %>
+    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceByAdminServlet"
+           formmethod="post" value="Изменить тариф"/>
+    <input type="submit" class="changeDateButton" formaction="/ChangeActiveServiceByAdminServlet" formmethod="post"
+           value="Изменить услугу"/>
+    <%}%>
 </form>
 </body>
 </html>

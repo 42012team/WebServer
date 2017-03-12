@@ -6,7 +6,6 @@ import classes.model.User;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,15 +16,10 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-/**
- * Created by User on 28.02.2017.
- */
 public class Export {
-//    private final String PATH = "D:\\nc\\12.xml";
  private   Document doc;
 private String path;
     public Export(String path) {
@@ -35,7 +29,6 @@ private String path;
             dbFactory.setNamespaceAware(true);
             DocumentBuilder dBuilder;
             dBuilder = dbFactory.newDocumentBuilder();
-
              doc = dbFactory.newDocumentBuilder().newDocument();
         } catch (ParserConfigurationException ex) {
             System.out.println("Exception occured!");
@@ -48,7 +41,6 @@ private String path;
     }
 
     public void storeAccount(List<Account> accountList) {
-        System.out.println("start store" + accountList.size());
         Element rootElement = (Element) doc.getElementsByTagName("users").item(0);
         if(doc.getElementsByTagName("users").getLength()==0){
            rootElement= doc.createElement("users");

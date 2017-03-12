@@ -3,11 +3,8 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
 import classes.request.impl.TransmittedActiveServiceParams;
-import classes.request.impl.TransmittedServiceParams;
 import classes.response.ResponseDTO;
-import classes.response.impl.ActiveServiceResponse;
 import classes.response.impl.ServiceResponse;
 
 import javax.servlet.ServletException;
@@ -16,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by User on 07.03.2017.
- */
+
 public class GetTheSameTypeByCurrentServiceServlet extends HttpServlet {
     WebController controller = null;
 
@@ -29,7 +24,6 @@ public class GetTheSameTypeByCurrentServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         int id = (Integer)request.getSession(true).getAttribute("changedActiveServiceId");
         TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)

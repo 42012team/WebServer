@@ -58,7 +58,6 @@ public class ServiceManager {
         for (Service service : allServices) {
             if (service.getStatus() != ServiceStatus.DEPRECATED) {
                 boolean notFound = true;
-
                 for (Service activeServiceDescription : activeServicesDescriptions) {
                     if (service.getType().equals(activeServiceDescription.getType())) {
                         notFound = false;
@@ -109,8 +108,8 @@ public class ServiceManager {
     public List<Service> getActiveServicesDecriptions(List<ActiveService> activeServices) {
         List<Service> allServices = getAllServices();
         List<Service> descriptions = new ArrayList<Service>();
-        for (ActiveService activeService : activeServices) {
             for (Service service : allServices) {
+                for (ActiveService activeService : activeServices) {
                 if (activeService.getServiceId() == service.getId()) {
                     descriptions.add(service);
                     break;
@@ -119,7 +118,8 @@ public class ServiceManager {
         }
         return descriptions;
     }
-    public List<Service> getServicesBySameType(int serviceId){
-     return  serviceStorage.getServicesBySameType(serviceId);
+
+    public List<Service> getServicesBySameType(int serviceId) {
+        return serviceStorage.getServicesBySameType(serviceId);
     }
 }

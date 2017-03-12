@@ -1,11 +1,11 @@
+<%@ page import="classes.model.ActiveService" %>
+<%@ page import="classes.model.ActiveServiceStatus" %>
+<%@ page import="classes.model.Service" %>
 <%@ page import="classes.model.User" %>
 <%@ page import="classes.response.impl.UserResponse" %>
-<%@ page import="classes.model.ActiveService" %>
-<%@ page import="java.util.List" %>
-<%@ page import="classes.model.Service" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="classes.model.ActiveServiceStatus" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
 <html>
@@ -46,128 +46,233 @@
 </nav>
 
 <form method="post">
-        <div class="container" id="containerProfile">
-            <div class="row">
+    <div class="container" id="containerProfile">
+        <div class="row">
 
-                <%
-                    UserResponse user = (UserResponse) request.getAttribute("user");%>
-                <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
-                    <%
+            <%
+                UserResponse user = (UserResponse) request.getAttribute("user");%>
+            <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
+            <%
 
-                    %>
-                <div class="col-md-4 text-center">
-                    <div class="box">
-                        <div class="box-content">
-                            <h2 class="tag-title"><span class="value">Профиль</span></h2>
-                            <hr/>
-                            <p>Имя:<%=user.getName()%></p>
-                            <p>Фамилия:<%=user.getSurname()%></p>
-                            <p>Email:<%=user.getEmail()%></p>
-                            <p>Телефон:<%=user.getPhone()%></p>
-                            <p>Адрес:<%=user.getAddress()%></p>
-                            <p >Пароль:<%=user.getPassword()%></p>
-                            <p >Привелегия:<%=user.getPrivilege()%></p>
-                            <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet" formmethod="post"
-                                   value="Изменить"/>
-                            <%if ((user.getUserId()!=((User)session.getAttribute("user")).getId())
-                                    &&(!user.getLogin().equals("admin"))){ %>
-                            <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
-                                   value="Удалить"/>
-                             <%  } %>
-                        </div>
+            %>
+            <div class="col-md-4 text-center">
+                <div class="box">
+                    <div class="box-content">
+                        <h2 class="tag-title"><span class="value">Профиль</span></h2>
+                        <hr/>
+                        <p>Имя:<%=user.getName()%>
+                        </p>
+                        <p>Фамилия:<%=user.getSurname()%>
+                        </p>
+                        <p>Email:<%=user.getEmail()%>
+                        </p>
+                        <p>Телефон:<%=user.getPhone()%>
+                        </p>
+                        <p>Адрес:<%=user.getAddress()%>
+                        </p>
+                        <p>Пароль:<%=user.getPassword()%>
+                        </p>
+                        <p>Привелегия:<%=user.getPrivilege()%>
+                        </p>
+                        <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet"
+                               formmethod="post"
+                               value="Изменить"/>
+                        <%
+                            if ((user.getUserId() != ((User) session.getAttribute("user")).getId())
+                                    && (!user.getLogin().equals("admin"))) {
+                        %>
+                        <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
+                               value="Удалить"/>
+                        <% } %>
                     </div>
-
                 </div>
+
             </div>
         </div>
-    <%session.setAttribute("userForChange",user.getUserId());%>
-    <input type="submit" name="" class="addActiveServiceButton" value="Подключить услугу" formaction="/ShowAllowedToConnectServicesByAdminServlet" formmethod="post">
-    <ul>
-        <div class="container">
-            <div class="row">
-
+    </div>
+    <%session.setAttribute("userForChange", user.getUserId());%>
+    <input type="submit" name="" class="addActiveServiceButton" value="Подключить услугу"
+           formaction="/ShowAllowedToConnectServicesByAdminServlet" formmethod="post">
+    <form method="post">
+        <div id="usersActiveServices"><span id="connectService"><h2>Подключенные услуги</h2></span></div>
+        <ul>
+            <div class="container">
                 <%
-                    List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServiceList");
-                    List<Integer> sameIdList=new ArrayList<Integer>();
-                    for(int i=0;i<activeServiceList.size();i++){
-                        if(activeServiceList.get(i).getNextActiveServiceId()!=0){
-                            sameIdList.add(activeServiceList.get(i).getNextActiveServiceId());
-                        }
-                    }
-                    List<Service> serviceList = (List<Service>) request.getAttribute("activeServiceDescription");
-                    for (int k = 0; k < serviceList.size(); k++) {
-                        boolean isExist=false;
-                        for(int j=0;j<sameIdList.size();j++){
-                            if(activeServiceList.get(k).getId()==sameIdList.get(j)){
-                                isExist=true;
-                                break;
-                            }
-
-                        }
-                        Service s = serviceList.get(k);
-
-                %>
-                <div class="col-md-4 text-center">
-                    <div class="box">
-                        <div class="box-content">
-                            <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
-                            <hr/>
-                            <li>
-                                <%if(!isExist){%>
-                                <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
-                                       id="<%=activeServiceList.get(k).getId()%>"
-                                       value="<%=activeServiceList.get(k).getId()%>"><%}%>
-                                <div class="description">Описание услуги:<span
-                                        class="value"><%=s.getDescription()%></span>
-                                </div>
-                                <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
-                                <div class="description">Статус услуги: <span
-                                        class="value"><%=activeServiceList.get(k).getCurrentStatus().toString()%></span>
-                                </div>
-                                <%
-                                    if (activeServiceList.get(k).getNewStatus() != null) {
-                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                                    String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
-                                <div class="description">Запланировано изменение статуса услуги на<span class="value">
-    <%= activeServiceList.get(k).getNewStatus().toString()
+                    List<ActiveService> activeServicesList = (List<ActiveService>) request.getAttribute("activeServicesList");
+                    List<Service> allServices = (List<Service>) request.getAttribute("activeServicesDescriptions");
+                    if (allServices.size() > 0) {%>
+                <p>
+                <h2 class="text-center">Услуги типа <%=allServices.get(0).getType().toString()%>
+                </h2>
+                </p>
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="box">
+                            <div class="box-content">
+                                <h2 class="tag-title"><span class="value"><%=allServices.get(0).getName()%></span></h2>
+                                <hr/>
+                                <li>
+                                    <%
+                                        int num = 0;
+                                        int serviceId = allServices.get(0).getId();
+                                        for (int i = 0; i < activeServicesList.size(); i++) {
+                                            if (activeServicesList.get(i).getServiceId() == serviceId) {
+                                                num = i;
+                                                break;
+                                            }
+                                        }%>
+                                    <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
+                                           id="<%=activeServicesList.get(num).getId()%>"
+                                           value="<%=activeServicesList.get(num).getId()%>">
+                                    <div class="description">Описание услуги:<span
+                                            class="value"><%=allServices.get(0).getDescription()%></span>
+                                    </div>
+                                    <div class="description">Тип услуги: <span
+                                            class="value"><%=allServices.get(0).getType()%></span></div>
+                                    <div class="description">Статус услуги: <span
+                                            class="value"><%=activeServicesList.get(num).getCurrentStatus().toString()%></span>
+                                    </div>
+                                    <% if (activeServicesList.get(num).getNewStatus() != null) {
+                                        SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                                        String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
+                                    <div class="description">Запланировано изменение статуса услуги на<span
+                                            class="value">
+    <%= activeServicesList.get(num).getNewStatus().toString()
     %> c  <%=strDate%>
-
             </span></div>
+                                    <%} else {%>
+                                    <br/>
+                                    <br/>
+                                    <%
+                                        }
+                                        if ((activeServicesList.get(num).getNewStatus() == null) || ((activeServicesList.get(num).getNewStatus() != null) && (!activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
+                                                ((activeServicesList.get(num).getNewStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+                                    %>
+                                    <input type="submit" class="changeButton" style="display:none" value="Изменить"
+                                           formaction="/ActionWithActiveServiceByAdminServlet"
+                                           method="post"/><input type="submit" class="deleteButton" style="display:none"
+                                                                 value="Удалить"
+                                                                 formaction="/DeleteActiveServiceByAdminServlet"
+                                                                 method="post"/></li>
                                 <%} else {%>
-                                <br/>
-                                <br/>
-                                <%}
-                                    if(isExist){
-
-                                    }
-                                    else
-                                if((activeServiceList.get(k).getNewStatus()==null)||((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)))){
-                                %>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="actionWithActiveServiceByAdmin.jsp"
+                                       formaction="/ActionWithActiveServiceByAdminServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
-                                                             formaction="/DeleteActiveServiceByAdminServlet"
-                                                             method="post"/></li>
-                            <%} else{%>
-                            <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                   formaction="actionWithActiveServiceByAdmin.jsp"
-                                   method="post"/><input type="submit" class="deleteButton" style="display:none"
-                                                         value="Удалить"
-                                                         formaction="/DeleteActiveServiceWithSameTypeByAdminServlet"
-                                                         method="post"/></li>
-                            <%}%>
-                            <br/>
+                                                             formaction="/DeleteActiveServiceWithSameTypeByAdminServlet"
+                                                             method="post"/></li><%
+                                }
+                            %>
+                                <br/>
+                            </div>
                         </div>
                     </div>
+                    <% if (allServices.size() > 1) {
+                        for (int i = 1; i < allServices.size(); i++) {
+                    %>
+                    <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
+                </div>
+                <p>
+                <h2 class="text-center">Услуги типа <%=allServices.get(i).getType().toString()%>
+                </h2>
+                </p>
+                <div class="row">
+                    <%}%>
+                    <div class="col-md-4 text-center">
+                        <div class="box">
+                            <div class="box-content">
+                                <li>
+                                    <%
+                                        num = 0;
+                                        String type = allServices.get(i).getType();
+                                        boolean isSecond = false;
+                                        if (allServices.get(i).getType().equals(allServices.get(i - 1).getType()))
+                                            isSecond = true;
+                                        boolean bool = isSecond;
+                                        for (int j = 0; j < activeServicesList.size(); j++) {
+                                            boolean hasFind = false;
+                                            for (int k = 0; k < allServices.size(); k++) {
+                                                if ((activeServicesList.get(j).getServiceId() == allServices.get(k).getId()) &&
+                                                        (allServices.get(k).getType().equals(type))) {
+                                                    if (!isSecond) {
+                                                        num = j;
+                                                        serviceId = k;
+                                                        hasFind = true;
+                                                        break;
+                                                    } else {
+                                                        isSecond = false;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (hasFind)
+                                                break;
+                                        }
+                                    %>
+                                    <h2 class="tag-title"><span
+                                            class="value"><%=allServices.get(serviceId).getName()%></span></h2>
+                                    <hr/>
+                                    <%
+                                        if (!bool) {
+                                    %>
+                                    <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
+                                           id="<%=activeServicesList.get(num).getId()%>"
+                                           value="<%=activeServicesList.get(num).getId()%>">
+                                    <%}%>
+                                    <div class="description">Описание услуги:<span
+                                            class="value"><%=allServices.get(serviceId).getDescription()%></span>
+                                    </div>
+                                    <div class="description">Тип услуги: <span
+                                            class="value"><%=allServices.get(serviceId).getType()%></span></div>
+                                    <div class="description">Статус услуги: <span
+                                            class="value"><%=activeServicesList.get(num).getCurrentStatus().toString()%></span>
+                                    </div>
+                                    <% if (activeServicesList.get(num).getNewStatus() != null) {
+                                        SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                                        String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
+                                    <div class="description">Запланировано изменение статуса услуги на<span
+                                            class="value">
+    <%= activeServicesList.get(num).getNewStatus().toString()
+    %> c  <%=strDate%>
+            </span></div>
+                                    <%} else {%>
+                                    <br/>
+                                    <br/>
+                                    <%
+                                        }
+                                        if ((activeServicesList.get(num).getNewStatus() == null) || ((activeServicesList.get(num).getNewStatus() != null) && (!activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
+                                                ((activeServicesList.get(num).getNewStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+                                    %>
+                                    <input type="submit" class="changeButton" style="display:none" value="Изменить"
+                                           formaction="/ActionWithActiveServiceByAdminServlet"
+                                           method="post"/><input type="submit" class="deleteButton" style="display:none"
+                                                                 value="Удалить"
+                                                                 formaction="/DeleteActiveServiceByAdminServlet"
+                                                                 method="post"/></li>
+                                <%} else {%>
+                                <input type="submit" class="changeButton" style="display:none" value="Изменить"
+                                       formaction="/ActionWithActiveServiceByAdminServlet"
+                                       method="post"/><input type="submit" class="deleteButton" style="display:none"
+                                                             value="Удалить"
+                                                             formaction="/DeleteActiveServiceWithSameTypeByAdminServlet"
+                                                             method="post"/></li><%
+                                }
+                            %>
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (i == allServices.size() - 1) {%>
                 </div>
                 <%}%>
+                <%
+                            }
+                        }
+                    }
+                %>
             </div>
-        </div>
-    </ul>
-
+        </ul>
+    </form>
 </form>
-
-
 </body>
 </html>

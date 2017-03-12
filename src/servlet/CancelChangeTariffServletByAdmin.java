@@ -24,6 +24,7 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
     public void init() throws ServletException {
         controller = Initialization.getInstance().initialization();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
@@ -33,10 +34,10 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-        request.setAttribute("user_id",activeService.getUserId());
+        request.setAttribute("user_id", activeService.getUserId());
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+activeService.getUserId());
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + activeService.getUserId());
     }
 
     @Override
@@ -48,7 +49,7 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-      activeServiceParams = TransmittedActiveServiceParams.create()
+        activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
                 .withDate(activeService.getDate())
@@ -56,10 +57,10 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
                 .withNewStatus(activeService.getNewStatus())
                 .withVersion(activeService.getVersion())
                 .withRequestType("changeActiveService");
-         resp = controller.identifyObject(activeServiceParams);
+        resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        request.setAttribute("user_id",activeService.getUserId());
-        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+activeService.getUserId());
+        request.setAttribute("user_id", activeService.getUserId());
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + activeService.getUserId());
     }
 }

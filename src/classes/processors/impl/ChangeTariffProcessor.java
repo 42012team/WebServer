@@ -38,9 +38,7 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
                 .withUserId(userId)
                 .withDate(date)
                 .withOldActiveServiceId(oldActiveServiceId);
-
         return (activeServiceManager.changeTariff(activeServiceParams) != null);
-
     }
 
     @Override

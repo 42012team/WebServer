@@ -4,7 +4,6 @@ import classes.db.DBConnection;
 import classes.model.ActiveService;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.storages.ActiveServiceStorage;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,8 +21,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            //  String sql = "SELECT *FROM ACTIVESERVICE WHERE USER_ID=?";
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and(CURRENT_STATUS!='DISCONNECTED')and ((NEXTACTIVESERVICEID IS NULL)or ((NEW_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and(CURRENT_STATUS!='DISCONNECTED')and ((NEXTACTIVESERVICEID IS NULL)or ((NEW_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
@@ -176,7 +174,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     @Override
     public void cancelChangingTariff(int activeServiceId) {
         try {
-            System.out.println("changeTariff");
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = "DELETE  FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=" +
                     "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?)";
@@ -257,9 +254,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                     activeService.setDate(null);
                 }
                 if (rs.getInt("NEXTACTIVESERVICEID") != 0) {
-                    System.out.println(rs.getInt("NEXTACTIVESERVICEID") + "from here");
                     activeService.setNextActiveServiceId(rs.getInt("NEXTACTIVESERVICEID"));
-
                 }
                 activeServiceList.add(activeService);
             }
@@ -363,7 +358,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     }
 
     @Override
-    public void storeActiveServices(List<ActiveService> activeServicesList) {
+    public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception {
         try {
             PreparedStatement ps = null;
             connection = DBConnection.getInstance().getDataSourse().getConnection();
@@ -402,7 +397,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 else ps.setString(13, " ");
                 ps.setTimestamp(14, timestamp);
                 ps.setInt(15, activeServicesList.get(i).getVersion());
-                //      ps.setInt(16,);
                 ps.executeQuery();
             }
             ps.close();
@@ -412,6 +406,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
                 System.out.println(stackTraceElements[i].toString());
             }
+            throw new Exception();
         } finally {
             try {
                 connection.close();
@@ -474,7 +469,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
 
     public void setNextId(int currentId, int newId) {
         try {
-
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = " UPDATE ACTIVESERVICE set nextactiveserviceid=? where ACTIVESERVICE_ID=?";
             PreparedStatement ps = connection.prepareStatement(sql);

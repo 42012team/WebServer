@@ -25,7 +25,6 @@ public class HibernateUtil {
     }
 
     public static EntityManager getEntityManager() {
-        System.out.println(emFactory == null);
         return emFactory.createEntityManager();
     }
 

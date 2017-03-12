@@ -49,7 +49,7 @@ public class AddActiveServiceServlet extends HttpServlet {
             ResponseDTO resp = controller.identifyObject(activeServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-            request.getRequestDispatcher("/ShowActiveServicesServlet").forward(request, response);
+            response.sendRedirect("/ShowActiveServicesServlet");
         } catch (ParseException e) {
             throw new ServletException("НЕКОРРЕКТНАЯ ДАТА!");
         }
