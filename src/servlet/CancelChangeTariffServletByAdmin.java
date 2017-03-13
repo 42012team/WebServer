@@ -49,6 +49,7 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
+        System.out.println(activeService.getCurrentStatus()+"CURRENTSTATUS");
         activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
