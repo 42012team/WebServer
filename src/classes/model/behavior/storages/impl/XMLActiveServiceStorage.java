@@ -1,6 +1,7 @@
 package classes.model.behavior.storages.impl;
 
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.storages.ActiveServiceStorage;
 import org.w3c.dom.Attr;
@@ -168,7 +169,7 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
                                 newStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
-                        us = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date);
+                        us = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date,ActiveServiceState.NOT_READY);
                         us.setVersion(version);
                         list.add(us);
                     } catch (ParseException ex) {
@@ -230,7 +231,7 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
                         int version = Integer.parseInt(activeServiceElement.getAttribute("version"));
                         activeService = new ActiveService(activeServiceId,
                                 Integer.parseInt(activeServiceElement.getAttribute("serviceId")),
-                                Integer.parseInt(activeServiceElement.getAttribute("userId")), currentStatus, newStatus, date);
+                                Integer.parseInt(activeServiceElement.getAttribute("userId")), currentStatus, newStatus, date,ActiveServiceState.NOT_READY);
                         activeService.setVersion(version);
                     } catch (ParseException ex) {
                         System.out.println("Exception occured!");
@@ -295,7 +296,7 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
                             newStatus = ActiveServiceStatus.DISCONNECTED;
                             break;
                     }
-                    us = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date);
+                    us = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date, ActiveServiceState.NOT_READY);
                     us.setVersion(version);
                     list.add(us);
                 } catch (ParseException ex) {

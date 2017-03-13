@@ -64,8 +64,8 @@ public class ShowActiveServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
-        request.setAttribute("activeServiceDescription", serviceList);
-        request.setAttribute("activeServiceList", activeServicesList);
+        request.setAttribute("activeServicesDescriptions", serviceList);
+        request.setAttribute("activeServicesList", activeServicesList);
         request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
     }
 

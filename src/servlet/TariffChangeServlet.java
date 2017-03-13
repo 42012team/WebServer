@@ -4,6 +4,7 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -45,6 +46,7 @@ public class TariffChangeServlet extends HttpServlet {
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");
             ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
+       //     ActiveServiceResponse activeServiceResponse=(ActiveServiceResponse)resp;
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
             ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
@@ -56,19 +58,40 @@ public class TariffChangeServlet extends HttpServlet {
                     .withDate(newDate)
                     .withCurrentStatus(ActiveServiceStatus.PLANNED)
                     .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
+            activeServiceResponse = (ActiveServiceResponse) resp;
+            int newId=activeServiceResponse.getAllActiveServices().get(0).getId();
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-            TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                    .withActiveServiceId(id)
-                    .withUserId(user.getId())
-                    .withDate(newDate)
-                    .withCurrentStatus(activeService.getCurrentStatus())
-                    .withNewStatus(ActiveServiceStatus.DISCONNECTED)
-                    .withVersion(activeService.getVersion())
-                    .withRequestType("changeActiveService");
+            if (activeService.getState().equals(ActiveServiceState.READY)) {
+                TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
+                        .withActiveServiceId(id)
+                        .withServiceId(activeService.getServiceId())
+                        .withUserId(user.getId())
+                        .withDate(newDate)
+                        .withCurrentStatus(activeService.getNewStatus())//тут надо переназвать,а так все норм
+                        .withNewStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withVersion(activeService.getVersion())
+                        .withNextActiveServiceId(newId)
+                        .withState(activeService.getState())
+                        .withRequestType("changeActiveService");
             resp = controller.identifyObject(activeServiceParams);
+        }
+            else{
+                TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
+                        .withActiveServiceId(id)
+                        .withUserId(user.getId())
+                        .withServiceId(activeService.getServiceId())
+                        .withDate(newDate)
+                        .withCurrentStatus(activeService.getCurrentStatus())
+                        .withNewStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withVersion(activeService.getVersion())
+                        .withState(ActiveServiceState.NOT_READY)
+                        .withRequestType("changeActiveService");
+                resp = controller.identifyObject(activeServiceParams);
+            }
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
 

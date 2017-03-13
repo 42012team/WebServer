@@ -1,6 +1,7 @@
 package classes.request.impl;
 
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.request.RequestDTO;
 
@@ -20,6 +21,8 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     private String requestType;
     private int version;
     private long unlockingTime;
+    private ActiveServiceState state;
+    private int nextActiveServiceId;
     private List<ActiveService> activeServicesList;
 
     private TransmittedActiveServiceParams() {
@@ -73,9 +76,17 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         this.version = version;
         return this;
     }
+    public TransmittedActiveServiceParams withNextActiveServiceId(int nextActiveServiceId) {
+        this.activeServiceId = activeServiceId;
+        return this;
+    }
 
     public TransmittedActiveServiceParams withUnlockingTime(long unlockingTime) {
         this.unlockingTime = unlockingTime;
+        return this;
+    }
+    public TransmittedActiveServiceParams withState(ActiveServiceState state){
+        this.state=state;
         return this;
     }
 
@@ -111,9 +122,13 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     public int getOldActiveServiceId() {
         return oldActiveServiceId;
     }
+    public  int getNextActiveServiceId(){return  nextActiveServiceId;}
 
     public Date getDate() {
         return date;
+    }
+    public ActiveServiceState getState(){
+        return state;
     }
 
     public List<ActiveService> getActiveServicesList() {

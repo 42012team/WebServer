@@ -4,6 +4,7 @@ import classes.activator.ActivatorInterface;
 import classes.idgenerator.IdGenerator;
 import classes.model.ActiveService;
 import classes.model.ActiveServiceParams;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.storages.ActiveServiceStorage;
 
@@ -65,6 +66,7 @@ public class ActiveServiceManager {
             activeService.setCurrentStatus(activeServiceParams.getCurrentStatus());
             activeService.setNewStatus(activeServiceParams.getNewStatus());
             activeService.setVersion(0);
+            activeService.setState(activeServiceParams.getState());
             try {
                 storeActiveServices(Collections.singletonList(activeService));
             } catch (Exception ex) {
@@ -85,6 +87,7 @@ public class ActiveServiceManager {
         activeService.setDate(activeServiceParams.getDate());
         activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
         activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+        activeService.setState(activeServiceParams.getState());
         activeService.setVersion(0);
         try {
             storeActiveServices(Collections.singletonList(activeService));
@@ -102,20 +105,52 @@ public class ActiveServiceManager {
         activeService.setCurrentStatus(currentStatus);
         activeService.setNewStatus(newStatus);
     }
+    public void changeState(ActiveService activeService) {
+        activeService.setState(ActiveServiceState.READY);
+    }
 
     public void changeActiveServiceDate(ActiveService activeService, Date date) {
         activeService.setDate(date);
     }
 
     public void changeActiveService(ActiveService activeService, ActiveServiceParams activeServiceParams) throws Exception {
-        changeActiveServiceDate(activeService, activeServiceParams.getDate());
-        changeActiveServiceStatus(activeService, activeServiceParams.getCurrentStatus(),
-                activeServiceParams.getNewStatus());
-        activeService.setVersion(activeServiceParams.getVersion() + 1);
-        String message = "Изменение статуса услуги с " + activeServiceParams.getCurrentStatus() + " на " + activeServiceParams.getNewStatus() +
-                " ";
-        storeActiveServices(Collections.singletonList(activeService));
-        activator.reschedule(activeService);
+        if(activeServiceParams.getState().equals(ActiveServiceState.READY)){
+            System.out.println("in ready");
+            int newId = idGenerator.generateId();
+            ActiveService newActiveService = new ActiveService();
+            newActiveService.setId(newId);
+            newActiveService.setUserId(activeServiceParams.getUserId());
+            newActiveService.setServiceId(activeServiceParams.getServiceId());
+            newActiveService.setDate(activeServiceParams.getDate());
+            newActiveService.setCurrentStatus(activeServiceParams.getCurrentStatus());
+            newActiveService.setNewStatus(activeServiceParams.getNewStatus());
+            newActiveService.setVersion(0);
+            newActiveService.setState(ActiveServiceState.NOT_READY);
+            storeActiveServices(Collections.singletonList(newActiveService));
+            activator.schedule(newActiveService);
+            if ((activeService.getCurrentStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+                ActiveService activeService1 = getActiveServiceById(activeService.getId());
+                setNextActiveService(newId, activeService1.getNextActiveServiceId());
+            }
+            setNextActiveService(activeService.getId(), newId);
+            if(activeService.getNextActiveServiceId()!=0){
+                setNextActiveService(newId,activeService.getNextActiveServiceId());
+            }
+        }
+        else {
+            changeActiveServiceDate(activeService, activeServiceParams.getDate());
+            changeActiveServiceStatus(activeService, activeServiceParams.getCurrentStatus(),
+                    activeServiceParams.getNewStatus());
+            activeService.setVersion(activeServiceParams.getVersion() + 1);
+            activeService.setState(activeServiceParams.getState());
+            String message = "Изменение статуса услуги с " + activeServiceParams.getCurrentStatus() + " на " + activeServiceParams.getNewStatus() +
+                    " ";
+            storeActiveServices(Collections.singletonList(activeService));
+            activator.reschedule(activeService);
+        }
+
+
+
     }
 
     public List<String> getHistory(int activeServiceId) {
@@ -141,10 +176,12 @@ public class ActiveServiceManager {
 
     public void deleteActiveService(int activeServiceId) {
         ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
-        if (activeService.getNewStatus() != null) {
+        if (activeService.getState().equals(ActiveServiceState.NOT_READY)) {
             activeServiceStorage.deleteActiveService(activeServiceId);
             activator.unschedule(activeService);
         } else {
+        //    ActiveService newActiveService=new ActiveService();
+           // createActiveServiceWithNewStatus();
             activeServiceStorage.deleteActiveService(activeServiceId);
         }
     }

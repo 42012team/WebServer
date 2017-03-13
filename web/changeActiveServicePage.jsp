@@ -1,6 +1,7 @@
 <%@ page import="classes.model.ActiveService" %>
 <%@ page import="classes.model.ActiveServiceStatus" %>
 <%@ page import="classes.model.User" %>
+<%@ page import="classes.model.ActiveServiceState" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
 <html>d
@@ -57,7 +58,12 @@
                         <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
                         <%
+                                if(activeService.getState().equals(ActiveServiceState.READY)){
+                                    activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                                    activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
+                                }
                             }
+                            else
                             if (activeService.getNewStatus() == ActiveServiceStatus.SUSPENDED) {
                         %>
 
@@ -73,7 +79,12 @@
                                required/>
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
+                                if(activeService.getState().equals(ActiveServiceState.READY)){
+                                    activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                                    activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
+                                }
                             }
+                            else
                             if (activeService.getNewStatus() == ActiveServiceStatus.DISCONNECTED) {%>
                         <p>Отменить смену тарифа:</p>
                         <input type="submit" formaction="/CancelChangeTariffServlet" formmethod="post"

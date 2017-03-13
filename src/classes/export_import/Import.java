@@ -1,9 +1,6 @@
 package classes.export_import;
 
-import classes.model.Account;
-import classes.model.ActiveService;
-import classes.model.ActiveServiceStatus;
-import classes.model.User;
+import classes.model.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -107,7 +104,7 @@ public class Import {
                                 newStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
-                        activeService = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date);
+                        activeService = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date, ActiveServiceState.NOT_READY);
                         activeService.setVersion(version);
                         activeServiceList.add(activeService);
                     } catch (ParseException ex) {

@@ -5,6 +5,7 @@ import classes.controllers.WebController;
 import classes.dateP.DateValidator;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -49,7 +50,7 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
             if(newDate.before(new Date())&&(!((User)request.getSession(true).getAttribute("user")).getPrivilege().equals("admin"))){
                 throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
             }
-            DateValidator dateValidator=new DateValidator();
+      //      DateValidator dateValidator=new DateValidator();
             if (activeService.getNewStatus() != null)
                 switch (activeService.getNewStatus()) {
                     case ACTIVE: {
@@ -82,10 +83,12 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(user.getId())
+                .withServiceId(activeService.getServiceId())
                 .withDate(newDate)
                 .withCurrentStatus(activeService.getCurrentStatus())
                 .withNewStatus(activeService.getNewStatus())
                 .withVersion(activeService.getVersion())
+                .withState(activeService.getState())
                 .withRequestType("changeActiveService");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))

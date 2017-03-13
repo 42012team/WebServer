@@ -45,10 +45,13 @@ public class Activator extends Thread implements ActivatorInterface {
             long sleepingTime = currentDate.getTime();
             for (ActiveService activeService : activeServicePool) {
                 if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getNewStatus() != null)) {
-                    activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
-                    activeServiceManager.changeActiveServiceDate(activeService, activeService.getDate());
+             /*       activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
+                    activeServiceManager.changeActiveServiceDate(activeService, activeService.getDate());*/
+
                     try {
-                        activeServiceManager.createActiveServiceWithNewStatus(activeService);
+                        activeServiceManager.changeState(activeService);
+
+                        //activeServiceManager.createActiveServiceWithNewStatus(activeService);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -60,6 +63,11 @@ public class Activator extends Thread implements ActivatorInterface {
             }
             if (listForChange.size() > 0) {
                 activeServicePool.removeAll(listForChange);
+                try {
+                    activeServiceManager.storeActiveServices(listForChange);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             if (!activeServicePool.isEmpty()) {
                 sleepingTime = activeServicePool.get(0).getDate().getTime() - currentDate.getTime();

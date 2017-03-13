@@ -1,7 +1,9 @@
 package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
+import classes.model.ActiveService;
 import classes.model.ActiveServiceParams;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.managers.ActiveServiceManager;
 import classes.processors.Initializer;
@@ -12,6 +14,7 @@ import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -29,7 +32,7 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
         this.initializer = initializer;
     }
 
-    private boolean createActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {
+    private ActiveService createActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, ActiveServiceState state) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withCurrentStatus(ActiveServiceStatus.PLANNED)
@@ -37,8 +40,9 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date)
+                .withState(state)
                 .withOldActiveServiceId(oldActiveServiceId);
-        return (activeServiceManager.changeTariff(activeServiceParams) != null);
+        return activeServiceManager.changeTariff(activeServiceParams);
     }
 
     @Override
@@ -47,12 +51,12 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
-            if (createActiveService(activeServiceParams.getOldActiveServiceId(), activeServiceParams.getServiceId(),
+            ActiveService activeService=createActiveService(activeServiceParams.getOldActiveServiceId(), activeServiceParams.getServiceId(),
                     activeServiceParams.getUserId(), activeServiceParams.getCurrentStatus(),
-                    activeServiceParams.getNewStatus(), activeServiceParams.getDate())) {
+                    activeServiceParams.getNewStatus(), activeServiceParams.getDate(),activeServiceParams.getState());
+            if (activeService!=null) {
                 return ActiveServiceResponse.create().withResponseType("activeServices")
-                        .withActiveServices(initializer.getActiveServiceManager()
-                                .getActiveServicesByUserId(activeServiceParams.getUserId()));
+                        .withActiveServices(Collections.singletonList(activeService));
             }
         } catch (Exception ex) {
             System.out.println("Exception occured: " + ex.getStackTrace());

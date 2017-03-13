@@ -2,6 +2,7 @@ package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveServiceParams;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.managers.ActiveServiceManager;
 import classes.processors.Initializer;
@@ -26,11 +27,12 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
         this.initializer = initializer;
     }
 
-    private boolean createActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date) {
+    private boolean createActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date,ActiveServiceState state) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withCurrentStatus(ActiveServiceStatus.PLANNED)
                 .withNewStatus(ActiveServiceStatus.ACTIVE)
+                .withState(state)
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date);
@@ -46,7 +48,7 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
                     + " пользователю с Id " + activeServiceParams.getUserId());
             if (createActiveService(activeServiceParams.getId(), activeServiceParams.getServiceId(),
                     activeServiceParams.getUserId(), activeServiceParams.getCurrentStatus(),
-                    activeServiceParams.getNewStatus(), activeServiceParams.getDate())) {
+                    activeServiceParams.getNewStatus(), activeServiceParams.getDate(),activeServiceParams.getState())) {
                 return ActiveServiceResponse.create().withResponseType("activeServices")
                         .withActiveServices(initializer.getActiveServiceManager()
                                 .getActiveServicesByUserId(activeServiceParams.getUserId()));

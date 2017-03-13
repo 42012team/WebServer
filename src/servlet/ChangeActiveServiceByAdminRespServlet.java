@@ -4,6 +4,7 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
@@ -77,6 +78,7 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
                 .withCurrentStatus(activeService.getCurrentStatus())
                 .withNewStatus(activeService.getNewStatus())
                 .withVersion(activeService.getVersion())
+                .withState(ActiveServiceState.NOT_READY)
                 .withRequestType("changeActiveService");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))

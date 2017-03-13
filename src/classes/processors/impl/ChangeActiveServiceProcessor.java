@@ -2,6 +2,7 @@ package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveServiceParams;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.managers.ActiveServiceManager;
 import classes.pessimisticLock.PessimisticLockingThread;
@@ -27,7 +28,8 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
         this.initializer = initializer;
     }
 
-    private void changeActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, int version) throws Exception {
+    private void changeActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus,
+                ActiveServiceStatus newStatus, Date date, int version, ActiveServiceState state,int nextActiveServiceId) throws Exception {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withCurrentStatus(currentStatus)
@@ -35,17 +37,20 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date)
-                .withVersion(version);
+                .withVersion(version)
+                .withNextActiveServiceId(nextActiveServiceId)
+                .withState(state);
         activeServiceManager.changeActiveService(activeServiceManager.getActiveServiceById(id), activeServiceParams);
 
     }
 
     private ResponseDTO getResponse(TransmittedActiveServiceParams activeServiceParam) {
         try {
+
             changeActiveService(activeServiceParam.getId(), activeServiceParam.getServiceId(),
                     activeServiceParam.getUserId(), activeServiceParam.getCurrentStatus(),
                     activeServiceParam.getNewStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
-                            .getActiveServiceById(activeServiceParam.getId()).getVersion());
+                            .getActiveServiceById(activeServiceParam.getId()).getVersion(),activeServiceParam.getState(),activeServiceParam.getNextActiveServiceId());
             System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
             return ActiveServiceResponse.create().withResponseType("activeServices").
                     withActiveServices(initializer.getActiveServiceManager()

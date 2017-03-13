@@ -3,6 +3,7 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -45,6 +46,7 @@ public class AddActiveServiceServlet extends HttpServlet {
                     .withDate(newDate)
                     .withCurrentStatus(ActiveServiceStatus.PLANNED)
                     .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("createActiveService");
             ResponseDTO resp = controller.identifyObject(activeServiceParams);
             if (resp.getResponseType().equals("exception"))
