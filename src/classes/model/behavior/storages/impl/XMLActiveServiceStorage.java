@@ -336,6 +336,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
     public void setNextId(int currentId, int newId) {
     }
 
+    @Override
+    public List<ActiveService> getActiveServicesHistoryByUserId(int userId, int serviceId) {
+        return null;
+    }
+
     private void write(Document doc) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

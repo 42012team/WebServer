@@ -31,7 +31,7 @@ body {
 .registrationForm {
     margin-top: 10%;
     margin-left: 25%;
-    height: 85%;
+    height: 70%;
     width: 50%;
     background-color: lightgrey;
     border-top-right-radius: 12px;
@@ -68,7 +68,6 @@ ul {
     position: relative;
     height: 14.2%;
 }
-
 label {
     width: 150px;
     margin-top: 3px;
@@ -82,7 +81,6 @@ input {
     height: 25px;
     width: 60%;
     padding: 5px 8px;
-
 }
 
 input.checkboxChoose{
@@ -93,15 +91,14 @@ input.checkboxChoose{
     width:auto;
     margin-right: 1%;
 }
-label.L{
 
+label.L{
     display: auto;
     width:auto;
     padding:0;
     margin-top: 0;
     float: none;
 }
-
 
 #loginButton {
     margin-left: 4%;
@@ -117,7 +114,6 @@ label.L{
 .text {
     padding: 40px;
     text-align: left;
-
 }
 
 

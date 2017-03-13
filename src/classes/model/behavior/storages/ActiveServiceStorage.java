@@ -25,4 +25,6 @@ public interface ActiveServiceStorage {
     public void cancelChangingTariff(int activeServiceId);
 
     public void setNextId(int currentId, int newId);
+
+    public List<ActiveService> getActiveServicesHistoryByUserId(int userId,int serviceId);
 }

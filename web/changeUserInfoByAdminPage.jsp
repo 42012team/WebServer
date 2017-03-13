@@ -17,6 +17,7 @@
     <script src="js/bootstrap.min.js"></script>
     <link href="servicePageStyle.css" rel="stylesheet">
     <link href="showActiveServicesStyle.css" rel="stylesheet">
+    <link href="1.css" rel="stylesheet">
     <script src="activeServiscesEffect.js"></script>
 
 </head>
@@ -48,7 +49,6 @@
 <form method="post">
     <div class="container" id="containerProfile">
         <div class="row">
-
             <%
                 UserResponse user = (UserResponse) request.getAttribute("user");%>
             <input type="hidden" value="<%=user.getUserId()%>" name="userId"/>
@@ -60,6 +60,8 @@
                     <div class="box-content">
                         <h2 class="tag-title"><span class="value">Профиль</span></h2>
                         <hr/>
+                        <p>Логин:<%=user.getLogin()%>
+                        </p>
                         <p>Имя:<%=user.getName()%>
                         </p>
                         <p>Фамилия:<%=user.getSurname()%>
@@ -102,33 +104,50 @@
                     List<Service> allServices = (List<Service>) request.getAttribute("activeServicesDescriptions");
                     if (allServices.size() > 0) {%>
                 <p>
-                <h2 class="text-center">Услуги типа <%=allServices.get(0).getType().toString()%>
+                <h2 class="text-center"><a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=allServices.get(0).getId()%>">Услуги типа <%=allServices.get(0).getType()%></a>
                 </h2>
                 </p>
                 <div class="row">
                     <div class="col-md-4 text-center">
                         <div class="box">
                             <div class="box-content">
-                                <h2 class="tag-title"><span class="value"><%=allServices.get(0).getName()%></span></h2>
-                                <hr/>
                                 <li>
                                     <%
                                         int num = 0;
-                                        int serviceId = allServices.get(0).getId();
-                                        for (int i = 0; i < activeServicesList.size(); i++) {
-                                            if (activeServicesList.get(i).getServiceId() == serviceId) {
-                                                num = i;
-                                                break;
+                                        int serviceId = 0;
+                                        String type = allServices.get(0).getType();
+                                        boolean isSecond = false;
+                                        boolean bool = isSecond;
+                                        for (int j = 0; j < activeServicesList.size(); j++) {
+                                            boolean hasFind = false;
+                                            for (int k = 0; k < allServices.size(); k++) {
+                                                if ((activeServicesList.get(j).getServiceId() == allServices.get(k).getId()) &&
+                                                        (allServices.get(k).getType().equals(type))) {
+                                                    if (!isSecond) {
+                                                        num = j;
+                                                        serviceId = k;
+                                                        hasFind = true;
+                                                        break;
+                                                    } else {
+                                                        isSecond = false;
+                                                        break;
+                                                    }
+                                                }
                                             }
+                                            if (hasFind)
+                                                break;
                                         }%>
+                                    <h2 class="tag-title"><span
+                                            class="value"><%=allServices.get(serviceId).getName()%></span></h2>
+                                    <hr/>
                                     <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
                                            id="<%=activeServicesList.get(num).getId()%>"
                                            value="<%=activeServicesList.get(num).getId()%>">
                                     <div class="description">Описание услуги:<span
-                                            class="value"><%=allServices.get(0).getDescription()%></span>
+                                            class="value"><%=allServices.get(serviceId).getDescription()%></span>
                                     </div>
                                     <div class="description">Тип услуги: <span
-                                            class="value"><%=allServices.get(0).getType()%></span></div>
+                                            class="value"><%=allServices.get(serviceId).getType()%></span></div>
                                     <div class="description">Статус услуги: <span
                                             class="value"><%=activeServicesList.get(num).getCurrentStatus().toString()%></span>
                                     </div>
@@ -173,7 +192,7 @@
                     <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
                 </div>
                 <p>
-                <h2 class="text-center">Услуги типа <%=allServices.get(i).getType().toString()%>
+                <h2 class="text-center"><a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=allServices.get(i).getId()%>">Услуги типа <%=allServices.get(i).getType()%></a>
                 </h2>
                 </p>
                 <div class="row">
@@ -184,11 +203,11 @@
                                 <li>
                                     <%
                                         num = 0;
-                                        String type = allServices.get(i).getType();
-                                        boolean isSecond = false;
+                                        type = allServices.get(i).getType();
+                                        isSecond = false;
                                         if (allServices.get(i).getType().equals(allServices.get(i - 1).getType()))
                                             isSecond = true;
-                                        boolean bool = isSecond;
+                                        bool = isSecond;
                                         for (int j = 0; j < activeServicesList.size(); j++) {
                                             boolean hasFind = false;
                                             for (int k = 0; k < allServices.size(); k++) {

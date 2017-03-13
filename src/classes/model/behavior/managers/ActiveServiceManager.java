@@ -176,4 +176,8 @@ public class ActiveServiceManager {
         }
     }
 
+    public List<ActiveService> getActiveServicesHistoryByUserId(int userId,int serviceId) {
+        return activeServiceStorage.getActiveServicesHistoryByUserId(userId,serviceId);
+    }
+
 }

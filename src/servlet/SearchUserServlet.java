@@ -28,15 +28,13 @@ public class SearchUserServlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String address = request.getParameter("address");
         String login = request.getParameter("login");
-        String password = request.getParameter("password");
         TransmittedUserParams userParams = TransmittedUserParams.create()
                 .withName(name)
                 .withSurname(surname)
                 .withEmail(email)
                 .withPhone(phone)
                 .withAdress(address)
-                .withLogin(login)
-                .withPassword(password);
+                .withLogin(login);
         if (request.getParameter("bySubparams") == null) {
             userParams.withRequestType("searchUsersByParams");
         } else

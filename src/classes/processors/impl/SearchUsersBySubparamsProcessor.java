@@ -33,15 +33,14 @@ public class SearchUsersBySubparamsProcessor implements RequestProcessor, Serial
             System.out.println("Поиск пользователей с подпараметрами " + "name:" + userRequestParams.getName()
                     + " surname:" + userRequestParams.getSurname() + " email:" + userRequestParams.getEmail()
                     + " phone:" + userRequestParams.getPhone() + " address:" + userRequestParams.getAddress()
-                    + " login:" + userRequestParams.getLogin() + " password:" + userRequestParams.getPassword());
+                    + " login:" + userRequestParams.getLogin());
             List<User> usersList = initializer.getUserManager().searchUsersBySubparams(UserParams.create()
                     .withName(userRequestParams.getName())
                     .withSurname(userRequestParams.getSurname())
                     .withEmail(userRequestParams.getEmail())
                     .withPhone(userRequestParams.getPhone())
                     .withAdress(userRequestParams.getAddress())
-                    .withLogin(userRequestParams.getLogin())
-                    .withPassword(userRequestParams.getPassword()));
+                    .withLogin(userRequestParams.getLogin()));
             return UserResponse.create()
                     .withAllUsers(usersList)
                     .withResponseType("allUsers");

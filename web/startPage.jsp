@@ -32,7 +32,6 @@
     session.removeAttribute("user");%>
 <div class="jumbotron">
     <h1>Samara-Telecom</h1>
-    <p>We specialize in blablabla</p>
 </div>
 </body>
 </html>

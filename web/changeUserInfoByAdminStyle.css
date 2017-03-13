@@ -116,3 +116,7 @@ label {
     border-radius: 5px;
     height: 40px;
 }
+.addActiveServiceButton{
+    width:24%;
+    margin-left: 38%;
+}

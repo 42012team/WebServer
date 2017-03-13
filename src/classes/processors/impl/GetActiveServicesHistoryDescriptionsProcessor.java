@@ -13,11 +13,11 @@ import classes.response.impl.ServiceResponse;
 import java.io.Serializable;
 import java.util.List;
 
-public class GetActiveServicesDecriptionsProcessor implements RequestProcessor, Serializable {
+public class GetActiveServicesHistoryDescriptionsProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 
-    public GetActiveServicesDecriptionsProcessor() {
+    public GetActiveServicesHistoryDescriptionsProcessor() {
 
     }
 
@@ -30,10 +30,10 @@ public class GetActiveServicesDecriptionsProcessor implements RequestProcessor, 
         try {
             TransmittedServiceParams serviceRequestParams = (TransmittedServiceParams) request;
             List<ActiveService> activeServicesList = initializer.getActiveServiceManager()
-                    .getActiveServicesByUserId(serviceRequestParams.getUserId());
+                    .getActiveServicesHistoryByUserId(serviceRequestParams.getUserId(),serviceRequestParams.getServiceId());
             List<Service> activeServicesDescription = initializer.getServiceManager()
                     .getActiveServicesDecriptions(activeServicesList);
-            System.out.println("Получение описания подключенных услуг пользователя с Id "
+            System.out.println("Получение описания истории услуг пользователя с Id "
                     + serviceRequestParams.getUserId());
             return ServiceResponse.create()
                     .withServices(activeServicesDescription)

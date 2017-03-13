@@ -382,4 +382,12 @@
         <servlet-name>ActionWithActiveServiceByAdminServlet</servlet-name>
         <url-pattern>/ActionWithActiveServiceByAdminServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowActiveServicesHistoryServlet</servlet-name>
+        <servlet-class>servlet.ShowActiveServicesHistoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowActiveServicesHistoryServlet</servlet-name>
+        <url-pattern>/ShowActiveServicesHistoryServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -40,7 +40,7 @@ public class Activator extends Thread implements ActivatorInterface {
         while (true) {
             synchronized (monitor) {
             List<ActiveService> listForChange = new ArrayList<ActiveService>();
-            List<ActiveService> listForDeleting = new ArrayList<ActiveService>();
+//            List<ActiveService> listForDeleting = new ArrayList<ActiveService>();
             Date currentDate = new Date();
             long sleepingTime = currentDate.getTime();
             for (ActiveService activeService : activeServicePool) {

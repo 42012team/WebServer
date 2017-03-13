@@ -480,4 +480,92 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         }
 
     }
+
+    @Override
+    public List<ActiveService> getActiveServicesHistoryByUserId(int userId, int serviceId) {
+        List<ActiveService> activeServiceList = null;
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and (SERVICE_ID IN(SELECT SERVICE_ID FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=?))) ORDER BY ACTIVESERVICE_ID";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setInt(2, serviceId);
+            ResultSet rs = ps.executeQuery();
+            int i = 0;
+            activeServiceList = new ArrayList<ActiveService>();
+            while (rs.next()) {
+                i++;
+                ActiveService activeService = new ActiveService();
+                activeService.setUserId(rs.getInt("USER_ID"));
+                activeService.setServiceId(rs.getInt("SERVICE_ID"));
+                activeService.setId(rs.getInt("ACTIVESERVICE_ID"));
+                activeService.setVersion(rs.getInt("VERSION"));
+                String currentStatus = rs.getString("CURRENT_STATUS");
+                switch (currentStatus) {
+                    case "ACTIVE":
+                        activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
+                        break;
+                    case "PLANNED":
+                        activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
+                        break;
+                    case "SUSPENDED":
+                        activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
+                        break;
+                    case "DISCONNECTED":
+                        activeService.setCurrentStatus(ActiveServiceStatus.DISCONNECTED);
+                        break;
+                }
+                String newStatus = rs.getString("NEW_STATUS");
+                if (newStatus == null)
+                    activeService.setNewStatus(null);
+                else
+                    switch (newStatus) {
+                        case "ACTIVE":
+                            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                            break;
+                        case "PLANNED":
+                            activeService.setNewStatus(ActiveServiceStatus.PLANNED);
+                            break;
+                        case "SUSPENDED":
+                            activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                            break;
+                        case "DISCONNECTED":
+                            activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
+                            break;
+                        case " ":
+                            activeService.setNewStatus(null);
+                            break;
+                    }
+                if (rs.getTimestamp("TDATE") != null) {
+                    activeService.setDate(new Date(rs.getTimestamp("TDATE").getTime()));
+                } else {
+                    activeService.setDate(null);
+                }
+                if (rs.getInt("NEXTACTIVESERVICEID") != 0) {
+                    activeService.setNextActiveServiceId(rs.getInt("NEXTACTIVESERVICEID"));
+
+                }
+                activeServiceList.add(activeService);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Exception occured!");
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                System.out.println(stackTraceElements[i].toString());
+            }
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Exception occured!");
+                StackTraceElement[] stackTraceElements = ex.getStackTrace();
+                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
+                    System.out.println(stackTraceElements[i].toString());
+                }
+            }
+        }
+        return activeServiceList;
+    }
+
 }

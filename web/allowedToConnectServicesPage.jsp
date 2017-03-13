@@ -51,54 +51,94 @@
         </div>
     </div>
 </nav>
-
 <form action="/AddActiveServiceServlet"
       method="post" <%if (((User) session.getAttribute("user")).getPrivilege().equals("admin")) {%>
       onsubmit="javascript:
 var d=new Date();
-var i=0;
-while((isNaN(Date.parse($('#date-input'+i.toString()).val())))||(Date.parse($('#date-input'+i.toString()).val())=='')){
-    i++;
-}
-if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date-input'+i.toString()).val())){
+var dateInput=document.getElementsByName('activationDate'+$('input[name=serviceId]:checked').val().toString())[0].value;
+if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse(dateInput)){
     return confirm('Введена прошедшая дата! Услуга сразу станет подключенной. Вы уверены?');
 }"
         <%}%>>
     <div id="usersActiveServices"><span id="connectService"><h2>Подключить услугу</h2></span></div>
     <ul>
+        <%
+            List<Service> allServices = (List<Service>) request.getAttribute("allowedToConnectServices");
+        %>
         <div class="container">
+            <% if (allServices.size() > 0) {%>
+            <p>
+            <h2 class="text-center">Услуги типа <%=allServices.get(0).getType().toString()%>
+            </h2>
+            </p>
             <div class="row">
-                <%
-                    List<Service> serviceList = (List<Service>) request.getAttribute("allowedToConnectServices");
-                    for (int i = 0; i < serviceList.size(); i++) {
-                        Service s = serviceList.get(i);
-                %>
                 <div class="col-md-4 text-center">
                     <div class="box">
                         <div class="box-content">
-                            <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
-                            <hr/>
+                            <h1 class="tag-title">
+                                <%= allServices.get(0).getName()%>
+                            </h1>
                             <li class="li1">
                                 <input type="radio" class="radio" name="serviceId" onclick="click1(this)"
-                                       id="<%=s.getId()%>" value="<%=s.getId()%>">
+                                       id="<%=allServices.get(0).getId()%>" value="<%=allServices.get(0).getId()%>">
                                 <div class="description">Описание услуги:<span
-                                        class="value"><%=s.getDescription()%></span></div>
-                                <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
+                                        class="value"><%=allServices.get(0).getDescription()%></span></div>
+                                <div class="description">Тип услуги: <span
+                                        class="value"><%=allServices.get(0).getType()%></span></div>
                                 <div class="description">Статус услуги: <span
-                                        class="value"><%=s.getStatus().toString()%></span></div>
+                                        class="value"><%=allServices.get(0).getStatus().toString()%></span></div>
                                 <input type="datetime-local" class="dateField" style="display:none"
-                                       name="activationDate<%=s.getId()%>" id="date-input<%=i%>"><input type="submit" class="addButton"
-                                                                                                        style="display:none"
-                                                                                                        value="Добавить"/></li>
-                            <br/>
+                                       name="activationDate<%=allServices.get(0).getId()%>" id="date-input0"><input
+                                    type="submit" class="addButton"
+                                    style="display:none"
+                                    value="Добавить"/></li>
                         </div>
                     </div>
                 </div>
-                <%}%>
+                <% if (allServices.size() > 1) {
+                    for (int i = 1; i < allServices.size(); i++) {
+                %>
+                <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
             </div>
+            <p>
+            <h2 class="text-center">Услуги типа <%=allServices.get(i).getType().toString()%>
+            </h2>
+            </p>
+            <div class="row">
+                <%}%>
+                <div class="col-md-4 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title">
+                                <%= allServices.get(i).getName()%>
+                            </h1>
+                            <li class="li1">
+                                <input type="radio" class="radio" name="serviceId" onclick="click1(this)"
+                                       id="<%=allServices.get(i).getId()%>" value="<%=allServices.get(i).getId()%>">
+                                <div class="description">Описание услуги:<span
+                                        class="value"><%=allServices.get(i).getDescription()%></span></div>
+                                <div class="description">Тип услуги: <span
+                                        class="value"><%=allServices.get(i).getType()%></span></div>
+                                <div class="description">Статус услуги: <span
+                                        class="value"><%=allServices.get(i).getStatus().toString()%></span></div>
+                                <input type="datetime-local" class="dateField" style="display:none"
+                                       name="activationDate<%=allServices.get(i).getId()%>"
+                                       id="date-input<%=i%>>"><input type="submit" class="addButton"
+                                                                     style="display:none"
+                                                                     value="Добавить"/></li>
+                        </div>
+                    </div>
+                </div>
+                <% if (i == allServices.size() - 1) {%>
+            </div>
+            <%}%>
+            <%
+                        }
+                    }
+                }
+            %>
         </div>
     </ul>
 </form>
-
 </body>
 </html>

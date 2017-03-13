@@ -287,12 +287,6 @@ public class DBUserStorage implements UserStorage {
                 sql.append("LOGIN='"+userParams.getLogin()+"'");
                 hasPrev=true;
             }
-            if (!userParams.getPassword().equals("")) {
-                if(hasPrev)
-                    sql.append(" AND ");
-                sql.append("PASSWORD='"+userParams.getPassword()+"'");
-                hasPrev=true;
-            }
             if (!userParams.getName().equals("")) {
                 if(hasPrev)
                     sql.append(" AND ");
@@ -368,12 +362,6 @@ public class DBUserStorage implements UserStorage {
                 if(hasPrev)
                     sql.append(" AND ");
                 sql.append("LOGIN LIKE '%"+userParams.getLogin()+"%'");
-                hasPrev=true;
-            }
-            if (!userParams.getPassword().equals("")) {
-                if(hasPrev)
-                    sql.append(" AND ");
-                sql.append("PASSWORD LIKE '%"+userParams.getPassword()+"%'");
                 hasPrev=true;
             }
             if (!userParams.getName().equals("")) {

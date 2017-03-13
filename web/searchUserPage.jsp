@@ -33,7 +33,7 @@
     </div>
 </nav>
 
-<form class="registrationForm" action="/SearchUserServlet" method="post">
+<form class="registrationForm" action="/SearchUserServlet" method="post" style="height: 65%">
     <div class="regHeader">
         <h2 class="headerText">Поиск</h2>
     </div>
@@ -42,8 +42,6 @@
             <label id="loginL" for="login"><span class="text">Логин</span></label><input type="text" name="login"
                                                                                          id="login" placeholder="Login">
         </li>
-        <li class="regLiContainer"><label id="passwordL" for="password"><span class="text">Пароль</span></label><input
-                type="password" name="password" id="password" placeholder="Password"></li>
         <li class="regLiContainer"><label id="nameL" for="name"><span class="text">Имя</span></label><input type="text"
                                                                                                             name="name"
                                                                                                             id="name"
