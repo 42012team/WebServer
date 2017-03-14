@@ -20,7 +20,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and (STATE!='CANCELLED') AND ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             activeServiceList=getActiveServiceListByParams(ps);
@@ -111,18 +111,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             ps.executeQuery();
             ps.close();
             deleteNextActiveServiceId(activeServiceId);
-         /*   ActiveService previousActiveService=getActiveServiceWithNextId(activeServiceId);
-            sql = "UPDATE ACTIVESERVICE SET FISRT_STATUS=?," +
-                    "SECOND_STATUS=(SELECT SECOND_STATUS FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?)," +
-                    "TDATE=(SELECT TDATE FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?),NEXTACTIVESERVICEID=NULL" +
-                    " WHERE ACTIVESERVICE_ID=? ";
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ps.setInt(2, activeServiceId);
-            ps.setInt(3, activeServiceId);
-            ps.setInt(4, activeServiceId);
-            ps.executeUpdate();
-            ps.close();*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -134,7 +122,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
 
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (FIRST_STATUS!='DISCONNECTED')AND((NEXTACTIVESERVICEID IS NULL)OR((SECOND_STATUS='DISCONNECTED') and (TDATE>CURRENT_TIMESTAMP)))";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (STATE!='CANCELLED') AND ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
             PreparedStatement ps = connection.prepareStatement(sql);
             activeServiceList =getActiveServiceListByParams(ps);
         } catch (SQLException e) {
@@ -402,7 +390,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
 
     }
     public void deleteNextActiveServiceId(int nextId){
-        ActiveService activeService=null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = "UPDATE ACTIVESERVICE set NEXTACTIVESERVICEID=NULL WHERE NEXTACTIVESERVICEID=?";
