@@ -34,10 +34,10 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     public void deleteActiveService(int activeServiceId) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "UPDATE ACTIVESERVICE SET SECOND_STATUS='NULL',fIRST_STATUS='DISCONNECTED',TDATE=CURRENT_TIMESTAMP, STATE='CANCELLED' WHERE ACTIVESERVICE_ID=?";
+            String sql = "DELETE FROM ACTIVESERVICE where ACTIVESERVICE_ID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, activeServiceId);
-            ps.executeUpdate();
+            ps.executeQuery();
             ps.close();
         } catch (SQLException ex) {
             System.out.println("Exception occured!");
