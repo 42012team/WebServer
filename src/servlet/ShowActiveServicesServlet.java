@@ -32,8 +32,8 @@ public class ShowActiveServicesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession(true).getAttribute("user");
-        ResponseDTO resp = controller.identifyObject(TransmittedActiveServiceParams.create().
-                withUserId(user.getId()).withRequestType("allActiveServices"));
+        ResponseDTO resp = controller.identifyObject(TransmittedActiveServiceParams.create()
+                .withUserId(user.getId()).withRequestType("allActiveServices"));
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;

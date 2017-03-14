@@ -1,11 +1,10 @@
 <%@ page import="classes.model.ActiveService" %>
+<%@ page import="classes.model.ActiveServiceState" %>
 <%@ page import="classes.model.Service" %>
 <%@ page import="classes.model.User" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.List" %>
-<%@ page import="classes.model.ActiveServiceStatus" %>
-<%@ page import="java.util.Date" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
 <html>
@@ -62,26 +61,39 @@
     <div id="usersActiveServices"><span id="connectService"><h2>Подключенные услуги</h2></span></div>
     <ul>
         <div class="container">
-            <div class="row">
-
                 <%
                     List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServicesList");
-                    List<Integer> sameIdList=new ArrayList<Integer>();
-                    for(int i=0;i<activeServiceList.size();i++){
-                        if(activeServiceList.get(i).getNextActiveServiceId()!=0){
-                            sameIdList.add(activeServiceList.get(i).getNextActiveServiceId());
+                    List<Integer> activeServicesWithNotNullNextId = new ArrayList<Integer>();
+                    for (int i = 0; i < activeServiceList.size(); i++) {
+                        if (activeServiceList.get(i).getNextActiveServiceId() != 0) {
+                            activeServicesWithNotNullNextId.add(activeServiceList.get(i).getNextActiveServiceId());
                         }
                     }
-                    List<Service> serviceList = (List<Service>) request.getAttribute("activeServicesDescriptions");
-                    for (int k = 0; k < serviceList.size(); k++) {
-                        boolean isExist=false;
-                        for(int j=0;j<sameIdList.size();j++){
-                            if(activeServiceList.get(k).getId()==sameIdList.get(j)){
-                                isExist=true;
+                    List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
+                    if(servicesList.size()>0){
+                        %>
+            <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType().toString()%>
+            </h2>
+            <div class="row">
+                <%
+                    }
+                    for (int k = 0; k < servicesList.size(); k++) {
+                        boolean isExist = false;
+                        for (int j = 0; j < activeServicesWithNotNullNextId.size(); j++) {
+                            if (activeServiceList.get(k).getId() == activeServicesWithNotNullNextId.get(j)) {
+                                isExist = true;
                                 break;
                             }
                         }
-                        Service s = serviceList.get(k);
+                        Service s = servicesList.get(k);
+                        if((k>0)&&(!servicesList.get(k).getType().equals(servicesList.get(k-1).getType()))){
+                %>
+            </div>
+            <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType().toString()%>
+            </h2>
+            <div class="row">
+                <%
+                    }
                 %>
                 <div class="col-md-4 text-center">
                     <div class="box">
@@ -89,7 +101,7 @@
                             <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
                             <hr/>
                             <li>
-                                <%if(!isExist){%>
+                                <%if (!isExist) {%>
                                 <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
                                        id="<%=activeServiceList.get(k).getId()%>"
                                        value="<%=activeServiceList.get(k).getId()%>"><%}%>
@@ -97,36 +109,31 @@
                                         class="value"><%=s.getDescription()%></span>
                                 </div>
                                 <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
+                                <% if (activeServiceList.get(k).getState().equals(ActiveServiceState.NOT_READY)) {
+                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                                    String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
                                 <div class="description">Статус услуги: <span
                                         class="value"><%=activeServiceList.get(k).getFirstStatus().toString()%></span>
                                 </div>
-                                <% if (activeServiceList.get(k).getSecondStatus() != null) {
-                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                                    String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
                                 <div class="description">Запланировано изменение статуса услуги на<span class="value">
     <%= activeServiceList.get(k).getSecondStatus().toString()
     %> c  <%=strDate%>
-
             </span></div>
                                 <%} else {%>
+                                <div class="description">Статус услуги: <span
+                                        class="value"><%=activeServiceList.get(k).getSecondStatus().toString()%></span>
+                                </div>
                                 <br/>
                                 <br/>
                                 <%}%>
-
-
-                                <%  if(isExist){
-                                }
-                                else
-                                if ((activeServiceList.get(k).getSecondStatus()==null)||((activeServiceList.get(k).getSecondStatus()!=null)&&(!activeServiceList.get(k).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED)))||
-                                        ((activeServiceList.get(k).getSecondStatus()!=null)&&(activeServiceList.get(k).getDate().compareTo(new Date())<=0))&&(activeServiceList.get(k).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
+                                <% if (isExist) {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="/ActionWithActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
-                            <%}
-                            else{%>
+                            <%} else {%>
                             <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                    formaction="/ActionWithActiveServiceServlet"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
