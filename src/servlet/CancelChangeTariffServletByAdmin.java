@@ -49,13 +49,13 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-        System.out.println(activeService.getCurrentStatus()+"CURRENTSTATUS");
+        System.out.println(activeService.getFirstStatus()+"CURRENTSTATUS");
         activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
                 .withDate(activeService.getDate())
-                .withCurrentStatus(activeService.getCurrentStatus())
-                .withNewStatus(activeService.getNewStatus())
+                .withFirstStatus(activeService.getFirstStatus())
+                .withSecondStatus(activeService.getSecondStatus())
                 .withVersion(activeService.getVersion())
                 .withRequestType("changeActiveService");
         resp = controller.identifyObject(activeServiceParams);

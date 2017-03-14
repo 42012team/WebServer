@@ -13,6 +13,7 @@ public interface ActiveServiceStorage {
     public List<ActiveService> getAllActiveServices();
 
     public ActiveService getActiveServiceById(int activeServiceId);
+    public void deleteNextActiveServiceId(int nextId);
 
     public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception;
 
@@ -25,6 +26,7 @@ public interface ActiveServiceStorage {
     public void cancelChangingTariff(int activeServiceId);
 
     public void setNextId(int currentId, int newId);
+    public ActiveService getPreviousActiveService(int activeServiceId);
 
     public List<ActiveService> getActiveServicesHistoryByUserId(int userId,int serviceId);
 }

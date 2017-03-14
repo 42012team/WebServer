@@ -30,8 +30,8 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
     private boolean createActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date,ActiveServiceState state) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
-                .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                .withNewStatus(ActiveServiceStatus.ACTIVE)
+                .withFirstStatus(ActiveServiceStatus.PLANNED)
+                .withSecondStatus(ActiveServiceStatus.ACTIVE)
                 .withState(state)
                 .withServiceId(serviceId)
                 .withUserId(userId)
@@ -47,8 +47,8 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
             if (createActiveService(activeServiceParams.getId(), activeServiceParams.getServiceId(),
-                    activeServiceParams.getUserId(), activeServiceParams.getCurrentStatus(),
-                    activeServiceParams.getNewStatus(), activeServiceParams.getDate(),activeServiceParams.getState())) {
+                    activeServiceParams.getUserId(), activeServiceParams.getFirstStatus(),
+                    activeServiceParams.getSecondStatus(), activeServiceParams.getDate(),activeServiceParams.getState())) {
                 return ActiveServiceResponse.create().withResponseType("activeServices")
                         .withActiveServices(initializer.getActiveServiceManager()
                                 .getActiveServicesByUserId(activeServiceParams.getUserId()));

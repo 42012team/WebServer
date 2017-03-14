@@ -103,11 +103,11 @@ private String path;
                     attr.setValue("");
                 }
                 attr = doc.createAttribute("currentStatus");
-                attr.setValue(activeServicesList.get(j).getCurrentStatus().toString());
+                attr.setValue(activeServicesList.get(j).getFirstStatus().toString());
                 activeServiceElement.setAttributeNode(attr);
-                if (activeServicesList.get(j).getNewStatus() != null) {
+                if (activeServicesList.get(j).getSecondStatus() != null) {
                     attr = doc.createAttribute("newStatus");
-                    attr.setValue(activeServicesList.get(j).getNewStatus().toString());
+                    attr.setValue(activeServicesList.get(j).getSecondStatus().toString());
                     activeServiceElement.setAttributeNode(attr);
                 } else {
                     attr = doc.createAttribute("newStatus");

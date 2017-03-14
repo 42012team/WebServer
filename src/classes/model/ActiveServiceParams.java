@@ -6,8 +6,8 @@ public class ActiveServiceParams {
     private int activeServiceId;
     private int serviceId;
     private int userId;
-    private ActiveServiceStatus currentStatus;
-    private ActiveServiceStatus newStatus;
+    private ActiveServiceStatus firstStatus;
+    private ActiveServiceStatus secondStatus;
     private Date date;
     private int version;
     private int oldActiveServiceId;
@@ -41,13 +41,13 @@ public class ActiveServiceParams {
         return this;
     }
 
-    public ActiveServiceParams withCurrentStatus(ActiveServiceStatus currentStatus) {
-        this.currentStatus = currentStatus;
+    public ActiveServiceParams withFirstStatus(ActiveServiceStatus firstStatus) {
+        this.firstStatus = firstStatus;
         return this;
     }
 
-    public ActiveServiceParams withNewStatus(ActiveServiceStatus newStatus) {
-        this.newStatus = newStatus;
+    public ActiveServiceParams withSecondStatus(ActiveServiceStatus secondStatus) {
+        this.secondStatus = secondStatus;
         return this;
     }
 
@@ -68,12 +68,12 @@ public class ActiveServiceParams {
         this.nextActiveServiceId = nextActiveServiceId;
         return this;
     }
-    public ActiveServiceStatus getCurrentStatus() {
-        return currentStatus;
+    public ActiveServiceStatus getFirstStatus() {
+        return firstStatus;
     }
 
-    public ActiveServiceStatus getNewStatus() {
-        return newStatus;
+    public ActiveServiceStatus getSecondStatus() {
+        return secondStatus;
     }
 
     public Date getDate() {

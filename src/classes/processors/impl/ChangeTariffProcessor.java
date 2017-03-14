@@ -35,8 +35,8 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
     private ActiveService createActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, ActiveServiceState state) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
-                .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                .withNewStatus(ActiveServiceStatus.ACTIVE)
+                .withFirstStatus(ActiveServiceStatus.PLANNED)
+                .withSecondStatus(ActiveServiceStatus.ACTIVE)
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date)
@@ -52,8 +52,8 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
             ActiveService activeService=createActiveService(activeServiceParams.getOldActiveServiceId(), activeServiceParams.getServiceId(),
-                    activeServiceParams.getUserId(), activeServiceParams.getCurrentStatus(),
-                    activeServiceParams.getNewStatus(), activeServiceParams.getDate(),activeServiceParams.getState());
+                    activeServiceParams.getUserId(), activeServiceParams.getFirstStatus(),
+                    activeServiceParams.getSecondStatus(), activeServiceParams.getDate(),activeServiceParams.getState());
             if (activeService!=null) {
                 return ActiveServiceResponse.create().withResponseType("activeServices")
                         .withActiveServices(Collections.singletonList(activeService));

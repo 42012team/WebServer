@@ -149,14 +149,14 @@
                                     <div class="description">Тип услуги: <span
                                             class="value"><%=allServices.get(serviceId).getType()%></span></div>
                                     <div class="description">Статус услуги: <span
-                                            class="value"><%=activeServicesList.get(num).getCurrentStatus().toString()%></span>
+                                            class="value"><%=activeServicesList.get(num).getFirstStatus().toString()%></span>
                                     </div>
-                                    <% if (activeServicesList.get(num).getNewStatus() != null) {
+                                    <% if (activeServicesList.get(num).getSecondStatus() != null) {
                                         SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                                         String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
                                     <div class="description">Запланировано изменение статуса услуги на<span
                                             class="value">
-    <%= activeServicesList.get(num).getNewStatus().toString()
+    <%= activeServicesList.get(num).getSecondStatus().toString()
     %> c  <%=strDate%>
             </span></div>
                                     <%} else {%>
@@ -164,8 +164,8 @@
                                     <br/>
                                     <%
                                         }
-                                        if ((activeServicesList.get(num).getNewStatus() == null) || ((activeServicesList.get(num).getNewStatus() != null) && (!activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
-                                                ((activeServicesList.get(num).getNewStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+                                        if ((activeServicesList.get(num).getSecondStatus() == null) || ((activeServicesList.get(num).getSecondStatus() != null) && (!activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
+                                                ((activeServicesList.get(num).getSecondStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
                                     %>
                                     <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                            formaction="/ActionWithActiveServiceByAdminServlet"
@@ -244,14 +244,14 @@
                                     <div class="description">Тип услуги: <span
                                             class="value"><%=allServices.get(serviceId).getType()%></span></div>
                                     <div class="description">Статус услуги: <span
-                                            class="value"><%=activeServicesList.get(num).getCurrentStatus().toString()%></span>
+                                            class="value"><%=activeServicesList.get(num).getFirstStatus().toString()%></span>
                                     </div>
-                                    <% if (activeServicesList.get(num).getNewStatus() != null) {
+                                    <% if (activeServicesList.get(num).getSecondStatus() != null) {
                                         SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                                         String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
                                     <div class="description">Запланировано изменение статуса услуги на<span
                                             class="value">
-    <%= activeServicesList.get(num).getNewStatus().toString()
+    <%= activeServicesList.get(num).getSecondStatus().toString()
     %> c  <%=strDate%>
             </span></div>
                                     <%} else {%>
@@ -259,8 +259,8 @@
                                     <br/>
                                     <%
                                         }
-                                        if ((activeServicesList.get(num).getNewStatus() == null) || ((activeServicesList.get(num).getNewStatus() != null) && (!activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
-                                                ((activeServicesList.get(num).getNewStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+                                        if ((activeServicesList.get(num).getSecondStatus() == null) || ((activeServicesList.get(num).getSecondStatus() != null) && (!activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
+                                                ((activeServicesList.get(num).getSecondStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
                                     %>
                                     <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                            formaction="/ActionWithActiveServiceByAdminServlet"

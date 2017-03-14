@@ -32,8 +32,8 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
                 ActiveServiceStatus newStatus, Date date, int version, ActiveServiceState state,int nextActiveServiceId) throws Exception {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
-                .withCurrentStatus(currentStatus)
-                .withNewStatus(newStatus)
+                .withFirstStatus(currentStatus)
+                .withSecondStatus(newStatus)
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date)
@@ -48,8 +48,8 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
         try {
 
             changeActiveService(activeServiceParam.getId(), activeServiceParam.getServiceId(),
-                    activeServiceParam.getUserId(), activeServiceParam.getCurrentStatus(),
-                    activeServiceParam.getNewStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
+                    activeServiceParam.getUserId(), activeServiceParam.getFirstStatus(),
+                    activeServiceParam.getSecondStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
                             .getActiveServiceById(activeServiceParam.getId()).getVersion(),activeServiceParam.getState(),activeServiceParam.getNextActiveServiceId());
             System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
             return ActiveServiceResponse.create().withResponseType("activeServices").

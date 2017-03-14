@@ -68,13 +68,13 @@
                                 </div>
                                 <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
                                 <div class="description">Статус услуги: <span
-                                        class="value"><%=activeServiceList.get(k).getCurrentStatus().toString()%></span>
+                                        class="value"><%=activeServiceList.get(k).getFirstStatus().toString()%></span>
                                 </div>
-                                <% if (activeServiceList.get(k).getNewStatus() != null) {
+                                <% if (activeServiceList.get(k).getSecondStatus() != null) {
                                     SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                                     String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
                                 <div class="description">Запланировано изменение статуса услуги на<span class="value">
-    <%= activeServiceList.get(k).getNewStatus().toString()
+    <%= activeServiceList.get(k).getSecondStatus().toString()
     %> c  <%=strDate%>
 
             </span></div>

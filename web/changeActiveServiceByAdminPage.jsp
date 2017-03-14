@@ -50,8 +50,8 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                         <hr/>
                         <%
                             ActiveService activeService = (ActiveService) request.getAttribute("activeService");
-                            if (activeService.getNewStatus() != null) {
-                                if (activeService.getNewStatus() == ActiveServiceStatus.ACTIVE) {
+                            if (activeService.getSecondStatus() != null) {
+                                if (activeService.getSecondStatus() == ActiveServiceStatus.ACTIVE) {
 
                         %>
                         <p>Введите новую дату подключения в формате:</p>
@@ -60,7 +60,7 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                         <input type="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                            if (activeService.getNewStatus() == ActiveServiceStatus.SUSPENDED) {
+                            if (activeService.getSecondStatus() == ActiveServiceStatus.SUSPENDED) {
                         %>
 
                         <input type="submit" name="cancelLock" class="cancelButton" id="cancel"
@@ -76,36 +76,36 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                         <input type="submit" style="display:none" id="submit" class="changeButton" value="Применить"/>
                         <%
                             }
-                            if (activeService.getNewStatus() == ActiveServiceStatus.DISCONNECTED) {%>
+                            if (activeService.getSecondStatus() == ActiveServiceStatus.DISCONNECTED) {%>
                         <p>Отменить смену тарифа:</p>
                         <input type="submit" class="changeButton" formaction="/CancelChangeTariffServletByAdmin"
                                formmethod="post" value="Отменить"/>
 
-                        <% activeService.setNewStatus(null);
+                        <% activeService.setSecondStatus(null);
 
                         }
-                        } else if (activeService.getCurrentStatus() == ActiveServiceStatus.SUSPENDED) {%>
+                        } else if (activeService.getFirstStatus() == ActiveServiceStatus.SUSPENDED) {%>
                         <p>Введите дату разблокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar" id="date-input" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
-                        <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                        <% activeService.setSecondStatus(ActiveServiceStatus.ACTIVE);
 
-                        } else if (activeService.getCurrentStatus() == ActiveServiceStatus.ACTIVE) {%>
+                        } else if (activeService.getFirstStatus() == ActiveServiceStatus.ACTIVE) {%>
                         <p>Введите дату блокировки:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar" id="date-input" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
-                        <% activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
-                        } else if (activeService.getCurrentStatus().equals(ActiveServiceStatus.PLANNED)) {%>
+                        <% activeService.setSecondStatus(ActiveServiceStatus.SUSPENDED);
+                        } else if (activeService.getFirstStatus().equals(ActiveServiceStatus.PLANNED)) {%>
                         <p>Введите дату активации:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" class="calendar" required/>
                         <input type="submit" class="changeButton" value="Применить"/>
 
-                        <% activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                        <% activeService.setSecondStatus(ActiveServiceStatus.ACTIVE);
                         }
 
                             session.setAttribute("changedActiveService", activeService);

@@ -98,13 +98,13 @@
                                 </div>
                                 <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span></div>
                                 <div class="description">Статус услуги: <span
-                                        class="value"><%=activeServiceList.get(k).getCurrentStatus().toString()%></span>
+                                        class="value"><%=activeServiceList.get(k).getFirstStatus().toString()%></span>
                                 </div>
-                                <% if (activeServiceList.get(k).getNewStatus() != null) {
+                                <% if (activeServiceList.get(k).getSecondStatus() != null) {
                                     SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                                     String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
                                 <div class="description">Запланировано изменение статуса услуги на<span class="value">
-    <%= activeServiceList.get(k).getNewStatus().toString()
+    <%= activeServiceList.get(k).getSecondStatus().toString()
     %> c  <%=strDate%>
 
             </span></div>
@@ -117,8 +117,8 @@
                                 <%  if(isExist){
                                 }
                                 else
-                                if ((activeServiceList.get(k).getNewStatus()==null)||((activeServiceList.get(k).getNewStatus()!=null)&&(!activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)))||
-                                        ((activeServiceList.get(k).getNewStatus()!=null)&&(activeServiceList.get(k).getDate().compareTo(new Date())<=0))&&(activeServiceList.get(k).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
+                                if ((activeServiceList.get(k).getSecondStatus()==null)||((activeServiceList.get(k).getSecondStatus()!=null)&&(!activeServiceList.get(k).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED)))||
+                                        ((activeServiceList.get(k).getSecondStatus()!=null)&&(activeServiceList.get(k).getDate().compareTo(new Date())<=0))&&(activeServiceList.get(k).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))){%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="/ActionWithActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"

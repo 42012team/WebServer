@@ -19,11 +19,11 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "current_status")
-    private ActiveServiceStatus currentStatus;
+    private ActiveServiceStatus firstStatus;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "new_status")
-    private ActiveServiceStatus newStatus;
+    private ActiveServiceStatus secondStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tdate")
@@ -35,13 +35,13 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     private int nextActiveServiceId;
 
     private ActiveServiceState state;
-    public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date,ActiveServiceState state) {
+    public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus firstStatus, ActiveServiceStatus secondStatus, Date date, ActiveServiceState state) {
         this.id = id;
         this.serviceId = serviceId;
         this.userId = userId;
         this.date = date;
-        this.currentStatus = currentStatus;
-        this.newStatus = newStatus;
+        this.firstStatus = firstStatus;
+        this.secondStatus = secondStatus;
         this.state=state;
     }
 
@@ -50,16 +50,16 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
 
     }
 
-    public void setCurrentStatus(ActiveServiceStatus status) {
-        currentStatus = status;
+    public void setFirstStatus(ActiveServiceStatus status) {
+        firstStatus = status;
     }
 
-    public ActiveServiceStatus getCurrentStatus() {
-        return currentStatus;
+    public ActiveServiceStatus getFirstStatus() {
+        return firstStatus;
     }
 
-    public void setNewStatus(ActiveServiceStatus status) {
-        newStatus = status;
+    public void setSecondStatus(ActiveServiceStatus status) {
+        secondStatus = status;
     }
 
     public void setVersion(int version) {
@@ -69,8 +69,8 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
         this.state = state;
     }
 
-    public ActiveServiceStatus getNewStatus() {
-        return newStatus;
+    public ActiveServiceStatus getSecondStatus() {
+        return secondStatus;
     }
 
     public void setDate(Date date) {

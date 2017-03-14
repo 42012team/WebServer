@@ -108,6 +108,11 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     }
 
     @Override
+    public void deleteNextActiveServiceId(int nextId) {
+
+    }
+
+    @Override
     public void storeActiveServices(List<ActiveService> activeServicesList) {
         EntityManager entityManager = null;
         try {
@@ -145,6 +150,11 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public void setNextId(int currentId, int newId) {
 
+    }
+
+    @Override
+    public ActiveService getPreviousActiveService(int activeServiceId) {
+        return null;
     }
 
     @Override

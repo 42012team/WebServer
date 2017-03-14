@@ -56,8 +56,8 @@ public class TariffChangeServlet extends HttpServlet {
                     .withServiceId(serviceId)
                     .withUserId(user.getId())
                     .withDate(newDate)
-                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                    .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withFirstStatus(ActiveServiceStatus.PLANNED)
+                    .withSecondStatus(ActiveServiceStatus.ACTIVE)
                     .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
@@ -71,8 +71,8 @@ public class TariffChangeServlet extends HttpServlet {
                         .withServiceId(activeService.getServiceId())
                         .withUserId(user.getId())
                         .withDate(newDate)
-                        .withCurrentStatus(activeService.getNewStatus())//тут надо переназвать,а так все норм
-                        .withNewStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withFirstStatus(activeService.getSecondStatus())//тут надо переназвать,а так все норм
+                        .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
                         .withVersion(activeService.getVersion())
                         .withNextActiveServiceId(newId)
                         .withState(activeService.getState())
@@ -85,8 +85,8 @@ public class TariffChangeServlet extends HttpServlet {
                         .withUserId(user.getId())
                         .withServiceId(activeService.getServiceId())
                         .withDate(newDate)
-                        .withCurrentStatus(activeService.getCurrentStatus())
-                        .withNewStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withFirstStatus(activeService.getFirstStatus())
+                        .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
                         .withVersion(activeService.getVersion())
                         .withState(ActiveServiceState.NOT_READY)
                         .withRequestType("changeActiveService");

@@ -23,7 +23,7 @@ public class Activator extends Thread implements ActivatorInterface {
         List<ActiveService> activeServiceList = activeServiceManager.getAllActiveServices();
         Date currentDate = new Date();
         for (ActiveService activeService : activeServiceList) {
-            if ((activeService.getNewStatus() != null)) {
+            if ((activeService.getSecondStatus() != null)) {
                 activeServicePool.add(activeService);
             }
         }
@@ -44,8 +44,8 @@ public class Activator extends Thread implements ActivatorInterface {
             Date currentDate = new Date();
             long sleepingTime = currentDate.getTime();
             for (ActiveService activeService : activeServicePool) {
-                if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getNewStatus() != null)) {
-             /*       activeServiceManager.changeActiveServiceStatus(activeService, activeService.getNewStatus(), null);
+                if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getSecondStatus() != null)) {
+             /*       activeServiceManager.changeActiveServiceStatus(activeService, activeService.getSecondStatus(), null);
                     activeServiceManager.changeActiveServiceDate(activeService, activeService.getDate());*/
 
                     try {
@@ -133,7 +133,7 @@ public class Activator extends Thread implements ActivatorInterface {
                 }
             }
         }
-        if (activeService.getNewStatus() == null) {
+        if (activeService.getSecondStatus() == null) {
             synchronized (monitor) {
                 monitor.notify();
             }

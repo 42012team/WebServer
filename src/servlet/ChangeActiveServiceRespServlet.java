@@ -2,10 +2,8 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
-import classes.dateP.DateValidator;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
-import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
@@ -36,7 +34,7 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
         User user = (User) request.getSession(true).getAttribute("user");
         if (request.getParameter("cancelLock") != null) {
-            activeService.setNewStatus(null);
+            activeService.setSecondStatus(null);
 
         } else {
             String date = (String) request.getParameter("date");
@@ -51,30 +49,30 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
                 throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
             }
       //      DateValidator dateValidator=new DateValidator();
-            if (activeService.getNewStatus() != null)
-                switch (activeService.getNewStatus()) {
+            if (activeService.getSecondStatus() != null)
+                switch (activeService.getSecondStatus()) {
                     case ACTIVE: {
-                        activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                        activeService.setSecondStatus(ActiveServiceStatus.ACTIVE);
                         break;
                     }
                     case SUSPENDED: {
-                        activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                        activeService.setSecondStatus(ActiveServiceStatus.SUSPENDED);
                         break;
                     }
 
 
                 }
-            switch (activeService.getCurrentStatus()) {
+            switch (activeService.getFirstStatus()) {
                 case ACTIVE: {
-                    activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
+                    activeService.setFirstStatus(ActiveServiceStatus.ACTIVE);
                     break;
                 }
                 case SUSPENDED: {
-                    activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
+                    activeService.setFirstStatus(ActiveServiceStatus.SUSPENDED);
                     break;
                 }
                 case PLANNED: {
-                    activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
+                    activeService.setFirstStatus(ActiveServiceStatus.PLANNED);
                     break;
 
                 }
@@ -85,8 +83,8 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
                 .withUserId(user.getId())
                 .withServiceId(activeService.getServiceId())
                 .withDate(newDate)
-                .withCurrentStatus(activeService.getCurrentStatus())
-                .withNewStatus(activeService.getNewStatus())
+                .withFirstStatus(activeService.getFirstStatus())
+                .withSecondStatus(activeService.getSecondStatus())
                 .withVersion(activeService.getVersion())
                 .withState(activeService.getState())
                 .withRequestType("changeActiveService");

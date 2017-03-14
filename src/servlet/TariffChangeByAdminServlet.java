@@ -53,8 +53,8 @@ public class TariffChangeByAdminServlet extends HttpServlet {
                     .withServiceId(serviceId)
                     .withUserId(user_id)
                     .withDate(newDate)
-                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                    .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withFirstStatus(ActiveServiceStatus.PLANNED)
+                    .withSecondStatus(ActiveServiceStatus.ACTIVE)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
             if (resp.getResponseType().equals("exception"))
@@ -63,8 +63,8 @@ public class TariffChangeByAdminServlet extends HttpServlet {
                     .withActiveServiceId(id)
                     .withUserId(user_id)
                     .withDate(newDate)
-                    .withCurrentStatus(activeService.getCurrentStatus())
-                    .withNewStatus(ActiveServiceStatus.DISCONNECTED)
+                    .withFirstStatus(activeService.getFirstStatus())
+                    .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
                     .withVersion(activeService.getVersion())
                     .withRequestType("changeActiveService");
             resp = controller.identifyObject(activeServiceParams);

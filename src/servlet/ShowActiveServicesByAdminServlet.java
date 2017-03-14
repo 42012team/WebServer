@@ -49,8 +49,8 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         List<String> disconnectedTypeList = new ArrayList<String>();
         for (int i = 0; i < activeServicesList.size(); i++) {
-            if (activeServicesList.get(i).getNewStatus() != null) {
-                if (activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
+            if (activeServicesList.get(i).getSecondStatus() != null) {
+                if (activeServicesList.get(i).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
                     disconnectedTypeList.add(serviceList.get(i).getType());
                 }
             }
@@ -60,8 +60,8 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         for (int i = 0; i < activeServicesList.size(); i++) {
             boolean isExist = false;
             for (int j = 0; j < disconnectedTypeList.size(); j++) {
-                if (activeServicesList.get(i).getNewStatus() != null) {
-                    if (!(activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))
+                if (activeServicesList.get(i).getSecondStatus() != null) {
+                    if (!(activeServicesList.get(i).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))
                             && (serviceList.get(i).getType().equals(disconnectedTypeList.get(j)))) {
                         isExist = true;
                     }
@@ -96,8 +96,8 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         List<Service> serviceList = serviceResponse.getServices();
         List<String> disconnectedTypeList = new ArrayList<String>();
         for (int i = 0; i < activeServicesList.size(); i++) {
-            if (activeServicesList.get(i).getNewStatus() != null) {
-                if (activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
+            if (activeServicesList.get(i).getSecondStatus() != null) {
+                if (activeServicesList.get(i).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED)) {
                     disconnectedTypeList.add(serviceList.get(i).getType());
                 }
             }
@@ -107,8 +107,8 @@ public class ShowActiveServicesByAdminServlet extends HttpServlet {
         for (int i = 0; i < activeServicesList.size(); i++) {
             boolean isExist = false;
             for (int j = 0; j < disconnectedTypeList.size(); j++) {
-                if (activeServicesList.get(i).getNewStatus() != null) {
-                    if (!(activeServicesList.get(i).getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))
+                if (activeServicesList.get(i).getSecondStatus() != null) {
+                    if (!(activeServicesList.get(i).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))
                             && (serviceList.get(i).getType().equals(disconnectedTypeList.get(j)))) {
                         isExist = true;
                     }

@@ -20,7 +20,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and(FIRST_STATUS!='DISCONNECTED')and ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             activeServiceList=getActiveServiceListByParams(ps);
@@ -151,7 +151,10 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             String sql = "SELECT *FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, activeServiceId);
-            activeService=getActiveServiceListByParams(ps).get(0);
+            List<ActiveService> activeServiceList=getActiveServiceListByParams(ps);
+            if(activeServiceList.size()>0) {
+                activeService = activeServiceList.get(0);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -180,9 +183,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 ps.setInt(1, activeServicesList.get(i).getId());
                 ps.setInt(2, activeServicesList.get(i).getUserId());
                 ps.setInt(3, activeServicesList.get(i).getServiceId());
-                ps.setString(4, activeServicesList.get(i).getCurrentStatus().toString());
-                if (activeServicesList.get(i).getNewStatus() != null) {
-                    ps.setString(5, activeServicesList.get(i).getNewStatus().toString());
+                ps.setString(4, activeServicesList.get(i).getFirstStatus().toString());
+                if (activeServicesList.get(i).getSecondStatus() != null) {
+                    ps.setString(5, activeServicesList.get(i).getSecondStatus().toString());
                 } else {
                     ps.setString(5, " ");
                 }
@@ -197,9 +200,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 ps.setInt(10, activeServicesList.get(i).getId());
                 ps.setInt(11, activeServicesList.get(i).getUserId());
                 ps.setInt(12, activeServicesList.get(i).getServiceId());
-                ps.setString(13, activeServicesList.get(i).getCurrentStatus().toString());
-                if (activeServicesList.get(i).getNewStatus() != null)
-                    ps.setString(14, activeServicesList.get(i).getNewStatus().toString());
+                ps.setString(13, activeServicesList.get(i).getFirstStatus().toString());
+                if (activeServicesList.get(i).getSecondStatus() != null)
+                    ps.setString(14, activeServicesList.get(i).getSecondStatus().toString());
                 else ps.setString(14, " ");
                 ps.setTimestamp(15, timestamp);
                 ps.setInt(16, activeServicesList.get(i).getVersion());
@@ -322,37 +325,37 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 String currentStatus = rs.getString("FIRST_STATUS");
                 switch (currentStatus) {
                     case "ACTIVE":
-                        activeService.setCurrentStatus(ActiveServiceStatus.ACTIVE);
+                        activeService.setFirstStatus(ActiveServiceStatus.ACTIVE);
                         break;
                     case "PLANNED":
-                        activeService.setCurrentStatus(ActiveServiceStatus.PLANNED);
+                        activeService.setFirstStatus(ActiveServiceStatus.PLANNED);
                         break;
                     case "SUSPENDED":
-                        activeService.setCurrentStatus(ActiveServiceStatus.SUSPENDED);
+                        activeService.setFirstStatus(ActiveServiceStatus.SUSPENDED);
                         break;
                     case "DISCONNECTED":
-                        activeService.setCurrentStatus(ActiveServiceStatus.DISCONNECTED);
+                        activeService.setFirstStatus(ActiveServiceStatus.DISCONNECTED);
                         break;
                 }
                 String newStatus = rs.getString("SECOND_STATUS");
                 if (newStatus == null)
-                    activeService.setNewStatus(null);
+                    activeService.setSecondStatus(null);
                 else
                     switch (newStatus) {
                         case "ACTIVE":
-                            activeService.setNewStatus(ActiveServiceStatus.ACTIVE);
+                            activeService.setSecondStatus(ActiveServiceStatus.ACTIVE);
                             break;
                         case "PLANNED":
-                            activeService.setNewStatus(ActiveServiceStatus.PLANNED);
+                            activeService.setSecondStatus(ActiveServiceStatus.PLANNED);
                             break;
                         case "SUSPENDED":
-                            activeService.setNewStatus(ActiveServiceStatus.SUSPENDED);
+                            activeService.setSecondStatus(ActiveServiceStatus.SUSPENDED);
                             break;
                         case "DISCONNECTED":
-                            activeService.setNewStatus(ActiveServiceStatus.DISCONNECTED);
+                            activeService.setSecondStatus(ActiveServiceStatus.DISCONNECTED);
                             break;
                         case " ":
-                            activeService.setNewStatus(null);
+                            activeService.setSecondStatus(null);
                             break;
                     }
                 if (rs.getTimestamp("TDATE") != null) {
@@ -398,7 +401,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         return activeServiceList;
 
     }
-    private void deleteNextActiveServiceId(int nextId){
+    public void deleteNextActiveServiceId(int nextId){
         ActiveService activeService=null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
@@ -409,6 +412,24 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+    public ActiveService getPreviousActiveService(int activeServiceId){
+        ActiveService activeService = null;
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, activeServiceId);
+            List<ActiveService> activeServiceList=getActiveServiceListByParams(ps);
+            if(activeServiceList.size()>0){
+            activeService=activeServiceList.get(0);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return activeService;
 
     }
 }

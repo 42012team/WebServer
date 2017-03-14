@@ -41,7 +41,7 @@
     <%
         ActiveService activeService = (ActiveService) request.getAttribute("activeServiceForChanging");
         session.setAttribute("changedActiveServiceId", activeService.getId());
-        if ((activeService.getNewStatus() != null) && (activeService.getNewStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
+        if ((activeService.getSecondStatus() != null) && (activeService.getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
     %>
     <input type="submit" class="changeDateButton1" formaction="/ChangeActiveServiceByAdminServlet" formmethod="post"
            value="Изменить услугу"/>

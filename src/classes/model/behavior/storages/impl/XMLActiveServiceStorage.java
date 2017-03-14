@@ -59,9 +59,9 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
                     SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
                     String strDate = sdfDate.format(activeServicesList.get(i).getDate());
                     activeServiceElement.setAttribute("date", strDate);
-                    activeServiceElement.setAttribute("currentStatus", activeServicesList.get(i).getCurrentStatus().toString());
-                    if (activeServicesList.get(i).getNewStatus() != null) {
-                        activeServiceElement.setAttribute("newStatus", activeServicesList.get(i).getNewStatus().toString());
+                    activeServiceElement.setAttribute("currentStatus", activeServicesList.get(i).getFirstStatus().toString());
+                    if (activeServicesList.get(i).getSecondStatus() != null) {
+                        activeServiceElement.setAttribute("newStatus", activeServicesList.get(i).getSecondStatus().toString());
                     } else {
                         activeServiceElement.setAttribute("newStatus", "");
                     }
@@ -249,6 +249,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
     }
 
     @Override
+    public void deleteNextActiveServiceId(int nextId) {
+
+    }
+
+    @Override
     public List<ActiveService> getAllActiveServices() {
         List<ActiveService> list = new ArrayList<>();
         NodeList activeServiceNodes = doc.getElementsByTagName("activeService");
@@ -335,6 +340,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
 
     @Override
     public void setNextId(int currentId, int newId) {
+    }
+
+    @Override
+    public ActiveService getPreviousActiveService(int activeServiceId) {
+        return null;
     }
 
     @Override

@@ -40,8 +40,8 @@ public class AddActiveServiceByAdminServlet extends HttpServlet {
                     .withServiceId(serviceId)
                     .withUserId(userId)
                     .withDate(newDate)
-                    .withCurrentStatus(ActiveServiceStatus.PLANNED)
-                    .withNewStatus(ActiveServiceStatus.ACTIVE)
+                    .withFirstStatus(ActiveServiceStatus.PLANNED)
+                    .withSecondStatus(ActiveServiceStatus.ACTIVE)
                     .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("createActiveService");
             ResponseDTO resp = controller.identifyObject(activeServiceParams);

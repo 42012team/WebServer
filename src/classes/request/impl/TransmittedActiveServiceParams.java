@@ -15,8 +15,8 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     private int userId;
     private int activeServiceId;
     private int oldActiveServiceId;
-    private ActiveServiceStatus currentStatus;
-    private ActiveServiceStatus newStatus;
+    private ActiveServiceStatus firstStatus;
+    private ActiveServiceStatus secondStatus;
     private Date date;
     private String requestType;
     private int version;
@@ -52,13 +52,13 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         return this;
     }
 
-    public TransmittedActiveServiceParams withCurrentStatus(ActiveServiceStatus currentStatus) {
-        this.currentStatus = currentStatus;
+    public TransmittedActiveServiceParams withFirstStatus(ActiveServiceStatus firstStatus) {
+        this.firstStatus = firstStatus;
         return this;
     }
 
-    public TransmittedActiveServiceParams withNewStatus(ActiveServiceStatus newStatus) {
-        this.newStatus = newStatus;
+    public TransmittedActiveServiceParams withSecondStatus(ActiveServiceStatus secondStatus) {
+        this.secondStatus = secondStatus;
         return this;
     }
 
@@ -95,12 +95,12 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         return this;
     }
 
-    public ActiveServiceStatus getCurrentStatus() {
-        return currentStatus;
+    public ActiveServiceStatus getFirstStatus() {
+        return firstStatus;
     }
 
-    public ActiveServiceStatus getNewStatus() {
-        return newStatus;
+    public ActiveServiceStatus getSecondStatus() {
+        return secondStatus;
     }
 
     public int getVersion() {

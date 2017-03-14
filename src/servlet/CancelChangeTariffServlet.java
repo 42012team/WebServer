@@ -36,18 +36,6 @@ public class CancelChangeTariffServlet extends HttpServlet {
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-    /*    activeServiceParams = TransmittedActiveServiceParams.create()
-                .withActiveServiceId(activeService.getId())
-                .withUserId(activeService.getUserId())
-                .withDate(activeService.getDate())
-                .withCurrentStatus(activeService.getCurrentStatus())
-                .withNewStatus(activeService.getNewStatus())
-                .withVersion(activeService.getVersion())
-                .withRequestType("changeActiveService");
-        resp = controller.identifyObject(activeServiceParams);
-        if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());*/
-     //   request.setAttribute("user_id",activeService.getUserId());
         response.sendRedirect("/ShowActiveServicesServlet");
     }
 
