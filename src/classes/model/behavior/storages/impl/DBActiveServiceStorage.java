@@ -103,14 +103,17 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     public void cancelChangingTariff(int activeServiceId) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "DELETE  FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=" +
-                    "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?)";
+            String sql = "DELETE  FROM ACTIVESERVICE WHERE (ACTIVESERVICE_ID=" +
+                    "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))or (ACTIVESERVICE_ID=?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, activeServiceId);
+            ps.setInt(2,activeServiceId);
             ps.executeQuery();
             ps.close();
-            sql = "UPDATE ACTIVESERVICE SET CURRENT_STATUS=(SELECT CURRENT_STATUS FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?)," +
-                    "NEW_STATUS=(SELECT NEW_STATUS FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?)," +
+            deleteNextActiveServiceId(activeServiceId);
+         /*   ActiveService previousActiveService=getActiveServiceWithNextId(activeServiceId);
+            sql = "UPDATE ACTIVESERVICE SET FISRT_STATUS=?," +
+                    "SECOND_STATUS=(SELECT SECOND_STATUS FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?)," +
                     "TDATE=(SELECT TDATE FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?),NEXTACTIVESERVICEID=NULL" +
                     " WHERE ACTIVESERVICE_ID=? ";
             ps = connection.prepareStatement(sql);
@@ -119,7 +122,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             ps.setInt(3, activeServiceId);
             ps.setInt(4, activeServiceId);
             ps.executeUpdate();
-            ps.close();
+            ps.close();*/
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -393,6 +396,19 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             }
         }
         return activeServiceList;
+
+    }
+    private void deleteNextActiveServiceId(int nextId){
+        ActiveService activeService=null;
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "UPDATE ACTIVESERVICE set NEXTACTIVESERVICEID=NULL WHERE NEXTACTIVESERVICEID=?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,nextId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

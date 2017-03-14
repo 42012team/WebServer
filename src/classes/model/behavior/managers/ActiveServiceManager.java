@@ -195,7 +195,12 @@ public class ActiveServiceManager {
     }
 
     public void cancelChangingTariff(int activeServiceId) {
+        ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
+        ActiveService nextActiveService = activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
+        System.out.println(activeService.getNextActiveServiceId());
         activeServiceStorage.cancelChangingTariff(activeServiceId);
+        activator.unschedule(activeService);
+        activator.unschedule(nextActiveService);
     }
 
     public List<ActiveService> getAllActiveServices() {

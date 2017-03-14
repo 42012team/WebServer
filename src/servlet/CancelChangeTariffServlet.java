@@ -31,10 +31,12 @@ public class CancelChangeTariffServlet extends HttpServlet {
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
+                .withServiceId(activeService.getServiceId())
+                .withState(activeService.getState())
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-        activeServiceParams = TransmittedActiveServiceParams.create()
+    /*    activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
                 .withDate(activeService.getDate())
@@ -44,7 +46,7 @@ public class CancelChangeTariffServlet extends HttpServlet {
                 .withRequestType("changeActiveService");
         resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());
+            throw new ServletException(((TransmittedException) resp).getMessage());*/
      //   request.setAttribute("user_id",activeService.getUserId());
         response.sendRedirect("/ShowActiveServicesServlet");
     }
