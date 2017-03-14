@@ -36,13 +36,15 @@ public class DeleteActiveServiceWithSameTypeProcessor implements RequestProcesso
                 if (initializer.getActiveServiceManager()
                         .getActiveServiceById(activeServiceParams.getId()) != null) {
                     ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
-                    activeServiceManager.deleteActiveServicesWithTheSameType(activeServiceParams.getId());
+                    activeServiceManager.deleteActiveService(activeServiceParams.getId());
+                   // activeServiceManager.deleteActiveServicesWithTheSameType(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 }
             } else {
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    activeServiceManager.deleteActiveServicesWithTheSameType(activeServiceParams.getId());
+                 //   activeServiceManager.deleteActiveServicesWithTheSameType(activeServiceParams.getId());
+                    activeServiceManager.deleteActiveService(activeServiceParams.getId());
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 } else {
