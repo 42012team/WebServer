@@ -193,20 +193,33 @@ public class ActiveServiceManager {
                 storeActiveServices(Collections.singletonList(newActiveService));
                 setNextActiveService(activeService.getId(), newId);
             }
-        else {
+            else {
                 ActiveService previousActiveService= activeServiceStorage.getPreviousActiveService(activeServiceId);
                 ActiveService nextActiveService=activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
                 if(previousActiveService!=null){
                     if(nextActiveService!=null){
                         activeServiceStorage.deleteActiveService(nextActiveService.getId());
                     }
-                activeServiceStorage.deleteActiveService(activeServiceId);
+                    activeServiceStorage.deleteActiveService(activeServiceId);
                     activeServiceStorage.deleteNextActiveServiceId(activeServiceId);
+                    int newId = idGenerator.generateId();
+                    ActiveService newActiveService = new ActiveService();
+                    newActiveService.setId(newId);
+                    newActiveService.setUserId(previousActiveService.getUserId());
+                    newActiveService.setServiceId(previousActiveService.getServiceId());
+                    newActiveService.setDate(new Date());
+                    newActiveService.setFirstStatus(previousActiveService.getSecondStatus());
+                    newActiveService.setSecondStatus(ActiveServiceStatus.DISCONNECTED);
+                    newActiveService.setVersion(0);
+                    newActiveService.setState(ActiveServiceState.CANCELLED);
+                    storeActiveServices(Collections.singletonList(newActiveService));
+                    setNextActiveService(previousActiveService.getId(), newId);
+
                 }
                 else{
                     activeServiceStorage.deleteActiveService(activeServiceId);
                 }
-        }
+            }
         }
         catch (Exception e) {
             e.printStackTrace();
