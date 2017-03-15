@@ -126,22 +126,14 @@
                                 <br/>
                                 <br/>
                                 <%}%>
-                                <% if (isExist) {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                        formaction="/ActionWithActiveServiceServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceServlet"
                                                              method="post"/></li>
-                            <%} else {%>
-                            <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                   formaction="/ActionWithActiveServiceServlet"
-                                   method="post"/><input type="submit" class="deleteButton" style="display:none"
-                                                         value="Удалить"
-                                                         formaction="/DeleteActiveServiceByTheSameTypeServlet"
-                                                         method="post"/></li><%
-                            }
-                        %>
+
+
                             <br/>
                         </div>
                     </div>

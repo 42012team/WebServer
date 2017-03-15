@@ -46,7 +46,6 @@ public class TariffChangeServlet extends HttpServlet {
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");
             ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
-       //     ActiveServiceResponse activeServiceResponse=(ActiveServiceResponse)resp;
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
             ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;

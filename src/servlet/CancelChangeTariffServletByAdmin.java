@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
-
-/**
- * Created by User on 09.03.2017.
- */
 public class CancelChangeTariffServletByAdmin extends HttpServlet {
     WebController controller = null;
 
@@ -31,6 +27,8 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
+                .withServiceId(activeService.getServiceId())
+                .withState(activeService.getState())
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
@@ -46,21 +44,11 @@ public class CancelChangeTariffServletByAdmin extends HttpServlet {
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
+                .withServiceId(activeService.getServiceId())
+                .withState(activeService.getState())
                 .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
-        System.out.println(activeService.getFirstStatus()+"CURRENTSTATUS");
-        activeServiceParams = TransmittedActiveServiceParams.create()
-                .withActiveServiceId(activeService.getId())
-                .withUserId(activeService.getUserId())
-                .withDate(activeService.getDate())
-                .withFirstStatus(activeService.getFirstStatus())
-                .withSecondStatus(activeService.getSecondStatus())
-                .withVersion(activeService.getVersion())
-                .withRequestType("changeActiveService");
-        resp = controller.identifyObject(activeServiceParams);
-        if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());
         request.setAttribute("user_id", activeService.getUserId());
         response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + activeService.getUserId());
     }

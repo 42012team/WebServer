@@ -37,20 +37,6 @@ public class ActiveServiceManager {
     public ActiveService getActiveServiceById(int activeServiceId) {
         return activeServiceStorage.getActiveServiceById(activeServiceId);
     }
-
-    public void createActiveServiceWithNewStatus(ActiveService activeService) throws Exception {
-        int currentId = activeService.getId();
-        int newId = idGenerator.generateId();
-        activeService.setId(newId);
-        activeService.setVersion(0);
-        storeActiveServices(Collections.singletonList(activeService));
-        if ((activeService.getFirstStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
-            ActiveService activeService1 = getActiveServiceById(currentId);
-            setNextActiveService(newId, activeService1.getNextActiveServiceId());
-        }
-        setNextActiveService(currentId, newId);
-    }
-
     public void setNextActiveService(int currentId, int newId) {
         activeServiceStorage.setNextId(currentId, newId);
     }
@@ -133,7 +119,7 @@ public class ActiveServiceManager {
             if ((activeService.getFirstStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
                 ActiveService oldActiveService = getActiveServiceById(activeService.getId());
                 setNextActiveService(newId, oldActiveService.getNextActiveServiceId());
-            }///возможно ненужно
+            }
             setNextActiveService(activeService.getId(), newId);
             if(activeService.getNextActiveServiceId()!=0){
                 setNextActiveService(newId,activeService.getNextActiveServiceId());
@@ -150,13 +136,6 @@ public class ActiveServiceManager {
             storeActiveServices(Collections.singletonList(activeService));
             activator.reschedule(activeService);
         }
-
-
-
-    }
-
-    public List<String> getHistory(int activeServiceId) {
-        return activeServiceStorage.getHistoryById(activeServiceId);
     }
 
     public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception {
@@ -224,14 +203,6 @@ public class ActiveServiceManager {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void deleteActiveServicesWithTheSameType(int activeServiceId) throws Exception {
-        ActiveService activeService = getActiveServiceById(activeServiceId);
-        changeActiveServiceStatus(activeService, ActiveServiceStatus.DISCONNECTED, null);
-        changeActiveServiceDate(activeService, new Date());
-        createActiveServiceWithNewStatus(activeService);
-        activeServiceStorage.deleteActiveServicesWithTheSameType(activeServiceId);
     }
 
     public void cancelChangingTariff(int activeServiceId) {

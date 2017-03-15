@@ -164,22 +164,13 @@
                                     <br/>
                                     <br/>
                                     <%}%>
-                                    <% if (isExist) {%>
+
                                     <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                            formaction="/ActionWithActiveServiceByAdminServlet"
                                            method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                                  value="Удалить"
                                                                  formaction="/DeleteActiveServiceByAdminServlet"
                                                                  method="post"/></li>
-                                <%} else {%>
-                                <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="/ActionWithActiveServiceByAdminServlet"
-                                       method="post"/><input type="submit" class="deleteButton" style="display:none"
-                                                             value="Удалить"
-                                                             formaction="/DeleteActiveServiceByTheSameTypeByAdminServlet"
-                                                             method="post"/></li><%
-                                }
-                            %>
                                 <br/>
                             </div>
                         </div>

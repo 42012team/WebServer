@@ -4,6 +4,7 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
+import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
@@ -18,9 +19,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by User on 07.03.2017.
- */
 public class TariffChangeByAdminServlet extends HttpServlet {
     WebController controller = null;
 
@@ -51,26 +49,45 @@ public class TariffChangeByAdminServlet extends HttpServlet {
             TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withOldActiveServiceId(activeService.getId())
                     .withServiceId(serviceId)
-                    .withUserId(user_id)
+                    .withUserId(activeService.getUserId())
                     .withDate(newDate)
                     .withFirstStatus(ActiveServiceStatus.PLANNED)
                     .withSecondStatus(ActiveServiceStatus.ACTIVE)
+                    .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
+            activeServiceResponse = (ActiveServiceResponse) resp;
+            int newId = activeServiceResponse.getAllActiveServices().get(0).getId();
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-            TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                    .withActiveServiceId(id)
-                    .withUserId(user_id)
-                    .withDate(newDate)
-                    .withFirstStatus(activeService.getFirstStatus())
-                    .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
-                    .withVersion(activeService.getVersion())
-                    .withRequestType("changeActiveService");
-            resp = controller.identifyObject(activeServiceParams);
+            if (activeService.getState().equals(ActiveServiceState.READY)) {
+                TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
+                        .withActiveServiceId(id)
+                        .withServiceId(activeService.getServiceId())
+                        .withUserId(activeService.getUserId())
+                        .withDate(newDate)
+                        .withFirstStatus(activeService.getSecondStatus())//тут надо переназвать,а так все норм
+                        .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withVersion(activeService.getVersion())
+                        .withNextActiveServiceId(newId)
+                        .withState(activeService.getState())
+                        .withRequestType("changeActiveService");
+                resp = controller.identifyObject(activeServiceParams);
+            } else {
+                TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
+                        .withActiveServiceId(id)
+                        .withUserId(activeService.getUserId())
+                        .withServiceId(activeService.getServiceId())
+                        .withDate(newDate)
+                        .withFirstStatus(activeService.getFirstStatus())
+                        .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
+                        .withVersion(activeService.getVersion())
+                        .withState(ActiveServiceState.NOT_READY)
+                        .withRequestType("changeActiveService");
+                resp = controller.identifyObject(activeServiceParams);
+            }
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-
             response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + user_id);
         } catch (ParseException ex) {
             System.out.println("Exception occured!");
