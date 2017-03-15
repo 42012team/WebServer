@@ -173,7 +173,7 @@
                                                                  method="post"/></li>
                                 <%} else {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                       formaction="/ActionWithActiveServiceServlet"
+                                       formaction="/ActionWithActiveServiceByAdminServlet"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
                                                              formaction="/DeleteActiveServiceByTheSameTypeByAdminServlet"
