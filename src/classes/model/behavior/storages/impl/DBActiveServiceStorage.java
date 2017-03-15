@@ -286,7 +286,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and (SERVICE_ID IN(SELECT SERVICE_ID FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=?))) ORDER BY ACTIVESERVICE_ID";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and (SERVICE_ID IN(SELECT SERVICE_ID FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=?))) ORDER BY TDATE,NEXTACTIVESERVICEID";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.setInt(2, serviceId);

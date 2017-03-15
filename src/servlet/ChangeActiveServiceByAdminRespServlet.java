@@ -74,12 +74,14 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
                 .withUserId(activeService.getUserId())
+                .withServiceId(activeService.getServiceId())
                 .withDate(newDate)
                 .withFirstStatus(activeService.getFirstStatus())
                 .withSecondStatus(activeService.getSecondStatus())
                 .withVersion(activeService.getVersion())
-                .withState(ActiveServiceState.NOT_READY)
+                .withState(activeService.getState())
                 .withRequestType("changeActiveService");
+
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
