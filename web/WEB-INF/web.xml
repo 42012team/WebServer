@@ -307,7 +307,6 @@
         <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
         <servlet-class>servlet.GetTheSameTypeByCurrentServiceByAdminServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
         <url-pattern>/GetTheSameTypeByCurrentServiceByAdminServlet</url-pattern>
