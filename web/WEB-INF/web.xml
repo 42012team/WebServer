@@ -312,24 +312,6 @@
         <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
         <url-pattern>/GetTheSameTypeByCurrentServiceByAdminServlet</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DeleteActiveServiceByTheSameTypeServlet</servlet-name>
-        <servlet-class>servlet.DeleteActiveServiceByTheSameTypeServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>DeleteActiveServiceByTheSameTypeServlet</servlet-name>
-        <url-pattern>/DeleteActiveServiceByTheSameTypeServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
-        <servlet-class>servlet.DeleteActiveServiceWithSameTypeByAdminServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
-        <url-pattern>/DeleteActiveServiceWithSameTypeByAdminServlet</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>CancelChangeTariffServletByAdmin</servlet-name>
         <servlet-class>servlet.CancelChangeTariffServletByAdmin</servlet-class>
