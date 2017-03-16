@@ -13,9 +13,7 @@ import classes.response.impl.ActiveServiceResponse;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * Created by User on 09.03.2017.
- */
+
 public class CancelChangeTariffProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -28,7 +26,7 @@ public class CancelChangeTariffProcessor implements RequestProcessor, Serializab
         this.initializer = initializer;
     }
 
-    //deleteTheSameType
+
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {
@@ -41,7 +39,6 @@ public class CancelChangeTariffProcessor implements RequestProcessor, Serializab
                     return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
                 }
             } else {
-
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
                     activeServiceManager.cancelChangingTariff(activeServiceParams.getId());

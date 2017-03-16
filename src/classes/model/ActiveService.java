@@ -35,6 +35,7 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     private int nextActiveServiceId;
 
     private ActiveServiceState state;
+
     public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus firstStatus, ActiveServiceStatus secondStatus, Date date, ActiveServiceState state) {
         this.id = id;
         this.serviceId = serviceId;
@@ -42,7 +43,7 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
         this.date = date;
         this.firstStatus = firstStatus;
         this.secondStatus = secondStatus;
-        this.state=state;
+        this.state = state;
     }
 
     public ActiveService() {
@@ -65,6 +66,7 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     public void setVersion(int version) {
         this.version = version;
     }
+
     public void setState(ActiveServiceState state) {
         this.state = state;
     }
@@ -82,9 +84,12 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     }
 
     public int getVersion() {
-         return version;
+        return version;
     }
-    public ActiveServiceState getState(){return state;}
+
+    public ActiveServiceState getState() {
+        return state;
+    }
 
     public Date getDate() {
         return date;

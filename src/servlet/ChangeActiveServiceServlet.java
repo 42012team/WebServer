@@ -24,7 +24,7 @@ public class ChangeActiveServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = (Integer)request.getSession(true).getAttribute("changedActiveServiceId");
+        int id = ((ActiveService)request.getSession(true).getAttribute("changedActiveService")).getId();
         TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)
                 .withRequestType("getActiveServiceById");
@@ -36,6 +36,5 @@ public class ChangeActiveServiceServlet extends HttpServlet {
         request.setAttribute("activeService", activeService);
         request.getRequestDispatcher("/changeActiveServicePage.jsp").forward(request, response);
     }
-
 
 }

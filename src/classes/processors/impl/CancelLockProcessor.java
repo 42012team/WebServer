@@ -1,7 +1,6 @@
 package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -10,13 +9,12 @@ import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
 
 import java.io.Serializable;
-import java.util.Collections;
 
-public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializable {
+public class CancelLockProcessor  implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 
-    public GetActiveServiceByIdProcessor() {
+    public CancelLockProcessor() {
 
     }
 
@@ -27,12 +25,10 @@ public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializ
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {
-            TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
-            ActiveService activeService = initializer.getActiveServiceManager().getActiveServiceById(activeServiceParams.getId());
-            System.out.println("Возврат подключенной услуги с id: " + activeServiceParams.getId());
+            TransmittedActiveServiceParams transmittedActiveServiceParams=(TransmittedActiveServiceParams)request;
+            initializer.getActiveServiceManager().cancelLock(transmittedActiveServiceParams.getId());
             return ActiveServiceResponse.create()
-                    .withActiveServices(Collections.singletonList(activeService))
-                    .withResponseType("activeServiceById");
+                    .withResponseType("activeService");
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -42,4 +38,5 @@ public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializ
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
     }
+
 }

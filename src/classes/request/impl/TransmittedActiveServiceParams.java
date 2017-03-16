@@ -76,6 +76,7 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         this.version = version;
         return this;
     }
+
     public TransmittedActiveServiceParams withNextActiveServiceId(int nextActiveServiceId) {
         this.activeServiceId = activeServiceId;
         return this;
@@ -85,8 +86,9 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
         this.unlockingTime = unlockingTime;
         return this;
     }
-    public TransmittedActiveServiceParams withState(ActiveServiceState state){
-        this.state=state;
+
+    public TransmittedActiveServiceParams withState(ActiveServiceState state) {
+        this.state = state;
         return this;
     }
 
@@ -122,12 +124,16 @@ public class TransmittedActiveServiceParams implements RequestDTO, Serializable 
     public int getOldActiveServiceId() {
         return oldActiveServiceId;
     }
-    public  int getNextActiveServiceId(){return  nextActiveServiceId;}
+
+    public int getNextActiveServiceId() {
+        return nextActiveServiceId;
+    }
 
     public Date getDate() {
         return date;
     }
-    public ActiveServiceState getState(){
+
+    public ActiveServiceState getState() {
         return state;
     }
 

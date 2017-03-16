@@ -44,6 +44,7 @@ public class ShowActiveServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
+        System.out.println(serviceList.size()+"lslfddf");
         request.setAttribute("activeServicesDescriptions", serviceList);
         request.setAttribute("activeServicesList", activeServicesList);
         request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);
@@ -64,6 +65,7 @@ public class ShowActiveServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         List<Service> serviceList = serviceResponse.getServices();
+        System.out.println(serviceList.size()+"lslfddf");
         request.setAttribute("activeServicesDescriptions", serviceList);
         request.setAttribute("activeServicesList", activeServicesList);
         request.getRequestDispatcher("/showAllActiveServicesPage.jsp").forward(request, response);

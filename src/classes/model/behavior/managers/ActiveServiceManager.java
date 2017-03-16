@@ -37,6 +37,8 @@ public class ActiveServiceManager {
     public ActiveService getActiveServiceById(int activeServiceId) {
         return activeServiceStorage.getActiveServiceById(activeServiceId);
     }
+
+
     public void setNextActiveService(int currentId, int newId) {
         activeServiceStorage.setNextId(currentId, newId);
     }
@@ -44,7 +46,7 @@ public class ActiveServiceManager {
     public ActiveService createActiveService(ActiveServiceParams activeServiceParams) {
         if (!isExisting(activeServiceParams)) {
             ActiveService activeService = new ActiveService();
-            int newId=idGenerator.generateId();
+            int newId = idGenerator.generateId();
             activeService.setId(newId);
             activeService.setUserId(activeServiceParams.getUserId());
             activeService.setServiceId(activeServiceParams.getServiceId());
@@ -102,8 +104,7 @@ public class ActiveServiceManager {
     }
 
     public void changeActiveService(ActiveService activeService, ActiveServiceParams activeServiceParams) throws Exception {
-        if(activeServiceParams.getState().equals(ActiveServiceState.READY)){
-            System.out.println("in ready");
+        if (activeServiceParams.getState().equals(ActiveServiceState.READY)) {
             int newId = idGenerator.generateId();
             ActiveService newActiveService = new ActiveService();
             newActiveService.setId(newId);
@@ -121,22 +122,24 @@ public class ActiveServiceManager {
                 setNextActiveService(newId, oldActiveService.getNextActiveServiceId());
             }
             setNextActiveService(activeService.getId(), newId);
-            if(activeService.getNextActiveServiceId()!=0){
-                setNextActiveService(newId,activeService.getNextActiveServiceId());
+            if (activeService.getNextActiveServiceId() != 0) {
+                setNextActiveService(newId, activeService.getNextActiveServiceId());
             }
-        }
-        else {
-            changeActiveServiceDate(activeService, activeServiceParams.getDate());
-            changeActiveServiceStatus(activeService, activeServiceParams.getFirstStatus(),
-                    activeServiceParams.getSecondStatus());
-            activeService.setVersion(activeServiceParams.getVersion() + 1);
-            activeService.setState(activeServiceParams.getState());
-            String message = "Изменение статуса услуги с " + activeServiceParams.getFirstStatus() + " на " + activeServiceParams.getSecondStatus() +
-                    " ";
-            storeActiveServices(Collections.singletonList(activeService));
+        } else {
+                changeActiveServiceDate(activeService, activeServiceParams.getDate());
+                changeActiveServiceStatus(activeService, activeServiceParams.getFirstStatus(),
+                        activeServiceParams.getSecondStatus());
+                activeService.setVersion(activeServiceParams.getVersion() + 1);
+                activeService.setState(ActiveServiceState.NOT_READY);
+                String message = "Изменение статуса услуги с " + activeServiceParams.getFirstStatus() + " на " + activeServiceParams.getSecondStatus() +
+                        " ";
+                storeActiveServices(Collections.singletonList(activeService));
             activator.reschedule(activeService);
-        }
+                }
+
+
     }
+
 
     public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception {
         activeServiceStorage.storeActiveServices(activeServicesList);
@@ -155,7 +158,7 @@ public class ActiveServiceManager {
         return hasThisType;
     }
 
-    public void deleteActiveService(int activeServiceId)  {
+    public void deleteActiveService(int activeServiceId) {
         ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
         try {
             if (activeService.getState().equals(ActiveServiceState.READY)) {
@@ -171,16 +174,16 @@ public class ActiveServiceManager {
                 newActiveService.setState(ActiveServiceState.CANCELLED);
                 storeActiveServices(Collections.singletonList(newActiveService));
                 setNextActiveService(activeService.getId(), newId);
-            }
-            else {
-                ActiveService previousActiveService= activeServiceStorage.getPreviousActiveService(activeServiceId);
-                ActiveService nextActiveService=activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
-                if(previousActiveService!=null){
-                    if(nextActiveService!=null){
+            } else {
+                ActiveService previousActiveService = activeServiceStorage.getPreviousActiveService(activeServiceId);
+                ActiveService nextActiveService = activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
+                if (previousActiveService != null) {
+                    if (nextActiveService != null) {
+                        activator.unschedule(nextActiveService);
                         activeServiceStorage.deleteActiveService(nextActiveService.getId());
                     }
+                    activator.unschedule(activeService);
                     activeServiceStorage.deleteActiveService(activeServiceId);
-                    activeServiceStorage.deleteNextActiveServiceId(activeServiceId);
                     int newId = idGenerator.generateId();
                     ActiveService newActiveService = new ActiveService();
                     newActiveService.setId(newId);
@@ -193,24 +196,27 @@ public class ActiveServiceManager {
                     newActiveService.setState(ActiveServiceState.CANCELLED);
                     storeActiveServices(Collections.singletonList(newActiveService));
                     setNextActiveService(previousActiveService.getId(), newId);
-
-                }
-                else{
+                } else {
+                    if (nextActiveService != null) {
+                        activator.unschedule(nextActiveService);
+                        activeServiceStorage.deleteActiveService(nextActiveService.getId());
+                    }
+                    activator.unschedule(activeService);
                     activeServiceStorage.deleteActiveService(activeServiceId);
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public void cancelChangingTariff(int activeServiceId) {
         ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
         ActiveService nextActiveService = activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
         System.out.println(activeService.getNextActiveServiceId());
         activeServiceStorage.cancelChangingTariff(activeServiceId);
-        activator.unschedule(activeService);//непроверенно
+        activator.unschedule(activeService);//не проверено
         activator.unschedule(nextActiveService);//
     }
 
@@ -229,8 +235,20 @@ public class ActiveServiceManager {
         }
     }
 
-    public List<ActiveService> getActiveServicesHistoryByUserId(int userId,int serviceId) {
-        return activeServiceStorage.getActiveServicesHistoryByUserId(userId,serviceId);
+    public List<ActiveService> getActiveServicesHistoryByUserId(int userId, int serviceId) {
+        return activeServiceStorage.getActiveServicesHistoryByUserId(userId, serviceId);
+    }
+    public void cancelLock(int activeServiceId){
+        activator.unschedule(activeServiceStorage.getActiveServiceById(activeServiceId));
+        activeServiceStorage.deleteActiveService(activeServiceId);
+        activeServiceStorage.deleteNextActiveServiceId(activeServiceId);
+    }
+
+    public void changeNewTariffDate(int activeServiceId, Date date){
+        activeServiceStorage.changeNewTariffDate(activeServiceId,date);
+        ActiveService activeService=activeServiceStorage.getActiveServiceById(activeServiceId);
+        activator.reschedule(activeService);
+        activator.reschedule(activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId()));
     }
 
 }

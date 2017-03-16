@@ -20,9 +20,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by User on 07.03.2017.
- */
 public class TariffChangeServlet extends HttpServlet {
     WebController controller = null;
 
@@ -34,14 +31,13 @@ public class TariffChangeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceId");
+            int id = ((ActiveService) request.getSession(true).getAttribute("changedActiveService")).getId();
             User user = (User) request.getSession(true).getAttribute("user");
             int serviceId = Integer.parseInt(request.getParameter("serviceId"));
             String dateToString = request.getParameter("activationDate" + serviceId);
             dateToString = dateToString.replace('T', ' ');
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date newDate = null;
-            newDate = format.parse(dateToString);
+            Date newDate = format.parse(dateToString);
             TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");
@@ -60,25 +56,26 @@ public class TariffChangeServlet extends HttpServlet {
                     .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
-            activeServiceResponse = (ActiveServiceResponse) resp;
-            int newId=activeServiceResponse.getAllActiveServices().get(0).getId();
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
+            activeServiceResponse = (ActiveServiceResponse) resp;
+            int newId = activeServiceResponse.getAllActiveServices().get(0).getId();
             if (activeService.getState().equals(ActiveServiceState.READY)) {
                 TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                         .withActiveServiceId(id)
                         .withServiceId(activeService.getServiceId())
                         .withUserId(user.getId())
                         .withDate(newDate)
-                        .withFirstStatus(activeService.getSecondStatus())//тут надо переназвать,а так все норм
+                        .withFirstStatus(activeService.getSecondStatus())
                         .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
                         .withVersion(activeService.getVersion())
                         .withNextActiveServiceId(newId)
                         .withState(activeService.getState())
                         .withRequestType("changeActiveService");
-            resp = controller.identifyObject(activeServiceParams);
-        }
-            else{
+                resp = controller.identifyObject(activeServiceParams);
+                if (resp.getResponseType().equals("exception"))
+                    throw new ServletException(((TransmittedException) resp).getMessage());
+            } else {
                 TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                         .withActiveServiceId(id)
                         .withUserId(user.getId())
@@ -90,10 +87,9 @@ public class TariffChangeServlet extends HttpServlet {
                         .withState(ActiveServiceState.NOT_READY)
                         .withRequestType("changeActiveService");
                 resp = controller.identifyObject(activeServiceParams);
+                if (resp.getResponseType().equals("exception"))
+                    throw new ServletException(((TransmittedException) resp).getMessage());
             }
-            if (resp.getResponseType().equals("exception"))
-                throw new ServletException(((TransmittedException) resp).getMessage());
-
             response.sendRedirect("/ShowActiveServicesServlet");
         } catch (ParseException ex) {
             System.out.println("Exception occured!");

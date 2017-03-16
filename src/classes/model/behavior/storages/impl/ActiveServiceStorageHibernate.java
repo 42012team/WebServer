@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 
 //import javax.persistence.criteria.CriteriaDelete;
@@ -160,6 +161,11 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public List<ActiveService> getActiveServicesHistoryByUserId(int userId, int serviceId) {
         return null;
+    }
+
+    @Override
+    public void changeNewTariffDate(int activeServiceId, Date date) {
+
     }
 
 }

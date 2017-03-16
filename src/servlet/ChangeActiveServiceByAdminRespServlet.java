@@ -4,7 +4,6 @@ import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
-import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
@@ -30,9 +29,11 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Date newDate = null;
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
+        TransmittedActiveServiceParams activeServiceParams = null;
         if (request.getParameter("cancelLock") != null) {
-            activeService.setSecondStatus(null);
-
+            activeServiceParams = TransmittedActiveServiceParams.create()
+                    .withActiveServiceId(activeService.getId())
+                    .withRequestType("cancelLock");
         } else {
             String date = (String) request.getParameter("date");
             date = date.replace('T', ' ');
@@ -40,7 +41,7 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
             try {
                 newDate = format.parse(date);
             } catch (ParseException e) {
-                e.printStackTrace();
+                throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
             }
             if (activeService.getSecondStatus() != null)
                 switch (activeService.getSecondStatus()) {
@@ -70,22 +71,21 @@ public class ChangeActiveServiceByAdminRespServlet extends HttpServlet {
 
                 }
             }
+            activeServiceParams = TransmittedActiveServiceParams.create()
+                    .withActiveServiceId(activeService.getId())
+                    .withUserId(activeService.getUserId())
+                    .withServiceId(activeService.getServiceId())
+                    .withDate(newDate)
+                    .withFirstStatus(activeService.getFirstStatus())
+                    .withSecondStatus(activeService.getSecondStatus())
+                    .withVersion(activeService.getVersion())
+                    .withState(activeService.getState())
+                    .withRequestType("changeActiveService");
         }
-        TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                .withActiveServiceId(activeService.getId())
-                .withUserId(activeService.getUserId())
-                .withServiceId(activeService.getServiceId())
-                .withDate(newDate)
-                .withFirstStatus(activeService.getFirstStatus())
-                .withSecondStatus(activeService.getSecondStatus())
-                .withVersion(activeService.getVersion())
-                .withState(activeService.getState())
-                .withRequestType("changeActiveService");
-
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+activeService.getUserId());
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + activeService.getUserId());
     }
 
 }

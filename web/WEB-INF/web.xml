@@ -326,7 +326,7 @@
         <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
         <servlet-class>servlet.DeleteActiveServiceWithSameTypeByAdminServlet</servlet-class>
     </servlet>
- <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DeleteActiveServiceWithSameTypeByAdminServlet</servlet-name>
         <url-pattern>/DeleteActiveServiceWithSameTypeByAdminServlet</url-pattern>
     </servlet-mapping>
@@ -354,7 +354,7 @@
         <servlet-name>ActionWithActiveServiceServlet</servlet-name>
         <url-pattern>/ActionWithActiveServiceServlet</url-pattern>
     </servlet-mapping>
-    <!--<error-page>
+    <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>
     </error-page>
@@ -365,7 +365,7 @@
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
-    </error-page>-->
+    </error-page>
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>servlet.SearchUserServlet</servlet-class>
@@ -389,5 +389,21 @@
     <servlet-mapping>
         <servlet-name>ShowActiveServicesHistoryServlet</servlet-name>
         <url-pattern>/ShowActiveServicesHistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeNewTariffDateServlet</servlet-name>
+        <servlet-class>servlet.ChangeNewTariffDateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeNewTariffDateServlet</servlet-name>
+        <url-pattern>/ChangeNewTariffDateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangeNewTariffDateByAdminServlet</servlet-name>
+        <servlet-class>servlet.ChangeNewTariffDateByAdminServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangeNewTariffDateByAdminServlet</servlet-name>
+        <url-pattern>/ChangeNewTariffDateByAdminServlet</url-pattern>
     </servlet-mapping>
 </web-app>

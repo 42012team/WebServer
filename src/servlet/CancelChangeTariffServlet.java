@@ -2,7 +2,6 @@ package servlet;
 
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
-import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
@@ -12,11 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
-/**
- * Created by User on 09.03.2017.
- */
 public class CancelChangeTariffServlet extends HttpServlet {
     WebController controller = null;
 
@@ -30,10 +25,6 @@ public class CancelChangeTariffServlet extends HttpServlet {
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
         TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(activeService.getId())
-                .withUserId(activeService.getUserId())
-                .withServiceId(activeService.getServiceId())
-                .withState(activeService.getState())
-                .withUnlockingTime((new Date()).getTime() - 3000)
                 .withRequestType("cancelChangeTariff");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         response.sendRedirect("/ShowActiveServicesServlet");

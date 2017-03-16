@@ -32,10 +32,12 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Date newDate = null;
         ActiveService activeService = (ActiveService) request.getSession(true).getAttribute("changedActiveService");
+        TransmittedActiveServiceParams activeServiceParams=null;
         User user = (User) request.getSession(true).getAttribute("user");
         if (request.getParameter("cancelLock") != null) {
-            activeService.setSecondStatus(null);
-
+                 activeServiceParams=TransmittedActiveServiceParams.create()
+                        .withActiveServiceId(activeService.getId())
+                        .withRequestType("cancelLock");
         } else {
             String date = (String) request.getParameter("date");
             date = date.replace('T', ' ');
@@ -43,12 +45,11 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
             try {
                 newDate = format.parse(date);
             } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            if(newDate.before(new Date())&&(!((User)request.getSession(true).getAttribute("user")).getPrivilege().equals("admin"))){
                 throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
             }
-      //      DateValidator dateValidator=new DateValidator();
+            if(newDate.before(new Date())&&(!(user.getPrivilege().equals("admin")))){
+                throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
+            }
             if (activeService.getSecondStatus() != null)
                 switch (activeService.getSecondStatus()) {
                     case ACTIVE: {
@@ -59,8 +60,6 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
                         activeService.setSecondStatus(ActiveServiceStatus.SUSPENDED);
                         break;
                     }
-
-
                 }
             switch (activeService.getFirstStatus()) {
                 case ACTIVE: {
@@ -77,17 +76,17 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
 
                 }
             }
+           activeServiceParams = TransmittedActiveServiceParams.create()
+                    .withActiveServiceId(activeService.getId())
+                    .withUserId(user.getId())
+                    .withServiceId(activeService.getServiceId())
+                    .withDate(newDate)
+                    .withFirstStatus(activeService.getFirstStatus())
+                    .withSecondStatus(activeService.getSecondStatus())
+                    .withVersion(activeService.getVersion())
+                    .withState(activeService.getState())
+                    .withRequestType("changeActiveService");
         }
-        TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
-                .withActiveServiceId(activeService.getId())
-                .withUserId(user.getId())
-                .withServiceId(activeService.getServiceId())
-                .withDate(newDate)
-                .withFirstStatus(activeService.getFirstStatus())
-                .withSecondStatus(activeService.getSecondStatus())
-                .withVersion(activeService.getVersion())
-                .withState(activeService.getState())
-                .withRequestType("changeActiveService");
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());

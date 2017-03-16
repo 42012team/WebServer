@@ -352,6 +352,11 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
         return null;
     }
 
+    @Override
+    public void changeNewTariffDate(int activeServiceId, Date date) {
+
+    }
+
     private void write(Document doc) {
         try {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

@@ -30,14 +30,13 @@ public class TariffChangeByAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceId");
-            int user_id = (Integer) request.getSession(true).getAttribute("userForChange");
+            int id = ((ActiveService) request.getSession(true).getAttribute("changedActiveService")).getId();
+            int userId = (Integer) request.getSession(true).getAttribute("userForChange");
             int serviceId = Integer.parseInt(request.getParameter("serviceId"));
             String dateToString = request.getParameter("activationDate" + serviceId);
             dateToString = dateToString.replace('T', ' ');
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date newDate = null;
-            newDate = format.parse(dateToString);
+            Date newDate = format.parse(dateToString);
             TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withActiveServiceId(id)
                     .withRequestType("getActiveServiceById");
@@ -49,34 +48,36 @@ public class TariffChangeByAdminServlet extends HttpServlet {
             TransmittedActiveServiceParams addActiveServiceParams = TransmittedActiveServiceParams.create()
                     .withOldActiveServiceId(activeService.getId())
                     .withServiceId(serviceId)
-                    .withUserId(activeService.getUserId())
+                    .withUserId(userId)
                     .withDate(newDate)
                     .withFirstStatus(ActiveServiceStatus.PLANNED)
                     .withSecondStatus(ActiveServiceStatus.ACTIVE)
                     .withState(ActiveServiceState.NOT_READY)
                     .withRequestType("changeTariffActiveService");
             resp = controller.identifyObject(addActiveServiceParams);
-            activeServiceResponse = (ActiveServiceResponse) resp;
-            int newId = activeServiceResponse.getAllActiveServices().get(0).getId();
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
+            activeServiceResponse = (ActiveServiceResponse) resp;
+            int newId = activeServiceResponse.getAllActiveServices().get(0).getId();
             if (activeService.getState().equals(ActiveServiceState.READY)) {
                 TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                         .withActiveServiceId(id)
                         .withServiceId(activeService.getServiceId())
-                        .withUserId(activeService.getUserId())
+                        .withUserId(userId)
                         .withDate(newDate)
-                        .withFirstStatus(activeService.getSecondStatus())//тут надо переназвать,а так все норм
+                        .withFirstStatus(activeService.getSecondStatus())
                         .withSecondStatus(ActiveServiceStatus.DISCONNECTED)
                         .withVersion(activeService.getVersion())
                         .withNextActiveServiceId(newId)
                         .withState(activeService.getState())
                         .withRequestType("changeActiveService");
                 resp = controller.identifyObject(activeServiceParams);
+                if (resp.getResponseType().equals("exception"))
+                    throw new ServletException(((TransmittedException) resp).getMessage());
             } else {
                 TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                         .withActiveServiceId(id)
-                        .withUserId(activeService.getUserId())
+                        .withUserId(userId)
                         .withServiceId(activeService.getServiceId())
                         .withDate(newDate)
                         .withFirstStatus(activeService.getFirstStatus())
@@ -85,10 +86,10 @@ public class TariffChangeByAdminServlet extends HttpServlet {
                         .withState(ActiveServiceState.NOT_READY)
                         .withRequestType("changeActiveService");
                 resp = controller.identifyObject(activeServiceParams);
+                if (resp.getResponseType().equals("exception"))
+                    throw new ServletException(((TransmittedException) resp).getMessage());
             }
-            if (resp.getResponseType().equals("exception"))
-                throw new ServletException(((TransmittedException) resp).getMessage());
-            response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + user_id);
+            response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + userId);
         } catch (ParseException ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -96,6 +97,6 @@ public class TariffChangeByAdminServlet extends HttpServlet {
                 System.out.println(stackTraceElements[i].toString());
             }
         }
-
     }
+
 }

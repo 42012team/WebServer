@@ -298,6 +298,21 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         return activeServiceList;
     }
 
+    @Override
+    public void changeNewTariffDate(int activeServiceId, Date date) {
+        try {
+            connection = DBConnection.getInstance().getDataSourse().getConnection();
+            String sql = "UPDATE  ACTIVESERVICE SET TDATE=? WHERE ACTIVESERVICE_ID IN ((SELECT ACTIVESERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?),(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setTimestamp(1, new Timestamp(date.getTime()));
+            ps.setInt(2, activeServiceId);
+            ps.setInt(3, activeServiceId);
+            ps.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private List<ActiveService> getActiveServiceListByParams(PreparedStatement ps) {
         List<ActiveService> activeServiceList = null;
         ResultSet rs = null;

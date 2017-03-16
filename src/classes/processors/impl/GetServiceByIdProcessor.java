@@ -1,22 +1,22 @@
 package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
+import classes.model.Service;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
-import classes.request.impl.TransmittedActiveServiceParams;
+import classes.request.impl.TransmittedServiceParams;
 import classes.response.ResponseDTO;
-import classes.response.impl.ActiveServiceResponse;
+import classes.response.impl.ServiceResponse;
 
 import java.io.Serializable;
 import java.util.Collections;
 
-public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializable {
+public class GetServiceByIdProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
 
-    public GetActiveServiceByIdProcessor() {
+    public GetServiceByIdProcessor() {
 
     }
 
@@ -27,12 +27,12 @@ public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializ
     @Override
     public ResponseDTO process(RequestDTO request) {
         try {
-            TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
-            ActiveService activeService = initializer.getActiveServiceManager().getActiveServiceById(activeServiceParams.getId());
-            System.out.println("Возврат подключенной услуги с id: " + activeServiceParams.getId());
-            return ActiveServiceResponse.create()
-                    .withActiveServices(Collections.singletonList(activeService))
-                    .withResponseType("activeServiceById");
+            TransmittedServiceParams serviceParams = (TransmittedServiceParams) request;
+            Service service = initializer.getServiceManager().getServiceById(serviceParams.getServiceId());
+            System.out.println("Возврат услуги с id: " + serviceParams.getServiceId());
+            return ServiceResponse.create()
+                    .withServices(Collections.singletonList(service))
+                    .withResponseType("serviceById");
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
