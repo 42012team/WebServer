@@ -4,7 +4,6 @@
 <%@ page import="classes.model.User" %>
 <%@ page import="classes.response.impl.UserResponse" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
@@ -103,8 +102,10 @@
                     List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
                     if (servicesList.size() > 0) {
                 %>
-                <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType().toString()%>
-                </h2>
+                <a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(0).getId()%>">
+                    <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType()%>
+                    </h2>
+                </a>
                 <div class="row">
                     <%
                         }
@@ -113,8 +114,10 @@
                             if ((k > 0) && (!servicesList.get(k).getType().equals(servicesList.get(k - 1).getType()))) {
                     %>
                 </div>
-                <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType().toString()%>
-                </h2>
+                <a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(k).getId()%>">
+                    <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType()%>
+                    </h2>
+                </a>
                 <div class="row">
                     <%
                         }

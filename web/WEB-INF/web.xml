@@ -387,4 +387,12 @@
         <servlet-name>ChangeNewTariffDateByAdminServlet</servlet-name>
         <url-pattern>/ChangeNewTariffDateByAdminServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowServiceDetailsServlet</servlet-name>
+        <servlet-class>servlet.ShowServiceDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowServiceDetailsServlet</servlet-name>
+        <url-pattern>/ShowServiceDetailsServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

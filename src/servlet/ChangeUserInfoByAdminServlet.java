@@ -5,6 +5,7 @@ import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
 import classes.model.ActiveService;
 import classes.model.Service;
+import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.request.impl.TransmittedServiceParams;
 import classes.request.impl.TransmittedUserParams;
@@ -31,27 +32,31 @@ public class ChangeUserInfoByAdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
-                .withId(Integer.parseInt(request.getParameter("user_id")))
-                .withRequestType("userById"));
-        if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());
-        UserResponse userResp = (UserResponse) resp;
-        resp = controller.identifyObject(TransmittedActiveServiceParams.create().
-                withUserId(Integer.parseInt(request.getParameter("user_id"))).withRequestType("allActiveServices"));
-        if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());
-        ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
-        List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
-        resp = controller.identifyObject(TransmittedServiceParams.create().
-                withUserId(Integer.parseInt(request.getParameter("user_id"))).withRequestType("activeServicesDescriptions"));
-        if (resp.getResponseType().equals("exception"))
-            throw new ServletException(((TransmittedException) resp).getMessage());
-        ServiceResponse serviceResponse = (ServiceResponse) resp;
-        List<Service> serviceList = serviceResponse.getServices();
-        request.setAttribute("activeServicesDescriptions", serviceList);
-        request.setAttribute("activeServicesList", activeServicesList);
-        request.setAttribute("user", userResp);
-        request.getRequestDispatcher("/changeUserInfoByAdminPage.jsp").forward(request, response);
+        if (((User) request.getSession(true).getAttribute("user")).getPrivilege().equals("admin")) {
+            ResponseDTO resp = controller.identifyObject(TransmittedUserParams.create()
+                    .withId(Integer.parseInt(request.getParameter("user_id")))
+                    .withRequestType("userById"));
+            if (resp.getResponseType().equals("exception"))
+                throw new ServletException(((TransmittedException) resp).getMessage());
+            UserResponse userResp = (UserResponse) resp;
+            resp = controller.identifyObject(TransmittedActiveServiceParams.create().
+                    withUserId(Integer.parseInt(request.getParameter("user_id"))).withRequestType("allActiveServices"));
+            if (resp.getResponseType().equals("exception"))
+                throw new ServletException(((TransmittedException) resp).getMessage());
+            ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
+            List<ActiveService> activeServicesList = activeServiceResponse.getAllActiveServices();
+            resp = controller.identifyObject(TransmittedServiceParams.create().
+                    withUserId(Integer.parseInt(request.getParameter("user_id"))).withRequestType("activeServicesDescriptions"));
+            if (resp.getResponseType().equals("exception"))
+                throw new ServletException(((TransmittedException) resp).getMessage());
+            ServiceResponse serviceResponse = (ServiceResponse) resp;
+            List<Service> serviceList = serviceResponse.getServices();
+            request.setAttribute("activeServicesDescriptions", serviceList);
+            request.setAttribute("activeServicesList", activeServicesList);
+            request.setAttribute("user", userResp);
+            request.getRequestDispatcher("/changeUserInfoByAdminPage.jsp").forward(request, response);
+        } else
+            throw new ServletException("ОШИБКА 404!");
     }
+
 }

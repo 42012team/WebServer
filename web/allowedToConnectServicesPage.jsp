@@ -27,19 +27,19 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
+                <li><a href="ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
                 <%
                     switch (((User) session.getAttribute("user")).getPrivilege()) {
                         case "user":
                 %>
-                <li><a href="/ShowProfilePageServlet" color="blue"
+                <li><a href="ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                         break;
                     case "admin":
                 %>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
@@ -68,7 +68,7 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse(da
         <div class="container">
             <% if (allServices.size() > 0) {%>
             <p>
-            <h2 class="text-center">Услуги типа <%=allServices.get(0).getType().toString()%>
+            <h2 class="text-center">Услуги типа <%=allServices.get(0).getType()%>
             </h2>
             </p>
             <div class="row">
@@ -101,7 +101,7 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse(da
                 <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
             </div>
             <p>
-            <h2 class="text-center">Услуги типа <%=allServices.get(i).getType().toString()%>
+            <h2 class="text-center">Услуги типа <%=allServices.get(i).getType()%>
             </h2>
             </p>
             <div class="row">

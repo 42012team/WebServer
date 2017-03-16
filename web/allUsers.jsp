@@ -50,7 +50,7 @@
         <tfoot>
         <tr>
             <th width="3%">Выбрать</th>
-            <th>Name</th>
+            <th>Пользователь</th>
         </tr>
         </tfoot>
         <tbody>

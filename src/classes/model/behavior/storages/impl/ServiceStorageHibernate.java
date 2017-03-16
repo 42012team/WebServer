@@ -26,7 +26,6 @@ public class ServiceStorageHibernate implements ServiceStorage {
             Root<Service> serviceRoot = criteriaQuery.from(Service.class);
             criteriaQuery.select(serviceRoot);
             results = em.createQuery(criteriaQuery).getResultList();
-            System.out.println("werfghtjyhg");
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();

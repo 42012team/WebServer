@@ -214,7 +214,6 @@ public class ActiveServiceManager {
     public void cancelChangingTariff(int activeServiceId) {
         ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
         ActiveService nextActiveService = activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId());
-        System.out.println(activeService.getNextActiveServiceId());
         activeServiceStorage.cancelChangingTariff(activeServiceId);
         activator.unschedule(activeService);//не проверено
         activator.unschedule(nextActiveService);//

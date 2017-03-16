@@ -153,8 +153,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     @Override
     public void storeActiveServices(List<ActiveService> activeServicesList) throws Exception {
         try {
-            System.out.println(activeServicesList.get(0).getId()+" "+activeServicesList.get(0).getServiceId()+" "+activeServicesList.get(0).getUserId()+" "+activeServicesList.get(0).getState());
-            System.out.println("in store");
             PreparedStatement ps = null;
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             for (int i = 0; i < activeServicesList.size(); i++) {
@@ -195,7 +193,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
                 ps.setTimestamp(15, timestamp);
                 ps.setInt(16, activeServicesList.get(i).getVersion());
                 ps.setString(17, activeServicesList.get(i).getState().toString());
-                System.out.println("me be here now");
                 ps.executeQuery();
             }
             ps.close();

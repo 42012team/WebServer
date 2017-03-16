@@ -40,7 +40,7 @@
             <p>Компания предоставляет <%=allServices.size()%> услуг:</p></h2>
         <% if (allServices.size() > 0) {%>
         <p>
-        <h2 class="text-center">Услуги типа <%=allServices.get(0).getType().toString()%>
+        <h2 class="text-center">Услуги типа <%=allServices.get(0).getType()%>
         </h2>
         </p>
         <div class="row">
@@ -66,7 +66,7 @@
             <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
         </div>
         <p>
-        <h2 class="text-center">Услуги типа <%=allServices.get(i).getType().toString()%>
+        <h2 class="text-center">Услуги типа <%=allServices.get(i).getType()%>
         </h2>
         </p>
         <div class="row">

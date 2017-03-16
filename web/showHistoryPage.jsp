@@ -1,184 +1,114 @@
 <%@ page import="classes.model.ActiveService" %>
-<%@ page import="classes.model.ActiveServiceStatus" %>
+<%@ page import="classes.model.ActiveServiceState" %>
 <%@ page import="classes.model.Service" %>
+<%@ page import="classes.model.User" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.util.Date" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <link href="showActiveServicesStyle.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="AllUserss.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="allUsers.js"></script>
 </head>
 <body>
-<form method="post">
-    <div id="usersActiveServices"><span id="connectService"><h2>Подключенные услуги</h2></span></div>
-    <ul>
-        <div class="container">
-            <%
-                List<ActiveService> activeServicesList = (List<ActiveService>) request.getAttribute("activeServicesList");
-                List<Service> allServices = (List<Service>) request.getAttribute("activeServicesDescriptions");
-                System.out.println("размер:"+allServices.size());
-                if (allServices.size() > 0) {%>
-            <p>
-            <h2 class="text-center">Услуги типа <%=allServices.get(0).getType()%>
-            </h2>
-            </p>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <div class="box">
-                        <div class="box-content">
-                            <li>
-                                <%
-                                    int num = 0;
-                                    int serviceId = 0;
-                                    String type = allServices.get(0).getType();
-                                    boolean isSecond = false;
-                                    boolean bool = isSecond;
-                                    for (int j = 0; j < activeServicesList.size(); j++) {
-                                        boolean hasFind = false;
-                                        for (int k = 0; k < allServices.size(); k++) {
-                                            if ((activeServicesList.get(j).getServiceId() == allServices.get(k).getId()) &&
-                                                    (allServices.get(k).getType().equals(type))) {
-                                                if (!isSecond) {
-                                                    num = j;
-                                                    serviceId = k;
-                                                    hasFind = true;
-                                                    break;
-                                                } else {
-                                                    isSecond = false;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        if (hasFind)
-                                            break;
-                                    }%>
-                                <h2 class="tag-title"><span
-                                        class="value"><%=allServices.get(serviceId).getName()%></span></h2>
-                                <hr/>
-                                <div class="description">Описание услуги:<span
-                                        class="value"><%=allServices.get(serviceId).getDescription()%></span>
-                                </div>
-                                <div class="description">Тип услуги: <span
-                                        class="value"><%=allServices.get(serviceId).getType()%></span></div>
-                                <div class="description">Статус услуги: <span
-                                        class="value"><%=activeServicesList.get(num).getFirstStatus().toString()%></span>
-                                </div>
-                                <% if (activeServicesList.get(num).getSecondStatus() != null) {
-                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                                    String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
-                                <div class="description">Запланировано изменение статуса услуги на<span
-                                        class="value">
-    <%= activeServicesList.get(num).getSecondStatus().toString()
-    %> c  <%=strDate%>
-            </span></div>
-                                <%} else {%>
-                                <br/>
-                                <br/>
-                                <%
-                                    }
-                                    if ((activeServicesList.get(num).getSecondStatus() == null) || ((activeServicesList.get(num).getSecondStatus() != null) && (!activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
-                                            ((activeServicesList.get(num).getSecondStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
-                                %></li>
-                            <%} else {%>
-                            </li><%
-                            }
-                        %>
-                            <br/>
-                        </div>
-                    </div>
-                </div>
-                <% if (allServices.size() > 1) {
-                    for (int i = 1; i < allServices.size(); i++) {
-                %>
-                <% if (!allServices.get(i).getType().equals(allServices.get(i - 1).getType())) {%>
-            </div>
-            <p>
-            <h2 class="text-center">Услуги типа <%=allServices.get(i).getType()%>
-            </h2>
-            </p>
-            <div class="row">
-                <%}%>
-                <div class="col-md-4 text-center">
-                    <div class="box">
-                        <div class="box-content">
-                            <li>
-                                <%
-                                    num = 0;
-                                    type = allServices.get(i).getType();
-                                    isSecond = false;
-                                    if (allServices.get(i).getType().equals(allServices.get(i - 1).getType()))
-                                        isSecond = true;
-                                    bool = isSecond;
-                                    for (int j = 0; j < activeServicesList.size(); j++) {
-                                        boolean hasFind = false;
-                                        for (int k = 0; k < allServices.size(); k++) {
-                                            if ((activeServicesList.get(j).getServiceId() == allServices.get(k).getId()) &&
-                                                    (allServices.get(k).getType().equals(type))) {
-                                                if (!isSecond) {
-                                                    num = j;
-                                                    serviceId = k;
-                                                    hasFind = true;
-                                                    break;
-                                                } else {
-                                                    isSecond = false;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        if (hasFind)
-                                            break;
-                                    }
-                                %>
-                                <h2 class="tag-title"><span
-                                        class="value"><%=allServices.get(serviceId).getName()%></span></h2>
-                                <hr/>
-                                <%
-                                    if (!bool) {
-                                %>
-                                <%}%>
-                                <div class="description">Описание услуги:<span
-                                        class="value"><%=allServices.get(serviceId).getDescription()%></span>
-                                </div>
-                                <div class="description">Тип услуги: <span
-                                        class="value"><%=allServices.get(serviceId).getType()%></span></div>
-                                <div class="description">Статус услуги: <span
-                                        class="value"><%=activeServicesList.get(num).getFirstStatus().toString()%></span>
-                                </div>
-                                <% if (activeServicesList.get(num).getSecondStatus() != null) {
-                                    SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                                    String strDate = sdfDate.format(activeServicesList.get(num).getDate());%>
-                                <div class="description">Запланировано изменение статуса услуги на<span
-                                        class="value">
-    <%= activeServicesList.get(num).getSecondStatus().toString()
-    %> c  <%=strDate%>
-            </span></div>
-                                <%} else {%>
-                                <br/>
-                                <br/>
-                                <%
-                                    }
-                                    if ((activeServicesList.get(num).getSecondStatus() == null) || ((activeServicesList.get(num).getSecondStatus() != null) && (!activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) ||
-                                            ((activeServicesList.get(num).getSecondStatus() != null) && (activeServicesList.get(num).getDate().compareTo(new Date()) <= 0)) && (activeServicesList.get(num).getSecondStatus().equals(ActiveServiceStatus.DISCONNECTED))) {
-                                %>
-                                </li>
-                            <%} else {%></li><%
-                            }
-                        %>
-                            <br/>
-                        </div>
-                    </div>
-                </div>
-                <% if (i == allServices.size() - 1) {%>
-            </div>
-            <%}%>
-            <%
-                        }
-                    }
-                }
-            %>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Samara-Telecom</a>
         </div>
-    </ul>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
+                </li>
+                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                </li>
+                <%
+                    switch (((User) session.getAttribute("user")).getPrivilege()) {
+                        case "user":
+                %>
+                <li><a href="/ShowProfilePageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <%
+                        break;
+                    case "admin":
+                %>
+                <li><a href="/ShowAdminPageServlet" color="blue"
+                       class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
+                </a></li>
+                <%
+                            break;
+                    }
+                %>
+                <li><a href="/startPage.jsp">Выйти</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%
+    List<ActiveService> activeServicesList = (List<ActiveService>) request.getAttribute("activeServicesList");
+    List<Service> allServices = (List<Service>) request.getAttribute("activeServicesDescriptions");%>
+<br/><br/><br/>
+<h2 style="margin-left: 37%;">История услуг типа <%=allServices.get(0).getType()%></h2>
+<br/>
+<form>
+    <table id="example" class="display" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Услуга</th>
+            <th>Статус</th>
+            <th>Изменение</th>
+            <th>Дата</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Услуга</th>
+            <th>Статус</th>
+            <th>Изменение</th>
+            <th>Дата</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <%
+            for (int k = 0; k < allServices.size(); k++) {
+                Service s = allServices.get(k);
+        %>
+        <tr>
+            <td><a href="/ShowServiceDetailsServlet?serviceId=<%=s.getId()%>"><%=s.getName()%></a>
+            </td>
+            <td><%=activeServicesList.get(k).getFirstStatus().toString()%>
+            </td>
+            <td><% if (activeServicesList.get(k).getState().equals(ActiveServiceState.NOT_READY)) {
+            %>Запланировано изменение статуса услуги на <%= activeServicesList.get(k).getSecondStatus().toString()%> c
+                <%
+                } else {%>
+                Статус услуги был изменен на <%= activeServicesList.get(k).getSecondStatus().toString()%> c
+                <%
+                    }
+                %>
+            </td>
+            <td><%
+                SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+                String strDate = sdfDate.format(activeServicesList.get(k).getDate());
+            %><%=strDate%>
+            </td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
 </form>
 </body>
 </html>

@@ -66,8 +66,10 @@
                 List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
                 if (servicesList.size() > 0) {
             %>
-            <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType().toString()%>
+            <a href="/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(0).getId()%>">
+            <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType()%>
             </h2>
+            </a>
             <div class="row">
                 <%
                     }
@@ -76,8 +78,10 @@
                         if ((k > 0) && (!servicesList.get(k).getType().equals(servicesList.get(k - 1).getType()))) {
                 %>
             </div>
-            <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType().toString()%>
-            </h2>
+            <a href="/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(k).getId()%>">
+                <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType()%>
+                </h2>
+            </a>
             <div class="row">
                 <%
                     }
@@ -119,7 +123,6 @@
                                 <br/>
                                 <br/>
                                 <%}%>
-
                             <input type="submit" class="changeButton" style="display:none" value="Изменить"
                                    formaction="/ActionWithActiveServiceServlet"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
