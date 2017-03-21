@@ -18,11 +18,11 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     private int userId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "current_status")
+    @Column(name = "first_status")
     private ActiveServiceStatus firstStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "new_status")
+    @Column(name = "second_status")
     private ActiveServiceStatus secondStatus;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -32,8 +32,11 @@ public class ActiveService implements Comparable<ActiveService>, Serializable {
     @Column(name = "version")
     private int version;
 
+    @Column(name = "NEXTACTIVESERVICEID")
     private int nextActiveServiceId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATE")
     private ActiveServiceState state;
 
     public ActiveService(int id, int serviceId, int userId, ActiveServiceStatus firstStatus, ActiveServiceStatus secondStatus, Date date, ActiveServiceState state) {

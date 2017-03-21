@@ -21,18 +21,20 @@ public class Initialization {
 
     private static volatile Initialization instance = null;
     WebController controller = null;
-
+  ///  private static Initialization instance = new Initialization();
     private Initialization() {
+
         IdGenerator idGenerator = IdGeneratorSingletonDB.getInstance();
         UserManager userManager = new UserManager(new DBUserStorage(), idGenerator);
         ServiceManager serviceManager = new ServiceManager(new DBServiceStorage(), idGenerator);
         ActiveServiceManager activeServiceManager = new ActiveServiceManager(new DBActiveServiceStorage(),
                 idGenerator, serviceManager);
         serviceManager.setActiveServiceManager(activeServiceManager);
-        Initializer initializer = new Initializer(userManager, activeServiceManager, serviceManager, "optimistic");
-        Configuration c = new ConfigurationXML();
-        Map<String, RequestProcessor> map = c.getMap(initializer);
-        controller = new WebController(map);
+      //  Initializer initializer = new Initializer(userManager, activeServiceManager, serviceManager, "optimistic");
+     //   Configuration c = new ConfigurationXML();
+       // Map<String, RequestProcessor> map = c.getMap(initializer);
+      //  controller = new WebController(map);
+        controller=new WebController();
         Activator activator = new Activator();
         activeServiceManager.setActivator(activator);
         activator.setActiveServiceManager(activeServiceManager);
@@ -42,15 +44,17 @@ public class Initialization {
 
     public static Initialization getInstance() {
         if (instance == null) {
-            synchronized (Initialization.class) {
+          synchronized (Initialization.class) {
                 if (instance == null) {
                     instance = new Initialization();
-                }
+               }
             }
         }
         return instance;
     }
-
+    public void setController(WebController controller){
+       this.controller=controller;
+    }
     public WebController initialization() {
         synchronized (instance) {
             return controller;

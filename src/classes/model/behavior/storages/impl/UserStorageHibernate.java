@@ -98,15 +98,17 @@ public class UserStorageHibernate implements UserStorage {
         User result = null;
         EntityManager em = null;
         try {
-
+            System.out.println("lala");
             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
             em = HibernateUtil.getEntityManager();
+            System.out.println("create");
             CriteriaQuery<User> criteriaQuery = builder.createQuery(User.class);
             Root<User> userRoot = criteriaQuery.from(User.class);
             Predicate userRestriction = builder.and(
                     builder.equal(userRoot.get("login"), login),
                     builder.equal(userRoot.get("password"), password)
             );
+            System.out.println("lala");
             criteriaQuery.select(userRoot);
             criteriaQuery.where(userRestriction);
             result = em.createQuery(criteriaQuery).getSingleResult();
@@ -117,6 +119,7 @@ public class UserStorageHibernate implements UserStorage {
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
                 System.out.println(stackTraceElements[i].toString());
             }
+            System.out.println(ex.getMessage());
         } finally {
             em.close();
         }

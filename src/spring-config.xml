@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <bean id="idGenerator" class="classes.idgenerator.IdGeneratorSingletonDB" factory-method="getInstance"/>
+
+   <bean id="userStorage" class="classes.model.behavior.storages.impl.DBUserStorage"/>
+   <bean id="userManager" class="classes.model.behavior.managers.UserManager">
+      <constructor-arg name="userStorage" ref="userStorage"/>
+      <constructor-arg name="idGenerator" ref="idGenerator"/>
+   </bean>
+
+   <bean id="serviceStorage" class="classes.model.behavior.storages.impl.DBServiceStorage"/>
+   <bean id="serviceManager" class="classes.model.behavior.managers.ServiceManager">
+      <constructor-arg name="serviceStorage" ref="serviceStorage"/>
+      <constructor-arg name="idGenerator" ref="idGenerator"/>
+      <property name="activeServiceManager" ref="activeServiceManager"/>
+   </bean>
+
+   <bean id="activeServiceStorage" class="classes.model.behavior.storages.impl.DBActiveServiceStorage"/>
+   <bean id="activeServiceManager" class="classes.model.behavior.managers.ActiveServiceManager">
+      <constructor-arg name="activeServiceStorage" ref="activeServiceStorage"/>
+      <constructor-arg name="idGenerator" ref="idGenerator"/>
+      <constructor-arg name="serviceManager" ref="serviceManager"/>
+     <!-- <property name="activator" ref="activator"/>-->
+  </bean>
+
+   <bean id="initializer" class="classes.processors.Initializer">
+      <constructor-arg index="0" ref="userManager"/>
+      <constructor-arg index="1" ref="activeServiceManager"/>
+      <constructor-arg index="2" ref="serviceManager"/>
+      <constructor-arg index="3" value="optimistic"/>
+   </bean>
+  <!--<bean id="activator" class="classes.activator.Activator" init-method="start">
+      <property name="activeServiceManager" ref="activeServiceManager"/>
+   </bean>-->
+
+
+  <bean id="actionType" class="classes.processors.impl.ActionTypeProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="activeServicesDescriptions" class="classes.processors.impl.GetActiveServicesDecriptionsProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="allActiveServices" class="classes.processors.impl.GetAllActiveServicesProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="allowedToConnect" class="classes.processors.impl.GetAllowedToConnectionProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="allServices" class="classes.processors.impl.GetAllServicesProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="allUsers" class="classes.processors.impl.GetAllUsersProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="cancelChangeTariff" class="classes.processors.impl.CancelChangeTariffProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="cancelLock" class="classes.processors.impl.CancelLockProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="changeActiveService" class="classes.processors.impl.ChangeActiveServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="changeNewTariffDate" class="classes.processors.impl.ChangeNewTariffDateProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="changeService" class="classes.processors.impl.ChangeServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="changeUser" class="classes.processors.impl.ChangeUserProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="changeTariffActiveService" class="classes.processors.impl.ChangeTariffProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="createActiveService" class="classes.processors.impl.CreateActiveServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="createService" class="classes.processors.impl.CreateServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="deleteActiveService" class="classes.processors.impl.DeleteActiveServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="deleteService" class="classes.processors.impl.DeleteServiceProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="deleteUser" class="classes.processors.impl.DeleteUserProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="getActiveServiceById" class="classes.processors.impl.GetActiveServiceByIdProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="getHistoryDescriptions" class="classes.processors.impl.GetActiveServicesHistoryDescriptionsProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="getHistory" class="classes.processors.impl.GetActiveServicesHistoryProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="getServiceById" class="classes.processors.impl.GetServiceByIdProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="logIn" class="classes.processors.impl.LogInUserProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="mergeUser" class="classes.processors.impl.MergeUserProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="searchUsersByParams" class="classes.processors.impl.SearchUsersProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="searchUsersBySubparams" class="classes.processors.impl.SearchUsersBySubparamsProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="signInUser" class="classes.processors.impl.CreateUserProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="storeAllActiveServices" class="classes.processors.impl.ChangeActiveServicesProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="theSameType" class="classes.processors.impl.GetServicesWithTheSameTypeProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+   <bean id="userById" class="classes.processors.impl.GetUserByIdProcessor">
+      <property name="initializer" ref="initializer"/>
+   </bean>
+</beans>

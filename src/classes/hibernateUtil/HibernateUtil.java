@@ -13,14 +13,18 @@ public class HibernateUtil {
 
     static {
         try {
+            System.out.println("murk");
             emFactory = Persistence.createEntityManagerFactory(PERSISTENT_UNIT_NAME);
+            System.out.println(emFactory==null);
         } catch (Throwable ex) {
             throw new ExceptionInInitializerError(ex);
         }
     }
 
     public static CriteriaBuilder getCriteriaBuilder() {
+        System.out.println("build");
         CriteriaBuilder builder = emFactory.getCriteriaBuilder();
+
         return builder;
     }
 

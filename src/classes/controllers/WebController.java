@@ -9,11 +9,15 @@ import java.util.Map;
 
 public class WebController {
     private MainProcessor processor;
-
-    public WebController(Map<String, RequestProcessor> processorByType) {
+  // private
+/*   public WebController(Map<String, RequestProcessor> processorByType) {
         processor = new MainProcessor(processorByType);
-    }
 
+    }*/
+   public WebController() {
+        processor = new MainProcessor();
+
+    }
     public ResponseDTO identifyObject(RequestDTO transportObject) {
         ResponseDTO response = processor.processRequest(transportObject);
         return response;

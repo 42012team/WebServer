@@ -7,6 +7,11 @@
         <element id="directory" name="classes">
           <element id="module-output" name="WebServer" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Java EE 6-Java EE 6" />
+          <element id="library" level="project" name="ojdbc7" />
+          <element id="library" level="project" name="Spring-4.3.7.RELEASE" />
+        </element>
       </element>
     </root>
   </artifact>

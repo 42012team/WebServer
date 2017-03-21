@@ -3,6 +3,9 @@ package classes.processors;
 import classes.exceptions.TransmittedException;
 import classes.request.RequestDTO;
 import classes.response.ResponseDTO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,12 +14,15 @@ import java.util.Map;
 
 public class MainProcessor {
 
-    private Map<String, RequestProcessor> processorsByTypesMap = new HashMap<String, RequestProcessor>();
-
-    public MainProcessor(Map<String, RequestProcessor> processorsByTypesMap) {
+   private Map<String, RequestProcessor> processorsByTypesMap = new HashMap<String, RequestProcessor>();
+    private ApplicationContext ctx=null;
+ /*  public MainProcessor(Map<String, RequestProcessor> processorsByTypesMap) {
         this.processorsByTypesMap = processorsByTypesMap;
-    }
-
+        ctx = new FileSystemXmlApplicationContext("src\\spring-config.xml");
+    }*/
+   public MainProcessor() {
+       ctx = new ClassPathXmlApplicationContext("spring-config.xml");
+   }
     public void addProcessorByType(String type, String className, String classpath) {
         //public void addProcessorByType(String type, String className, String classpath,SettingParams manager)or Manager<List>
         //если нужно и несколько managers, по нашей логике нужно в service и activeService, от SettingParams наследуем все
@@ -56,7 +62,8 @@ public class MainProcessor {
     public ResponseDTO processRequest(RequestDTO request) {
         String type = request.getRequestType();
         try {
-            return processorsByTypesMap.get(type).process(request);
+            return ((RequestProcessor)ctx.getBean(type)).process(request);
+           // return processorsByTypesMap.get(type).process(request);
         } catch (NullPointerException ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
