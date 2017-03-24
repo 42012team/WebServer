@@ -20,22 +20,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/hibernate/lib/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hibernate/lib/jboss-logging-3.3.0.Final.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/hibernate/lib/jsr250-api-1.0.jar" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/classes/main/Server.java" afterPath="$PROJECT_DIR$/src/classes/model/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/WebServer_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/WebServer_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebServer.iml" afterPath="$PROJECT_DIR$/WebServer.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spring/spring.iml" afterPath="$PROJECT_DIR$/spring/spring.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/src/META-INF/persistence.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/configuration/Initialization.java" afterPath="$PROJECT_DIR$/src/classes/configuration/Initialization.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/export_import/Export.java" afterPath="$PROJECT_DIR$/src/classes/export_import/Export.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/export_import/Import.java" afterPath="$PROJECT_DIR$/src/classes/export_import/Import.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/hibernateUtil/HibernateUtil.java" afterPath="$PROJECT_DIR$/src/classes/hibernateUtil/HibernateUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/model/behavior/storages/impl/UserStorageHibernate.java" afterPath="$PROJECT_DIR$/src/classes/model/behavior/storages/impl/UserStorageHibernate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/classes/processors/impl/CreateActiveServiceProcessor.java" afterPath="$PROJECT_DIR$/src/classes/processors/impl/CreateActiveServiceProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/servlet/TariffChangeServlet.java" afterPath="$PROJECT_DIR$/src/servlet/TariffChangeServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/spring-config.xml" afterPath="$PROJECT_DIR$/src/spring-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
     </list>
     <ignored path="WebServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,26 +90,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddActiveServiceByAdminServlet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/servlet/AddActiveServiceByAdminServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/classes/controllers/WebController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainProcessor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/classes/processors/MainProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -177,8 +146,18 @@
       <file leaf-file-name="Import.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/classes/export_import/Import.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.03041825">
-              <caret line="119" column="131" selection-start-line="119" selection-start-column="131" selection-end-line="119" selection-end-column="131" />
+            <state vertical-scroll-proportion="-0.3688213">
+              <caret line="94" column="79" selection-start-line="94" selection-start-column="79" selection-end-line="94" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.8333333">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -1347,7 +1326,7 @@
       <workItem from="1490031788758" duration="6852000" />
       <workItem from="1490068950786" duration="5721000" />
       <workItem from="1490190305136" duration="6673000" />
-      <workItem from="1490276822990" duration="12949000" />
+      <workItem from="1490276822990" duration="14137000" />
     </task>
     <task id="LOCAL-00001" summary="auto-commit">
       <created>1486366820331</created>
@@ -1589,11 +1568,17 @@
       <option name="project" value="LOCAL" />
       <updated>1490076180506</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="auto-commit">
+      <created>1490335407554</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1490335407554</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337217000" />
+    <option name="totallyTimeSpent" value="338405000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1606,7 +1591,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1370" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1616,7 +1601,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4844517" sideWeight="0.5030534" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5319149" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5237316" sideWeight="0.8519084" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5237316" sideWeight="0.8519084" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31751227" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4844517" sideWeight="0.49694657" order="13" side_tool="false" content_ui="tabs" />
@@ -1696,14 +1681,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6__2_.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/lib.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1888,16 +1865,16 @@
         <state vertical-scroll-proportion="-4.303125">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1490334875527" expanded="true" signature="59:119069" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="98:214" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="192:214" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="108280:108305" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="108280:108327" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="108280:108361" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="108280:108381" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="108280:108396" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="118770:119043" placeholder="..." />
-            <marker date="1490334875527" expanded="true" signature="118770:119058" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="59:118310" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="98:214" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="192:214" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="108280:108305" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="108280:108327" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="108280:108361" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="108280:108381" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="108280:108396" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="118011:118284" placeholder="..." />
+            <marker date="1490336464674" expanded="true" signature="118011:118299" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1938,14 +1915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9666667">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -2039,7 +2008,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2092,14 +2061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/classes/activator/Activator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/spring-config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9615384">
@@ -2116,6 +2077,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console_4.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/89b89bd4-6e9a-4b38-981d-5cf765eb6aa5/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.8333333">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/configuration/Initialization.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2127,10 +2104,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/classes/activator/Activator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/classes/export_import/Import.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03041825">
-          <caret line="119" column="131" selection-start-line="119" selection-start-column="131" selection-end-line="119" selection-end-column="131" />
+        <state vertical-scroll-proportion="-0.3688213">
+          <caret line="94" column="79" selection-start-line="94" selection-start-column="79" selection-end-line="94" selection-end-column="79" />
           <folding />
         </state>
       </provider>

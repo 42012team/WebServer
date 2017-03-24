@@ -97,7 +97,7 @@ public class Import {
                                 firstStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
-                        switch (activeServiceElement.getAttribute("newStatus")) {
+                        switch (activeServiceElement.getAttribute("secondStatus")) {
                             case "ACTIVE":
                                 secondStatus = ActiveServiceStatus.ACTIVE;
                                 break;
@@ -111,6 +111,7 @@ public class Import {
                                 secondStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
+
                         switch (activeServiceElement.getAttribute("state")) {
                             case "READY":
                                 state= ActiveServiceState.READY;
@@ -124,7 +125,7 @@ public class Import {
                         }
                         activeService = new ActiveService(activeServiceId, serviceId, userId, firstStatus, secondStatus, date,state);
                         activeService.setVersion(version);
-                        activeService.setNextActiveServiceId(0);
+                        activeService.setNextActiveServiceId(nextActiveServiceId);
                         activeServiceList.add(activeService);
                     } catch (ParseException ex) {
                         System.out.println("Exception occured!");
