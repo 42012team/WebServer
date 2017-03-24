@@ -21,7 +21,6 @@ public class Activator extends Thread implements ActivatorInterface {
 
     private void init() {
         List<ActiveService> activeServiceList = activeServiceManager.getAllActiveServices();
-        Date currentDate = new Date();
         for (ActiveService activeService : activeServiceList) {
             if ((activeService.getSecondStatus() != null)) {
                 activeServicePool.add(activeService);
@@ -39,39 +38,32 @@ public class Activator extends Thread implements ActivatorInterface {
         init();
         while (true) {
             synchronized (monitor) {
-            List<ActiveService> listForChange = new ArrayList<ActiveService>();
-//            List<ActiveService> listForDeleting = new ArrayList<ActiveService>();
-            Date currentDate = new Date();
-            long sleepingTime = currentDate.getTime();
-            for (ActiveService activeService : activeServicePool) {
-                if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getSecondStatus() != null)) {
-             /*       activeServiceManager.changeActiveServiceStatus(activeService, activeService.getSecondStatus(), null);
-                    activeServiceManager.changeActiveServiceDate(activeService, activeService.getDate());*/
-
+                List<ActiveService> listForChange = new ArrayList<ActiveService>();
+                Date currentDate = new Date();
+                long sleepingTime = currentDate.getTime();
+                for (ActiveService activeService : activeServicePool) {
+                    if ((currentDate.compareTo(activeService.getDate()) >= 0) && (activeService.getSecondStatus() != null)) {
+                        try {
+                            activeServiceManager.changeState(activeService);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        listForChange.add(activeService);
+                    } else {
+                        break;
+                    }
+                }
+                if (listForChange.size() > 0) {
+                    activeServicePool.removeAll(listForChange);
                     try {
-                        activeServiceManager.changeState(activeService);
-
-                        //activeServiceManager.createActiveServiceWithNewStatus(activeService);
+                        activeServiceManager.storeActiveServices(listForChange);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    listForChange.add(activeService);
-
-                } else {
-                    break;
                 }
-            }
-            if (listForChange.size() > 0) {
-                activeServicePool.removeAll(listForChange);
-                try {
-                    activeServiceManager.storeActiveServices(listForChange);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                if (!activeServicePool.isEmpty()) {
+                    sleepingTime = activeServicePool.get(0).getDate().getTime() - currentDate.getTime();
                 }
-            }
-            if (!activeServicePool.isEmpty()) {
-                sleepingTime = activeServicePool.get(0).getDate().getTime() - currentDate.getTime();
-            }
 
                 try {
                     System.out.println("Поток активации уснул на " + sleepingTime / 1000 + " секунд");

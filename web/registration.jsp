@@ -23,7 +23,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="#about">О Нас</a></li>
                 <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
                 <li><a href="/loginPage.jsp" color="blue" class="settings">Вход</a></li>
             </ul>

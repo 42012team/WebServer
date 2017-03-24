@@ -24,7 +24,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="#about">О Нас</a></li>
             </ul>
         </div>
     </div>

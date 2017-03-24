@@ -5,8 +5,7 @@
     <bean id="user" class="classes.model.User">
         <property name="id" value="11"/>
             </bean>
-    <bean id="dog" class="Action">
-        <property name="dog" value="собака"/></bean>
+
 
     <bean id="idGenerator" class="classes.idgenerator.IdGeneratorSingletonDB" factory-method="getInstance"/>
 
