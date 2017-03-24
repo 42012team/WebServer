@@ -67,6 +67,7 @@ public class Import {
                     int serviceId = Integer.parseInt(activeServiceElement.getAttribute("serviceId"));
                     int version = Integer.parseInt(activeServiceElement.getAttribute("version"));
                     int userId = Integer.parseInt(activeServiceElement.getAttribute("userId"));
+                    int nextActiveServiceId=Integer.parseInt(activeServiceElement.getAttribute("nextActiveServiceId"));
                     Date date = null;
                     try {
                         if (!activeServiceElement.getAttribute("date").equals("")) {
@@ -74,38 +75,51 @@ public class Import {
                             date = format.parse(activeServiceElement.getAttribute("date"));
                         }
                         ActiveService activeService = null;
-                        ActiveServiceStatus newStatus = null;
-                        ActiveServiceStatus currentStatus = null;
-                        switch (activeServiceElement.getAttribute("currentStatus")) {
+                        ActiveServiceStatus secondStatus = null;
+                        ActiveServiceStatus firstStatus = null;
+                        ActiveServiceState state=null;
+                        switch (activeServiceElement.getAttribute("firstStatus")) {
                             case "ACTIVE":
-                                currentStatus = ActiveServiceStatus.ACTIVE;
+                                firstStatus = ActiveServiceStatus.ACTIVE;
                                 break;
                             case "PLANNED":
-                                currentStatus = ActiveServiceStatus.PLANNED;
+                                firstStatus = ActiveServiceStatus.PLANNED;
                                 break;
                             case "SUSPENDED":
-                                currentStatus = ActiveServiceStatus.SUSPENDED;
+                                firstStatus = ActiveServiceStatus.SUSPENDED;
                                 break;
                             case "DISCONNECTED":
-                                currentStatus = ActiveServiceStatus.DISCONNECTED;
+                                firstStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
                         switch (activeServiceElement.getAttribute("newStatus")) {
                             case "ACTIVE":
-                                newStatus = ActiveServiceStatus.ACTIVE;
+                                secondStatus = ActiveServiceStatus.ACTIVE;
                                 break;
                             case "PLANNED":
-                                newStatus = ActiveServiceStatus.PLANNED;
+                                secondStatus = ActiveServiceStatus.PLANNED;
                                 break;
                             case "SUSPENDED":
-                                newStatus = ActiveServiceStatus.SUSPENDED;
+                                secondStatus = ActiveServiceStatus.SUSPENDED;
                                 break;
                             case "DISCONNECTED":
-                                newStatus = ActiveServiceStatus.DISCONNECTED;
+                                secondStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
-                        activeService = new ActiveService(activeServiceId, serviceId, userId, currentStatus, newStatus, date, ActiveServiceState.NOT_READY);
+                        switch (activeServiceElement.getAttribute("state")) {
+                            case "READY":
+                                state= ActiveServiceState.READY;
+                                break;
+                            case "NOT_READY":
+                                state= ActiveServiceState.NOT_READY;
+                                break;
+                            case "CANCELLED":
+                                state= ActiveServiceState.CANCELLED;
+                                break;
+                        }
+                        activeService = new ActiveService(activeServiceId, serviceId, userId, firstStatus, secondStatus, date,state);
                         activeService.setVersion(version);
+                        activeService.setNextActiveServiceId(0);
                         activeServiceList.add(activeService);
                     } catch (ParseException ex) {
                         System.out.println("Exception occured!");

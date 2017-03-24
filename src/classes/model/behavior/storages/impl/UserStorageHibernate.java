@@ -48,7 +48,11 @@ public class UserStorageHibernate implements UserStorage {
                 System.out.println(stackTraceElements[i].toString());
             }
         } finally {
-            entityManager.close();
+            try{
+            entityManager.close();}
+            catch (Exception ex){
+                ex.printStackTrace();
+            }
         }
         return result;
     }

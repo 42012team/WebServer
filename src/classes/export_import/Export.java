@@ -102,11 +102,11 @@ private String path;
                     attr = doc.createAttribute("date");
                     attr.setValue("");
                 }
-                attr = doc.createAttribute("currentStatus");
+                attr = doc.createAttribute("firstStatus");
                 attr.setValue(activeServicesList.get(j).getFirstStatus().toString());
                 activeServiceElement.setAttributeNode(attr);
                 if (activeServicesList.get(j).getSecondStatus() != null) {
-                    attr = doc.createAttribute("newStatus");
+                    attr = doc.createAttribute("secondStatus");
                     attr.setValue(activeServicesList.get(j).getSecondStatus().toString());
                     activeServiceElement.setAttributeNode(attr);
                 } else {
@@ -115,6 +115,12 @@ private String path;
                 }
                 attr = doc.createAttribute("version");
                 attr.setValue(Integer.toString(activeServicesList.get(j).getVersion()));
+                activeServiceElement.setAttributeNode(attr);
+                attr=doc.createAttribute("state");
+                attr.setValue(activeServicesList.get(j).getState().toString());
+                activeServiceElement.setAttributeNode(attr);
+                attr=doc.createAttribute("nextActiveServiceId");
+                attr.setValue(Integer.toString(activeServicesList.get(j).getNextActiveServiceId()));
                 activeServiceElement.setAttributeNode(attr);
                 elementUser.appendChild(activeServiceElement);
 

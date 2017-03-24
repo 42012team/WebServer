@@ -9,20 +9,19 @@
       <constructor-arg name="userStorage" ref="userStorage"/>
       <constructor-arg name="idGenerator" ref="idGenerator"/>
    </bean>
-
-   <bean id="serviceStorage" class="classes.model.behavior.storages.impl.DBServiceStorage"/>
+    <bean id="serviceStorage" class="classes.model.behavior.storages.impl.DBServiceStorage"/>
    <bean id="serviceManager" class="classes.model.behavior.managers.ServiceManager">
       <constructor-arg name="serviceStorage" ref="serviceStorage"/>
       <constructor-arg name="idGenerator" ref="idGenerator"/>
       <property name="activeServiceManager" ref="activeServiceManager"/>
    </bean>
 
-   <bean id="activeServiceStorage" class="classes.model.behavior.storages.impl.DBActiveServiceStorage"/>
+ <bean id="activeServiceStorage" class="classes.model.behavior.storages.impl.DBActiveServiceStorage"/>
    <bean id="activeServiceManager" class="classes.model.behavior.managers.ActiveServiceManager">
       <constructor-arg name="activeServiceStorage" ref="activeServiceStorage"/>
       <constructor-arg name="idGenerator" ref="idGenerator"/>
       <constructor-arg name="serviceManager" ref="serviceManager"/>
-     <!-- <property name="activator" ref="activator"/>-->
+      <property name="activator" ref="activator"/>
   </bean>
 
    <bean id="initializer" class="classes.processors.Initializer">
@@ -31,9 +30,9 @@
       <constructor-arg index="2" ref="serviceManager"/>
       <constructor-arg index="3" value="optimistic"/>
    </bean>
-  <!--<bean id="activator" class="classes.activator.Activator" init-method="start">
+  <bean id="activator" class="classes.activator.Activator" init-method="start">
       <property name="activeServiceManager" ref="activeServiceManager"/>
-   </bean>-->
+   </bean>
 
 
   <bean id="actionType" class="classes.processors.impl.ActionTypeProcessor">

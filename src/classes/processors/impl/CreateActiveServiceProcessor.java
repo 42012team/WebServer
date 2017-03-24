@@ -49,9 +49,8 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
             if (createActiveService(activeServiceParams.getId(), activeServiceParams.getServiceId(),
                     activeServiceParams.getUserId(), activeServiceParams.getFirstStatus(),
                     activeServiceParams.getSecondStatus(), activeServiceParams.getDate(),activeServiceParams.getState())) {
-                return ActiveServiceResponse.create().withResponseType("activeServices")
-                        .withActiveServices(initializer.getActiveServiceManager()
-                                .getActiveServicesByUserId(activeServiceParams.getUserId()));
+                System.out.println("do it");
+                return ActiveServiceResponse.create().withResponseType("activeServices");
             }
         } catch (Exception ex) {
             System.out.println("Exception occured: " + ex.getStackTrace());

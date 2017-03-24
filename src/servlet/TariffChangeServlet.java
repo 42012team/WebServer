@@ -60,7 +60,7 @@ public class TariffChangeServlet extends HttpServlet {
                 throw new ServletException(((TransmittedException) resp).getMessage());
             activeServiceResponse = (ActiveServiceResponse) resp;
             int newId = activeServiceResponse.getAllActiveServices().get(0).getId();
-            if (activeService.getState().equals(ActiveServiceState.READY)) {
+            if (activeService.getState().equals(ActiveServiceState.READY)) {//к чему это?
                 TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                         .withActiveServiceId(id)
                         .withServiceId(activeService.getServiceId())

@@ -395,6 +395,4 @@
         <servlet-name>ShowServiceDetailsServlet</servlet-name>
         <url-pattern>/ShowServiceDetailsServlet</url-pattern>
     </servlet-mapping>
-
-
 </web-app>
