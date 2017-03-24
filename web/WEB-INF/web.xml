@@ -11,7 +11,6 @@
         <servlet-name>LogInServlet</servlet-name>
         <url-pattern>/LogInServlet</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>servlet.SignInServlet</servlet-class>
@@ -298,7 +297,6 @@
         <servlet-name>TariffChangeByAdminServlet</servlet-name>
         <servlet-class>servlet.TariffChangeByAdminServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>TariffChangeByAdminServlet</servlet-name>
         <url-pattern>/TariffChangeByAdminServlet</url-pattern>

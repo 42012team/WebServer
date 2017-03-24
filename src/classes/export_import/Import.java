@@ -18,12 +18,17 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by User on 28.02.2017.
+ * This class responsible for ....
+ *
  */
 public class Import {
     //private final String PATH = "D:\\nc\\1.xml";
     Document doc;
 
+    /**
+     * imports ...
+     * @param path path which should be ...
+     */
     public Import(String path) {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder;

@@ -33,8 +33,6 @@
   <bean id="activator" class="classes.activator.Activator" init-method="start">
       <property name="activeServiceManager" ref="activeServiceManager"/>
    </bean>
-
-
   <bean id="actionType" class="classes.processors.impl.ActionTypeProcessor">
       <property name="initializer" ref="initializer"/>
    </bean>
