@@ -66,15 +66,15 @@ public class ActiveServiceManager {
         return null;
     }
 
-    public ActiveService changeTariff(ActiveServiceParams activeServiceParams) {//переобозвать не плохо бы
+    public ActiveService changeTariff(ActiveServiceParams activeServiceParams) {
         int newId = idGenerator.generateId();
         ActiveService activeService = new ActiveService();
         activeService.setId(newId);
         activeService.setUserId(activeServiceParams.getUserId());
         activeService.setServiceId(activeServiceParams.getServiceId());
         activeService.setDate(activeServiceParams.getDate());
-        activeService.setFirstStatus(ActiveServiceStatus.PLANNED);
-        activeService.setSecondStatus(ActiveServiceStatus.ACTIVE);
+        activeService.setFirstStatus(activeServiceParams.getFirstStatus());
+        activeService.setSecondStatus(activeServiceParams.getSecondStatus());
         activeService.setState(activeServiceParams.getState());
         activeService.setVersion(0);
         try {
@@ -126,16 +126,16 @@ public class ActiveServiceManager {
                 setNextActiveService(newId, activeService.getNextActiveServiceId());
             }
         } else {
-                changeActiveServiceDate(activeService, activeServiceParams.getDate());
-                changeActiveServiceStatus(activeService, activeServiceParams.getFirstStatus(),
-                        activeServiceParams.getSecondStatus());
-                activeService.setVersion(activeServiceParams.getVersion() + 1);
-                activeService.setState(ActiveServiceState.NOT_READY);
-                String message = "Изменение статуса услуги с " + activeServiceParams.getFirstStatus() + " на " + activeServiceParams.getSecondStatus() +
-                        " ";
-                storeActiveServices(Collections.singletonList(activeService));
+            changeActiveServiceDate(activeService, activeServiceParams.getDate());
+            changeActiveServiceStatus(activeService, activeServiceParams.getFirstStatus(),
+                    activeServiceParams.getSecondStatus());
+            activeService.setVersion(activeServiceParams.getVersion() + 1);
+            activeService.setState(ActiveServiceState.NOT_READY);
+            String message = "Изменение статуса услуги с " + activeServiceParams.getFirstStatus() + " на " + activeServiceParams.getSecondStatus() +
+                    " ";
+            storeActiveServices(Collections.singletonList(activeService));
             activator.reschedule(activeService);
-                }
+        }
 
 
     }
@@ -237,15 +237,16 @@ public class ActiveServiceManager {
     public List<ActiveService> getActiveServicesHistoryByUserId(int userId, int serviceId) {
         return activeServiceStorage.getActiveServicesHistoryByUserId(userId, serviceId);
     }
-    public void cancelLock(int activeServiceId){
+
+    public void cancelLock(int activeServiceId) {
         activator.unschedule(activeServiceStorage.getActiveServiceById(activeServiceId));
         activeServiceStorage.deleteActiveService(activeServiceId);
         activeServiceStorage.deleteNextActiveServiceId(activeServiceId);
     }
 
-    public void changeNewTariffDate(int activeServiceId, Date date){
-        activeServiceStorage.changeNewTariffDate(activeServiceId,date);
-        ActiveService activeService=activeServiceStorage.getActiveServiceById(activeServiceId);
+    public void changeNewTariffDate(int activeServiceId, Date date) {
+        activeServiceStorage.changeNewTariffDate(activeServiceId, date);
+        ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
         activator.reschedule(activeService);
         activator.reschedule(activeServiceStorage.getActiveServiceById(activeService.getNextActiveServiceId()));
     }

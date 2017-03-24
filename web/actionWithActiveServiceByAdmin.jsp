@@ -1,7 +1,4 @@
-<%@ page import="classes.model.ActiveService" %>
-<%@ page import="classes.model.ActiveServiceState" %>
-<%@ page import="classes.model.Service" %>
-<%@ page import="classes.model.User" %>
+<%@ page import="classes.model.*" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page errorPage="/errorPage.jsp" %>
@@ -92,8 +89,9 @@
     %>
     <input type="submit" class="changeDateButton" formaction="/ChangeActiveServiceByAdminServlet" formmethod="post"
            value="Изменить услугу"/>
-    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceByAdminServlet"
-           formmethod="post" value="Изменить тариф"/>
+    <%if (!(activeService.getState().equals(ActiveServiceState.NOT_READY)&&(activeService.getFirstStatus().equals(ActiveServiceStatus.PLANNED)))) {%>
+    <input type="submit" class="changeTariffButton" formaction="/GetTheSameTypeByCurrentServiceServlet"
+           formmethod="post" value="Изменить тариф"/><%}%>
     <%}%>
 </form>
 </body>
