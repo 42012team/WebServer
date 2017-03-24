@@ -111,6 +111,7 @@ public class Import {
                                 secondStatus = ActiveServiceStatus.DISCONNECTED;
                                 break;
                         }
+
                         switch (activeServiceElement.getAttribute("state")) {
                             case "READY":
                                 state= ActiveServiceState.READY;
