@@ -32,6 +32,7 @@ public class GetTheSameTypeByCurrentServiceByAdminServlet extends HttpServlet {
         TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)
                 .withRequestType("theSameType");
+
         ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());

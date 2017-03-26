@@ -160,6 +160,7 @@ public class ActiveServiceManager {
     }
 
     public void deleteActiveService(int activeServiceId) {
+
         ActiveService activeService = activeServiceStorage.getActiveServiceById(activeServiceId);
         try {
             if (activeService.getState().equals(ActiveServiceState.READY)) {

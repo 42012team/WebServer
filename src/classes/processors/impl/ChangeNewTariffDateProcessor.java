@@ -36,5 +36,6 @@ public class ChangeNewTariffDateProcessor implements RequestProcessor, Serializa
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
 
+
     }
 }

@@ -54,7 +54,8 @@
    <bean id="cancelLock" class="classes.processors.impl.CancelLockProcessor">
       <property name="initializer" ref="initializer"/>
    </bean>
-   <bean id="changeActiveService" class="classes.processors.impl.ChangeActiveServiceProcessor">
+
+    <bean id="changeActiveService" class="classes.processors.impl.ChangeActiveServiceProcessor">
       <property name="initializer" ref="initializer"/>
    </bean>
    <bean id="changeNewTariffDate" class="classes.processors.impl.ChangeNewTariffDateProcessor">

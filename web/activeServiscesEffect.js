@@ -2,6 +2,7 @@ function load() {
     localStorage.setItem('id', -1);
 }
 
+
 function click1(radio) {
     var idValue = localStorage.getItem('id');
     if (idValue == -1) {

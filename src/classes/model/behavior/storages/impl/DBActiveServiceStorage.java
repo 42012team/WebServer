@@ -189,6 +189,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
 
     public void setNextId(int currentId, int newId) {
         try {
+
             connection = DBConnection.getInstance().getDataSourse().getConnection();
             String sql = " UPDATE ACTIVESERVICE set nextactiveserviceid=? where ACTIVESERVICE_ID=?";
             PreparedStatement ps = connection.prepareStatement(sql);

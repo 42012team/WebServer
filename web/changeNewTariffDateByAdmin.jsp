@@ -43,6 +43,7 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
         int id = Integer.parseInt(request.getParameter("chooseActiveService"));
         System.out.println(id);
         session.setAttribute("changedActiveServiceIdByAdmin", id);
+
     %>
     <div class="container">
         <div class="row">

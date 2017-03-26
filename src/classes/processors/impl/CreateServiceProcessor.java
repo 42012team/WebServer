@@ -59,4 +59,5 @@ public class CreateServiceProcessor implements RequestProcessor, Serializable {
         return TransmittedException.create("УСЛУГА ДАННОГО ТИПА УЖЕ ДОБАВЛЕНА!").withExceptionType("exception");
     }
 
+
 }

@@ -36,6 +36,7 @@ public class ChangeNewTariffDateServlet extends HttpServlet {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         if(newDate.before(new Date())&&(!((User)request.getSession(true).getAttribute("user")).getPrivilege().equals("admin"))){
             throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
         }

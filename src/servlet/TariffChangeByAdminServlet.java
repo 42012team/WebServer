@@ -43,6 +43,7 @@ public class TariffChangeByAdminServlet extends HttpServlet {
                     .withUserId(userId)
                     .withDate(newDate)
                     .withRequestType("changeTariffActiveService");
+
             ResponseDTO resp = controller.identifyObject(addActiveServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());

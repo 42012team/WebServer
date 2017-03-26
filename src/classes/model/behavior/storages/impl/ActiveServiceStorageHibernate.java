@@ -140,6 +140,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
 
     }
 
+
     @Override
     public ActiveService getPreviousActiveService(int activeServiceId) {
         return null;

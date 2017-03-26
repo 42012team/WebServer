@@ -19,6 +19,7 @@ public class ChangeActiveServicesProcessor implements RequestProcessor, Serializ
 
     }
 
+
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

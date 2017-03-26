@@ -31,6 +31,7 @@ public class TariffChangeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
             int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceId");
             User user = (User) request.getSession(true).getAttribute("user");
             int serviceId = Integer.parseInt(request.getParameter("serviceId"));

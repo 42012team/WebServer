@@ -29,4 +29,5 @@ public interface ActiveServiceStorage {
 
     public void changeNewTariffDate(int activeServiceId,Date date);
 
+
 }

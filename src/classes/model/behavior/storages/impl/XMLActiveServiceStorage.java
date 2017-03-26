@@ -329,6 +329,7 @@ public class XMLActiveServiceStorage implements ActiveServiceStorage {
     public void setNextId(int currentId, int newId) {
     }
 
+
     @Override
     public ActiveService getPreviousActiveService(int activeServiceId) {
         return null;

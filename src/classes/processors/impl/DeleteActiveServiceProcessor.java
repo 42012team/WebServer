@@ -54,6 +54,7 @@ public class DeleteActiveServiceProcessor implements RequestProcessor, Serializa
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
                 System.out.println(stackTraceElements[i].toString());
             }
+
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
         return TransmittedException.create("ПРОИЗОШЛА ОШИБКА!").withExceptionType("exception");
