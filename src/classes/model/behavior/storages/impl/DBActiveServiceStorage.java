@@ -20,7 +20,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and (STATE!='CANCELLED') AND ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and((STATE='NOT_READY') or(STATE='READY' AND (NEXTACTIVESERVICEID IS NULL or NEXTACTIVESERVICEID=0)))";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             activeServiceList=getActiveServiceListByParams(ps);
@@ -58,71 +58,13 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         }
     }
 
-    public void deleteActiveServicesWithTheSameType(int activeServiceId) {
-        try {
-
-            connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "DELETE FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=" +
-                    "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ps.executeQuery();
-            ps.close();
-            sql = "UPDATE ACTIVESERVICE set NEXTACTIVESERVICEID=NULL WHERE ACTIVESERVICE_ID=" +
-                    "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?)";
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ps.executeQuery();
-            ps.close();
-            sql = "UPDATE ACTIVESERVICE SET TDATE=CURRENT_TIMESTAMP WHERE ACTIVESERVICE_ID=?";
-            ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ps.executeUpdate();
-            ps.close();
-
-        } catch (SQLException ex) {
-            System.out.println("Exception occured!");
-            StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString());
-            }
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println("Exception occured!");
-                StackTraceElement[] stackTraceElements = ex.getStackTrace();
-                for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                    System.out.println(stackTraceElements[i].toString());
-                }
-            }
-        }
-    }
-
-    @Override
-    public void cancelChangingTariff(int activeServiceId) {
-        try {
-            connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "DELETE  FROM ACTIVESERVICE WHERE (ACTIVESERVICE_ID=" +
-                    "(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))or (ACTIVESERVICE_ID=?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ps.setInt(2,activeServiceId);
-            ps.executeQuery();
-            ps.close();
-            deleteNextActiveServiceId(activeServiceId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Override
     public List<ActiveService> getAllActiveServices() {
         List<ActiveService> activeServiceList = null;
 
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (STATE!='CANCELLED') AND ((NEXTACTIVESERVICEID IS NULL)or ((SECOND_STATUS='DISCONNECTED')and (TDATE>CURRENT_TIMESTAMP))) ORDER BY ACTIVESERVICE_ID";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (STATE='NOT_READY') ORDER BY ACTIVESERVICE_ID";
             PreparedStatement ps = connection.prepareStatement(sql);
             activeServiceList =getActiveServiceListByParams(ps);
         } catch (SQLException e) {
@@ -245,25 +187,6 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         }
     }
 
-    @Override
-    public List<String> getHistoryById(int activeServiceId) {
-        List<String> messageList = null;
-        try {
-            messageList = new ArrayList<String>();
-            connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT MESSAGE FROM History WHERE (ACTIVESERVICE_ID=?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, activeServiceId);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                messageList.add(rs.getString("message"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return messageList;
-    }
-
     public void setNextId(int currentId, int newId) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
@@ -299,7 +222,7 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
     public void changeNewTariffDate(int activeServiceId, Date date) {
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "UPDATE  ACTIVESERVICE SET TDATE=? WHERE ACTIVESERVICE_ID IN ((SELECT ACTIVESERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?),(SELECT NEXTACTIVESERVICEID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
+            String sql = "UPDATE  ACTIVESERVICE SET TDATE=? WHERE ACTIVESERVICE_ID IN ((SELECT ACTIVESERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?),(SELECT ACTIVESERVICE_ID FROM ACTIVESERVICE WHERE NEXTACTIVESERVICEID=?))";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setTimestamp(1, new Timestamp(date.getTime()));
             ps.setInt(2, activeServiceId);

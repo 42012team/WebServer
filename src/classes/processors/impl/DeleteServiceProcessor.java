@@ -39,7 +39,7 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
                     } else {
                         System.out.println("Статус услуги был изменен на DEPRECATED!");
                     }
-                    return ServiceResponse.create().withResponseType("services").withServices(initializer.getServiceManager().getAllServices());
+                    return ServiceResponse.create().withResponseType("services");
                 }
             } else {
                 if (serviceParams.getUnlockingTime() > new Date().getTime()) {
@@ -51,7 +51,7 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
                         System.out.println("Статус услуги был изменен на DEPRECATED!");
                     }
                     PessimisticLockingThread.unschedule(serviceParams.getServiceId());
-                    return ServiceResponse.create().withResponseType("services").withServices(initializer.getServiceManager().getAllServices());
+                    return ServiceResponse.create().withResponseType("services");
                 } else {
                     return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
                 }

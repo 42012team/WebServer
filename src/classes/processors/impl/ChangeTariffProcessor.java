@@ -32,11 +32,11 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
         this.initializer = initializer;
     }
 
-    private ActiveService createActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus currentStatus, ActiveServiceStatus newStatus, Date date, ActiveServiceState state) {
+    private ActiveService createNewActiveService(int oldActiveServiceId, int serviceId, int userId, ActiveServiceStatus firstStatus, ActiveServiceStatus secondStatus, Date date, ActiveServiceState state) {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
-                .withFirstStatus(ActiveServiceStatus.PLANNED)
-                .withSecondStatus(ActiveServiceStatus.ACTIVE)
+                .withFirstStatus(firstStatus)
+                .withSecondStatus(secondStatus)
                 .withServiceId(serviceId)
                 .withUserId(userId)
                 .withDate(date)
@@ -49,14 +49,26 @@ public class ChangeTariffProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
+
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
-            ActiveService activeService=createActiveService(activeServiceParams.getOldActiveServiceId(), activeServiceParams.getServiceId(),
-                    activeServiceParams.getUserId(), activeServiceParams.getFirstStatus(),
-                    activeServiceParams.getSecondStatus(), activeServiceParams.getDate(),activeServiceParams.getState());
-            if (activeService!=null) {
-                return ActiveServiceResponse.create().withResponseType("activeServices")
-                        .withActiveServices(Collections.singletonList(activeService));
+            ActiveService currentActiveService = initializer.getActiveServiceManager()
+                    .getActiveServiceById(activeServiceParams.getOldActiveServiceId());
+            if (activeServiceParams.getDate().compareTo(currentActiveService.getDate()) <= 0) {
+                return TransmittedException.create("Некорректная дата!").withExceptionType("exception");
+            }
+            ActiveService modifyCurrentActiveService = createNewActiveService(activeServiceParams.getOldActiveServiceId(),
+                    currentActiveService.getServiceId(),
+                    activeServiceParams.getUserId(), currentActiveService.getSecondStatus(),
+                    ActiveServiceStatus.DISCONNECTED, activeServiceParams.getDate(),
+                    ActiveServiceState.NOT_READY);
+            ActiveService newActiveService = createNewActiveService(modifyCurrentActiveService.getId(),
+                    activeServiceParams.getServiceId(),
+                    activeServiceParams.getUserId(), ActiveServiceStatus.PLANNED,
+                    ActiveServiceStatus.ACTIVE, activeServiceParams.getDate(),
+                    ActiveServiceState.NOT_READY);
+            if (newActiveService != null) {
+                return ActiveServiceResponse.create().withResponseType("activeServices");
             }
         } catch (Exception ex) {
             System.out.println("Exception occured: " + ex.getStackTrace());

@@ -43,8 +43,7 @@ public class ChangeServiceProcessor implements RequestProcessor, Serializable {
                 serviceParams.getName(), serviceParams.getDescription(), serviceParams.getServiceStatus(),
                 serviceParams.getVersion());
         System.out.println("Изменение услуги с Id " + serviceParams.getServiceId());
-        return ServiceResponse.create().withResponseType("services").
-                withServices(initializer.getServiceManager().getAllServices());
+        return ServiceResponse.create().withResponseType("services");
     }
 
     @Override

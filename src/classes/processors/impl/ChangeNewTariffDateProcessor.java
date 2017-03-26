@@ -7,6 +7,7 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 import java.io.Serializable;
 
@@ -29,9 +30,8 @@ public class ChangeNewTariffDateProcessor implements RequestProcessor, Serializa
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             System.out.println("Изменение даты смены тарифа у подключенной услуги с Id " + activeServiceParams.getId());
             initializer.getActiveServiceManager().changeNewTariffDate(activeServiceParams.getId(), activeServiceParams.getDate());
-            return ActiveServiceResponse.create().withResponseType("activeServices").
-                    withActiveServices(initializer.getActiveServiceManager()
-                            .getActiveServicesByUserId(activeServiceParams.getUserId()));
+            System.out.println("blabla");
+            return ActiveServiceResponse.create().withResponseType("activeServices");
         } catch (Exception ex) {
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }

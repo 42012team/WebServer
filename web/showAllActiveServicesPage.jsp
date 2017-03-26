@@ -93,9 +93,11 @@
                             <hr/>
                             <li>
                                 <%
-                                    if (((activeServiceList.get(k).getNextActiveServiceId() != 0)) || (
-                                            ((k == 0) || (!servicesList.get(k - 1).getType().equals(servicesList.get(k).getType()))) &&
-                                                    ((k == servicesList.size() - 1) || (!servicesList.get(k).getType().equals(servicesList.get(k + 1).getType()))))) {
+                                    /*    if (((activeServiceList.get(k).getNextActiveServiceId() != 0)) || (
+                                                ((k == 0) || (!servicesList.get(k - 1).getType().equals(servicesList.get(k).getType()))) &&
+                                                        ((k == servicesList.size() - 1) || (!servicesList.get(k).getType().equals(servicesList.get(k + 1).getType()))))) {
+                                  */
+                                    if (activeServiceList.get(k).getNextActiveServiceId() == 0) {
                                 %>
                                 <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
                                        id="<%=activeServiceList.get(k).getId()%>"
@@ -122,13 +124,40 @@
                                 </div>
                                 <br/>
                                 <br/>
-                                <%}%>
-                            <input type="submit" class="changeButton" style="display:none" value="Изменить"
-                                   formaction="/ActionWithActiveServiceServlet"
+                                <%
+                                    }
+                                    boolean notChangeTariff = false;
+                                    for (int h = 0; h < servicesList.size(); h++) {
+                                        if ((h != k) && (servicesList.get(k).getType().equals(servicesList.get(h).getType())) &&
+                                                (activeServiceList.get(h).getState().equals(ActiveServiceState.NOT_READY))) {
+                                            notChangeTariff = true;
+                                            break;
+                                        }
+
+                                    }
+                                    if (!notChangeTariff) {
+                                %>
+
+                                <input type="submit" class="changeButton" style="display:none" value="Изменить дату"
+                                       formaction="/ChangeActiveServiceServlet"
+                                       method="post"/><input type="submit" class="changeTariffButton"
+                                                             style="display:none" value="Изменить тариф"
+                                                             formaction="/GetTheSameTypeByCurrentServiceServlet"
+                                                             method="post"/><input type="submit" class="deleteButton"
+                                                                                   style="display:none"
+                                                                                   value="Удалить"
+                                                                                   formaction="/DeleteActiveServiceServlet"
+                                                                                   method="post"/></li>
+                            <%} else {%>
+                            <input type="submit" class="changeButton" style="display:none" value="Изменить дату"
+                                   formaction="/changeNewTariffDate.jsp"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                          value="Удалить"
                                                          formaction="/DeleteActiveServiceServlet"
                                                          method="post"/></li>
+
+                            <%}%>
+
                             <br/>
                         </div>
                     </div>

@@ -46,9 +46,7 @@ public class CreateServiceProcessor implements RequestProcessor, Serializable {
                 if (!initializer.getTypeOfLock().equals("optimistic")) {
                     PessimisticLockingThread.unschedule(serviceParams.getUserId());
                 }
-                return ServiceResponse.create().withResponseType("services")
-                        .withServices(initializer.getServiceManager()
-                                .getAllServices());
+                return ServiceResponse.create().withResponseType("services");
             }
         } catch (Exception ex) {
             System.out.println("Exception occured!");

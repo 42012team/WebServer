@@ -39,6 +39,11 @@ var d=new Date();
 if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date').val())){
     return confirm('Введена прошедшая дата! Изменения сразу вступят в силу. Вы уверены?');
 }">
+    <%
+        int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+        System.out.println(id);
+        session.setAttribute("changedActiveServiceIdByAdmin", id);
+    %>
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">

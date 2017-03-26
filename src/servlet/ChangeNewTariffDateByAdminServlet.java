@@ -26,7 +26,7 @@ public class ChangeNewTariffDateByAdminServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = ((ActiveService)request.getSession(true).getAttribute("changedActiveService")).getId();
+        int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceIdByAdmin");
         String date = (String) request.getParameter("date");
         date = date.replace('T', ' ');
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -46,6 +46,6 @@ public class ChangeNewTariffDateByAdminServlet extends HttpServlet {
         ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+((ActiveService)request.getSession(true).getAttribute("changedActiveService")).getUserId());
+        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + ((Integer) request.getSession(true).getAttribute("userForChange")));
     }
 }

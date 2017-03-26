@@ -35,7 +35,7 @@ public class DeleteActiveServiceProcessor implements RequestProcessor, Serializa
                     ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
                     System.out.println("Удаление подключенной услуги с Id " + activeServiceParams.getId());
                     activeServiceManager.deleteActiveService(activeServiceParams.getId());
-                    return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
+                    return ActiveServiceResponse.create().withResponseType("activeServices");
                 }
             } else {
                 ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
@@ -43,7 +43,7 @@ public class DeleteActiveServiceProcessor implements RequestProcessor, Serializa
                 if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
                     activeServiceManager.deleteActiveService(activeServiceParams.getId());
                     PessimisticLockingThread.unschedule(activeServiceParams.getId());
-                    return ActiveServiceResponse.create().withResponseType("activeServices").withActiveServices(initializer.getActiveServiceManager().getActiveServicesByUserId(activeServiceParams.getUserId()));
+                    return ActiveServiceResponse.create().withResponseType("activeServices");
                 } else {
                     return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
                 }

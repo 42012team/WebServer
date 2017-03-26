@@ -42,8 +42,12 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
 }"><%
 } else {
 %>
-    >
-    <%}%>
+
+    <%
+        }
+        int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+        session.setAttribute("changedActiveServiceId", id);
+    %>
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">

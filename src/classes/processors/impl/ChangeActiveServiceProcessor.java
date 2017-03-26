@@ -52,9 +52,7 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
                     activeServiceParam.getSecondStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
                             .getActiveServiceById(activeServiceParam.getId()).getVersion(),activeServiceParam.getState(),activeServiceParam.getNextActiveServiceId());
             System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
-            return ActiveServiceResponse.create().withResponseType("activeServices").
-                    withActiveServices(initializer.getActiveServiceManager()
-                            .getActiveServicesByUserId(activeServiceParam.getUserId()));
+            return ActiveServiceResponse.create().withResponseType("activeServices");
         } catch (Exception ex) {
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }

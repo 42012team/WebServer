@@ -9,17 +9,22 @@ function click1(radio) {
         var parent = radio.parentNode;
         var deleteButton = parent.lastChild;
         deleteButton.style.display = 'inline';
-        var changeButton = deleteButton.previousSibling;
-        changeButton.style.display = 'inline';
+        var changeTariffButton = deleteButton.previousSibling;
+        changeTariffButton.style.display = 'inline';
+        var changeDateButton = changeTariffButton.previousSibling;
+        changeDateButton.style.display = 'inline';
     }
     else if (idValue != radio.value) {
         var previousDeleteButton = document.getElementById(idValue).parentNode.lastChild;
         previousDeleteButton.style.display = 'none';
         previousDeleteButton.previousSibling.style.display = 'none';
+        previousDeleteButton.previousSibling.previousSibling.style.display = 'none';
         var currentDeleteButton = radio.parentNode.lastChild;
         currentDeleteButton.style.display = 'inline';
-        var currentChangeButton = currentDeleteButton.previousSibling;
-        currentChangeButton.style.display = 'inline';
+        var currentDateChangeButton = currentDeleteButton.previousSibling;
+        currentDateChangeButton.style.display = 'inline';
+        var currentTariffChangeButton = currentDateChangeButton.previousSibling;
+        currentTariffChangeButton.style.display = 'inline';
         localStorage.setItem('id', radio.value);
     }
     function showCalendar() {

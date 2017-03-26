@@ -110,12 +110,13 @@ public class ServiceManager {
         List<Service> descriptions = new ArrayList<Service>();
         for (ActiveService activeService : activeServices) {
             for (Service service : allServices) {
-                if (activeService.getServiceId() == service.getId()) {
+                if (service.getId() == activeService.getServiceId()) {
                     descriptions.add(service);
                     break;
                 }
             }
         }
+
         return descriptions;
     }
 

@@ -25,7 +25,8 @@ public class GetTheSameTypeByCurrentServiceServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = ((ActiveService)request.getSession(true).getAttribute("changedActiveService")).getId();
+        int id = Integer.parseInt(request.getParameter("chooseActiveService"));
+        request.getSession(true).setAttribute("changedActiveServiceId", id);
         TransmittedActiveServiceParams transmittedActiveServiceParams = TransmittedActiveServiceParams.create()
                 .withActiveServiceId(id)
                 .withRequestType("theSameType");

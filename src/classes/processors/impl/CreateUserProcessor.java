@@ -56,15 +56,6 @@ public class CreateUserProcessor implements RequestProcessor, Serializable {
                         userRequestParams.getLogin(), userRequestParams.getPassword(), userRequestParams.getVersion(), userRequestParams.getPrivilege());
                 System.out.println("Присвоенный Id:" + user.getId());
                 return UserResponse.create()
-                        .withName(user.getName())
-                        .withSurname(user.getSurname())
-                        .withAdress(user.getAddress())
-                        .withEmail(user.getEmail())
-                        .withPhone(user.getPhone())
-                        .withLogin(user.getLogin())
-                        .withPassword(user.getPassword())
-                        .withId(user.getId())
-                        .withVersion(user.getVersion())
                         .withResponseType("user");
             }
         } catch (Exception ex) {

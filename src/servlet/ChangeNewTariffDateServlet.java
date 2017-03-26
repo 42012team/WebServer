@@ -26,7 +26,7 @@ public class ChangeNewTariffDateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = ((ActiveService)request.getSession(true).getAttribute("changedActiveService")).getId();
+        int id = (Integer) request.getSession(true).getAttribute("changedActiveServiceId");
         String date = (String) request.getParameter("date");
         date = date.replace('T', ' ');
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");

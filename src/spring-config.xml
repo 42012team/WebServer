@@ -51,9 +51,6 @@
    <bean id="allUsers" class="classes.processors.impl.GetAllUsersProcessor">
       <property name="initializer" ref="initializer"/>
    </bean>
-   <bean id="cancelChangeTariff" class="classes.processors.impl.CancelChangeTariffProcessor">
-      <property name="initializer" ref="initializer"/>
-   </bean>
    <bean id="cancelLock" class="classes.processors.impl.CancelLockProcessor">
       <property name="initializer" ref="initializer"/>
    </bean>
