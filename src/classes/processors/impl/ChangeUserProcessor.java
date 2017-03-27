@@ -4,7 +4,6 @@ import classes.exceptions.TransmittedException;
 import classes.model.User;
 import classes.model.UserParams;
 import classes.model.behavior.managers.UserManager;
-import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -13,7 +12,6 @@ import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ChangeUserProcessor implements RequestProcessor, Serializable {
 
@@ -57,23 +55,10 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedUserParams userRequestParams = (TransmittedUserParams) request;
-            if (initializer.getTypeOfLock().equals("optimistic")) {
-                User userById = initializer.getUserManager().getUserById(userRequestParams.getUserId());
-                if (userById.getVersion() == userRequestParams.getVersion()) {
-                    synchronized (this) {
-                        if (userById.getVersion() == userRequestParams.getVersion()) {
-                            return getResponse(userRequestParams);
-                        }
-                    }
-                }
+            if (initializer.getLockingManager().isAvailableUser(userRequestParams)) {
+                return getResponse(userRequestParams);
             } else {
-                if (userRequestParams.getUnlockingTime() > new Date().getTime()) {
-                    UserResponse result = getResponse(userRequestParams);
-                    PessimisticLockingThread.unschedule(userRequestParams.getUserId());
-                    return result;
-                } else {
-                    return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
-                }
+                return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!").withExceptionType("exception");
             }
 
         } catch (Exception ex) {
@@ -84,7 +69,6 @@ public class ChangeUserProcessor implements RequestProcessor, Serializable {
             }
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
-        return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!").withExceptionType("exception");
     }
 
 }

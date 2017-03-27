@@ -16,7 +16,6 @@ public class ProviderController {
     private MainProcessor processor;
 
     public ProviderController(Map<String, RequestProcessor> processorByType) {
-       // processor = new MainProcessor(processorByType);
         processor = new MainProcessor();
     }
 

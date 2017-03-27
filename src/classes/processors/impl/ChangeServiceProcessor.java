@@ -4,7 +4,6 @@ import classes.exceptions.TransmittedException;
 import classes.model.ServiceParams;
 import classes.model.ServiceStatus;
 import classes.model.behavior.managers.ServiceManager;
-import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -13,7 +12,6 @@ import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ChangeServiceProcessor implements RequestProcessor, Serializable {
 
@@ -50,21 +48,10 @@ public class ChangeServiceProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedServiceParams serviceParams = (TransmittedServiceParams) request;
-            if (initializer.getTypeOfLock().equals("optimistic")) {
-                if ((initializer.getServiceManager()
-                        .getServiceById(serviceParams.getServiceId()) != null)
-                        && (initializer.getServiceManager().getServiceById(serviceParams.getServiceId())
-                        .getVersion() == serviceParams.getVersion())) {
-                    return getResponse(serviceParams);
-                }
+            if (initializer.getLockingManager().isAvailableService(serviceParams)) {
+                return getResponse(serviceParams);
             } else {
-                if (serviceParams.getUnlockingTime() > new Date().getTime()) {
-                    ServiceResponse result = getResponse(serviceParams);
-                    PessimisticLockingThread.unschedule(serviceParams.getServiceId());
-                    return result;
-                } else {
-                    return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
-                }
+                return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!").withExceptionType("exception");
             }
         } catch (Exception ex) {
             System.out.println("Exception occured!");
@@ -74,8 +61,6 @@ public class ChangeServiceProcessor implements RequestProcessor, Serializable {
             }
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
-        return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!").withExceptionType("exception");
     }
-
 
 }

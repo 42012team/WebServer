@@ -5,7 +5,6 @@ import classes.model.ActiveServiceParams;
 import classes.model.ActiveServiceState;
 import classes.model.ActiveServiceStatus;
 import classes.model.behavior.managers.ActiveServiceManager;
-import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -29,7 +28,7 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
     }
 
     private void changeActiveService(int id, int serviceId, int userId, ActiveServiceStatus currentStatus,
-                ActiveServiceStatus newStatus, Date date, int version, ActiveServiceState state,int nextActiveServiceId) throws Exception {
+                                     ActiveServiceStatus newStatus, Date date, int version, ActiveServiceState state, int nextActiveServiceId) throws Exception {
         ActiveServiceManager activeServiceManager = initializer.getActiveServiceManager();
         ActiveServiceParams activeServiceParams = ActiveServiceParams.create()
                 .withFirstStatus(currentStatus)
@@ -46,11 +45,10 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
 
     private ResponseDTO getResponse(TransmittedActiveServiceParams activeServiceParam) {
         try {
-
             changeActiveService(activeServiceParam.getId(), activeServiceParam.getServiceId(),
                     activeServiceParam.getUserId(), activeServiceParam.getFirstStatus(),
                     activeServiceParam.getSecondStatus(), activeServiceParam.getDate(), initializer.getActiveServiceManager()
-                            .getActiveServiceById(activeServiceParam.getId()).getVersion(),activeServiceParam.getState(),activeServiceParam.getNextActiveServiceId());
+                            .getActiveServiceById(activeServiceParam.getId()).getVersion(), activeServiceParam.getState(), activeServiceParam.getNextActiveServiceId());
             System.out.println("Изменение подключенной услуги с Id " + activeServiceParam.getId());
             return ActiveServiceResponse.create().withResponseType("activeServices");
         } catch (Exception ex) {
@@ -62,21 +60,11 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
-            if (initializer.getTypeOfLock().equals("optimistic")) {
-                if ((initializer.getActiveServiceManager()
-                        .getActiveServiceById(activeServiceParams.getId()) != null)
-                        && (initializer.getActiveServiceManager().getActiveServiceById(activeServiceParams.getId())
-                        .getVersion() == activeServiceParams.getVersion())) {
-                    return getResponse(activeServiceParams);
-                }
+            if (initializer.getLockingManager().isAvailableActiveService(activeServiceParams)) {
+                return getResponse(activeServiceParams);
             } else {
-                if (activeServiceParams.getUnlockingTime() > new Date().getTime()) {
-                    ResponseDTO result = getResponse(activeServiceParams);
-                    PessimisticLockingThread.unschedule(activeServiceParams.getId());
-                    return result;
-                } else {
-                    return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
-                }
+                return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!")
+                        .withExceptionType("exception");
             }
         } catch (Exception ex) {
             System.out.println("Exception occured!");
@@ -86,7 +74,6 @@ public class ChangeActiveServiceProcessor implements RequestProcessor, Serializa
             }
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
-        return TransmittedException.create("НЕВОЗМОЖНО ИЗМЕНИТЬ ДАННЫЕ!").withExceptionType("exception");
     }
 
 }

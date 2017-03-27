@@ -2,7 +2,6 @@ package classes.processors.impl;
 
 import classes.exceptions.TransmittedException;
 import classes.model.behavior.managers.ServiceManager;
-import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -11,7 +10,6 @@ import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class DeleteServiceProcessor implements RequestProcessor, Serializable {
 
@@ -29,33 +27,19 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedServiceParams serviceParams = (TransmittedServiceParams) request;
-            if (initializer.getTypeOfLock().equals("optimistic")) {
-                if (initializer.getServiceManager()
-                        .getServiceById(serviceParams.getServiceId()) != null) {
-                    ServiceManager serviceManager = initializer.getServiceManager();
-                    System.out.println("Попытка удаления услуги с Id " + serviceParams.getServiceId());
-                    if (serviceManager.deleteService(serviceParams.getServiceId())) {
-                        System.out.println("Услуга успешно удалена!");
-                    } else {
-                        System.out.println("Статус услуги был изменен на DEPRECATED!");
-                    }
-                    return ServiceResponse.create().withResponseType("services");
-                }
-            } else {
-                if (serviceParams.getUnlockingTime() > new Date().getTime()) {
-                    ServiceManager serviceManager = initializer.getServiceManager();
-                    System.out.println("Попытка удаления услуги с Id " + serviceParams.getServiceId());
-                    if (serviceManager.deleteService(serviceParams.getServiceId())) {
-                        System.out.println("Услуга успешно удалена!");
-                    } else {
-                        System.out.println("Статус услуги был изменен на DEPRECATED!");
-                    }
-                    PessimisticLockingThread.unschedule(serviceParams.getServiceId());
-                    return ServiceResponse.create().withResponseType("services");
+            if (initializer.getLockingManager().isAvailableService(serviceParams)) {
+                ServiceManager serviceManager = initializer.getServiceManager();
+                System.out.println("Попытка удаления услуги с Id " + serviceParams.getServiceId());
+                if (serviceManager.deleteService(serviceParams.getServiceId())) {
+                    System.out.println("Услуга успешно удалена!");
                 } else {
-                    return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО! ИСТЕКЛО ВРЕМЯ ОЖИДАНИЯ ЗАПРОСА!").withExceptionType("exception");
+                    System.out.println("Статус услуги был изменен на DEPRECATED!");
                 }
+                return ServiceResponse.create().withResponseType("services");
+            } else {
+                return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО!").withExceptionType("exception");
             }
+
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -64,6 +48,5 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
             }
             return TransmittedException.create("ОШИБКА 404!").withExceptionType("exception");
         }
-        return TransmittedException.create("ПРОИЗОШЛА ОШИБКА!").withExceptionType("exception");
     }
 }

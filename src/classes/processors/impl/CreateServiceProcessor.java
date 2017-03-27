@@ -4,7 +4,6 @@ import classes.exceptions.TransmittedException;
 import classes.model.ServiceParams;
 import classes.model.ServiceStatus;
 import classes.model.behavior.managers.ServiceManager;
-import classes.pessimisticLock.PessimisticLockingThread;
 import classes.processors.Initializer;
 import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
@@ -43,9 +42,6 @@ public class CreateServiceProcessor implements RequestProcessor, Serializable {
             TransmittedServiceParams serviceParams = (TransmittedServiceParams) request;
             if (createService(serviceParams.getName(), serviceParams.getDescription(), serviceParams.getServiceType(),
                     serviceParams.getServiceStatus())) {
-                if (!initializer.getTypeOfLock().equals("optimistic")) {
-                    PessimisticLockingThread.unschedule(serviceParams.getUserId());
-                }
                 return ServiceResponse.create().withResponseType("services");
             }
         }catch (Exception ex) {
