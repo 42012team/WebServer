@@ -1,5 +1,6 @@
 <%@ page import="classes.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="/errorPage.jsp" %>
 <html>
 <head>
     <title>Title</title>
@@ -41,7 +42,6 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
 }">
     <%
         int id = Integer.parseInt(request.getParameter("chooseActiveService"));
-        System.out.println(id);
         session.setAttribute("changedActiveServiceIdByAdmin", id);
 
     %>

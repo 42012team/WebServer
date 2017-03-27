@@ -5,6 +5,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="/errorPage.jsp" %>
 <html>
 <head>
     <title>Title</title>
@@ -90,8 +91,7 @@
             <td><%=activeServicesList.get(k).getFirstStatus().toString()%>
             </td>
             <td><% if (activeServicesList.get(k).getState().equals(ActiveServiceState.NOT_READY)) {
-            %>Запланировано изменение статуса услуги на <%= activeServicesList.get(k).getSecondStatus().toString()%> c
-                <%
+            %>Запланировано изменение статуса услуги на <%= activeServicesList.get(k).getSecondStatus().toString()%>                <%
                 } else {%>
                 Статус услуги был изменен на <%= activeServicesList.get(k).getSecondStatus().toString()%> c
                 <%

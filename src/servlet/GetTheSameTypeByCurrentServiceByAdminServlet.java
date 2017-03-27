@@ -3,7 +3,6 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
@@ -14,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by User on 07.03.2017.
- */
 public class GetTheSameTypeByCurrentServiceByAdminServlet extends HttpServlet {
     WebController controller = null;
 

@@ -48,7 +48,7 @@ public class CreateServiceProcessor implements RequestProcessor, Serializable {
                 }
                 return ServiceResponse.create().withResponseType("services");
             }
-        } catch (Exception ex) {
+        }catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
@@ -58,6 +58,5 @@ public class CreateServiceProcessor implements RequestProcessor, Serializable {
         }
         return TransmittedException.create("УСЛУГА ДАННОГО ТИПА УЖЕ ДОБАВЛЕНА!").withExceptionType("exception");
     }
-
 
 }

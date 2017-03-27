@@ -20,7 +20,8 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
         List<ActiveService> activeServiceList = null;
         try {
             connection = DBConnection.getInstance().getDataSourse().getConnection();
-            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) and((STATE='NOT_READY') or(STATE='READY' AND (NEXTACTIVESERVICEID IS NULL or NEXTACTIVESERVICEID=0)))";
+            String sql = "SELECT *FROM ACTIVESERVICE WHERE (USER_ID=?) AND " +
+                    "((STATE='NOT_READY') OR (STATE='READY' AND (NEXTACTIVESERVICEID IS NULL OR NEXTACTIVESERVICEID=0)))";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             activeServiceList=getActiveServiceListByParams(ps);
@@ -228,7 +229,9 @@ public class DBActiveServiceStorage implements ActiveServiceStorage {
             ps.setTimestamp(1, new Timestamp(date.getTime()));
             ps.setInt(2, activeServiceId);
             ps.setInt(3, activeServiceId);
+            System.out.println("execute");
             ps.executeQuery();
+            System.out.println("do it");
         } catch (SQLException e) {
             e.printStackTrace();
         }

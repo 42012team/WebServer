@@ -43,9 +43,7 @@ public class HibernateUtil {
     private static final EntityManagerFactory emFactory;
     static {
         try {
-            System.out.println("qwerty");
             emFactory = Persistence.createEntityManagerFactory(PERSISTENT_UNIT_NAME);
-            System.out.println(emFactory==null);
         } catch (Throwable ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();

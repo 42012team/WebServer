@@ -13,5 +13,6 @@ public interface ServiceStorage {
     public void storeService(Service service);
 
     public void deleteService(int serviceId);
+
     public List<Service> getServicesBySameType(int activeServiceId);
 }

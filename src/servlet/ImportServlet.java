@@ -59,21 +59,17 @@ import classes.request.impl.TransmittedActiveServiceParams;
 import classes.request.impl.TransmittedUserParams;
 import classes.response.ResponseDTO;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
-/**
- * Created by User on 05.03.2017.
- */
 
 @MultipartConfig(fileSizeThreshold=1024*1024*2,
         maxFileSize=1024*1024*10,

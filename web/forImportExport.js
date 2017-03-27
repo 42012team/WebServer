@@ -1,6 +1,3 @@
-/**
- * Created by User on 04.03.2017.
- */
 function importClick(){
     alert('mr');
     var file = document.getElementById('filename');

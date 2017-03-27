@@ -9,9 +9,6 @@ import classes.response.impl.UserResponse;
 
 import java.io.Serializable;
 
-/**
- * Created by User on 02.03.2017.
- */
 public class MergeUserProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;

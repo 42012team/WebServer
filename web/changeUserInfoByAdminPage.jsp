@@ -6,7 +6,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page errorPage="/errorPage.jsp" %>
+<<%@ page errorPage="/errorPage.jsp" %>
 <html>
 <head>
     <title>Title</title>
@@ -98,7 +98,7 @@
         <ul>
             <div class="container">
                 <%
-                    List<ActiveService> activeServiceList = (List<ActiveService>) request.getAttribute("activeServicesList");
+                    List<ActiveService> activeServicesList = (List<ActiveService>) request.getAttribute("activeServicesList");
                     List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
                     if (servicesList.size() > 0) {
                 %>
@@ -128,33 +128,50 @@
                                 <h2 class="tag-title"><span class="value"><%=s.getName()%></span></h2>
                                 <hr/>
                                 <li>
-                                    <% if (activeServiceList.get(k).getNextActiveServiceId() == 0) {
-                                        /*if (((activeServiceList.get(k).getNextActiveServiceId() != 0)) || (
+                                    <% ActiveService activeService = null;
+                                        boolean theNext = true;
+                                        for (int i = 0; i < activeServicesList.size(); i++) {
+                                            if (activeServicesList.get(i).getServiceId() == s.getId()) {
+                                                if ((k > 0) && (servicesList.get(k - 1).getId() == s.getId())) {
+                                                    if (theNext) {
+                                                        theNext = false;
+                                                    } else {
+                                                        activeService = activeServicesList.get(i);
+                                                        break;
+                                                    }
+                                                } else {
+                                                    activeService = activeServicesList.get(i);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (activeService.getNextActiveServiceId() == 0) {
+                                        /*if (((activeServicesList.get(k).getNextActiveServiceId() != 0)) || (
                                                 ((k == 0) || (!servicesList.get(k - 1).getType().equals(servicesList.get(k).getType()))) &&
                                                         ((k == servicesList.size() - 1) || (!servicesList.get(k).getType().equals(servicesList.get(k + 1).getType()))))){*/
                                     %>
                                     <input type="radio" class="radio" name="chooseActiveService" onclick="click1(this)"
-                                           id="<%=activeServiceList.get(k).getId()%>"
-                                           value="<%=activeServiceList.get(k).getId()%>" 0><%}%>
+                                           id="<%=activeService.getId()%>"
+                                           value="<%=activeService.getId()%>" 0><%}%>
                                     <div class="description">Описание услуги:<span
                                             class="value"><%=s.getDescription()%></span>
                                     </div>
                                     <div class="description">Тип услуги: <span class="value"><%=s.getType()%></span>
                                     </div>
-                                    <% if (activeServiceList.get(k).getState().equals(ActiveServiceState.NOT_READY)) {
+                                    <% if (activeService.getState().equals(ActiveServiceState.NOT_READY)) {
                                         SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                                        String strDate = sdfDate.format(activeServiceList.get(k).getDate());%>
+                                        String strDate = sdfDate.format(activeService.getDate());%>
                                     <div class="description">Статус услуги: <span
-                                            class="value"><%=activeServiceList.get(k).getFirstStatus().toString()%></span>
+                                            class="value"><%=activeService.getFirstStatus().toString()%></span>
                                     </div>
                                     <div class="description">Запланировано изменение статуса услуги на<span
                                             class="value">
-    <%= activeServiceList.get(k).getSecondStatus().toString()%>
+    <%=activeService.getSecondStatus().toString()%>
                                         c  <%=strDate%>
             </span></div>
                                     <%} else {%>
                                     <div class="description">Статус услуги: <span
-                                            class="value"><%=activeServiceList.get(k).getSecondStatus().toString()%></span>
+                                            class="value"><%=activeService.getSecondStatus().toString()%></span>
                                     </div>
                                     <br/>
                                     <br/>
@@ -162,8 +179,8 @@
                                         }
                                         boolean notChangeTariff = false;
                                         for (int h = 0; h < servicesList.size(); h++) {
-                                            if ((h != k) && (servicesList.get(k).getType().equals(servicesList.get(h).getType())) &&
-                                                    (activeServiceList.get(h).getState().equals(ActiveServiceState.NOT_READY))) {
+                                            if ((h != k) && (s.getType().equals(servicesList.get(h).getType())) &&
+                                                    (activeServicesList.get(h).getState().equals(ActiveServiceState.NOT_READY))) {
                                                 notChangeTariff = true;
                                                 break;
                                             }
@@ -171,17 +188,16 @@
                                         }
                                         if (!notChangeTariff) {
                                     %>
-
                                     <input type="submit" class="changeButton" style="display:none" value="Изменить дату"
                                            formaction="/ChangeActiveServiceByAdminServlet"
-                                           method="post"/><input type="submit" class="changeTariffButton"
+                                           method="post"/><input type="submit" class="changeButton"
                                                                  style="display:none" value="Изменить тариф"
                                                                  formaction="/GetTheSameTypeByCurrentServiceByAdminServlet"
                                                                  method="post"/><input type="submit"
                                                                                        class="deleteButton"
                                                                                        style="display:none"
                                                                                        value="Удалить"
-                                                                                       formaction="/DeleteActiveServiceServlet"
+                                                                                       formaction="/DeleteActiveServiceByAdminServlet"
                                                                                        method="post"/></li>
                                 <%} else {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить дату"

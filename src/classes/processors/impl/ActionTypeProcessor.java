@@ -12,7 +12,6 @@ import java.io.Serializable;
 
 public class ActionTypeProcessor implements RequestProcessor, Serializable {
 
-    // его надо изменять при выполеннии действия
     private Initializer initializer;
 
     public ActionTypeProcessor() {

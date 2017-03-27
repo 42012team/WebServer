@@ -14,12 +14,8 @@ import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.Date;
 
-/**
- * Created by User on 08.03.2017.
- */
 public class ChangeTariffProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;

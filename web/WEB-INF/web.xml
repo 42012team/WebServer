@@ -196,14 +196,6 @@
         <url-pattern>/DeleteActiveServiceByAdminServlet</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ShowActiveServicesByAdminServlet</servlet-name>
-        <servlet-class>servlet.ShowActiveServicesByAdminServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ShowActiveServicesByAdminServlet</servlet-name>
-        <url-pattern>/ShowActiveServicesByAdminServlet</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>AddActiveServiceByAdminServlet</servlet-name>
         <servlet-class>servlet.AddActiveServiceByAdminServlet</servlet-class>
     </servlet>

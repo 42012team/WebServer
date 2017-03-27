@@ -36,9 +36,9 @@ public class LogInUserProcessor implements RequestProcessor, Serializable {
             TransmittedUserParams userRequestParams = (TransmittedUserParams) request;
             System.out.println("Попытка входа в учетную запись с логином " + userRequestParams.getLogin() + " и паролем " + userRequestParams.getPassword());
             User user = logIn(userRequestParams.getLogin(), userRequestParams.getPassword());
-            UserResponse userr = null;
+            UserResponse userResponse = null;
             if (user != null) {
-                userr = UserResponse.create()
+                userResponse = UserResponse.create()
                         .withName(user.getName())
                         .withSurname(user.getSurname())
                         .withAdress(user.getAddress())
@@ -50,7 +50,7 @@ public class LogInUserProcessor implements RequestProcessor, Serializable {
                         .withResponseType("user")
                         .withVersion(user.getVersion())
                         .withPrivilege(user.getPrivilege());
-                return userr;
+                return userResponse;
             }
         } catch (Exception ex) {
             System.out.println("Exception occured!");
