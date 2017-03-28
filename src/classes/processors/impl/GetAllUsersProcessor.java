@@ -7,10 +7,13 @@ import classes.processors.RequestProcessor;
 import classes.request.RequestDTO;
 import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Component("allUsers")
 public class GetAllUsersProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -19,6 +22,7 @@ public class GetAllUsersProcessor implements RequestProcessor, Serializable {
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

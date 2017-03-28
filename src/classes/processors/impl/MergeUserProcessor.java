@@ -6,9 +6,12 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedUserParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component("mergeUser")
 public class MergeUserProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -17,6 +20,7 @@ public class MergeUserProcessor implements RequestProcessor, Serializable {
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

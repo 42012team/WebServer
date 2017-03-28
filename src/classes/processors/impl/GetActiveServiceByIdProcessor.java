@@ -8,10 +8,13 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Collections;
 
+@Component("getActiveServiceById")
 public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -20,6 +23,7 @@ public class GetActiveServiceByIdProcessor implements RequestProcessor, Serializ
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

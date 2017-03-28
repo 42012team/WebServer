@@ -8,9 +8,12 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component("deleteService")
 public class DeleteServiceProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -19,6 +22,7 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

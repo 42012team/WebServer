@@ -7,9 +7,12 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ActiveServiceResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component("changeNewTariffDate")
 public class ChangeNewTariffDateProcessor implements RequestProcessor, Serializable {
 
     private Initializer initializer;
@@ -18,6 +21,7 @@ public class ChangeNewTariffDateProcessor implements RequestProcessor, Serializa
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }

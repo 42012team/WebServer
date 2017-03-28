@@ -10,10 +10,13 @@ import classes.request.RequestDTO;
 import classes.request.impl.TransmittedUserParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.UserResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Component("searchUsersBySubparams")
 public class SearchUsersBySubparamsProcessor implements RequestProcessor, Serializable {
 
     Initializer initializer;
@@ -22,6 +25,7 @@ public class SearchUsersBySubparamsProcessor implements RequestProcessor, Serial
 
     }
 
+    @Autowired
     public void setInitializer(Initializer initializer) {
         this.initializer = initializer;
     }
