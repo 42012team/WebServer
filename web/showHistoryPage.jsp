@@ -82,25 +82,32 @@
         </tfoot>
         <tbody>
         <%
+            ActiveService activeService=null;
+            Service service=null;
             for (int k = 0; k < allServices.size(); k++) {
-                Service s = allServices.get(k);
+                activeService=activeServicesList.get(k);
+                for (Service s:allServices){
+                    if (s.getId()==activeService.getServiceId()){
+                        service=s;
+                    }
+                }
         %>
         <tr>
-            <td><a href="/ShowServiceDetailsServlet?serviceId=<%=s.getId()%>"><%=s.getName()%></a>
+            <td><a href="/ShowServiceDetailsServlet?serviceId=<%=service.getId()%>"><%=service.getName()%></a>
             </td>
-            <td><%=activeServicesList.get(k).getFirstStatus().toString()%>
+            <td><%=activeService.getFirstStatus().toString()%>
             </td>
-            <td><% if (activeServicesList.get(k).getState().equals(ActiveServiceState.NOT_READY)) {
-            %>Запланировано изменение статуса услуги на <%= activeServicesList.get(k).getSecondStatus().toString()%>                <%
+            <td><% if (activeService.getState().equals(ActiveServiceState.NOT_READY)) {
+            %>Запланировано изменение статуса услуги на <%= activeService.getSecondStatus().toString()%>                <%
                 } else {%>
-                Статус услуги был изменен на <%= activeServicesList.get(k).getSecondStatus().toString()%> c
+                Статус услуги был изменен на <%= activeService.getSecondStatus().toString()%>
                 <%
                     }
                 %>
             </td>
             <td><%
                 SimpleDateFormat sdfDate = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                String strDate = sdfDate.format(activeServicesList.get(k).getDate());
+                String strDate = sdfDate.format(activeService.getDate());
             %><%=strDate%>
             </td>
         </tr>
