@@ -19,7 +19,7 @@ public class ServiceStorageHibernate implements ServiceStorage {
     public List<Service> getAllServices() {
         List<Service> results = null;
         EntityManager em = null;
-        try {
+   /*     try {
             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
             em = HibernateUtil.getEntityManager();
             CriteriaQuery<Service> criteriaQuery = builder.createQuery(Service.class);
@@ -34,7 +34,7 @@ public class ServiceStorageHibernate implements ServiceStorage {
             }
         } finally {
             em.close();
-        }
+        }*/
         return results;
     }
 
@@ -43,7 +43,7 @@ public class ServiceStorageHibernate implements ServiceStorage {
         Service result = null;
         EntityManager entityManager = null;
         try {
-            entityManager = HibernateUtil.getEntityManager();
+            //   entityManager = HibernateUtil.getEntityManager();
             result = (Service) entityManager.find(Service.class, serviceId);
         } catch (Exception ex) {
             System.out.println("Exception occured!");
@@ -61,7 +61,7 @@ public class ServiceStorageHibernate implements ServiceStorage {
     public void storeService(Service service) {
         EntityManager entityManager = null;
         try {
-            entityManager = HibernateUtil.getEntityManager();
+            //    entityManager = HibernateUtil.getEntityManager();
             entityManager.getTransaction().begin();
             entityManager.merge(service);
             entityManager.getTransaction().commit();

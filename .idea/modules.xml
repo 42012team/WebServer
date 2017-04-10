@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/WebServer.iml" filepath="$PROJECT_DIR$/WebServer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hiber/hiber.iml" filepath="$PROJECT_DIR$/hiber/hiber.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
     </modules>
   </component>

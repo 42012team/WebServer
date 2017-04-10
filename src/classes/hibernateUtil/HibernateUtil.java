@@ -1,5 +1,5 @@
 package classes.hibernateUtil;
-/*
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -31,18 +31,24 @@ public class HibernateUtil {
 
 
 }
-*/
+
+/*
+import org.hibernate.cfg.Configuration;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 
 public class HibernateUtil {
-    private static final String PERSISTENT_UNIT_NAME = "org.hibernate.ejb.HibernatePeristence";
+
+
+  private static final String PERSISTENT_UNIT_NAME = "org.hibernate.ejb.HibernatePeristence";
 
     private static final EntityManagerFactory emFactory;
     static {
         try {
+
             emFactory = Persistence.createEntityManagerFactory(PERSISTENT_UNIT_NAME);
         } catch (Throwable ex) {
             System.out.println(ex.getMessage());
@@ -66,3 +72,4 @@ public class HibernateUtil {
 }
 
 
+*/

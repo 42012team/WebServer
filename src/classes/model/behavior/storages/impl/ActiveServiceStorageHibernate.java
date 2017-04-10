@@ -21,13 +21,13 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         List result = null;
         EntityManager em = null;
         try {
-            CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
+         /* CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
             em = HibernateUtil.getEntityManager();
             CriteriaQuery<ActiveService> criteriaQuery = builder.createQuery(ActiveService.class);
             Root<ActiveService> activeServiceRoot = criteriaQuery.from(ActiveService.class);
             criteriaQuery.select(activeServiceRoot);
             criteriaQuery.where(builder.equal(activeServiceRoot.get("userId"), userId));
-            result = em.createQuery(criteriaQuery).getResultList();
+            result = em.createQuery(criteriaQuery).getResultList();*/
         } catch (Exception ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
@@ -69,7 +69,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public List<ActiveService> getAllActiveServices() {
         List<ActiveService> results = null;
-        EntityManager entityManager = null;
+     /*   EntityManager entityManager = null;
         try {
             entityManager = HibernateUtil.getEntityManager();
             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
@@ -85,14 +85,14 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             }
         } finally {
             entityManager.close();
-        }
+        }*/
         return results;
     }
 
     @Override
     public ActiveService getActiveServiceById(int activeServiceId) {
         ActiveService result = null;
-        EntityManager entityManager = null;
+     /*   EntityManager entityManager = null;
         try {
             entityManager = HibernateUtil.getEntityManager();
             result = (ActiveService) entityManager.find(ActiveService.class, activeServiceId);
@@ -104,7 +104,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             }
         } finally {
             entityManager.close();
-        }
+        }*/
         return result;
     }
 
@@ -116,7 +116,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public void storeActiveServices(List<ActiveService> activeServicesList) {
         EntityManager entityManager = null;
-        try {
+      /*  try {
             entityManager = HibernateUtil.getEntityManager();
             for (int i = 0; i < activeServicesList.size(); i++) {
                 entityManager.getTransaction().begin();
@@ -127,7 +127,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             e.printStackTrace();
         } finally {
             entityManager.close();
-        }
+        }*/
     }
 
     @Override
