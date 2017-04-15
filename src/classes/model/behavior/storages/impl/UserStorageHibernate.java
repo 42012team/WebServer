@@ -20,73 +20,6 @@ import java.util.List;
 
 
 public class UserStorageHibernate implements UserStorage {
-    /*@Override
-     public void storeUser(User user) {
-         EntityManager entityManager = null;
-         try {
-             entityManager = HibernateUtil.getEntityManager();
-             entityManager.getTransaction().begin();
-             entityManager.merge(user);
-             entityManager.getTransaction().commit();
-         } catch (Exception ex) {
-             System.out.println("Exception occured!");
-             StackTraceElement[] stackTraceElements = ex.getStackTrace();
-             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                 System.out.println(stackTraceElements[i].toString());
-             }
-         } finally {
-             entityManager.close();
-         }
-     }
-
-
-     @Override
-     public User getUserById(int id) {
-         User result = null;
-         EntityManager entityManager = null;
-         try {
-             entityManager = HibernateUtil.getEntityManager();
-             result = (User) entityManager.find(User.class, id);
-         } catch (Exception ex) {
-             System.out.println("Exception occured!");
-             StackTraceElement[] stackTraceElements = ex.getStackTrace();
-             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                 System.out.println(stackTraceElements[i].toString());
-             }
-         } finally {
-             try{
-             entityManager.close();}
-             catch (Exception ex){
-                 ex.printStackTrace();
-             }
-         }
-         return result;
-     }
-
-     @Override
-     public User getUserByLogin(String login) {
-         User result = null;
-         EntityManager em = null;
-         try {
-             CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
-             em = HibernateUtil.getEntityManager();
-             CriteriaQuery<User> criteriaQuery = builder.createQuery(User.class);
-             Root<User> userRoot = criteriaQuery.from(User.class);
-             criteriaQuery.select(userRoot);
-             criteriaQuery.where(builder.equal(userRoot.get("login"), login));
-             result = em.createQuery(criteriaQuery).getSingleResult();
-         } catch (Exception ex) {
-             System.out.println("Exception occured!");
-             StackTraceElement[] stackTraceElements = ex.getStackTrace();
-             for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                 System.out.println(stackTraceElements[i].toString());
-             }
-         } finally {
-             em.close();
-         }
-         return result;
-     }
- */
     @Override
     public void storeUser(User user) {
         Session session = null;
@@ -94,7 +27,6 @@ public class UserStorageHibernate implements UserStorage {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.merge(user);
-
             session.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,7 +44,11 @@ public class UserStorageHibernate implements UserStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            result = (User) session.load(User.class, id);
+            String hql = "FROM User WHERE id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", id);
+            result = (User) query.list().get(0);
+            System.out.println("getById");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -129,9 +65,12 @@ public class UserStorageHibernate implements UserStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            Criteria cr = session.createCriteria(User.class);
-            cr.add(Restrictions.eq("login", login));
-            result = (User) cr.list().get(0);
+            String hql = "FROM User WHERE login = :login";
+            Query query = session.createQuery(hql);
+            query.setParameter("login", login);
+            result = (User) query.list().get(0);
+            System.out.println("getByLogin");
+            System.out.println(result.getName() + result.getLogin());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -148,13 +87,13 @@ public class UserStorageHibernate implements UserStorage {
         Session session = null;
         try {
 
-            Criterion criterionLogin = Restrictions.eq("login", login);
-            Criterion criterionPassword = Restrictions.eq("password", password);
             session = HibernateUtil.getSessionFactory().openSession();
-            Criteria cr = session.createCriteria(User.class);
-            LogicalExpression andExp = Restrictions.and(criterionLogin, criterionPassword);
-            cr.add(andExp);
-            result = (User) cr.list().get(0);
+            String hql = "FROM User WHERE login = :login and password=:password";
+            Query query = session.createQuery(hql);
+            query.setParameter("login", login);
+            query.setParameter("password", password);
+            result = (User) query.list().get(0);
+            System.out.println("getByLandP");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -168,50 +107,50 @@ public class UserStorageHibernate implements UserStorage {
 
     @Override
     public List<User> getAllUsers() {
-        return null;
+        List<User> results = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "FROM User ";
+            Query query = session.createQuery(hql);
+            results = query.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
+        return results;
     }
 
 
 
     @Override
     public void deleteUser(int id) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "DELETE FROM User " +
+                    "WHERE id = :user_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("user_id", id);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
 
+                session.close();
+        }
     }
 
     @Override
     public List<User> searchUsersByParams(UserParams userParams) {
         return null;
     }
-
-    /*  public User getUser(String login, String password) {
-          User result = null;
-          EntityManager em = null;
-          try {
-              CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
-              em = HibernateUtil.getEntityManager();
-              CriteriaQuery<User> criteriaQuery = builder.createQuery(User.class);
-              Root<User> userRoot = criteriaQuery.from(User.class);
-              Predicate userRestriction = builder.and(
-                      builder.equal(userRoot.get("login"), login),
-                      builder.equal(userRoot.get("password"), password)
-              );
-              criteriaQuery.select(userRoot);
-              criteriaQuery.where(userRestriction);
-              result = em.createQuery(criteriaQuery).getSingleResult();
-
-          } catch (Exception ex) {
-              System.out.println("Exception occured!");
-              StackTraceElement[] stackTraceElements = ex.getStackTrace();
-              for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                  System.out.println(stackTraceElements[i].toString());
-              }
-              System.out.println(ex.getMessage());
-          } finally {
-              em.close();
-          }
-          return result;
-      }
-  */
     @Override
     public List<User> searchUsersBySubparams(UserParams userParams) {
         return null;

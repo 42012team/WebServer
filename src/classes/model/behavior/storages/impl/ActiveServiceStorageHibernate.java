@@ -2,7 +2,10 @@ package classes.model.behavior.storages.impl;
 
 import classes.hibernateUtil.HibernateUtil;
 import classes.model.ActiveService;
+import classes.model.User;
 import classes.model.behavior.storages.ActiveServiceStorage;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,139 +14,193 @@ import javax.persistence.criteria.Root;
 import java.util.Date;
 import java.util.List;
 
-//import javax.persistence.criteria.CriteriaDelete;
-
-
 public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
     @Override
     public List<ActiveService> getActiveServicesByUserId(int userId) {
-
-        List result = null;
-        EntityManager em = null;
+        List<ActiveService> results = null;
+        Session session = null;
         try {
-         /* CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
-            em = HibernateUtil.getEntityManager();
-            CriteriaQuery<ActiveService> criteriaQuery = builder.createQuery(ActiveService.class);
-            Root<ActiveService> activeServiceRoot = criteriaQuery.from(ActiveService.class);
-            criteriaQuery.select(activeServiceRoot);
-            criteriaQuery.where(builder.equal(activeServiceRoot.get("userId"), userId));
-            result = em.createQuery(criteriaQuery).getResultList();*/
-        } catch (Exception ex) {
-            System.out.println("Exception occured!");
-            StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString());
-            }
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "FROM ActiveService WHERE userId= :user_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("user_id", userId);
+            results = query.list();
+            System.out.println("getById");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            em.close();
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
         }
-        return result;
+        return results;
     }
 
     @Override
     public void deleteActiveService(int activeServiceId) {
-        EntityManager entityManager = null;
+        Session session = null;
         try {
-            int i=0;
-          /*
-           entityManager = HibernateUtil.getEntityManager();
-            CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-            CriteriaDelete<ActiveService> criteria = builder.createCriteriaDelete(ActiveService.class);
-            Root<ActiveService> root = criteria.from(ActiveService.class);
-            criteria.where(builder.equal(root.get("id"), activeServiceId));
-            entityManager.getTransaction().begin();
-            entityManager.createQuery(criteria).executeUpdate();
-            entityManager.getTransaction().commit();*/
-        } catch (Exception ex) {
-            System.out.println("Exception occured!");
-            StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString());
-            }
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "DELETE FROM ActiveService " +
+                    "WHERE id = :activeService_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("activeService_id", activeServiceId);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            entityManager.close();
-        }
+            if ((session != null) && (session.isOpen()))
 
+                session.close();
+        }
     }
 
     @Override
     public List<ActiveService> getAllActiveServices() {
+
         List<ActiveService> results = null;
-     /*   EntityManager entityManager = null;
+        Session session = null;
         try {
-            entityManager = HibernateUtil.getEntityManager();
-            CriteriaBuilder builder = HibernateUtil.getCriteriaBuilder();
-            CriteriaQuery<ActiveService> criteriaQuery = builder.createQuery(ActiveService.class);
-            Root<ActiveService> activeServiceRoot = criteriaQuery.from(ActiveService.class);
-            criteriaQuery.select(activeServiceRoot);
-            results = entityManager.createQuery(criteriaQuery).getResultList();
-        } catch (Exception ex) {
-            System.out.println("Exception occured!");
-            StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString());
-            }
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "FROM ActiveService WHERE (state='NOT_READY') ORDER BY id";
+            Query query = session.createQuery(hql);
+            results = query.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            entityManager.close();
-        }*/
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
         return results;
     }
 
     @Override
     public ActiveService getActiveServiceById(int activeServiceId) {
         ActiveService result = null;
-     /*   EntityManager entityManager = null;
+        Session session = null;
         try {
-            entityManager = HibernateUtil.getEntityManager();
-            result = (ActiveService) entityManager.find(ActiveService.class, activeServiceId);
-        } catch (Exception ex) {
-            System.out.println("Exception occured!");
-            StackTraceElement[] stackTraceElements = ex.getStackTrace();
-            for (int i = stackTraceElements.length - 1; i >= 0; i--) {
-                System.out.println(stackTraceElements[i].toString());
-            }
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "FROM ActiveService WHERE id= :activeServiceId";
+            Query query = session.createQuery(hql);
+            query.setParameter("activeServiceId", activeServiceId);
+            result = (ActiveService) query.list().get(0);
+            System.out.println("getById");
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            entityManager.close();
-        }*/
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
         return result;
     }
 
     @Override
     public void deleteNextActiveServiceId(int nextId) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "UPDATE ActiveService set nextActiveServiceId=:nextactiveservice_id " +
+                    "WHERE nextActiveServiceId = :nextactiveserviceId";
+            Query query = session.createQuery(hql);
+            query.setParameter("nextactiveservice_id", null);
+            query.setParameter("nextactiveserviceId", nextId);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
 
     }
 
     @Override
     public void storeActiveServices(List<ActiveService> activeServicesList) {
-        EntityManager entityManager = null;
-      /*  try {
-            entityManager = HibernateUtil.getEntityManager();
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+
             for (int i = 0; i < activeServicesList.size(); i++) {
-                entityManager.getTransaction().begin();
-                entityManager.merge(activeServicesList.get(i));
-                entityManager.getTransaction().commit();
+                session.beginTransaction();
+                session.merge(activeServicesList.get(i));
+                session.getTransaction().commit();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            entityManager.close();
-        }*/
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
     }
 
     @Override
     public void deleteActiveServicesByUserId(int userId) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "DELETE FROM ActiveService " +
+                    "WHERE userId = :user_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("user_id", userId);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
 
+                session.close();
+        }
     }
 
     @Override
     public void setNextId(int currentId, int newId) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "UPDATE ActiveService set nextActiveServiceId=:nextactiveservice_id " +
+                    "WHERE id = :activeservice_id";
+            Query query = session.createQuery(hql);
+            query.setParameter("nextactiveservice_id", currentId);
+            query.setParameter("activeservice_id", newId);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
 
+                session.close();
+        }
     }
 
 
     @Override
     public ActiveService getPreviousActiveService(int activeServiceId) {
-        return null;
+        ActiveService result = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            String hql = "FROM ActiveService WHERE nextActiveServiceId= :activeServiceId";
+            Query query = session.createQuery(hql);
+            query.setParameter("activeServiceId", activeServiceId);
+            result = (ActiveService) query.list().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
+        return result;
     }
 
     @Override
