@@ -31,18 +31,14 @@ public class DeleteServiceProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedServiceParams serviceParams = (TransmittedServiceParams) request;
-            if (initializer.getLockingManager().isAvailableService(serviceParams)) {
-                ServiceManager serviceManager = initializer.getServiceManager();
-                System.out.println("Попытка удаления услуги с Id " + serviceParams.getServiceId());
-                if (serviceManager.deleteService(serviceParams.getServiceId())) {
-                    System.out.println("Услуга успешно удалена!");
-                } else {
-                    System.out.println("Статус услуги был изменен на DEPRECATED!");
-                }
-                return ServiceResponse.create().withResponseType("services");
+            ServiceManager serviceManager = initializer.getServiceManager();
+            System.out.println("Попытка удаления услуги с Id " + serviceParams.getServiceId());
+            if (serviceManager.deleteService(serviceParams.getServiceId())) {
+                System.out.println("Услуга успешно удалена!");
             } else {
-                return TransmittedException.create("УДАЛЕНИЕ НЕВОЗМОЖНО!").withExceptionType("exception");
+                System.out.println("Статус услуги был изменен на DEPRECATED!");
             }
+            return ServiceResponse.create().withResponseType("services");
 
         } catch (Exception ex) {
             System.out.println("Exception occured!");

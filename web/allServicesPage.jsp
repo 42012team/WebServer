@@ -66,11 +66,11 @@
                         </p>
                         <p>
                             <input type="submit" id="<%=allServices.get(0).getId()%>del" name="buttons"
-                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"
+                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить"
                                    style="display:none"/>
                             <input type="submit" id="<%=allServices.get(0).getId()%>ch" name="buttons"
                                    formaction="/ChangeServiceServlet" formmethod="post"
-                                   value="Изменить выбранную услугу" style="display:none"/>
+                                   value="Изменить" style="display:none"/>
                         </p>
                     </div>
                 </div>
@@ -103,11 +103,11 @@
                         </p>
                         <p>
                             <input type="submit" id="<%=allServices.get(i).getId()%>del" name="buttons"
-                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить выбранную услугу"
+                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить"
                                    style="display:none"/>
                             <input type="submit" id="<%=allServices.get(i).getId()%>ch" name="buttons"
                                    formaction="/ChangeServiceServlet" formmethod="post"
-                                   value="Изменить выбранную услугу" style="display:none"/>
+                                   value="Изменить" style="display:none"/>
                         </p>
                     </div>
                 </div>

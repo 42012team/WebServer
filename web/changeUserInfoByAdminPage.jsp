@@ -188,7 +188,8 @@
                                         }
                                         if (!notChangeTariff) {
                                     %>
-                                    <input type="submit" class="changeButton" style="display:none" value="Изменить дату"
+                                    <input type="submit" class="changeButton" style="display:none"
+                                           value="Изменить услугу"
                                            formaction="/ChangeActiveServiceByAdminServlet"
                                            method="post"/><input type="submit" class="changeButton"
                                                                  style="display:none" value="Изменить тариф"
@@ -200,7 +201,7 @@
                                                                                        formaction="/DeleteActiveServiceByAdminServlet"
                                                                                        method="post"/></li>
                                 <%} else {%>
-                                <input type="submit" class="changeButton" style="display:none" value="Изменить дату"
+                                <input type="submit" class="changeButton" style="display:none" value="Изменить услугу"
                                        formaction="/changeNewTariffDateByAdmin.jsp"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"

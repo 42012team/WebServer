@@ -55,6 +55,7 @@ public class ActiveServiceManager {
             activeService.setFirstStatus(activeServiceParams.getFirstStatus());
             activeService.setSecondStatus(activeServiceParams.getSecondStatus());
             activeService.setVersion(0);
+            activeService.setNextActiveServiceId(0);
             activeService.setState(activeServiceParams.getState());
             try {
                 storeActiveServices(Collections.singletonList(activeService));
