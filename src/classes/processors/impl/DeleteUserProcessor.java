@@ -29,8 +29,8 @@ public class DeleteUserProcessor implements RequestProcessor, Serializable {
     public ResponseDTO process(RequestDTO request) {
         TransmittedUserParams userRequestParams = (TransmittedUserParams) request;
         System.out.println("Удаление пользователя с id: " + userRequestParams.getUserId());
-        initializer.getUserManager().deleteUser(userRequestParams.getUserId());
         initializer.getActiveServiceManager().deleteActiveServicesByUserId(userRequestParams.getUserId());
+        initializer.getUserManager().deleteUser(userRequestParams.getUserId());
         return UserResponse.create().withResponseType("successful");
     }
 }

@@ -5,6 +5,7 @@ import classes.model.ActiveService;
 import classes.model.behavior.storages.ActiveServiceStorage;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
 import java.util.Date;
 import java.util.List;
 
@@ -204,7 +205,8 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             String hql = "FROM ActiveService WHERE nextActiveServiceId= :activeServiceId";
             Query query = session.createQuery(hql);
             query.setParameter("activeServiceId", activeServiceId);
-            result = (ActiveService) query.list().get(0);
+            if (!query.list().isEmpty())
+                result = (ActiveService) query.list().get(0);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
