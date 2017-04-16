@@ -132,6 +132,7 @@ public class UserStorageHibernate implements UserStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "DELETE FROM User " +
                     "WHERE id = :user_id";
             Query query = session.createQuery(hql);

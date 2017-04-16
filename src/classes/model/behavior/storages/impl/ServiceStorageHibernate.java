@@ -67,10 +67,11 @@ public class ServiceStorageHibernate implements ServiceStorage {
     }
 
     @Override
-    public void deleteService(int serviceId) {//неработает
+    public void deleteService(int serviceId) {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "DELETE FROM Service " +
                     "WHERE id = :service_id";
             Query query = session.createQuery(hql);
@@ -88,14 +89,11 @@ public class ServiceStorageHibernate implements ServiceStorage {
 
 
     @Override
-    public List<Service> getServicesBySameType(int activeServiceId) {//неработает
+    public List<Service> getServicesBySameType(int activeServiceId) {
         List<Service> results = null;
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            String sql = "SELECT *FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=" +
-                    "(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))" +
-                    "AND(SERVICE_ID<>(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
             String hql = "FROM Service where type=(Select type from Service where id =(Select serviceId " +
                     "from ActiveService where id=:id )) and (id<>(Select serviceId from ActiveService  where id=:id))";
                 Query query = session.createQuery(hql);

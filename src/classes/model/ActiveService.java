@@ -2,11 +2,8 @@ package classes.model;
 
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Date;
-
-@Transactional
 @Entity
 @Table(name = "ACTIVESERVICE")
 

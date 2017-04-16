@@ -21,7 +21,6 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             Query query = session.createQuery(hql);
             query.setParameter("user_id", userId);
             results = query.list();
-            System.out.println("getById");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -37,6 +36,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "DELETE FROM ActiveService " +
                     "WHERE id = :activeService_id";
             Query query = session.createQuery(hql);
@@ -83,7 +83,6 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             Query query = session.createQuery(hql);
             query.setParameter("activeServiceId", activeServiceId);
             result = (ActiveService) query.list().get(0);
-            System.out.println("getById");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -99,6 +98,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "UPDATE ActiveService set nextActiveServiceId=:nextactiveservice_id " +
                     "WHERE nextActiveServiceId = :nextactiveserviceId";
             Query query = session.createQuery(hql);
@@ -121,7 +121,6 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
             for (int i = 0; i < activeServicesList.size(); i++) {
                 session.beginTransaction();
                 session.merge(activeServicesList.get(i));
@@ -142,6 +141,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "DELETE FROM ActiveService " +
                     "WHERE userId = :user_id";
             Query query = session.createQuery(hql);
@@ -157,19 +157,21 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         }
     }
 
-    @Transactional
     @Override
     public void setNextId(int currentId, int newId) {
         Session session = null;
         try {
             System.out.println(currentId + " " + newId);
             session = HibernateUtil.getSessionFactory().openSession();
-            String hql = "UPDATE ActiveService set nextActiveServiceId=:nextId WHERE id = :curId";
+            session.beginTransaction();
+            String hql = "UPDATE ActiveService set nextActiveServiceId=:nextId WHERE id = :currentId";
             Query query = session.createQuery(hql);
             query.setParameter("nextId", newId);
-            query.setParameter("curId", currentId);
+            query.setParameter("currentId", currentId);
             query.executeUpdate();
+            System.out.println("commit");
             session.getTransaction().commit();
+            System.out.println("1");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -177,7 +179,6 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
                 session.close();
         }
     }
-
 
     @Override
     public ActiveService getPreviousActiveService(int activeServiceId) {
@@ -225,6 +226,7 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
             String hql = "UPDATE ActiveService SET date=:date WHERE id IN ((SELECT id FROM ActiveService WHERE id=:id),(SELECT id FROM ActiveService WHERE nextActiveServiceId=:id))";
             Query query = session.createQuery(hql);
             query.setParameter("date", date);
