@@ -123,7 +123,21 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             session = HibernateUtil.getSessionFactory().openSession();
             for (int i = 0; i < activeServicesList.size(); i++) {
                 session.beginTransaction();
-                session.merge(activeServicesList.get(i));
+                String hql = "UPDATE ActiveService set id=:id ,userId=:userId,serviceId=:serviceId," +
+                        "firstStatus=:firstStatus,secondStatus=:secondStatus,date=:tdate, version=:version," +
+                        "state=:state";
+                Query query = session.createQuery(hql);
+                query.setParameter("id", activeServicesList.get(i).getId());
+                query.setParameter("userId", activeServicesList.get(i).getUserId());
+                query.setParameter("serviceId", activeServicesList.get(i).getServiceId());
+                query.setParameter("firstStatus", activeServicesList.get(i).getFirstStatus());
+                query.setParameter("secondStatus", activeServicesList.get(i).getSecondStatus());
+                query.setParameter("tdate", activeServicesList.get(i).getDate());
+                query.setParameter("version", activeServicesList.get(i).getVersion());
+                query.setParameter("state", activeServicesList.get(i).getState());
+                //  activeservice_id,user_id,service_id,FIRST_status,SECOND_status,tdate,version,state
+                query.executeUpdate();
+                //     session.merge(activeServicesList.get(i));
                 session.getTransaction().commit();
             }
 
