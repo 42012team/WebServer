@@ -3,15 +3,8 @@ package classes.model.behavior.storages.impl;
 import classes.hibernateUtil.HibernateUtil;
 import classes.model.Service;
 import classes.model.behavior.storages.ServiceStorage;
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 public class ServiceStorageHibernate implements ServiceStorage {
 
@@ -41,11 +34,14 @@ public class ServiceStorageHibernate implements ServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            result = (Service) session.load(Service.class, serviceId);
+            String hql = "FROM Service WHERE id= :id";
+            Query query = session.createQuery(hql);
+            query.setParameter("id", serviceId);
+            result = (Service) query.list().get(0);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-
             if ((session != null) && (session.isOpen()))
 
                 session.close();
@@ -97,10 +93,14 @@ public class ServiceStorageHibernate implements ServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
-              /*  String hql = "FROM Service where type=(from ActiveService where id =)"+activeServiceId;
+            String sql = "SELECT *FROM SERVICE WHERE SERVICE_TYPE=(SELECT SERVICE_TYPE FROM SERVICE WHERE SERVICE_ID=" +
+                    "(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))" +
+                    "AND(SERVICE_ID<>(SELECT SERVICE_ID FROM ACTIVESERVICE WHERE ACTIVESERVICE_ID=?))";
+            String hql = "FROM Service where type=(Select type from Service where id =(Select serviceId " +
+                    "from ActiveService where id=:id )) and (id<>(Select serviceId from ActiveService  where id=:id))";
                 Query query = session.createQuery(hql);
-                results = query.list();*/
+            query.setParameter("id", activeServiceId);
+            results = query.list();
 
         } catch (Exception e) {
             e.printStackTrace();
