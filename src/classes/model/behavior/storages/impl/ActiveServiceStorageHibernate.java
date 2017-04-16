@@ -5,8 +5,6 @@ import classes.model.ActiveService;
 import classes.model.behavior.storages.ActiveServiceStorage;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -82,7 +80,9 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
             String hql = "FROM ActiveService WHERE id= :activeServiceId";
             Query query = session.createQuery(hql);
             query.setParameter("activeServiceId", activeServiceId);
-            result = (ActiveService) query.list().get(0);
+            if (!query.list().isEmpty()) {
+                result = (ActiveService) query.list().get(0);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -122,23 +122,24 @@ public class ActiveServiceStorageHibernate implements ActiveServiceStorage {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             for (int i = 0; i < activeServicesList.size(); i++) {
-                session.beginTransaction();
-                String hql = "UPDATE ActiveService set id=:id ,userId=:userId,serviceId=:serviceId," +
-                        "firstStatus=:firstStatus,secondStatus=:secondStatus,date=:tdate, version=:version," +
-                        "state=:state";
-                Query query = session.createQuery(hql);
-                query.setParameter("id", activeServicesList.get(i).getId());
-                query.setParameter("userId", activeServicesList.get(i).getUserId());
-                query.setParameter("serviceId", activeServicesList.get(i).getServiceId());
-                query.setParameter("firstStatus", activeServicesList.get(i).getFirstStatus());
-                query.setParameter("secondStatus", activeServicesList.get(i).getSecondStatus());
-                query.setParameter("tdate", activeServicesList.get(i).getDate());
-                query.setParameter("version", activeServicesList.get(i).getVersion());
-                query.setParameter("state", activeServicesList.get(i).getState());
-                //  activeservice_id,user_id,service_id,FIRST_status,SECOND_status,tdate,version,state
-                query.executeUpdate();
-                //     session.merge(activeServicesList.get(i));
-                session.getTransaction().commit();
+                if (getActiveServiceById(activeServicesList.get(i).getId()) != null) {
+                    session.beginTransaction();
+                    String hql = "UPDATE ActiveService set firstStatus=:firstStatus,secondStatus=:secondStatus," +
+                            "date=:tdate, version=:version,state=:state where id=:id";
+                    Query query = session.createQuery(hql);
+                    query.setParameter("firstStatus", activeServicesList.get(i).getFirstStatus());
+                    query.setParameter("secondStatus", activeServicesList.get(i).getSecondStatus());
+                    query.setParameter("tdate", activeServicesList.get(i).getDate());
+                    query.setParameter("version", activeServicesList.get(i).getVersion());
+                    query.setParameter("state", activeServicesList.get(i).getState());
+                    query.setParameter("id", activeServicesList.get(i).getId());
+                    query.executeUpdate();
+                    session.getTransaction().commit();
+                } else {
+                    session.beginTransaction();
+                    session.merge(activeServicesList.get(i));
+                    session.getTransaction().commit();
+                }
             }
 
         } catch (Exception e) {
