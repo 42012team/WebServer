@@ -150,10 +150,110 @@ public class UserStorageHibernate implements UserStorage {
 
     @Override
     public List<User> searchUsersByParams(UserParams userParams) {
-        return null;
+        List<User> usersList = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            StringBuilder hql = new StringBuilder(" FROM User WHERE ");
+            boolean hasPrev = false;
+            if (!userParams.getAddress().equals("")) {
+                hql.append("address='" + userParams.getAddress() + "'");
+                hasPrev = true;
+            }
+            if (!userParams.getLogin().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("login='" + userParams.getLogin() + "'");
+                hasPrev = true;
+            }
+            if (!userParams.getName().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("name='" + userParams.getName() + "'");
+                hasPrev = true;
+            }
+            if (!userParams.getSurname().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("surname='" + userParams.getSurname() + "'");
+                hasPrev = true;
+            }
+            if (!userParams.getEmail().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("email='" + userParams.getEmail() + "'");
+                hasPrev = true;
+            }
+            if (!userParams.getPhone().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("phone=" + userParams.getPhone() + "'");
+            }
+            Query query = session.createQuery(hql.toString());
+            usersList = query.list();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
+        return usersList;
     }
     @Override
     public List<User> searchUsersBySubparams(UserParams userParams) {
-        return null;
+        List<User> usersList = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            StringBuilder hql = new StringBuilder(" FROM User WHERE ");
+            boolean hasPrev = false;
+            if (!userParams.getAddress().equals("")) {
+                hql.append("address LIKE '%" + userParams.getAddress() + "%'");
+                hasPrev = true;
+            }
+            if (!userParams.getLogin().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("login LIKE '%" + userParams.getLogin() + "%'");
+                hasPrev = true;
+            }
+            if (!userParams.getName().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("name LIKE '%" + userParams.getName() + "%'");
+                hasPrev = true;
+            }
+            if (!userParams.getSurname().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("surname LIKE '%" + userParams.getSurname() + "%'");
+                hasPrev = true;
+            }
+            if (!userParams.getEmail().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("email LIKE '%" + userParams.getEmail() + "%'");
+                hasPrev = true;
+            }
+            if (!userParams.getPhone().equals("")) {
+                if (hasPrev)
+                    hql.append(" AND ");
+                hql.append("phone LIKE '%" + userParams.getPhone() + "%'");
+            }
+            Query query = session.createQuery(hql.toString());
+            usersList = query.list();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if ((session != null) && (session.isOpen()))
+
+                session.close();
+        }
+        return usersList;
     }
 }

@@ -68,7 +68,7 @@ public class ActiveServiceManager {
         return null;
     }
 
-    public ActiveService changeTariff(ActiveServiceParams activeServiceParams) {//переобозвать не плохо бы
+    public ActiveService changeTariff(ActiveServiceParams activeServiceParams) {
         int newId = idGenerator.generateId();
         ActiveService activeService = new ActiveService();
         activeService.setId(newId);
