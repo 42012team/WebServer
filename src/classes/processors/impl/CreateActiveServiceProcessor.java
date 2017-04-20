@@ -48,13 +48,17 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
+            //if(initializer.getJmsManager().isAvailable(activeServiceParams.getId(),activeServiceParams.getServiceId(), "addTask","message")){
+
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());
             if (createActiveService(activeServiceParams.getId(), activeServiceParams.getServiceId(),
                     activeServiceParams.getUserId(), activeServiceParams.getFirstStatus(),
-                    activeServiceParams.getSecondStatus(), activeServiceParams.getDate(),activeServiceParams.getState())) {
+                    activeServiceParams.getSecondStatus(), activeServiceParams.getDate(), activeServiceParams.getState())) {
                 return ActiveServiceResponse.create().withResponseType("activeServices");
             }
+        /*}
+        *  return TransmittedException.create("Невозможно подключить услугу в выбранную дату").withExceptionType("exception");*/
         } catch (Exception ex) {
             System.out.println("Exception occured: " + ex.getStackTrace());
             StackTraceElement[] stackTraceElements = ex.getStackTrace();
