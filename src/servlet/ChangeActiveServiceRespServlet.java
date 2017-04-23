@@ -90,7 +90,7 @@ public class ChangeActiveServiceRespServlet extends HttpServlet
         ResponseDTO resp = controller.identifyObject(activeServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ShowActiveServicesServlet");
+        response.sendRedirect("/WebServer_war_exploded/ShowActiveServicesServlet");
     }
 
 }

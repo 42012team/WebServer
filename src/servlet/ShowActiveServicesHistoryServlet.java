@@ -51,7 +51,7 @@ public class ShowActiveServicesHistoryServlet extends HttpServlet {
             List<Service> serviceList = serviceResponse.getServices();
             request.setAttribute("activeServicesDescriptions", serviceList);
             request.setAttribute("activeServicesList", activeServicesList);
-            request.getRequestDispatcher("/showHistoryPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/WebServer_war_exploded/showHistoryPage.jsp").forward(request, response);
         } else
             throw new ServletException("ОШИБКА 404!");
     }

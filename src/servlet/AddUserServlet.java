@@ -49,6 +49,6 @@ public class AddUserServlet extends HttpServlet {
         ResponseDTO resp = controller.identifyObject(userParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/GetAllUsersServlet");
+        response.sendRedirect("/WebServer_war_exploded/GetAllUsersServlet");
     }
 }

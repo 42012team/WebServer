@@ -114,7 +114,7 @@ public class ImportServlet extends HttpServlet {
                 controller.identifyObject(transmittedActiveServiceParams);
             }
         }
-        response.sendRedirect("/GetAllUsersServlet");
+        response.sendRedirect("/WebServer_war_exploded/GetAllUsersServlet");
     }
 
     private String extractFileName(Part part) {

@@ -31,7 +31,7 @@ public class AddServiceServlet extends HttpServlet {
                 .withRequestType("createService"));
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/AllServicesServlet");
+        response.sendRedirect("/WebServer_war_exploded/AllServicesServlet");
     }
 
 }

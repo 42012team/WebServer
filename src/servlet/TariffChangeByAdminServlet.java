@@ -3,12 +3,8 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
-import classes.model.ActiveServiceState;
-import classes.model.ActiveServiceStatus;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
-import classes.response.impl.ActiveServiceResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +43,7 @@ public class TariffChangeByAdminServlet extends HttpServlet {
             ResponseDTO resp = controller.identifyObject(addActiveServiceParams);
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
-            response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id=" + userId);
+            response.sendRedirect("/WebServer_war_exploded/ChangeUserInfoByAdminServlet?user_id=" + userId);
         } catch (ParseException ex) {
             System.out.println("Exception occured!");
             StackTraceElement[] stackTraceElements = ex.getStackTrace();

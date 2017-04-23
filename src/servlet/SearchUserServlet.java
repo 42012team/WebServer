@@ -44,6 +44,6 @@ public class SearchUserServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         UserResponse userResponse = (UserResponse) resp;
         request.setAttribute("allUsers", userResponse.getAllUsers());
-        request.getRequestDispatcher("/allUsers.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/allUsers.jsp").forward(request, response);
     }
 }

@@ -30,6 +30,6 @@ public class ErrorHandler extends HttpServlet {
             request.setAttribute("message", (throwable.getMessage() == null) ? "ОШИБКА 404!" : throwable.getMessage());
         } else
             request.setAttribute("message", "ОШИБКА 404!");
-        request.getRequestDispatcher("/errorPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/errorPage.jsp").forward(request, response);
     }
 }

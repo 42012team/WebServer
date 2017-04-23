@@ -33,7 +33,7 @@ public class DeleteActiveServiceByAdminServlet extends HttpServlet {
         request.setAttribute("user_id",userId);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ChangeUserInfoByAdminServlet?user_id="+userId);
+        response.sendRedirect("/WebServer_war_exploded/ChangeUserInfoByAdminServlet?user_id=" + userId);
     }
 
 }

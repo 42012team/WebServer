@@ -40,7 +40,7 @@ public class ShowAdminPageServlet extends HttpServlet {
                 userResponse.getPhone(), userResponse.getAddress(), userResponse.getLogin(), userResponse.getPassword(), userResponse.getVersion(),
                 userResponse.getPrivilege());
         request.getSession(true).setAttribute("user", user);
-        request.getRequestDispatcher("/adminPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/adminPage.jsp").forward(request, response);
     }
 
 }

@@ -3,7 +3,6 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
 import classes.response.impl.ServiceResponse;
@@ -36,6 +35,6 @@ public class GetTheSameTypeByCurrentServiceServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse=(ServiceResponse)resp;
         request.setAttribute("theSameTypeWithCurrentActiveService",serviceResponse.getServices());
-        request.getRequestDispatcher("/tariffChangePage.jsp").forward(request,response);
+        request.getRequestDispatcher("/WebServer_war_exploded/tariffChangePage.jsp").forward(request, response);
     }
 }

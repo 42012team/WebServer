@@ -60,6 +60,6 @@ public class SignInServlet extends HttpServlet {
         request.getSession(true).setAttribute("user", user);
         List<String> linksList = new ArrayList<String>();
         request.getSession(true).setAttribute("back", linksList);
-        response.sendRedirect("/profilePage.jsp");
+        response.sendRedirect("/WebServer_war_exploded/profilePage.jsp");
     }
 }

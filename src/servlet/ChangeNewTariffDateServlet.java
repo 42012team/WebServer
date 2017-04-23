@@ -3,7 +3,6 @@ package servlet;
 import classes.configuration.Initialization;
 import classes.controllers.WebController;
 import classes.exceptions.TransmittedException;
-import classes.model.ActiveService;
 import classes.model.User;
 import classes.request.impl.TransmittedActiveServiceParams;
 import classes.response.ResponseDTO;
@@ -47,6 +46,6 @@ public class ChangeNewTariffDateServlet extends HttpServlet {
         ResponseDTO resp = controller.identifyObject(transmittedActiveServiceParams);
         if (resp.getResponseType().equals("exception"))
             throw new ServletException(((TransmittedException) resp).getMessage());
-        response.sendRedirect("/ShowActiveServicesServlet");
+        response.sendRedirect("/WebServer_war_exploded/ShowActiveServicesServlet");
     }
 }

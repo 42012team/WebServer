@@ -43,6 +43,6 @@ public class ChangeServiceServlet extends HttpServlet {
                 break;
             }
         }
-        request.getRequestDispatcher("/changeServicePage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/changeServicePage.jsp").forward(request, response);
     }
 }

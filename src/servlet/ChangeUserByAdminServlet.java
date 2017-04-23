@@ -30,7 +30,7 @@ public class ChangeUserByAdminServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         UserResponse userResp = (UserResponse) resp;
         request.setAttribute("user", userResp);
-        request.getRequestDispatcher("/changeUserByAdminPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/changeUserByAdminPage.jsp").forward(request, response);
     }
 
 }

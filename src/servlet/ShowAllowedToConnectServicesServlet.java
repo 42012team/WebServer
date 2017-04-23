@@ -32,7 +32,7 @@ public class ShowAllowedToConnectServicesServlet extends HttpServlet {
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.removeAttribute("allowedToConnectServices");
         request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
-        request.getRequestDispatcher("/allowedToConnectServicesPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/allowedToConnectServicesPage.jsp").forward(request, response);
     }
 
 }

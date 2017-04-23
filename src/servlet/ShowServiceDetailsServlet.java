@@ -30,7 +30,7 @@ public class ShowServiceDetailsServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.setAttribute("service", serviceResponse.getServices().get(0));
-        request.getRequestDispatcher("/showServiceDetailsPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/WebServer_war_exploded/showServiceDetailsPage.jsp").forward(request, response);
     }
 
 }
