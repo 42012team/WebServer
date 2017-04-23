@@ -26,10 +26,10 @@
                 <
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -41,7 +41,7 @@
             <div class="box-content">
                 <h2>Редактирование</h2>
                 <p><input type="submit" name="saveButton" id="deleteButton" value="Удалить"
-                          formaction="/DeleteUserServlet" formmethod="post"></p>
+                          formaction="/WebServer_war_exploded/DeleteUserServlet" formmethod="post"></p>
                 <%
                     UserResponse user = (UserResponse) request.getAttribute("user");%>
                 <p>Пароль: <input type="text" name="password" id="password" value="<%=user.getPassword()%>" required>
@@ -62,7 +62,7 @@
                 <input type="hidden" value="<%=user.getVersion()%>" name="version"/>
                 <input type="hidden" value="<%=user.getLogin()%>" name="login"/>
                 <p><input type="submit" name="saveButton" id="saveButton" value="Сохранить"
-                          formaction="/ChangeUserByAdminRespServlet" formmethod="post"></p>
+                          formaction="/WebServer_war_exploded/ChangeUserByAdminRespServlet" formmethod="post"></p>
             </div>
         </div>
     </div>

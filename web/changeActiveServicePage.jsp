@@ -29,16 +29,17 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/ShowProfilePageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="post" action="ChangeActiveServiceRespServlet" <%if(((User) session.getAttribute("user")).getPrivilege().equals("admin")){%>
+<form method="post"
+      action="/WebServer_war_exploded/ChangeActiveServiceRespServlet" <%if (((User) session.getAttribute("user")).getPrivilege().equals("admin")) {%>
       onsubmit="javascript:
 var d=new Date();
 if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date').val())){

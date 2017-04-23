@@ -22,15 +22,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form action="/AddUserServlet" method="post">
+<form action="/WebServer_war_exploded/AddUserServlet" method="post">
     <div class="col-md-6 text-center">
         <div class="box">
             <div class="box-content">

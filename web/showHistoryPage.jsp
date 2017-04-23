@@ -31,27 +31,27 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
                 </li>
                 <%
                     switch (((User) session.getAttribute("user")).getPrivilege()) {
                         case "user":
                 %>
-                <li><a href="/ShowProfilePageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                         break;
                     case "admin":
                 %>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                             break;
                     }
                 %>
-                <li><a href="/startPage.jsp">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -93,7 +93,9 @@
                 }
         %>
         <tr>
-            <td><a href="/ShowServiceDetailsServlet?serviceId=<%=service.getId()%>"><%=service.getName()%></a>
+            <td>
+                <a href="/WebServer_war_exploded/ShowServiceDetailsServlet?serviceId=<%=service.getId()%>"><%=service.getName()%>
+                </a>
             </td>
             <td><%=activeService.getFirstStatus().toString()%>
             </td>

@@ -27,15 +27,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form name="myform" action="/AddActiveServiceByAdminServlet" method="post" onsubmit="javascript:
+<form name="myform" action="/WebServer_war_exploded/AddActiveServiceByAdminServlet" method="post" onsubmit="javascript:
 var d=new Date();
 var dateInput=document.getElementsByName('activationDate'+$('input[name=serviceId]:checked').val().toString())[0].value;
 if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse(dateInput)){

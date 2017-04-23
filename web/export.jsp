@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action="ExportServlet">
+<form action="/WebServer_war_exploded/ExportServlet">
 
 </form>
 </body>

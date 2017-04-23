@@ -35,10 +35,10 @@
                 <
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -74,14 +74,16 @@
                         </p>
                         <p>Привелегия:<%=user.getPrivilege()%>
                         </p>
-                        <input type="submit" class="changeUserButton" formaction="/ChangeUserByAdminServlet"
+                        <input type="submit" class="changeUserButton"
+                               formaction="/WebServer_war_exploded/ChangeUserByAdminServlet"
                                formmethod="post"
                                value="Изменить"/>
                         <%
                             if ((user.getUserId() != ((User) session.getAttribute("user")).getId())
                                     && (!user.getLogin().equals("admin"))) {
                         %>
-                        <input type="submit" class="deleteUserButton" formaction="/DeleteUserServlet" formmethod="post"
+                        <input type="submit" class="deleteUserButton"
+                               formaction="/WebServer_war_exploded/DeleteUserServlet" formmethod="post"
                                value="Удалить"/>
                         <% } %>
                     </div>
@@ -92,7 +94,7 @@
     </div>
     <%session.setAttribute("userForChange", user.getUserId());%>
     <input type="submit" name="" class="addActiveServiceButton" value="Подключить услугу"
-           formaction="/ShowAllowedToConnectServicesByAdminServlet" formmethod="post">
+           formaction="/WebServer_war_exploded/ShowAllowedToConnectServicesByAdminServlet" formmethod="post">
     <form method="post">
         <div id="usersActiveServices"><span id="connectService"><h2>Подключенные услуги</h2></span></div>
         <ul>
@@ -102,7 +104,7 @@
                     List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
                     if (servicesList.size() > 0) {
                 %>
-                <a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(0).getId()%>">
+                <a href="/WebServer_war_exploded/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(0).getId()%>">
                     <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType()%>
                     </h2>
                 </a>
@@ -114,7 +116,7 @@
                             if ((k > 0) && (!servicesList.get(k).getType().equals(servicesList.get(k - 1).getType()))) {
                     %>
                 </div>
-                <a href="/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(k).getId()%>">
+                <a href="/WebServer_war_exploded/ShowActiveServicesHistoryServlet?user_id=<%=user.getUserId()%>&service_id=<%=servicesList.get(k).getId()%>">
                     <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType()%>
                     </h2>
                 </a>
@@ -190,22 +192,22 @@
                                     %>
                                     <input type="submit" class="changeButton" style="display:none"
                                            value="Изменить услугу"
-                                           formaction="/ChangeActiveServiceByAdminServlet"
+                                           formaction="/WebServer_war_exploded/ChangeActiveServiceByAdminServlet"
                                            method="post"/><input type="submit" class="changeButton"
                                                                  style="display:none" value="Изменить тариф"
-                                                                 formaction="/GetTheSameTypeByCurrentServiceByAdminServlet"
+                                                                 formaction="/WebServer_war_exploded/GetTheSameTypeByCurrentServiceByAdminServlet"
                                                                  method="post"/><input type="submit"
                                                                                        class="deleteButton"
                                                                                        style="display:none"
                                                                                        value="Удалить"
-                                                                                       formaction="/DeleteActiveServiceByAdminServlet"
+                                                                                       formaction="/WebServer_war_exploded/DeleteActiveServiceByAdminServlet"
                                                                                        method="post"/></li>
                                 <%} else {%>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить услугу"
-                                       formaction="/changeNewTariffDateByAdmin.jsp"
+                                       formaction="/WebServer_war_exploded/changeNewTariffDateByAdmin.jsp"
                                        method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                              value="Удалить"
-                                                             formaction="/DeleteActiveServiceByAdminServlet"
+                                                             formaction="/WebServer_war_exploded/DeleteActiveServiceByAdminServlet"
                                                              method="post"/></li>
 
 

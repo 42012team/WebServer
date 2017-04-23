@@ -25,15 +25,18 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
-                <li><a href="/AllServicesServlet" color="blue" class="settings">Управление услугами</a></li>
-                <li><a href="/GetAllUsersServlet" color="blue" class="settings">Управление пользователями</a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/ShowActiveServicesServlet" color="blue" class="settings">Мои
+                    услуги</a></li>
+                <li><a href="/WebServer_war_exploded/AllServicesServlet" color="blue" class="settings">Управление
+                    услугами</a></li>
+                <li><a href="/WebServer_war_exploded/GetAllUsersServlet" color="blue" class="settings">Управление
+                    пользователями</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="profileForm" action="/changeProfilePage.jsp" method="post">
+<form class="profileForm" action="/WebServer_war_exploded/changeProfilePage.jsp" method="post">
     <div class="regHeader">
         <h2 class="headerText">Администратор</h2>
     </div>
@@ -65,7 +68,7 @@
     if (((List<String>) (session.getAttribute("back"))).size() != 0) {
 %>
 <div class="backButton">
-    <a href="/BackServlet" class="btn btn-info btn-lg">
+    <a href="/WebServer_war_exploded/BackServlet" class="btn btn-info btn-lg">
         <span class="glyphicon glyphicon-menu-left"></span>Назад
     </a>
 </div>

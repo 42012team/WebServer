@@ -22,20 +22,21 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/ShowActiveServicesServlet" color="blue" class="settings">Мои услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowActiveServicesServlet" color="blue" class="settings">Мои
+                    услуги</a></li>
                 <%
                     switch (((User) session.getAttribute("user")).getPrivilege()) {
                         case "user":
                 %>
-                <li><a href="/ShowProfilePageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                         break;
                     case "admin":
                 %>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
@@ -44,13 +45,13 @@
                 %>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/startPage.jsp">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="changeForm" action="/ChangeUserServlet" method="post">
+<form class="changeForm" action="/WebServer_war_exploded/ChangeUserServlet" method="post">
     <div class="regHeader">
         <h2 class="headerText">Редактирование</h2>
     </div>

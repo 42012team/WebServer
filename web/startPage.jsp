@@ -21,9 +21,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/loginPage.jsp" color="blue" class="settings">Вход</a></li>
-                <li><a href="/registration.jsp" color="blue" class="settings">Регистрация</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/loginPage.jsp" color="blue" class="settings">Вход</a></li>
+                <li><a href="/WebServer_war_exploded/registration.jsp" color="blue" class="settings">Регистрация</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -22,13 +22,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/registration.jsp" color="blue" class="settings">Регистрация</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/registration.jsp" color="blue" class="settings">Регистрация</a>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="loginForm" action="/LogInServlet" method="post">
+<form class="loginForm" action="/WebServer_war_exploded/LogInServlet" method="post">
     <div class="loginHeader">
         <h2 class="headerText">Авторизация</h2>
     </div>

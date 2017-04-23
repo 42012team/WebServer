@@ -26,10 +26,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -66,10 +66,11 @@
                         </p>
                         <p>
                             <input type="submit" id="<%=allServices.get(0).getId()%>del" name="buttons"
-                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить"
+                                   formaction="/WebServer_war_exploded/DeleteServiceServlet" formmethod="post"
+                                   value="Удалить"
                                    style="display:none"/>
                             <input type="submit" id="<%=allServices.get(0).getId()%>ch" name="buttons"
-                                   formaction="/ChangeServiceServlet" formmethod="post"
+                                   formaction="/WebServer_war_exploded/ChangeServiceServlet" formmethod="post"
                                    value="Изменить" style="display:none"/>
                         </p>
                     </div>
@@ -103,10 +104,11 @@
                         </p>
                         <p>
                             <input type="submit" id="<%=allServices.get(i).getId()%>del" name="buttons"
-                                   formaction="/DeleteServiceServlet" formmethod="post" value="Удалить"
+                                   formaction="/WebServer_war_exploded/DeleteServiceServlet" formmethod="post"
+                                   value="Удалить"
                                    style="display:none"/>
                             <input type="submit" id="<%=allServices.get(i).getId()%>ch" name="buttons"
-                                   formaction="/ChangeServiceServlet" formmethod="post"
+                                   formaction="/WebServer_war_exploded/ChangeServiceServlet" formmethod="post"
                                    value="Изменить" style="display:none"/>
                         </p>
                     </div>
@@ -122,7 +124,8 @@
         %>
     </div>
     <div><h4 class="text-center">
-        <input type="submit" formaction="/addServicePage.jsp" formmethod="post" value="Добавить новую услугу"/>
+        <input type="submit" formaction="/WebServer_war_exploded/addServicePage.jsp" formmethod="post"
+               value="Добавить новую услугу"/>
     </h4>
     </div>
 </form>

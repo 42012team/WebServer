@@ -30,28 +30,29 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/ShowAllowedToConnectServicesServlet" color="blue" class="settings">Подключить услугу</a>
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAllowedToConnectServicesServlet" color="blue" class="settings">Подключить
+                    услугу</a>
                 </li>
                 <%
                     switch (((User) session.getAttribute("user")).getPrivilege()) {
                         case "user":
                 %>
-                <li><a href="/ShowProfilePageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                         break;
                     case "admin":
                 %>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
                             break;
                     }
                 %>
-                <li><a href="/startPage.jsp">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -65,7 +66,7 @@
                 List<Service> servicesList = (List<Service>) request.getAttribute("activeServicesDescriptions");
                 if (servicesList.size() > 0) {
             %>
-            <a href="/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(0).getId()%>">
+            <a href="/WebServer_war_exploded/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(0).getId()%>">
                 <h2 class="text-center">Услуги типа <%=servicesList.get(0).getType()%>
                 </h2>
             </a>
@@ -77,7 +78,7 @@
                         if ((k > 0) && (!servicesList.get(k).getType().equals(servicesList.get(k - 1).getType()))) {
                 %>
             </div>
-            <a href="/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(k).getId()%>">
+            <a href="/WebServer_war_exploded/ShowActiveServicesHistoryServlet?user_id=<%=((User) session.getAttribute("user")).getId()%>&service_id=<%=servicesList.get(k).getId()%>">
                 <h2 class="text-center">Услуги типа <%=servicesList.get(k).getType()%>
                 </h2>
             </a>
@@ -152,21 +153,21 @@
                                     if (!notChangeTariff) {
                                 %>
                                 <input type="submit" class="changeButton" style="display:none" value="Изменить услугу"
-                                       formaction="/ChangeActiveServiceServlet"
+                                       formaction="/WebServer_war_exploded/ChangeActiveServiceServlet"
                                        method="post"/><input type="submit" class="changeButton"
                                                              style="display:none" value="Изменить тариф"
-                                                             formaction="/GetTheSameTypeByCurrentServiceServlet"
+                                                             formaction="/WebServer_war_exploded/GetTheSameTypeByCurrentServiceServlet"
                                                              method="post"/><input type="submit" class="deleteButton"
                                                                                    style="display:none"
                                                                                    value="Удалить"
-                                                                                   formaction="/DeleteActiveServiceServlet"
+                                                                                   formaction="/WebServer_war_exploded/DeleteActiveServiceServlet"
                                                                                    method="post"/></li>
                             <%} else {%>
                             <input type="submit" class="changeButton" style="display:none" value="Изменить услугу"
-                                   formaction="/changeNewTariffDate.jsp"
+                                   formaction="/WebServer_war_exploded/changeNewTariffDate.jsp"
                                    method="post"/><input type="submit" class="deleteButton" style="display:none"
                                                          value="Удалить"
-                                                         formaction="/DeleteActiveServiceServlet"
+                                                         formaction="/WebServer_war_exploded/DeleteActiveServiceServlet"
                                                          method="post"/></li>
 
                             <%}%>

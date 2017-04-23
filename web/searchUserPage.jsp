@@ -24,16 +24,16 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/loginPage.jsp" color="blue" class="settings">Вход</a></li>
+                <li><a href="/WebServer_war_exploded/loginPage.jsp" color="blue" class="settings">Вход</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<form class="registrationForm" action="/SearchUserServlet" method="post" style="height: 65%">
+<form class="registrationForm" action="/WebServer_war_exploded/SearchUserServlet" method="post" style="height: 65%">
     <div class="regHeader">
         <h2 class="headerText">Поиск</h2>
     </div>

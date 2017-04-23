@@ -26,11 +26,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAllServicesServlet">Все услуги</a></li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,8 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                         <p>Введите новую дату смены тарифа в формате:</p>
                         <p><strong>ДД.ММ.ГГГГ ЧЧ:ММ</strong></p>
                         <input type="datetime-local" name="date" id="date" class="calendar" required/>
-                        <input type="submit" class="changeDateButton" formaction="/ChangeNewTariffDateByAdminServlet"
+                        <input type="submit" class="changeDateButton"
+                               formaction="/WebServer_war_exploded/ChangeNewTariffDateByAdminServlet"
                                formmethod="post"
                                value="Изменить дату"/>
                     </div>

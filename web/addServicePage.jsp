@@ -22,10 +22,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -38,7 +38,8 @@
                 <p>Название услуги:<input type="text" name="name" value="" required></p>
                 <p>Описание услуги:<input type="text" name="description" value="" required></p>
                 <p>Тип услуги:<input type="text" name="type" value="" required></p>
-                <input type="submit" formaction="/AddServiceServlet" formmethod="post" value="Добавить услугу"/>
+                <input type="submit" formaction="/WebServer_war_exploded/AddServiceServlet" formmethod="post"
+                       value="Добавить услугу"/>
             </div>
         </div>
     </div>

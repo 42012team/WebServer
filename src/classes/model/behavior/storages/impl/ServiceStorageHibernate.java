@@ -14,7 +14,7 @@ public class ServiceStorageHibernate implements ServiceStorage {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            String hql = "FROM Service  ORDER BY SERVICE_TYPE";
+            String hql = "FROM Service  ORDER BY type";
             Query query = session.createQuery(hql);
             results = query.list();
 

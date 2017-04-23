@@ -29,15 +29,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form method="post" action="/ChangeActiveServiceByAdminRespServlet" onsubmit="javascript:
+<form method="post" action="/WebServer_war_exploded/ChangeActiveServiceByAdminRespServlet" onsubmit="javascript:
 var d=new Date();
 if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($('#date').val())){
     return confirm('Введена прошедшая дата! Изменения сразу вступят в силу. Вы уверены?');

@@ -28,12 +28,14 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>
                 </li>
-                <li><a href="/addUserPage.jsp" color="blue" class="settings">Добавить пользователя</a></li>
-                <li><a href="/searchUserPage.jsp" color="blue" class="settings">Найти пользователя</a></li>
-                <li><a href="/ShowAdminPageServlet" color="blue"
+                <li><a href="/WebServer_war_exploded/addUserPage.jsp" color="blue" class="settings">Добавить
+                    пользователя</a></li>
+                <li><a href="/WebServer_war_exploded/searchUserPage.jsp" color="blue" class="settings">Найти
+                    пользователя</a></li>
+                <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
-                <li><a href="/startPage.jsp" color="blue" class="settings">Выйти</a></li>
+                <li><a href="/WebServer_war_exploded/startPage.jsp" color="blue" class="settings">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -64,7 +66,7 @@
                        onclick="myFunc(this)"/>
             </td>
             <td>
-                <a href="/ChangeUserInfoByAdminServlet?user_id=<%=user.getId()%>"><%=user.getSurname()%> <%=user.getName()%>
+                <a href="/WebServer_war_exploded/ChangeUserInfoByAdminServlet?user_id=<%=user.getId()%>"><%=user.getSurname()%> <%=user.getName()%>
                 </a>
             </td>
         </tr>
@@ -74,8 +76,10 @@
         %>
         </tbody>
     </table>
-    <input type="submit"  name="exportButton" id="exportButton" value="Export" formaction="/ExportServlet" formmethod="post"/>
-    <input type="submit"  name="importButton" id="importButton" formaction="import.jsp"  formmethod="post" value="Import"/>
+    <input type="submit" name="exportButton" id="exportButton" value="Export"
+           formaction="/WebServer_war_exploded/ExportServlet" formmethod="post"/>
+    <input type="submit" name="importButton" id="importButton" formaction="/WebServer_war_exploded/import.jsp"
+           formmethod="post" value="Import"/>
     </form>
 </body>
 </html>
