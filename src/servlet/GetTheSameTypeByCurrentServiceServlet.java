@@ -35,6 +35,6 @@ public class GetTheSameTypeByCurrentServiceServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse=(ServiceResponse)resp;
         request.setAttribute("theSameTypeWithCurrentActiveService",serviceResponse.getServices());
-        request.getRequestDispatcher("/WebServer_war_exploded/tariffChangePage.jsp").forward(request, response);
+        request.getRequestDispatcher("/tariffChangePage.jsp").forward(request, response);
     }
 }

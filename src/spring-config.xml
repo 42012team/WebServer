@@ -7,21 +7,21 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     <bean id="idGenerator" class="classes.idgenerator.IdGeneratorSingletonDB" factory-method="getInstance"/>
-    <bean id="userStorage" class="classes.model.behavior.storages.impl.UserStorageHibernate"/>
+    <bean id="userStorage" class="classes.model.behavior.storages.impl.DBUserStorage"/>
     <bean id="userManager" class="classes.model.behavior.managers.UserManager">
         <constructor-arg name="userStorage" ref="userStorage"/>
         <constructor-arg name="idGenerator" ref="idGenerator"/>
     </bean>
 
     <!-- <bean id="serviceStorage" class="classes.model.behavior.storages.impl.DBServiceStorage"/>-->
-    <bean id="serviceStorage" class="classes.model.behavior.storages.impl.ServiceStorageHibernate"/>
+    <bean id="serviceStorage" class="classes.model.behavior.storages.impl.DBServiceStorage"/>
     <bean id="serviceManager" class="classes.model.behavior.managers.ServiceManager">
         <constructor-arg name="serviceStorage" ref="serviceStorage"/>
         <constructor-arg name="idGenerator" ref="idGenerator"/>
         <property name="activeServiceManager" ref="activeServiceManager"/>
     </bean>
 
-    <bean id="activeServiceStorage" class="classes.model.behavior.storages.impl.ActiveServiceStorageHibernate"/>
+    <bean id="activeServiceStorage" class="classes.model.behavior.storages.impl.DBActiveServiceStorage"/>
     <bean id="activeServiceManager" class="classes.model.behavior.managers.ActiveServiceManager">
         <constructor-arg name="activeServiceStorage" ref="activeServiceStorage"/>
         <constructor-arg name="idGenerator" ref="idGenerator"/>

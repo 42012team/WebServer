@@ -26,21 +26,18 @@
                 <li><a href="/WebServer_war_exploded/ShowActiveServicesServlet" color="blue" class="settings">Мои
                     услуги</a></li>
                 <%
-                    switch (((User) session.getAttribute("user")).getPrivilege()) {
-                        case "user":
+                    if (((User) session.getAttribute("user")).getPrivilege().equals("user")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                        break;
-                    case "admin":
+                } else if (((User) session.getAttribute("user")).getPrivilege().equals("user")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                            break;
                     }
                 %>
                 <li><a href="javascript:history.back();"><span class="glyphicon glyphicon-arrow-right">Назад</span></a>

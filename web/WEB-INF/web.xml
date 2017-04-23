@@ -242,7 +242,7 @@
     <servlet-mapping>
         <servlet-name>ImportServlet</servlet-name>
         <url-pattern>/ImportServlet</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping><!--
     <servlet>
         <servlet-name>ErrorHandler</servlet-name>
         <servlet-class>servlet.ErrorHandler</servlet-class>
@@ -250,7 +250,7 @@
     <servlet-mapping>
         <servlet-name>ErrorHandler</servlet-name>
         <url-pattern>/ErrorHandler</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
     <servlet>
         <servlet-name>GetTheSameTypeByCurrentServiceServlet</servlet-name>
         <servlet-class>servlet.GetTheSameTypeByCurrentServiceServlet</servlet-class>
@@ -284,7 +284,7 @@
     <servlet-mapping>
         <servlet-name>GetTheSameTypeByCurrentServiceByAdminServlet</servlet-name>
         <url-pattern>/GetTheSameTypeByCurrentServiceByAdminServlet</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping><!--
     <error-page>
         <error-code>404</error-code>
         <location>/ErrorHandler</location>
@@ -296,7 +296,7 @@
     <error-page>
         <exception-type>java.lang.Throwable</exception-type>
         <location>/ErrorHandler</location>
-    </error-page>
+    </error-page>-->
     <servlet>
         <servlet-name>SearchUserServlet</servlet-name>
         <servlet-class>servlet.SearchUserServlet</servlet-class>

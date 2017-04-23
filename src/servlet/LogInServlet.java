@@ -45,7 +45,7 @@ public class LogInServlet extends HttpServlet {
                 response.sendRedirect("/WebServer_war_exploded/profilePage.jsp");
                 break;
             case "admin":
-                response.sendRedirect("/WebServer_war_exploded/WebServer_war_exploded/adminPage.jsp");
+                response.sendRedirect("/WebServer_war_exploded/adminPage.jsp");
                 break;
         }
     }

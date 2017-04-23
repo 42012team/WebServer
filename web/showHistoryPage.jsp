@@ -34,21 +34,19 @@
                 <li><a href="/WebServer_war_exploded/ShowAllServicesServlet">Все услуги</a></li>
                 </li>
                 <%
-                    switch (((User) session.getAttribute("user")).getPrivilege()) {
-                        case "user":
+                    if (((User) session.getAttribute("user")).getPrivilege().equals("user")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                        break;
-                    case "admin":
+                } else if (((User) session.getAttribute("user")).getPrivilege().equals("admin")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                            break;
+
                     }
                 %>
                 <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>

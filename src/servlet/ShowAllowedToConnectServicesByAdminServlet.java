@@ -31,7 +31,7 @@ public class ShowAllowedToConnectServicesByAdminServlet extends HttpServlet {
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.removeAttribute("allowedToConnectServices");
         request.setAttribute("allowedToConnectServices", serviceResponse.getServices());
-        request.getRequestDispatcher("/WebServer_war_exploded/allowedToConnectServicesByAdminPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/allowedToConnectServicesByAdminPage.jsp").forward(request, response);
     }
 
 }

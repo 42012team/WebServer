@@ -36,7 +36,7 @@ public class ChangeActiveServiceServlet extends HttpServlet {
         ActiveServiceResponse activeServiceResponse = (ActiveServiceResponse) resp;
         ActiveService activeService = activeServiceResponse.getAllActiveServices().get(0);
         request.setAttribute("activeService", activeService);
-        request.getRequestDispatcher("/WebServer_war_exploded/changeActiveServicePage.jsp").forward(request, response);
+        request.getRequestDispatcher("/changeActiveServicePage.jsp").forward(request, response);
     }
 
 }

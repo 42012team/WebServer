@@ -54,7 +54,7 @@ public class ChangeUserInfoByAdminServlet extends HttpServlet {
             request.setAttribute("activeServicesDescriptions", serviceList);
             request.setAttribute("activeServicesList", activeServicesList);
             request.setAttribute("user", userResp);
-            request.getRequestDispatcher("/WebServer_war_exploded/changeUserInfoByAdminPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/changeUserInfoByAdminPage.jsp").forward(request, response);
         } else
             throw new ServletException("ОШИБКА 404!");
     }

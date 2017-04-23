@@ -16,7 +16,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Spring-4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Spring-4.3.8.RELEASE" level="project" />
     <orderEntry type="module" module-name="WebServer" />
     <orderEntry type="library" name="lib" level="project" />
   </component>

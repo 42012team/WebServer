@@ -30,21 +30,18 @@
                 <li><a href="/WebServer_war_exploded/ShowActiveServicesServlet" color="blue" class="settings">Мои
                     услуги</a></li>
                 <%
-                    switch (((User) session.getAttribute("user")).getPrivilege()) {
-                        case "user":
+                    if (((User) session.getAttribute("user")).getPrivilege().equals("user")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowProfilePageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                        break;
-                    case "admin":
+                } else if (((User) session.getAttribute("user")).getPrivilege().equals("user")) {
                 %>
                 <li><a href="/WebServer_war_exploded/ShowAdminPageServlet" color="blue"
                        class="settings"><%=((User) session.getAttribute("user")).getLogin()%>
                 </a></li>
                 <%
-                            break;
                     }
                 %>
                 <li><a href="/WebServer_war_exploded/startPage.jsp">Выйти</a></li>
@@ -91,7 +88,8 @@ if(Date.parse(new Date(d.getTime()-d.getTimezoneOffset()*60*1000))>Date.parse($(
                                        name="activationDate<%=s.getId()%>" id="date-input<%=i%>"><input type="submit"
                                                                                                         class="addButton"
                                                                                                         style="display:none"
-                                                                                                        value="Выбрать"/></li>
+                                                                                                        value="Выбрать"/>
+                            </li>
                             <br/>
                         </div>
                     </div>

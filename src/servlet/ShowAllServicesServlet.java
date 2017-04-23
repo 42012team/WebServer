@@ -29,7 +29,7 @@ public class ShowAllServicesServlet extends HttpServlet {
             throw new ServletException(((TransmittedException) resp).getMessage());
         ServiceResponse serviceResponse = (ServiceResponse) resp;
         request.setAttribute("allServices", serviceResponse.getServices());
-        request.getRequestDispatcher("/WebServer_war_exploded/showAllServicesPage.jsp").forward(request, response);
+        request.getRequestDispatcher("/showAllServicesPage.jsp").forward(request, response);
     }
 
 }
