@@ -48,7 +48,7 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
     public ResponseDTO process(RequestDTO request) {
         try {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
-            if (initializer.getJmsManager().isAvailable(activeServiceParams.getId(), activeServiceParams.getServiceId(), "addTask", "message")) {
+            if (initializer.getJmsManager().isAvailable(activeServiceParams.getId(), activeServiceParams.getServiceId(), "addTask", "message", activeServiceParams.getDate())) {
 
             System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                     + " пользователю с Id " + activeServiceParams.getUserId());

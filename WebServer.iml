@@ -40,7 +40,7 @@
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="ojdbc7" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6 (2)" level="project" />
-    <orderEntry type="library" name="Spring-4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Spring-4.3.8.RELEASE" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Date;
 
 @WebServlet("/send")
@@ -24,36 +25,17 @@ public class MessageSender extends HttpServlet {
     @Resource(name = "topicDestination")
     private Destination topic;
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String message = req.getParameter("msg");
-        String type = req.getParameter("type");
-        try {
-            send(type, message);
-        } catch (JMSException ex) {
-            ex.printStackTrace();
-        }
-        resp.sendRedirect(req.getContextPath() + "/index1.jsp");
-    }
-
-    private void send(String type, String text) throws JMSException {
+    public void send(int id, int serviceId, String processor, String message, Date date) throws JMSException {
+        TransportServiceMessage transportMessage = new TransportServiceMessage();
+        transportMessage.setActiveServiceId(new BigInteger(String.valueOf(id)));
+        transportMessage.setServiceId(new BigInteger(String.valueOf(id)));
+        transportMessage.setProcessor(processor);
+        transportMessage.setMessageForConsumer(message);
+        transportMessage.setDate(date);
         Connection connection = connectionFactory.createConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        MessageProducer producer;
-        switch (type) {
-            case "Topic":
-                producer = session.createProducer(topic);
-                break;
-            case "Queue":
-                producer = session.createProducer(queue);
-                break;
-            default:
-                throw new UnsupportedOperationException("Unknown destination " + type);
-        }
-        TransportServiceMessage u = new TransportServiceMessage();
-        u.setMessageForConsumer("message");
-        u.setDate(new Date());
-        producer.send(session.createObjectMessage(u));
+        MessageProducer producer = session.createProducer(queue);
+        producer.send(session.createObjectMessage(transportMessage));
         connection.close();
 
     }
