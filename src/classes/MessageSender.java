@@ -28,7 +28,7 @@ public class MessageSender extends HttpServlet {
     public void send(int id, int serviceId, String processor, String message, Date date) throws JMSException {
         TransportServiceMessage transportMessage = new TransportServiceMessage();
         transportMessage.setActiveServiceId(new BigInteger(String.valueOf(id)));
-        transportMessage.setServiceId(new BigInteger(String.valueOf(id)));
+        transportMessage.setServiceId(new BigInteger(String.valueOf(serviceId)));
         transportMessage.setProcessor(processor);
         transportMessage.setMessageForConsumer(message);
         transportMessage.setDate(date);

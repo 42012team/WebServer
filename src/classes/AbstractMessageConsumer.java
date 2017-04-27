@@ -26,7 +26,6 @@ public abstract class AbstractMessageConsumer implements MessageListener {
                 TransportServiceMessage transportServiceMessage = (TransportServiceMessage) ((ObjectMessage) message).getObject();
                 pool.get(transportServiceMessage.getActiveServiceId().intValue()).notifyAll();
                 pool.remove(transportServiceMessage.getActiveServiceId().intValue());
-                //    textMessage = (TransportServiceMessage) ((ObjectMessage) message).getObject();
             } else {
 
 
