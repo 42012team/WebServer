@@ -1,5 +1,7 @@
 package classes;
 
+import classes.transport.TransportServiceMessage;
+
 import javax.annotation.Resource;
 import javax.jms.*;
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet("/send")
 public class MessageSender extends HttpServlet {
@@ -47,7 +50,10 @@ public class MessageSender extends HttpServlet {
             default:
                 throw new UnsupportedOperationException("Unknown destination " + type);
         }
-        producer.send(session.createTextMessage(text));
+        TransportServiceMessage u = new TransportServiceMessage();
+        u.setMessageForConsumer("message");
+        u.setDate(new Date());
+        producer.send(session.createObjectMessage(u));
         connection.close();
 
     }

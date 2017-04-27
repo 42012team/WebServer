@@ -30,7 +30,8 @@
     </div>
 </nav>
 <%
-    session.removeAttribute("user");%>
+    session.removeAttribute("user");
+%>
 <div class="jumbotron">
     <h1>Samara-Telecom</h1>
 </div>
