@@ -1,9 +1,6 @@
 package classes.processors;
 
-import classes.model.behavior.managers.ActiveServiceManager;
-import classes.model.behavior.managers.LockingManager;
-import classes.model.behavior.managers.ServiceManager;
-import classes.model.behavior.managers.UserManager;
+import classes.model.behavior.managers.*;
 
 public class Initializer {
 
@@ -11,15 +8,15 @@ public class Initializer {
     private ActiveServiceManager activeServiceManager;
     private ServiceManager serviceManager;
     private LockingManager lockingManager;
-    //  private JmsManager jmsManager;
+    private JmsManager jmsManager;
 
     public Initializer(UserManager userManager, ActiveServiceManager activeServiceManager, ServiceManager serviceManager,
-                       LockingManager lockingManager) {//jmsManager jmsManager
+                       LockingManager lockingManager, JmsManager jmsManager) {
         this.userManager = userManager;
         this.activeServiceManager = activeServiceManager;
         this.serviceManager = serviceManager;
         this.lockingManager = lockingManager;
-        //this.jmsManager=jmsManager;
+        this.jmsManager = jmsManager;
     }
 
     public UserManager getUserManager() {
@@ -37,6 +34,8 @@ public class Initializer {
     public LockingManager getLockingManager() {
         return lockingManager;
     }
-//    public JmsManager getJmsManager(){return jmsManager;}
 
+    public JmsManager getJmsManager() {
+        return jmsManager;
+    }
 }

@@ -35,12 +35,15 @@
         <constructor-arg name="serviceManager" ref="serviceManager"/>
         <constructor-arg name="typeOfLock" value="optimistic"/>
     </bean>
+    <bean id="jmsManager" class="classes.model.behavior.managers.JmsManager">
 
+    </bean>
     <bean id="initializer" class="classes.processors.Initializer">
         <constructor-arg index="0" ref="userManager"/>
         <constructor-arg index="1" ref="activeServiceManager"/>
         <constructor-arg index="2" ref="serviceManager"/>
         <constructor-arg index="3" ref="lockingManager"/>
+        <constructor-arg index="4" ref="jmsManager"/>
     </bean>
     <bean id="activator" class="classes.activator.Activator" init-method="start">
         <property name="activeServiceManager" ref="activeServiceManager"/>
