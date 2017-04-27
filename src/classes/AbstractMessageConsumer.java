@@ -16,19 +16,42 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractMessageConsumer implements MessageListener {
-    Map<Integer, Object> pool = new HashMap<Integer, Object>();
+    static class MapValue {
+        Object obj;
+        StringBuffer s;
+
+        MapValue(Object obj, StringBuffer s) {
+            this.obj = obj;
+            this.s = s;
+        }
+
+        Object getObj() {
+            return obj;
+        }
+
+        StringBuffer getS() {
+            return s;
+        }
+    }
+
+    static Map<Integer, MapValue> pool = new HashMap<Integer, MapValue>();
 
     @Override
     public void onMessage(Message message) {
         TransportServiceMessage textMessage = null;
         try {
             if (((ObjectMessage) message).getObject() instanceof TransportServiceMessage) {
-                TransportServiceMessage transportServiceMessage = (TransportServiceMessage) ((ObjectMessage) message).getObject();
-                pool.get(transportServiceMessage.getActiveServiceId().intValue()).notifyAll();
-                pool.remove(transportServiceMessage.getActiveServiceId().intValue());
+                TransportServiceMessage transportServiceMessage = (TransportServiceMessage) ((ObjectMessage) message)
+                        .getObject();
+                MapValue mapValue = pool.get(transportServiceMessage.getActiveServiceId().intValue());
+                String s = transportServiceMessage.getMessageForConsumer();
+                mapValue.getS().append(s);
+                mapValue.getObj().notifyAll();
+                synchronized (pool) {
+                    pool.remove(transportServiceMessage.getActiveServiceId().intValue());
+                }
             } else {
-
-
+//Здесь приходит айди подключенной услуги
             }
 
         } catch (JMSException e) {
@@ -41,9 +64,9 @@ public abstract class AbstractMessageConsumer implements MessageListener {
         InMemoryStorage.add(getClass().getName() + " - " + message);
     }
 
-    public void putInPool(int id, Object object) {
+    public static void putInPool(int id, Object obj, StringBuffer s) {
         synchronized (pool) {
-            pool.put(id, object);
+            pool.put(id, new MapValue(obj, s));
         }
     }
 }

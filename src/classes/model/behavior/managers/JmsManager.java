@@ -1,6 +1,8 @@
 package classes.model.behavior.managers;
 
+import classes.AbstractMessageConsumer;
 import classes.MessageSender;
+import classes.TopicMessageConsumer;
 import classes.transport.TransportServiceMessage;
 
 
@@ -21,7 +23,19 @@ public class JmsManager {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-        //отправка Оксане,возврат ответа .
-        return true;
+        Object obj = new Object();
+        StringBuffer stringBuffer = new StringBuffer();
+        AbstractMessageConsumer.putInPool(id, obj, stringBuffer);
+        synchronized (obj) {
+            try {
+                obj.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        if (stringBuffer.equals("success"))
+            return true;
+        else
+            return false;
     }
 }
