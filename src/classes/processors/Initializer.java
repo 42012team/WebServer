@@ -5,7 +5,7 @@ import classes.model.behavior.managers.*;
 public class Initializer {
 
     private UserManager userManager;
-    private ActiveServiceManager activeServiceManager;
+    private static ActiveServiceManager activeServiceManager;
     private ServiceManager serviceManager;
     private LockingManager lockingManager;
     private JmsManager jmsManager;
@@ -27,7 +27,7 @@ public class Initializer {
         return serviceManager;
     }
 
-    public ActiveServiceManager getActiveServiceManager() {
+    public static ActiveServiceManager getActiveServiceManager() {
         return activeServiceManager;
     }
 

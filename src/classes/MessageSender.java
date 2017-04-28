@@ -25,6 +25,10 @@ public class MessageSender extends HttpServlet {
     @Resource(name = "topicDestination")
     private Destination topic;
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
     public void send(int id, int serviceId, String processor, String message, Date date) throws JMSException {
         TransportServiceMessage transportMessage = new TransportServiceMessage();
         transportMessage.setActiveServiceId(new BigInteger(String.valueOf(id)));
@@ -37,6 +41,5 @@ public class MessageSender extends HttpServlet {
         MessageProducer producer = session.createProducer(queue);
         producer.send(session.createObjectMessage(transportMessage));
         connection.close();
-
     }
 }

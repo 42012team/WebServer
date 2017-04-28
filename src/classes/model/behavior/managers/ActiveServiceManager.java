@@ -62,7 +62,7 @@ public class ActiveServiceManager {
             } catch (Exception ex) {
                 return null;
             }
-            activator.schedule(activeService);
+            //activator.schedule(activeService);
             return activeService;
         }
         return null;

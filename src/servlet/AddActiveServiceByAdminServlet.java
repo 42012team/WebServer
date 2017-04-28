@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -34,8 +33,7 @@ public class AddActiveServiceByAdminServlet extends HttpServlet {
             String dateToString = request.getParameter("activationDate" + serviceId);
             dateToString = dateToString.replace('T', ' ');
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date newDate = null;
-            newDate = format.parse(dateToString);
+            Date newDate = format.parse(dateToString);
             TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                     .withServiceId(serviceId)
                     .withUserId(userId)
@@ -48,7 +46,7 @@ public class AddActiveServiceByAdminServlet extends HttpServlet {
             if (resp.getResponseType().equals("exception"))
                 throw new ServletException(((TransmittedException) resp).getMessage());
             response.sendRedirect("/WebServer_war_exploded/ChangeUserInfoByAdminServlet?user_id=" + userId);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             throw new ServletException("НЕКОРРЕКТНАЯ ДАТА!");
         }
     }

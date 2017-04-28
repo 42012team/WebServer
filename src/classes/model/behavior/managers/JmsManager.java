@@ -2,21 +2,13 @@ package classes.model.behavior.managers;
 
 import classes.AbstractMessageConsumer;
 import classes.MessageSender;
-import classes.TopicMessageConsumer;
-import classes.transport.TransportServiceMessage;
-
 
 import javax.jms.JMSException;
-import java.math.BigInteger;
 import java.util.Date;
 
 public class JmsManager {
-    private static String DEF_QUEUE = "test.in";
 
-
-    public boolean isAvailable(int id, int serviceId, String processor, String message, Date date) {
-
-
+    public String isAvailable(int id, int serviceId, String processor, String message, Date date) {
         try {
             MessageSender messageSender = new MessageSender();
             messageSender.send(id, serviceId, processor, message, date);
@@ -33,9 +25,6 @@ public class JmsManager {
                 e.printStackTrace();
             }
         }
-        if (stringBuffer.equals("success"))
-            return true;
-        else
-            return false;
+        return stringBuffer.toString();
     }
 }

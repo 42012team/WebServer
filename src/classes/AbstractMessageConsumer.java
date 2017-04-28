@@ -1,6 +1,9 @@
 package classes;
 
 
+import classes.model.ActiveService;
+import classes.model.behavior.managers.ActiveServiceManager;
+import classes.processors.Initializer;
 import classes.transport.TransportActivator;
 import classes.transport.TransportServiceMessage;
 import classes.util.InMemoryStorage;
@@ -9,10 +12,8 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
-import java.math.BigInteger;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractMessageConsumer implements MessageListener {
@@ -51,10 +52,18 @@ public abstract class AbstractMessageConsumer implements MessageListener {
                     pool.remove(transportServiceMessage.getActiveServiceId().intValue());
                 }
             } else {
-//Здесь приходит айди подключенной услуги
+                if (((ObjectMessage) message).getObject() instanceof AbstractMessageConsumer) {
+                    TransportActivator transportServiceMessage = (TransportActivator) ((ObjectMessage) message)
+                            .getObject();
+                    ActiveServiceManager activeServiceManager = Initializer.getActiveServiceManager();
+                    ActiveService activatedActiveService = activeServiceManager.getActiveServiceById(transportServiceMessage.getActiveServiceId().intValue());
+                    activeServiceManager.changeState(activatedActiveService);
+                    activeServiceManager.storeActiveServices(Collections.singletonList(activatedActiveService));
+                }
             }
-
         } catch (JMSException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         putToStorage("gfgfgf " + textMessage.getMessageForConsumer() + " gfgfgf");
