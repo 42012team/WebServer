@@ -6,7 +6,6 @@ import classes.model.behavior.managers.ActiveServiceManager;
 import classes.processors.Initializer;
 import classes.transport.TransportActivator;
 import classes.transport.TransportServiceMessage;
-import classes.util.InMemoryStorage;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -39,20 +38,25 @@ public abstract class AbstractMessageConsumer implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        TransportServiceMessage textMessage = null;
         try {
             if (((ObjectMessage) message).getObject() instanceof TransportServiceMessage) {
                 TransportServiceMessage transportServiceMessage = (TransportServiceMessage) ((ObjectMessage) message)
                         .getObject();
+                System.out.println("ВЫвод " + transportServiceMessage.getActiveServiceId().intValue() + " pool size=" +
+                        pool.size() + ".");
                 MapValue mapValue = pool.get(transportServiceMessage.getActiveServiceId().intValue());
                 String s = transportServiceMessage.getMessageForConsumer();
+                System.out.println(mapValue + s);
                 mapValue.getS().append(s);
-                mapValue.getObj().notifyAll();
+                System.out.println(mapValue.getObj().hashCode() + "hash 2");
+                synchronized (mapValue.getObj()) {
+                    mapValue.getObj().notify();
+                }
                 synchronized (pool) {
                     pool.remove(transportServiceMessage.getActiveServiceId().intValue());
                 }
             } else {
-                if (((ObjectMessage) message).getObject() instanceof AbstractMessageConsumer) {
+                if (((ObjectMessage) message).getObject() instanceof TransportActivator) {
                     TransportActivator transportServiceMessage = (TransportActivator) ((ObjectMessage) message)
                             .getObject();
                     ActiveServiceManager activeServiceManager = Initializer.getActiveServiceManager();
@@ -66,16 +70,13 @@ public abstract class AbstractMessageConsumer implements MessageListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        putToStorage("gfgfgf " + textMessage.getMessageForConsumer() + " gfgfgf");
-    }
-
-    protected void putToStorage(String message) {
-        InMemoryStorage.add(getClass().getName() + " - " + message);
     }
 
     public static void putInPool(int id, Object obj, StringBuffer s) {
         synchronized (pool) {
+            System.out.println("lalala");
             pool.put(id, new MapValue(obj, s));
         }
+        System.out.println(pool.size());
     }
 }

@@ -49,7 +49,7 @@ public class CreateActiveServiceProcessor implements RequestProcessor, Serializa
         try {
             TransmittedActiveServiceParams activeServiceParams = (TransmittedActiveServiceParams) request;
             String isAvailable = initializer.getJmsManager().isAvailable(activeServiceParams.getId(), activeServiceParams
-                    .getServiceId(), "addTask", "message", activeServiceParams.getDate());
+                    .getServiceId(), "message", activeServiceParams.getDate());
             if (isAvailable.equals("success")) {
                 System.out.println("Добавление новой услуги с Id " + activeServiceParams.getServiceId()
                         + " пользователю с Id " + activeServiceParams.getUserId());

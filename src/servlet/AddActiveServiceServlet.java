@@ -53,11 +53,6 @@ public class AddActiveServiceServlet extends HttpServlet {
                     .equals("admin"))) {
                 throw new ServletException("НЕВЕРНЫЙ ВВОД ДАТЫ!");
             }
-            try {
-                send(123, serviceId, "do something", newDate);
-            } catch (JMSException e) {
-                e.printStackTrace();
-            }
             TransmittedActiveServiceParams activeServiceParams = TransmittedActiveServiceParams.create()
                     .withServiceId(serviceId)
                     .withUserId(user.getId())

@@ -1,20 +1,16 @@
 package classes;
-
 import classes.transport.TransportServiceMessage;
 
 import javax.annotation.Resource;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.jms.*;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Date;
 
-@WebServlet("/send")
-public class MessageSender extends HttpServlet {
+@Startup
+@Singleton(name = "MessageSenderBean")
+public class MessageSenderBean {
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
@@ -22,18 +18,11 @@ public class MessageSender extends HttpServlet {
     @Resource(name = "queueDestination")
     private Destination queue;
 
-    @Resource(name = "topicDestination")
-    private Destination topic;
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    public void send(int id, int serviceId, String processor, String message, Date date) throws JMSException {
+    public void send(int id, int serviceId, String message, Date date) throws JMSException {
+        System.out.println("Посылаю " + id + ".");
         TransportServiceMessage transportMessage = new TransportServiceMessage();
         transportMessage.setActiveServiceId(new BigInteger(String.valueOf(id)));
         transportMessage.setServiceId(new BigInteger(String.valueOf(serviceId)));
-        transportMessage.setProcessor(processor);
         transportMessage.setMessageForConsumer(message);
         transportMessage.setDate(date);
         Connection connection = connectionFactory.createConnection();

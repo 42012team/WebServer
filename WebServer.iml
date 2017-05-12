@@ -41,15 +41,15 @@
     <orderEntry type="library" name="ojdbc7" level="project" />
     <orderEntry type="library" name="Java EE 6-Java EE 6 (2)" level="project" />
     <orderEntry type="library" name="Spring-4.3.8.RELEASE" level="project" />
+    <orderEntry type="library" name="Hibernate 5.2.9-5.2.9" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/hibernate-3.0.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/apache-rat-0.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Hibernate 5.2.9-5.2.9" level="project" />
   </component>
 </module>
